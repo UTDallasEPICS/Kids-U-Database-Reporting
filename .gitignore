@@ -1,4 +1,4 @@
 test.csproj
 test.sln
-/obj/*
-/.vs/*
+/obj
+/.vs
