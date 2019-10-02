@@ -1,0 +1,100 @@
+﻿<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Kids-U Data Entry</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="Students">Student Enrollment</a></li>
+                    <li><a href="OutcomeMeasurements">Outcomes</a></li>
+					<li><a href="ReportCardRecords">Report Cards</a></li>
+                    <li><a href="AttendanceDaily">Attendance</a></li>
+                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+        <li><a href="Login" id="loginLink">Log in</a></li>
+    </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        
+
+
+<form action="Login" method="post"><input name="__RequestVerificationToken" type="hidden" value="mJnjWfWwOndyv8Dg3JMo6oNPUHHAEHZZlF6zRExtN_et3bKFoqEKVHn9JSXF2VI0qA2HJqrdfnzI7T-ZaT1d8BDkG3tgXrqv1sL7VeOjz801" />	<div class="form-horizontal">
+		<h4>Log In</h4>
+		<hr />
+		
+		<div class="form-group">
+			<label for="Username" class="control-label col-md-2">Email</label>
+			<div class="col-md-10">
+				<input class="form-control" id="Username" name="Username" type="text" value="" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Password" class="control-label col-md-2">Password</label>
+			<div class="col-md-10">
+				<input class="form-control" id="Password" name="Password" type="password" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="RememberMe" class="control-label col-md-2">Remember Me?</label>
+			<div class="col-md-10">
+				<input class="check-box" data-val="true" data-val-required="The RememberMe field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" id="SubmitButton" value="Submit" class="btn btn-default"/>
+                <!--Temporary Button-->
+                @Html.ActionLink("Temp Button", "Directory", null, null, new { @class = "btn btn-default" })
+                <!--Temporary Button-->
+			</div>
+		</div>
+	</div>
+</form>
+        <hr />
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+
+    <script src="jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+	<script src="bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+    <script src="jquery.bootstrap.wizard.min.js"></script>
+    
+	<script> $(function() {
+	$('input[type=number]').on('keydown', function(e) {
+		if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+			// Allow: Ctrl+A
+		   (e.keyCode == 65 && e.ctrlKey === true) ||
+			// Allow: home, end, left, right
+		   (e.keyCode >= 35 && e.keyCode <= 40)) {
+			// let it happen, don't do anything
+			return;
+		}
+		// Ensure that it is a number and stop the keypress
+		if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+});</script>
+</body>

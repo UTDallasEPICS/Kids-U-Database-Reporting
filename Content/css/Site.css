@@ -1,0 +1,134 @@
+﻿body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+footer {
+	text-align: center;
+	font-size: smaller;
+	opacity: .5;
+}
+
+.table > tbody > tr:nth-child(odd) > td {
+  background-color: #eef6ff;
+}
+.jumbotron {
+	background: #E8FAFD;
+}
+.jumbotron h1 {
+	font-size: 48px
+}
+.navbar-inverse {
+	background: #8F0306;
+	border-bottom: solid 2px #000C7C;
+	color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a,.navbar-inverse .navbar-brand  {
+	color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,.navbar-inverse .navbar-brand:hover  {
+	background: #000C7C;
+}
+
+.tabletop {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+}
+
+#left {
+	flex: 0 0 500px;
+	text-align: left;
+}
+#left a {
+	background-color: #8F0306;
+	color: white;
+	border: none;
+	padding: 10px 15px;
+	text-align: center;
+	font-size: 12px;
+}
+#left a:hover {
+	background-color: #000C7C;
+	color: white;
+	text-decoration: none;
+}
+#left select {
+	height: 35px;
+	padding: 5px 8px;
+	border: none;
+	background: white;
+}
+
+#left select:focus {
+	outline: none;
+}
+
+#search {
+	flex: 0 0 375px;
+	text-align: right;
+	padding-right: 46px;
+	border-bottom: 1px solid black;
+}
+#search input {
+	font-size: 20px;
+	border: none;
+	width: 350px;
+	height: 35px;
+}
+#search input:focus {
+	outline: none;
+}
+#search button[type=button] {
+	border: none;
+	background-color: transparent;
+	color: #8F0306;
+}
+#search button[type=submit] {
+	background-color: #8F0306;
+	color: white;
+	border: none;
+	padding: 9px 15px;
+	position: absolute;
+	text-align: center;
+	font-size: 12px;
+}
+#search button[type=submit]:hover {
+	background-color: #000C7C;
+	color: white;
+	text-decoration: none;
+}
+
+.expand {
+	display: none;
+	grid-gap: 50px;
+	grid-template-columns: auto auto auto auto;
+	justify-content: center;
+	align-content: center;
+	background-color: #eef6ff;
+	height: 300px;
+}
