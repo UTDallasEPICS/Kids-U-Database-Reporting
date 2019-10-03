@@ -6,8 +6,12 @@
     <link href="/Content/css/bootstrap.css" rel="stylesheet" />
     <link href="/Content/css/Site.css" rel="stylesheet" />
     <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/Scripts/site.js"></script>
 </head>
+
 <body>
+    <!--navigation-->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,78 +22,63 @@
                 </button>
                 @Html.ActionLink("Kids-U Data Entry", "Directory", null, null, new{@class = "navbar-brand"})
             </div>
+
+            <!--links-->
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Student Enrollment", "Students")</li>
                     <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements")</li>
                     <li>@Html.ActionLink("Report Cards", "ReportCardRecords")</li>
                 </ul>
-                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="S7gSUXLQlCDkehzsSqi_jb9kXNBzCZ9zrigBvrERPoBP0IbGHjmSFEFRhLltDlSbWyaat6nxNkYDAx_384ek3yaWT6WSTGkbw2LWGs9cWEmlhKvCcgqoU-7A40f9hbjD0" />    <ul class="nav navbar-nav navbar-right">
-        <li><a>Hello diana@kids-u.org!</a></li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-</form>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value=""/>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                    </ul>
+                </form>
             </div>
         </div>
     </div>
-<div class="container body-content">
-        
-<div class="jumbotron row">
-    <div class="col-md-3">
-        <a class="logo" href="http://www.kids-u.org/">
-            <img src="/Content/img/dcl_logo_21.png" />
-        </a>
+
+    <div class="container body-content">
+        <!--display-->
+        <div class="jumbotron row">
+            <div class="col-md-3">
+                <a class="logo" href="http://www.kids-u.org/">
+                    <img src="/Content/img/dcl_logo_21.png" />
+                </a>
+            </div>
+            <div class="col-md-9">
+                <h1>Kids-U Data Entry Portal</h1>
+                <p class="lead">Welcome!</p>
+            </div>
+        </div>
+
+        <!--directory-->
+        <div class="row">
+            <div class="col-md-5">
+                <h2>Data Entry</h2>
+                <p>@Html.ActionLink("Student Enrollment", "Students")</p>
+                <p>@Html.ActionLink("Outcomes", "OutcomeMeasurements")</p>
+                <p>@Html.ActionLink("Report Cards", "ReportCardRecords")</p>
+            </div>
+            <div class="col-md-5">
+                <h2>Management</h2>
+                <p>@Html.ActionLink("Staff Directory", "Staff")</p>
+                <p>@Html.ActionLink("Program/Facility Sites", "Sites")</p>
+                <p>@Html.ActionLink("Organizations", "Organizations")</p>
+                <p>@Html.ActionLink("School Districts", "SchoolDistricts")</p>
+                <p>@Html.ActionLink("Schools", "Schools")</p>  
+            </div>
+
+        </div>
+        <hr/>
+
+        <footer>
+            Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+        </footer>
     </div>
-    <div class="col-md-9">
-        <h1>Kids-U Data Entry Portal</h1>
-        <p class="lead">Welcome!</p>
-        </div>
-    </div>
-
-<div class="row">
-        <div class="col-md-5">
-            <h2>Data Entry</h2>
-            <p>@Html.ActionLink("Student Enrollment", "Students")</p>
-            <p>@Html.ActionLink("Outcomes", "OutcomeMeasurements")</p>
-            <p>@Html.ActionLink("Report Cards", "ReportCardRecords")</p>
-        </div>
-        <div class="col-md-5">
-            <h2>Management</h2>
-            <p><a href="/KuUsers">Staff Directory</a></p>
-            <p><a href="/KuSites">Program/Facility Sites</a></p>
-            <p><a href="/Organizations">Organizations</a></p>
-            <p><a href="/SchoolDistricts">School Districts</a></p>
-            <p><a href="/Schools">Schools</a></p>  
-        </div>
-
-</div>
-<hr />
-<footer>
-    Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
-</footer>
-</div>
-
-    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
-
-    <script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
-
-    <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
-    
-    <script> $(function() {
-    $('input[type=number]').on('keydown', function(e) {
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-            // Allow: Ctrl+A
-           (e.keyCode == 65 && e.ctrlKey === true) ||
-            // Allow: home, end, left, right
-           (e.keyCode >= 35 && e.keyCode <= 40)) {
-            // let it happen, don't do anything
-            return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-    });
-});</script>
 </body>
-

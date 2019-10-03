@@ -39,5 +39,30 @@ namespace test.Controllers
         {
             return View();
         }
+
+        public ActionResult Organizations()
+        {
+            return View();
+        }
+
+        public ActionResult SchoolDistricts()
+        {
+            return View();
+        }
+
+        public ActionResult Schools()
+        {
+            return View();
+        }
+
+        public ActionResult Sites()
+        {
+            return View();
+        }
+
+        public ActionResult Staff()
+        {
+            return View();
+        }
     }
 }
