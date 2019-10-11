@@ -10,17 +10,14 @@
 
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+/* Override the default bootstrap behavior where horizontal description lists */
+/* will truncate terms that are too long to fit in the left column */
 .dl-horizontal dt {
     white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+input, select, textarea {
     max-width: 280px;
 }
 footer {
@@ -29,6 +26,7 @@ footer {
 	opacity: .5;
 }
 
+/* primary table */
 .table > tbody > tr:nth-child(odd) > td {
   background-color: #eef6ff;
 }
@@ -44,14 +42,15 @@ footer {
 	color: #fff;
 }
 
+/* navigation bar */
 .navbar-inverse .navbar-nav > li > a,.navbar-inverse .navbar-brand  {
 	color: #fff;
 }
-
 .navbar-inverse .navbar-nav > li > a:hover,.navbar-inverse .navbar-brand:hover  {
 	background: #000C7C;
 }
 
+/* search/filter/sort bar */
 .tabletop {
 	display: flex;
 	flex-flow: row wrap;
@@ -60,6 +59,8 @@ footer {
 	height: 70px;
 }
 
+/* left side of search/filter/sort */
+/* create new, export, sort by */
 #left {
 	flex: 0 0 500px;
 	text-align: left;
@@ -81,12 +82,13 @@ footer {
 	height: 35px;
 	padding: 5px 8px;
 	border: none;
-	background: white;
 }
 #left select:focus {
 	outline: none;
 }
 
+/* right side of search/filter/sort */
+/* search bar, advanced button, go button */
 #search {
 	flex: 0 0 375px;
 	text-align: right;
@@ -122,6 +124,7 @@ footer {
 	text-decoration: none;
 }
 
+/* advanced search area */
 .expand {
 	display: none;
 	grid-gap: 50px;
