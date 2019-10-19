@@ -1,9 +1,9 @@
-<head ng-app="kidsu">
+﻿<head ng-app="kidsu">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page - Kids-U Data Entry Application</title>
+    <title>Schools - Kids-U Data Entry Application</title>
 
-    <link href="/Content/css/bootstrap.css" rel="stylesheet" />
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
     <link href="/Content/css/Site.css" rel="stylesheet" />
     <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
 
@@ -44,41 +44,23 @@
     </div>
 
     <div class="container body-content">
-        <!--display-->
-        <div class="jumbotron row">
-            <div class="col-md-3">
-                <a class="logo" href="http://www.kids-u.org/">
-                    <img src="/Content/img/dcl_logo_21.png" />
-                </a>
-            </div>
-            <div class="col-md-9">
-                <h1>Kids-U Data Entry Portal</h1>
-                <p class="lead">Welcome!</p>
-            </div>
-        </div>
+        <h2>Schools</h2>
+        <p><a href="/Schools/Create">Create New</a></p>
 
-        <!--directory-->
-        <div class="row">
-            <div class="col-md-5">
-                <h2>Data Entry</h2>
-                <p>@Html.ActionLink("Student Enrollment", "Students", "Data")</p>
-                <p>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</p>
-                <p>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</p>
-            </div>
-            <div class="col-md-5">
-                <h2>Management</h2>
-                <p>@Html.ActionLink("Staff Directory", "Staff", "Data")</p>
-                <p>@Html.ActionLink("Program/Facility Sites", "Sites", "Data")</p>
-                <p>@Html.ActionLink("Organizations", "Organizations", "Data")</p>
-                <p>@Html.ActionLink("School Districts", "SchoolDistricts", "Data")</p>
-                <p>@Html.ActionLink("Schools", "Schools", "Data")</p>  
-            </div>
-
-        </div>
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+            <!--entries-->
+        </table>
         <hr/>
 
-        <footer>
-            Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
-        </footer>
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
     </div>
 </body>
