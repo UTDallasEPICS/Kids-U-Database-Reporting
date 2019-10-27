@@ -49,15 +49,14 @@
         <!--search/filter/sort-->
         <div class="tabletop">
 	        <div id="left">
-		        <a href="/ReportCardRecords/Create">Create New</a>
+		        <p>@Html.ActionLink("Create New", "CreateReportCards", "Create")</p>
 		        <a href="/ReportCardRecords/Export">Export</a>
 
                 <!--sort-->
 		        <select>
-				    <option value="0">Sort by...</option>
-				    <option value="1">First Name</option>
-                    <option value="2">Last Name</option>
-			    </select>
+				        <option value="1">Sort by...</option>
+				        <option value="2">to-do</option>
+			        </select>
 	        </div>
 
             <!--search-->
