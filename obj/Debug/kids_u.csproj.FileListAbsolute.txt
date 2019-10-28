@@ -1,7 +1,0 @@
-/Users/davidburgwin/Desktop/kids_u/bin/test.dll
-/Users/davidburgwin/Desktop/kids_u/bin/test.pdb
-/Users/davidburgwin/Desktop/kids_u/bin/System.Web.Helpers.xml
-/Users/davidburgwin/Desktop/kids_u/obj/Debug/kids_u.csprojAssemblyReference.cache
-/Users/davidburgwin/Desktop/kids_u/obj/Debug/kids_u.csproj.CopyComplete
-/Users/davidburgwin/Desktop/kids_u/obj/Debug/test.dll
-/Users/davidburgwin/Desktop/kids_u/obj/Debug/test.pdb
