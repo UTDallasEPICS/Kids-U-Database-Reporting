@@ -1,0 +1,726 @@
+﻿<!DOCTYPE html>
+<html>
+<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="SFQ1knjr7fp27-KEV4_lzFGJyO3UjfCkomlsDuA-k4t9XB50_yER5s4XhPba0CdAbq0TtvgVYNhRpg7dmh2a2zrbLYvnopBzbw0QYbDjRmAe9GrlvM3IjAmI1TlM6wxS0" />    <ul class="nav navbar-nav navbar-right">
+	    <li><a>Hello diana@kids-u.org!</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        
+
+
+<h2>Create</h2>
+
+
+<form action="/OutcomeMeasurements/Create" method="post"><input name="__RequestVerificationToken" type="hidden" value="0ewlo4K-E0ETkAymzzrtBvg_PwVrDEdR-tJVNqQ2ZMez6WheS5Z8gnYRK_147oIRaN1lVR647XYHVi5LbTc65yFbFWkEQHKcUTcSatFYrq56aamMD1egJ6eGrbe6wBNq0" />    <div class="form-horizontal">
+        <h4>Outcome Measurement</h4>
+        <hr />
+        
+        <div class="form-group">
+            <label class="control-label col-md-2" for="StudentId">Student</label>
+            <div class="col-md-10">
+                <select class="form-control" id="StudentId" name="StudentId"><option value="">Choose a name</option>
+<option value="30">Brianna Alejo</option>
+<option value="32">Isaah Alejo</option>
+<option value="41">Meili Vargas</option>
+<option value="49">Lina Ashong</option>
+<option value="65">Eh Mue Mue Paw</option>
+<option value="156">Edgar Andrade</option>
+<option value="1329">Olamide Brown</option>
+<option value="1360">Adan  Esquivel</option>
+<option value="1362">Angel  Esquivel</option>
+<option value="1364">Autumn Chapman</option>
+<option value="1366">Camilla Esquivel</option>
+<option value="1367">Michael Chapman</option>
+<option value="1370">Monica Hernandez</option>
+<option value="1398">Caleb Giddings</option>
+<option value="1400">Valarie Ochoa</option>
+<option value="1402">Victoria Ochoa</option>
+<option value="1436">Kennya Davila</option>
+<option value="1455">Joshua Walituhah</option>
+<option value="1456">Romeo Hakoum</option>
+<option value="1506">Jonathan Antero</option>
+<option value="1511">Jacqueline Antero</option>
+<option value="1520">Kelvin Estrada</option>
+<option value="1521">Karime Estrada</option>
+<option value="1522">Yaritza Estrada</option>
+<option value="1523">Bryan Estrada</option>
+<option value="1524">Gladys Figueroa</option>
+<option value="1528">Josue Majano</option>
+<option value="1547">Brando Sanchez</option>
+<option value="1552">Demilade Apapa</option>
+<option value="1557">Princess Enosebe</option>
+<option value="1607">Corey Colding</option>
+<option value="1623">Treasure  Turner </option>
+<option value="1624">Olayinka  Shalamath </option>
+<option value="1626">Abdul Kofun</option>
+<option value="1628">Eh- Hser Ku </option>
+<option value="1629">May  Shia John</option>
+<option value="1631">Prince Iranzi</option>
+<option value="1632">Johnson Kung</option>
+<option value="1643">Hawaii  Say</option>
+<option value="1648">Purnima Pradhan</option>
+<option value="1650">Jaden  Fox</option>
+<option value="1651">Jamya Fox</option>
+<option value="1652">Jaziel Hernandez</option>
+<option value="1653">Valeria Leon</option>
+<option value="1654">Vianney Leon</option>
+<option value="1655">Timberlee Jones</option>
+<option value="1656">Jordann Hebert</option>
+<option value="1660">Taniyah Jones</option>
+<option value="1662">Jalicia Mitchell</option>
+<option value="1665">Nathaniel Taylor- Vasquez</option>
+<option value="1666">Elijah Guiterriez</option>
+<option value="1672">Ulysses Palomo</option>
+<option value="1677">Jade Carino</option>
+<option value="1682">Darlingtina  Amadi</option>
+<option value="1683">Nisola Akinmusire</option>
+<option value="1684">Carmen Sanchez</option>
+<option value="1686">Adam Camacho</option>
+<option value="1688">Bessy Rodriguez</option>
+<option value="1694">Hector  Rodriguez</option>
+<option value="1698">Jaicaree Johnson</option>
+<option value="1700">Kerry  Najera</option>
+<option value="1701">Aron Natera</option>
+<option value="1702">Arron Salazar</option>
+<option value="1703">Williams Ebem</option>
+<option value="1704">Kenneth Ebem</option>
+<option value="1705">Kevin  Ebem</option>
+<option value="1706">Nelson Ebem</option>
+<option value="1707">Fareeda Balogun</option>
+<option value="1709">Wayz Okasili</option>
+<option value="1710">Favor Ohumaegbulem</option>
+<option value="1715">Faith Tiamiyu</option>
+<option value="1722">Marvellous Malande</option>
+<option value="1724">Kendra Nwoye</option>
+<option value="1728">Ty&#39;Rihanna Duncan</option>
+<option value="1729">Mariah Belleh</option>
+<option value="1730">Toluwanise Mcbadmus</option>
+<option value="1731">David Ogunnubi</option>
+<option value="1733">Elizabeth Brown</option>
+<option value="1735">Favor Sunday</option>
+<option value="1736">Labraya Miller</option>
+<option value="1737">Jakera Miller</option>
+<option value="1738">Nicolas Oduneye</option>
+<option value="1739">Malia Belleh</option>
+<option value="1740">Mahfusoh Abdusalam</option>
+<option value="1741">Daniel Adeleke</option>
+<option value="1742">David Adeleke</option>
+<option value="1743">Semilore Adeleke</option>
+<option value="1744">Olamide Adeiyi</option>
+<option value="1745">Seyi Adeiyi</option>
+<option value="1746">Basit Adeseun</option>
+<option value="1747">Ijiayemitan Akano</option>
+<option value="1751">Abimbola Akintulubo</option>
+<option value="1752">RAHMAT (BEAUTY) ANIFOWSHE</option>
+<option value="1756">Fatiah Idris</option>
+<option value="1757">Fawaaz  Idris</option>
+<option value="1761">Daniel Olasheinde</option>
+<option value="1762">Victoria Olasheinde</option>
+<option value="1763">Toyosi Oguniyi</option>
+<option value="1764">Abisola Oluwatayo</option>
+<option value="1767">Camren Jones</option>
+<option value="1770">NaKeirah  Nicholson</option>
+<option value="1776">Jaquavine Wyatt</option>
+<option value="1782">ENIOLA OLUWATAYO</option>
+<option value="1783">DANIEL  OYENYI</option>
+<option value="1784">FEHINTOLA OKUYEMI</option>
+<option value="1788">KENNEDY OSAGIE</option>
+<option value="1790">ENOCH OYENIYI</option>
+<option value="1793">AFOLASHADE RAMONI</option>
+<option value="1796">MOROLAGBA AKANO</option>
+<option value="1797">Benjamin NGuyen</option>
+<option value="1799">Adrian  Erwin </option>
+<option value="1800">Kortland Andrews</option>
+<option value="1802">Katie Morales</option>
+<option value="1803">Michelle Okajba</option>
+<option value="1804">Chandell Manga</option>
+<option value="1805">Light  Adejunin</option>
+<option value="1806">Emelio Gonzalez</option>
+<option value="1807">Sola Okinola</option>
+<option value="1808">Damola  Okinola</option>
+<option value="1809">Janda  Gonzalez</option>
+<option value="1810">Amy Estrada</option>
+<option value="1811">Jasmine Inaede</option>
+<option value="1812">Josue  Vargas </option>
+<option value="1813">Jovani Vargas </option>
+<option value="1814">Iyauneh Turner </option>
+<option value="1815">Demontae  Coleman</option>
+<option value="1816">London Coleman</option>
+<option value="1818">Samuel Ojeleye</option>
+<option value="1819">Cordellro Coleman</option>
+<option value="1821">Alejandra Moreno</option>
+<option value="1824">Jadiel  Peguero</option>
+<option value="1825">Liana Lott</option>
+<option value="1830">Matilda Okoh</option>
+<option value="1831">Peter Paul Okoh</option>
+<option value="1832">Peter Paul Okoh</option>
+<option value="1835">Erick Yarbrough</option>
+<option value="1843">QUEEN POPOOLA</option>
+<option value="1846">Candy Chavez</option>
+<option value="1847">Diana Chavez</option>
+<option value="1848">Jose Chavez</option>
+<option value="1854">DANIEL  FALADE</option>
+<option value="1855">LOIS FAMILONI</option>
+<option value="1856">FAITH FAMILONI</option>
+<option value="1857">MUIZ ADESANYA</option>
+<option value="1859">RAPHAEL ADELWALE</option>
+<option value="1876">Matthew  Parker</option>
+<option value="1877">Treasure Uwakwe</option>
+<option value="1878">Ben Ebeke</option>
+<option value="1879">Sharon johnson</option>
+<option value="1880">Estrella  Dogma</option>
+<option value="1881">Prosper Uwakwe</option>
+<option value="1882">Flourish Uwakwe</option>
+<option value="1883">Shelby Calderon</option>
+<option value="1884">JoJo Oyediji</option>
+<option value="1885">Damo Dulkola</option>
+<option value="1886">Oyin Duikola</option>
+<option value="1887">Alexia  Calderon</option>
+<option value="1888">Malina Martinez</option>
+<option value="1889">Junior Hayes</option>
+<option value="1890">Khloe Darden</option>
+<option value="1891">Succes Essien</option>
+<option value="1892">Marvelous Essien</option>
+<option value="1893">Marvel Uwakwe</option>
+<option value="1894">Ibraham Jiovan</option>
+<option value="1895">Winnas White</option>
+<option value="1896">Ava Jonas</option>
+<option value="1897">Precious Burgs</option>
+<option value="1898">Addison Guevara</option>
+<option value="1899">Mariana Villareal</option>
+<option value="1900">Edgar Villareal</option>
+<option value="1901">Osmary Villareal</option>
+<option value="1902">Latravius Church</option>
+<option value="1903">Zayden Church</option>
+<option value="1904">Iziaah San Juan</option>
+<option value="1905">Lewis Ibarra</option>
+<option value="1906">Erick Mendez</option>
+<option value="1907">Kidus Gebreslasie</option>
+<option value="1908">Chit  John </option>
+<option value="1910">Eh Plah Paw</option>
+<option value="1911">Esterine Mvutige </option>
+<option value="1912">Joseph  Lian</option>
+<option value="1913">Daniel  Lian</option>
+<option value="1914">Khai  Sang</option>
+<option value="1915">Dipisha Magar</option>
+<option value="1916">Kabir Balkatiear</option>
+<option value="1917">Venas Masubuko </option>
+<option value="1918">Emile Irakoze</option>
+<option value="1919">Aiden Griffin</option>
+<option value="1920">Kaylie Ann  Guevara</option>
+<option value="1921">Chasity Davis</option>
+<option value="1922">Miracle Yarbriugh</option>
+<option value="1923">Quetzali Martinez</option>
+<option value="1924">Julian Ayala</option>
+<option value="1925">Joshua Daniels jr</option>
+<option value="1926">Kaelen  Simmions</option>
+<option value="1927">Tiaunnie Parker</option>
+<option value="1928">Zachery Turner</option>
+<option value="1929">Taniya Roberson</option>
+<option value="1930">Kennedi Cooks</option>
+<option value="1931">Carlos Porter</option>
+<option value="1932">Javion Holford</option>
+<option value="1933">Lamees Abuhason</option>
+<option value="1934">Abudallah Abuhason</option>
+<option value="1935">Ahmad Zoubi</option>
+<option value="1936">Laila Zoubi</option>
+<option value="1937">Malak Zoubi</option>
+<option value="1938">Noor Atallah</option>
+<option value="1939">Javae Worlds</option>
+<option value="1940">Kaylin Baxster</option>
+<option value="1941">Caleiyah Davis</option>
+<option value="1942">Reema Atallah</option>
+<option value="1943">Keylon Rush</option>
+<option value="1944">Kaylyn Cheatham</option>
+<option value="1945">Xavier Griffin</option>
+<option value="1946">Matilyn  Davis</option>
+<option value="1947">Alex  Lopez</option>
+<option value="1948">Samon Davis</option>
+<option value="1949">Kendrick  Davis</option>
+<option value="1950">Justice  Woods</option>
+<option value="1951">Serenity  Snider</option>
+<option value="1952">Jarid  Urbina-Singh </option>
+<option value="1953">Tory Welsch</option>
+<option value="1954">Hezekiah Cox-Cross</option>
+<option value="1955">Ayiek Nhiall</option>
+<option value="1956">I&#39;asia  Downing</option>
+<option value="1957">Divine Dumes   jioln-Aziken </option>
+<option value="1958">Mading Nhiall</option>
+<option value="1959">jacob   wilson</option>
+<option value="1960">Maluk Nhiall</option>
+<option value="1961">Jamie Trajio</option>
+<option value="1962">Ayiuel Tor</option>
+<option value="1963">Tod Nhiall</option>
+<option value="1964">Arianna  Wilson</option>
+<option value="1965">Kayley Castro-Urbina </option>
+<option value="1966">Kelden  Webb</option>
+<option value="1967">Joseph  Mosley</option>
+<option value="1968">Deshaun  Parker</option>
+<option value="1969">Marlon  Trejio</option>
+<option value="1970">Adimir Salazur</option>
+<option value="1971">ademola okuyemi okuyemi</option>
+<option value="1972">adeayo omisore</option>
+<option value="1973">esther fowoe</option>
+<option value="1974">charles balogun</option>
+<option value="1975">richard balogun</option>
+<option value="1976">daniel  olasshinde</option>
+<option value="1977">donn golay</option>
+<option value="1978">flourish fredriks</option>
+<option value="1979">ava golay</option>
+<option value="1980">dajai clemmons</option>
+<option value="1981">michael carrena</option>
+<option value="1982">anthony carrena</option>
+<option value="1983">kedrick ridge</option>
+<option value="1984">ademide yusuff</option>
+<option value="1985">adebusola yusuff</option>
+<option value="1986">Sh&#39;kerrah  Mackey</option>
+<option value="1987">Eldahh Idowu</option>
+<option value="1988">Josselyn Espinoza- Areolla</option>
+<option value="1989">Osaze Osawememze</option>
+<option value="1990">Brandon Lenton</option>
+<option value="1991">Jadah Mackey</option>
+<option value="1992">Markadah Mackey</option>
+<option value="1993">Dereyon johnson</option>
+<option value="1994">Bethsheba Tafari</option>
+<option value="1995">Israel Omotoye</option>
+<option value="1996">Darasimi Omotoye</option>
+<option value="1997">mutiat  Ayomide</option>
+<option value="1998">Wyatt Burgess</option>
+<option value="1999">Zoya Balkatiear</option>
+<option value="2000">Thang Ban</option>
+<option value="2001">Salima Salas</option>
+<option value="2006">Elizabeth  Falowo</option>
+<option value="2024">Jamie  Trejo</option>
+<option value="2025">Joseph  Roblero</option>
+<option value="2026">Mirabel Ebigbo</option>
+<option value="2027">Marlon Trejo</option>
+<option value="2028">Carter Penywell</option>
+<option value="2029">Catlyin Penywell</option>
+<option value="2030">Yosniel Lopez</option>
+<option value="2031">Arianny Jenkins</option>
+<option value="2032">Abdallah Abuhassan</option>
+<option value="2033">Addison Guevara</option>
+<option value="2034">Ahmad  Zoubi</option>
+<option value="2035">Ava Jones</option>
+<option value="2036">Caleiyah Davis</option>
+<option value="2037">Chasity Davis</option>
+<option value="2038">Javae Worlds</option>
+<option value="2039">Javion Holford</option>
+<option value="2040">Joshua  Daniels</option>
+<option value="2041">Kaniya  Linscome</option>
+<option value="2042">Kaylain Baxter</option>
+<option value="2043">Kaylieann Guevara</option>
+<option value="2044">Kaylyn Cheatham</option>
+<option value="2045">Kennedy  Cooks</option>
+<option value="2046">Keylon Rush</option>
+<option value="2047">Laila Zoubi</option>
+<option value="2048">Lamees  Abuhassan</option>
+<option value="2049">Malak Zoubi</option>
+<option value="2050">Noor Atallah</option>
+<option value="2051">Precious Burds</option>
+<option value="2052">Quetzali Martinez</option>
+<option value="2053">Reema Attalah</option>
+<option value="2054">Tiaunie Parker</option>
+<option value="2055">Zachery Turner</option>
+<option value="2056">Julian  Martinez</option>
+<option value="2057">Ariyanna Alexander</option>
+<option value="2058">Josslyn Young</option>
+<option value="2059">Braniah Brooks</option>
+<option value="2060">Zayden  Lamb</option>
+<option value="2061">Martrell Johnson</option>
+<option value="2062">Bryson Ivy</option>
+<option value="2063">Aniyah Carter</option>
+<option value="2064">Edgar  Villareal</option>
+<option value="2065">Erick Mendez</option>
+<option value="2066">Isiah San Juan</option>
+<option value="2067">Kuduis Gebreslasie</option>
+<option value="2068">Latravius  Church</option>
+<option value="2069">Lewis Ibarra</option>
+<option value="2070">Mariana  Villareal</option>
+<option value="2071">Osmary Villareal</option>
+<option value="2072">Winnas White</option>
+<option value="2073">Zayden  Church</option>
+<option value="2074">Tacorreyon Mayo</option>
+<option value="2075">Darius Dbasi</option>
+<option value="2076">Bethsheba Tafari</option>
+<option value="2077">Liana Esparza</option>
+<option value="2078">Benjamin Nguyen</option>
+<option value="2079">Nakeirah Nicholson</option>
+<option value="2080">Camren Jones</option>
+<option value="2081">Jadiel Peguero</option>
+<option value="2082">Cordellro Coleman</option>
+<option value="2083">Demontae Coleman</option>
+<option value="2084">London Coleman</option>
+<option value="2085">Ruby Gallegos</option>
+<option value="2086">Jasmin Gallegos</option>
+<option value="2087">Adrian Erwin</option>
+<option value="2088">Kortland Andrews</option>
+<option value="2089">Wyatt Burgess</option>
+<option value="2090">Kadan Clark</option>
+<option value="2091">Bessy Rodriguez</option>
+<option value="2092">Damo Onikola</option>
+<option value="2093">Darlingtina Amadi</option>
+<option value="2094">Emmanuel Nyamawy</option>
+<option value="2095">Flourish Uwakwe</option>
+<option value="2096">Hector Rodriguez</option>
+<option value="2097">Jaden Fox</option>
+<option value="2098">Jamya Fox</option>
+<option value="2099">Johnson Ogadi</option>
+<option value="2100">Junior Hayes</option>
+<option value="2101">Klhoe  Darden</option>
+<option value="2102">Marvelous Essian</option>
+<option value="2103">Olivia Achorenya</option>
+<option value="2104">Oyin Onikola</option>
+<option value="2105">Prosper Uwakwe</option>
+<option value="2106">Ricardo Sanchez</option>
+<option value="2107">Semi Alabi</option>
+<option value="2108">Sharon Johnson</option>
+<option value="2109">A&#39;Niya Hill</option>
+<option value="2110">Adrian Hernandez</option>
+<option value="2111">Anderson Vargas</option>
+<option value="2112">Andrew Hernandez</option>
+<option value="2113">Angel Escobedo</option>
+<option value="2114">Anna Cruz</option>
+<option value="2115">Broderianna Brown</option>
+<option value="2116">Byron Bumphus</option>
+<option value="2117">Caleb White</option>
+<option value="2118">Christopher Hill</option>
+<option value="2119">Damien Vargas</option>
+<option value="2120">Erick Reyes</option>
+<option value="2121">Ever&#39;Nicole Nealy</option>
+<option value="2122">Gianna Balderas</option>
+<option value="2123">Izabella Anderson</option>
+<option value="2124">Jamir Bumphus</option>
+<option value="2125">Kamya Hunter</option>
+<option value="2126">Khalise Brown</option>
+<option value="2127">Krislyn Hill</option>
+<option value="2128">La&#39;Niaya Lindsay</option>
+<option value="2129">Lillian McDaniel</option>
+<option value="2130">Mariah Piper</option>
+<option value="2131">Mekhi Williams</option>
+<option value="2132">Mia Escobedo</option>
+<option value="2133">Precious Okhiria</option>
+<option value="2134">Rudy Moreno</option>
+<option value="2135">Shiloh Leonard</option>
+<option value="2136">Skylar Leonard</option>
+<option value="2137">Wendell Hunter</option>
+<option value="2138">Fithawit Abreha</option>
+<option value="2139">Maymuna Ahmednejjash</option>
+<option value="2140">Thang Ban</option>
+<option value="2141">Irakoze Emile</option>
+<option value="2142">Beauty Far Men Par</option>
+<option value="2143">Romeo Hakoum</option>
+<option value="2144">Cherry Ion</option>
+<option value="2145">Natnael  Kesete</option>
+<option value="2146">Nazrawi Kesete</option>
+<option value="2147">Nazret Kesete</option>
+<option value="2148">Eh Hser Kuu</option>
+<option value="2149">Johnson Kung</option>
+<option value="2150">Trinitee Johnson</option>
+<option value="2151">Excell Essien </option>
+<option value="2152">Ibraheem  Olanyim </option>
+<option value="2153">semi alabi</option>
+<option value="2154">Sonia  Achoronye</option>
+<option value="2155">success Essien</option>
+<option value="2156">Jade  Carino</option>
+<option value="2159">Anthony Miller</option>
+<option value="2160">Kennya  Davila</option>
+<option value="2161">Monica  Hernandez</option>
+<option value="2162">Jordann Hebert</option>
+<option value="2163">Timberlee Jones </option>
+<option value="2164">Tania Jones</option>
+<option value="2165">Alejandra Moreno</option>
+<option value="2166">Lenton  Brandon</option>
+<option value="2167">Autumn Chapman </option>
+<option value="2168">Micheal  Chapman</option>
+<option value="2169">Edwin Sandaval</option>
+<option value="2170">Joseph Roblero</option>
+<option value="2171">Mirabel Ebigbo</option>
+<option value="2172">Carter Penywell</option>
+<option value="2173">Catlyin Penywell</option>
+<option value="2174">Yosniel Lopez</option>
+<option value="2175">Arianny Jenkins</option>
+<option value="2176">Savannah Gross</option>
+<option value="2177">Hope Gohna</option>
+<option value="2178">Joshua Daniels</option>
+<option value="2179">Martrell Johnson</option>
+<option value="2180">Bryson Ivy</option>
+<option value="2181">Aniyah Carter</option>
+<option value="2182">Javae Worlds</option>
+<option value="2183">Javion Holford </option>
+<option value="2184">Zayden Lamb</option>
+<option value="2185">Avah Jones </option>
+<option value="2186">Kennedi Cooks </option>
+<option value="2187">Kaniya Linscome</option>
+<option value="2188">Keylon Rush</option>
+<option value="2189">Quetzali Martiness</option>
+<option value="2190">Julian  Ayala</option>
+<option value="2191">Javon Wright</option>
+<option value="2192">Jordan  Wright</option>
+<option value="2193">Zaarel Smith</option>
+<option value="2194">Heaven White</option>
+<option value="2195">Julian Holman</option>
+<option value="2196">Lashadion Turner-Alle</option>
+<option value="2197">Samora Holman</option>
+<option value="2198">Jadarrius Davis</option>
+<option value="2199">Tra&#39;monye Hart</option>
+<option value="2200">Kayla Rush</option>
+<option value="2201">Josslyn Young</option>
+<option value="2202">Tristan Stevenson</option>
+<option value="2203">Caleyah Roberts</option>
+<option value="2204">Caleb Roberts</option>
+<option value="2205">Tiaunnie Parker</option>
+<option value="2206">Justin Pruitt</option>
+<option value="2207">Brooklyn Smith</option>
+<option value="2208">Kaori Baker</option>
+<option value="2209">Ahman Thomas</option>
+<option value="2210">Kharter Thomas</option>
+<option value="2211">Jase Jackson</option>
+<option value="2212">Jordyn Daniels</option>
+<option value="2213">Bethsheba  Tafari</option>
+<option value="2214">Lianna Lott</option>
+<option value="2215">Benjamin  Nguyen</option>
+<option value="2216">Nakeirah  Nicholson</option>
+<option value="2217">Camren  Jones</option>
+<option value="2218">Jadiel  Peguero</option>
+<option value="2219">Benjamin  Lamb</option>
+<option value="2220">Candy  Chavez</option>
+<option value="2221">Caleyah Roberts </option>
+<option value="2222">Caleb  Roberts </option>
+<option value="2223">Caleb  Roberts </option>
+<option value="2224">Tiaunnie  Parker </option>
+<option value="2225">Justin Pruitt</option>
+<option value="2226">Brooklyn Smith</option>
+<option value="2227">Kaori Baker</option>
+<option value="2228">Ahman Thomas </option>
+<option value="2229">Kharter Thomas</option>
+<option value="2230">Jase  Jackson </option>
+<option value="2231">Jordyn Daniels </option>
+<option value="2232">Bethsheba Tafari</option>
+<option value="2233">Edgar Villareal</option>
+<option value="2234">Erick Mendez</option>
+<option value="2235">Isiah SanJuan</option>
+<option value="2236">Kuduis Gebreslasie</option>
+<option value="2237">Latravius Church</option>
+<option value="2238">Lewis Ibarra</option>
+<option value="2239">Mariana Villareal</option>
+<option value="2240">Osmary Villareal</option>
+<option value="2241">Winnas White</option>
+<option value="2242">Zayden Church</option>
+<option value="2243">Tacorreyon Mayo</option>
+<option value="2244">Darius Dbasi</option>
+<option value="2245">Meron Habdigs</option>
+<option value="2246">Aki Chiduben</option>
+<option value="2247">Alejandra Moreno</option>
+<option value="2248">Autumn Chapman</option>
+<option value="2249">Bryana Rico</option>
+<option value="2250">Edwin Sandaval</option>
+<option value="2251">Jade Carino</option>
+<option value="2252">Joshua Ahi</option>
+<option value="2253">Kennya Davila</option>
+<option value="2254">Michael Chapman</option>
+<option value="2255">Monica Hernandez</option>
+<option value="2256">Samantha Rico</option>
+<option value="2257">Fernanda Moreno</option>
+<option value="2258">Mikiyas Argaw</option>
+<option value="2259">Isaiah Diaz</option>
+<option value="2260">Issac Diaz</option>
+<option value="2261">Kidus Gebreslasie</option>
+<option value="2262">Lewis Ibarra</option>
+<option value="2263">Darius Obasi</option>
+<option value="2264">Tacorreyon Mayo</option>
+<option value="2265">Latravias Church</option>
+<option value="2266">Zayden Church</option>
+<option value="2267">Allison Lucero</option>
+<option value="2268">Kylin King</option>
+<option value="2269">Erick Mendez</option>
+<option value="2270">Abeselom Ermiyas</option>
+<option value="2271">Jacob Gutierrez</option>
+<option value="2272">Jacobi Zetterlund</option>
+<option value="2273">Jace Williams</option>
+<option value="2274">Christian  Burnett </option>
+<option value="2275">Tristian  Burnett </option>
+<option value="2276">Matiyln Davis</option>
+<option value="2277">Samon Davis</option>
+<option value="2278">Kendrick Davis</option>
+<option value="2279">Amy Delgado</option>
+<option value="2280">Brendon Delgado</option>
+<option value="2281">JaNya Crumpton</option>
+<option value="2282">Javion Crumpton</option>
+</select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="StudentId" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="SchoolYearId">School Year</label>
+            <div class="col-md-10">
+                <select class="form-control" id="SchoolYearId" name="SchoolYearId"></select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="SchoolYearId" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MathPreTest">Math Pre-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math Pre-Test must be a number." data-val-range="The field Math Pre-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="MathPreTest" name="MathPreTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="MathPreTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="MathPostTest">Math Post-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math Post-Test must be a number." data-val-range="The field Math Post-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="MathPostTest" name="MathPostTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="MathPostTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="LanguagePreTest">Language Pre-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language Pre-Test must be a number." data-val-range="The field Language Pre-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="LanguagePreTest" name="LanguagePreTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="LanguagePreTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="LanguagePostTest">Language Post-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language Post-Test must be a number." data-val-range="The field Language Post-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="LanguagePostTest" name="LanguagePostTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="LanguagePostTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReadingPreTest">Reading Pre-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading Pre-Test must be a number." data-val-range="The field Reading Pre-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="ReadingPreTest" name="ReadingPreTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ReadingPreTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReadingPostTest">Reading Post-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading Post-Test must be a number." data-val-range="The field Reading Post-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="ReadingPostTest" name="ReadingPostTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ReadingPostTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReadingFluencyTest1">Reading Fluency Test 1</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading Fluency Test 1 must be a number." data-val-range="The field Reading Fluency Test 1 must be between 0 and 1000." data-val-range-max="1000" data-val-range-min="0" id="ReadingFluencyTest1" name="ReadingFluencyTest1" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ReadingFluencyTest1" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReadingFluencyTest2">Reading Fluency Test 2</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading Fluency Test 2 must be a number." data-val-range="The field Reading Fluency Test 2 must be between 0 and 1000." data-val-range-max="1000" data-val-range-min="0" id="ReadingFluencyTest2" name="ReadingFluencyTest2" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ReadingFluencyTest2" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ReadingFluencyTest3">Reading Fluency Test 3</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading Fluency Test 3 must be a number." data-val-range="The field Reading Fluency Test 3 must be between 0 and 1000." data-val-range-max="1000" data-val-range-min="0" id="ReadingFluencyTest3" name="ReadingFluencyTest3" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="ReadingFluencyTest3" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="EsteemPreTest">Self-Esteem Pre-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Self-Esteem Pre-Test must be a number." data-val-range="The field Self-Esteem Pre-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="EsteemPreTest" name="EsteemPreTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="EsteemPreTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="EsteemPostTest">Self-Esteem Post-Test</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Self-Esteem Post-Test must be a number." data-val-range="The field Self-Esteem Post-Test must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="EsteemPostTest" name="EsteemPostTest" type="number" value="" />
+                <span class="field-validation-valid text-danger" data-valmsg-for="EsteemPostTest" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a href="/OutcomeMeasurements">Back to List</a>
+</div>
+
+
+        <hr />
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+
+    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+	<script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+    <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
+    
+    <script src="/bundles/jqueryval?v=NOVQDySGO89wzMzO5x7mWS4C_uAdynpZe_Lk2y-xEM41"></script>
+
+
+	<script> $(function() {
+	$('input[type=number]').on('keydown', function(e) {
+		if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+			// Allow: Ctrl+A
+		   (e.keyCode == 65 && e.ctrlKey === true) ||
+			// Allow: home, end, left, right
+		   (e.keyCode >= 35 && e.keyCode <= 40)) {
+			// let it happen, don't do anything
+			return;
+		}
+		// Ensure that it is a number and stop the keypress
+		if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+});</script>
+</body>
+</html>

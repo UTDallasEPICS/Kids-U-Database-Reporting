@@ -1,0 +1,873 @@
+﻿<!DOCTYPE html>
+<html>
+<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="7SLi4_FpBdSDCXKa4uX5nRG5mvZq6i4OC5Q8Y7bZjecesbLwjTwT9LRTku4xq1caXrDI2Zt94tRx0WgPO-99jgsm3MZHto1DQpkLLHq0nplMBL-s_TMuYdT7Q2dlP4AL0" />    <ul class="nav navbar-nav navbar-right">
+	    <li><a>Hello diana@kids-u.org!</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        
+
+
+<h2>Create</h2>
+
+<div id="rootwizard">
+    <div class="panel panel-default">
+     
+    </div>
+    <div class="container">
+
+        <div class="bs-example">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-8"><h4><strong>Grade Entry Form</strong></h4></div>
+
+
+                    </div>
+
+                </div>
+<form action="/ReportCardRecords/Create" method="post"><input name="__RequestVerificationToken" type="hidden" value="13vlmwk7isLuCKaMrB-BJ8sbTzU_qJS6INWWGAMevf-cYrloequkKUXozqzQJ8kx1lCvPtZs7srklP0ZeKt_PYxtMBnxkxpGdiOGs7S3Dh_oFoUAQZPstLC__A7Ep2NH0" />                    <div class="row">
+                        
+                        <input data-val="true" data-val-number="The field Id must be a number." data-val-required="The Id field is required." id="Id" name="Id" type="hidden" value="0" />
+                    </div>
+                    <div class="tab-content">
+                      
+
+                            <div class="row">
+                                <div class="text-center"><h3><strong>STUDENT DATA</strong></h3></div>
+                            </div>
+
+                            <table class="table table-condensed table-bordered ">
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2" for="SchoolYearId">Year:</label>
+
+                                                <div class="col-md-10">
+                                                    <select class="form-control" id="SchoolYearId" name="SchoolYearId"></select>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="SchoolYearId" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2" for="StudentId">Student:</label>
+
+                                                <div class="col-md-10">
+                                                    <select class="form-control" id="StudentId" name="StudentId"><option value="">Select a Student...</option>
+<option value="30">Brianna</option>
+<option value="32">Isaah</option>
+<option value="41">Meili</option>
+<option value="49">Lina</option>
+<option value="65">Eh Mue Mue</option>
+<option value="156">Edgar</option>
+<option value="1329">Olamide</option>
+<option value="1360">Adan </option>
+<option value="1362">Angel </option>
+<option value="1364">Autumn</option>
+<option value="1366">Camilla</option>
+<option value="1367">Michael</option>
+<option value="1370">Monica</option>
+<option value="1398">Caleb</option>
+<option value="1400">Valarie</option>
+<option value="1402">Victoria</option>
+<option value="1436">Kennya</option>
+<option value="1455">Joshua</option>
+<option value="1456">Romeo</option>
+<option value="1506">Jonathan</option>
+<option value="1511">Jacqueline</option>
+<option value="1520">Kelvin</option>
+<option value="1521">Karime</option>
+<option value="1522">Yaritza</option>
+<option value="1523">Bryan</option>
+<option value="1524">Gladys</option>
+<option value="1528">Josue</option>
+<option value="1547">Brando</option>
+<option value="1552">Demilade</option>
+<option value="1557">Princess</option>
+<option value="1607">Corey</option>
+<option value="1623">Treasure </option>
+<option value="1624">Olayinka </option>
+<option value="1626">Abdul</option>
+<option value="1628">Eh-</option>
+<option value="1629">May </option>
+<option value="1631">Prince</option>
+<option value="1632">Johnson</option>
+<option value="1643">Hawaii </option>
+<option value="1648">Purnima</option>
+<option value="1650">Jaden </option>
+<option value="1651">Jamya</option>
+<option value="1652">Jaziel</option>
+<option value="1653">Valeria</option>
+<option value="1654">Vianney</option>
+<option value="1655">Timberlee</option>
+<option value="1656">Jordann</option>
+<option value="1660">Taniyah</option>
+<option value="1662">Jalicia</option>
+<option value="1665">Nathaniel</option>
+<option value="1666">Elijah</option>
+<option value="1672">Ulysses</option>
+<option value="1677">Jade</option>
+<option value="1682">Darlingtina </option>
+<option value="1683">Nisola</option>
+<option value="1684">Carmen</option>
+<option value="1686">Adam</option>
+<option value="1688">Bessy</option>
+<option value="1694">Hector </option>
+<option value="1698">Jaicaree</option>
+<option value="1700">Kerry </option>
+<option value="1701">Aron</option>
+<option value="1702">Arron</option>
+<option value="1703">Williams</option>
+<option value="1704">Kenneth</option>
+<option value="1705">Kevin </option>
+<option value="1706">Nelson</option>
+<option value="1707">Fareeda</option>
+<option value="1709">Wayz</option>
+<option value="1710">Favor</option>
+<option value="1715">Faith</option>
+<option value="1722">Marvellous</option>
+<option value="1724">Kendra</option>
+<option value="1728">Ty&#39;Rihanna</option>
+<option value="1729">Mariah</option>
+<option value="1730">Toluwanise</option>
+<option value="1731">David</option>
+<option value="1733">Elizabeth</option>
+<option value="1735">Favor</option>
+<option value="1736">Labraya</option>
+<option value="1737">Jakera</option>
+<option value="1738">Nicolas</option>
+<option value="1739">Malia</option>
+<option value="1740">Mahfusoh</option>
+<option value="1741">Daniel</option>
+<option value="1742">David</option>
+<option value="1743">Semilore</option>
+<option value="1744">Olamide</option>
+<option value="1745">Seyi</option>
+<option value="1746">Basit</option>
+<option value="1747">Ijiayemitan</option>
+<option value="1751">Abimbola</option>
+<option value="1752">RAHMAT (BEAUTY)</option>
+<option value="1756">Fatiah</option>
+<option value="1757">Fawaaz </option>
+<option value="1761">Daniel</option>
+<option value="1762">Victoria</option>
+<option value="1763">Toyosi</option>
+<option value="1764">Abisola</option>
+<option value="1767">Camren</option>
+<option value="1770">NaKeirah </option>
+<option value="1776">Jaquavine</option>
+<option value="1782">ENIOLA</option>
+<option value="1783">DANIEL </option>
+<option value="1784">FEHINTOLA</option>
+<option value="1788">KENNEDY</option>
+<option value="1790">ENOCH</option>
+<option value="1793">AFOLASHADE</option>
+<option value="1796">MOROLAGBA</option>
+<option value="1797">Benjamin</option>
+<option value="1799">Adrian </option>
+<option value="1800">Kortland</option>
+<option value="1802">Katie</option>
+<option value="1803">Michelle</option>
+<option value="1804">Chandell</option>
+<option value="1805">Light </option>
+<option value="1806">Emelio</option>
+<option value="1807">Sola</option>
+<option value="1808">Damola </option>
+<option value="1809">Janda </option>
+<option value="1810">Amy</option>
+<option value="1811">Jasmine</option>
+<option value="1812">Josue </option>
+<option value="1813">Jovani</option>
+<option value="1814">Iyauneh</option>
+<option value="1815">Demontae </option>
+<option value="1816">London</option>
+<option value="1818">Samuel</option>
+<option value="1819">Cordellro</option>
+<option value="1821">Alejandra</option>
+<option value="1824">Jadiel </option>
+<option value="1825">Liana</option>
+<option value="1830">Matilda</option>
+<option value="1831">Peter Paul</option>
+<option value="1832">Peter Paul</option>
+<option value="1835">Erick</option>
+<option value="1843">QUEEN</option>
+<option value="1846">Candy</option>
+<option value="1847">Diana</option>
+<option value="1848">Jose</option>
+<option value="1854">DANIEL </option>
+<option value="1855">LOIS</option>
+<option value="1856">FAITH</option>
+<option value="1857">MUIZ</option>
+<option value="1859">RAPHAEL</option>
+<option value="1876">Matthew </option>
+<option value="1877">Treasure</option>
+<option value="1878">Ben</option>
+<option value="1879">Sharon</option>
+<option value="1880">Estrella </option>
+<option value="1881">Prosper</option>
+<option value="1882">Flourish</option>
+<option value="1883">Shelby</option>
+<option value="1884">JoJo</option>
+<option value="1885">Damo</option>
+<option value="1886">Oyin</option>
+<option value="1887">Alexia </option>
+<option value="1888">Malina</option>
+<option value="1889">Junior</option>
+<option value="1890">Khloe</option>
+<option value="1891">Succes</option>
+<option value="1892">Marvelous</option>
+<option value="1893">Marvel</option>
+<option value="1894">Ibraham</option>
+<option value="1895">Winnas</option>
+<option value="1896">Ava</option>
+<option value="1897">Precious</option>
+<option value="1898">Addison</option>
+<option value="1899">Mariana</option>
+<option value="1900">Edgar</option>
+<option value="1901">Osmary</option>
+<option value="1902">Latravius</option>
+<option value="1903">Zayden</option>
+<option value="1904">Iziaah</option>
+<option value="1905">Lewis</option>
+<option value="1906">Erick</option>
+<option value="1907">Kidus</option>
+<option value="1908">Chit </option>
+<option value="1910">Eh Plah</option>
+<option value="1911">Esterine</option>
+<option value="1912">Joseph </option>
+<option value="1913">Daniel </option>
+<option value="1914">Khai </option>
+<option value="1915">Dipisha</option>
+<option value="1916">Kabir</option>
+<option value="1917">Venas</option>
+<option value="1918">Emile</option>
+<option value="1919">Aiden</option>
+<option value="1920">Kaylie Ann </option>
+<option value="1921">Chasity</option>
+<option value="1922">Miracle</option>
+<option value="1923">Quetzali</option>
+<option value="1924">Julian</option>
+<option value="1925">Joshua</option>
+<option value="1926">Kaelen </option>
+<option value="1927">Tiaunnie</option>
+<option value="1928">Zachery</option>
+<option value="1929">Taniya</option>
+<option value="1930">Kennedi</option>
+<option value="1931">Carlos</option>
+<option value="1932">Javion</option>
+<option value="1933">Lamees</option>
+<option value="1934">Abudallah</option>
+<option value="1935">Ahmad</option>
+<option value="1936">Laila</option>
+<option value="1937">Malak</option>
+<option value="1938">Noor</option>
+<option value="1939">Javae</option>
+<option value="1940">Kaylin</option>
+<option value="1941">Caleiyah</option>
+<option value="1942">Reema</option>
+<option value="1943">Keylon</option>
+<option value="1944">Kaylyn</option>
+<option value="1945">Xavier</option>
+<option value="1946">Matilyn </option>
+<option value="1947">Alex </option>
+<option value="1948">Samon</option>
+<option value="1949">Kendrick </option>
+<option value="1950">Justice </option>
+<option value="1951">Serenity </option>
+<option value="1952">Jarid </option>
+<option value="1953">Tory</option>
+<option value="1954">Hezekiah</option>
+<option value="1955">Ayiek</option>
+<option value="1956">I&#39;asia </option>
+<option value="1957">Divine Dumes </option>
+<option value="1958">Mading</option>
+<option value="1959">jacob  </option>
+<option value="1960">Maluk</option>
+<option value="1961">Jamie</option>
+<option value="1962">Ayiuel</option>
+<option value="1963">Tod</option>
+<option value="1964">Arianna </option>
+<option value="1965">Kayley</option>
+<option value="1966">Kelden </option>
+<option value="1967">Joseph </option>
+<option value="1968">Deshaun </option>
+<option value="1969">Marlon </option>
+<option value="1970">Adimir</option>
+<option value="1971">ademola okuyemi</option>
+<option value="1972">adeayo</option>
+<option value="1973">esther</option>
+<option value="1974">charles</option>
+<option value="1975">richard</option>
+<option value="1976">daniel </option>
+<option value="1977">donn</option>
+<option value="1978">flourish</option>
+<option value="1979">ava</option>
+<option value="1980">dajai</option>
+<option value="1981">michael</option>
+<option value="1982">anthony</option>
+<option value="1983">kedrick</option>
+<option value="1984">ademide</option>
+<option value="1985">adebusola</option>
+<option value="1986">Sh&#39;kerrah </option>
+<option value="1987">Eldahh</option>
+<option value="1988">Josselyn</option>
+<option value="1989">Osaze</option>
+<option value="1990">Brandon</option>
+<option value="1991">Jadah</option>
+<option value="1992">Markadah</option>
+<option value="1993">Dereyon</option>
+<option value="1994">Bethsheba</option>
+<option value="1995">Israel</option>
+<option value="1996">Darasimi</option>
+<option value="1997">mutiat </option>
+<option value="1998">Wyatt</option>
+<option value="1999">Zoya</option>
+<option value="2000">Thang</option>
+<option value="2001">Salima</option>
+<option value="2006">Elizabeth </option>
+<option value="2024">Jamie </option>
+<option value="2025">Joseph </option>
+<option value="2026">Mirabel</option>
+<option value="2027">Marlon</option>
+<option value="2028">Carter</option>
+<option value="2029">Catlyin</option>
+<option value="2030">Yosniel</option>
+<option value="2031">Arianny</option>
+<option value="2032">Abdallah</option>
+<option value="2033">Addison</option>
+<option value="2034">Ahmad </option>
+<option value="2035">Ava</option>
+<option value="2036">Caleiyah</option>
+<option value="2037">Chasity</option>
+<option value="2038">Javae</option>
+<option value="2039">Javion</option>
+<option value="2040">Joshua </option>
+<option value="2041">Kaniya </option>
+<option value="2042">Kaylain</option>
+<option value="2043">Kaylieann</option>
+<option value="2044">Kaylyn</option>
+<option value="2045">Kennedy </option>
+<option value="2046">Keylon</option>
+<option value="2047">Laila</option>
+<option value="2048">Lamees </option>
+<option value="2049">Malak</option>
+<option value="2050">Noor</option>
+<option value="2051">Precious</option>
+<option value="2052">Quetzali</option>
+<option value="2053">Reema</option>
+<option value="2054">Tiaunie</option>
+<option value="2055">Zachery</option>
+<option value="2056">Julian </option>
+<option value="2057">Ariyanna</option>
+<option value="2058">Josslyn</option>
+<option value="2059">Braniah</option>
+<option value="2060">Zayden </option>
+<option value="2061">Martrell</option>
+<option value="2062">Bryson</option>
+<option value="2063">Aniyah</option>
+<option value="2064">Edgar </option>
+<option value="2065">Erick</option>
+<option value="2066">Isiah</option>
+<option value="2067">Kuduis</option>
+<option value="2068">Latravius </option>
+<option value="2069">Lewis</option>
+<option value="2070">Mariana </option>
+<option value="2071">Osmary</option>
+<option value="2072">Winnas</option>
+<option value="2073">Zayden </option>
+<option value="2074">Tacorreyon</option>
+<option value="2075">Darius</option>
+<option value="2076">Bethsheba</option>
+<option value="2077">Liana</option>
+<option value="2078">Benjamin</option>
+<option value="2079">Nakeirah</option>
+<option value="2080">Camren</option>
+<option value="2081">Jadiel</option>
+<option value="2082">Cordellro</option>
+<option value="2083">Demontae</option>
+<option value="2084">London</option>
+<option value="2085">Ruby</option>
+<option value="2086">Jasmin</option>
+<option value="2087">Adrian</option>
+<option value="2088">Kortland</option>
+<option value="2089">Wyatt</option>
+<option value="2090">Kadan</option>
+<option value="2091">Bessy</option>
+<option value="2092">Damo</option>
+<option value="2093">Darlingtina</option>
+<option value="2094">Emmanuel</option>
+<option value="2095">Flourish</option>
+<option value="2096">Hector</option>
+<option value="2097">Jaden</option>
+<option value="2098">Jamya</option>
+<option value="2099">Johnson</option>
+<option value="2100">Junior</option>
+<option value="2101">Klhoe </option>
+<option value="2102">Marvelous</option>
+<option value="2103">Olivia</option>
+<option value="2104">Oyin</option>
+<option value="2105">Prosper</option>
+<option value="2106">Ricardo</option>
+<option value="2107">Semi</option>
+<option value="2108">Sharon</option>
+<option value="2109">A&#39;Niya</option>
+<option value="2110">Adrian</option>
+<option value="2111">Anderson</option>
+<option value="2112">Andrew</option>
+<option value="2113">Angel</option>
+<option value="2114">Anna</option>
+<option value="2115">Broderianna</option>
+<option value="2116">Byron</option>
+<option value="2117">Caleb</option>
+<option value="2118">Christopher</option>
+<option value="2119">Damien</option>
+<option value="2120">Erick</option>
+<option value="2121">Ever&#39;Nicole</option>
+<option value="2122">Gianna</option>
+<option value="2123">Izabella</option>
+<option value="2124">Jamir</option>
+<option value="2125">Kamya</option>
+<option value="2126">Khalise</option>
+<option value="2127">Krislyn</option>
+<option value="2128">La&#39;Niaya</option>
+<option value="2129">Lillian</option>
+<option value="2130">Mariah</option>
+<option value="2131">Mekhi</option>
+<option value="2132">Mia</option>
+<option value="2133">Precious</option>
+<option value="2134">Rudy</option>
+<option value="2135">Shiloh</option>
+<option value="2136">Skylar</option>
+<option value="2137">Wendell</option>
+<option value="2138">Fithawit</option>
+<option value="2139">Maymuna</option>
+<option value="2140">Thang</option>
+<option value="2141">Irakoze</option>
+<option value="2142">Beauty</option>
+<option value="2143">Romeo</option>
+<option value="2144">Cherry</option>
+<option value="2145">Natnael </option>
+<option value="2146">Nazrawi</option>
+<option value="2147">Nazret</option>
+<option value="2148">Eh Hser</option>
+<option value="2149">Johnson</option>
+<option value="2150">Trinitee</option>
+<option value="2151">Excell</option>
+<option value="2152">Ibraheem </option>
+<option value="2153">semi</option>
+<option value="2154">Sonia </option>
+<option value="2155">success</option>
+<option value="2156">Jade </option>
+<option value="2159">Anthony</option>
+<option value="2160">Kennya </option>
+<option value="2161">Monica </option>
+<option value="2162">Jordann</option>
+<option value="2163">Timberlee</option>
+<option value="2164">Tania</option>
+<option value="2165">Alejandra</option>
+<option value="2166">Lenton </option>
+<option value="2167">Autumn</option>
+<option value="2168">Micheal </option>
+<option value="2169">Edwin</option>
+<option value="2170">Joseph</option>
+<option value="2171">Mirabel</option>
+<option value="2172">Carter</option>
+<option value="2173">Catlyin</option>
+<option value="2174">Yosniel</option>
+<option value="2175">Arianny</option>
+<option value="2176">Savannah</option>
+<option value="2177">Hope</option>
+<option value="2178">Joshua</option>
+<option value="2179">Martrell</option>
+<option value="2180">Bryson</option>
+<option value="2181">Aniyah</option>
+<option value="2182">Javae</option>
+<option value="2183">Javion</option>
+<option value="2184">Zayden</option>
+<option value="2185">Avah</option>
+<option value="2186">Kennedi</option>
+<option value="2187">Kaniya</option>
+<option value="2188">Keylon</option>
+<option value="2189">Quetzali</option>
+<option value="2190">Julian </option>
+<option value="2191">Javon</option>
+<option value="2192">Jordan </option>
+<option value="2193">Zaarel</option>
+<option value="2194">Heaven</option>
+<option value="2195">Julian</option>
+<option value="2196">Lashadion</option>
+<option value="2197">Samora</option>
+<option value="2198">Jadarrius</option>
+<option value="2199">Tra&#39;monye</option>
+<option value="2200">Kayla</option>
+<option value="2201">Josslyn</option>
+<option value="2202">Tristan</option>
+<option value="2203">Caleyah</option>
+<option value="2204">Caleb</option>
+<option value="2205">Tiaunnie</option>
+<option value="2206">Justin</option>
+<option value="2207">Brooklyn</option>
+<option value="2208">Kaori</option>
+<option value="2209">Ahman</option>
+<option value="2210">Kharter</option>
+<option value="2211">Jase</option>
+<option value="2212">Jordyn</option>
+<option value="2213">Bethsheba </option>
+<option value="2214">Lianna</option>
+<option value="2215">Benjamin </option>
+<option value="2216">Nakeirah </option>
+<option value="2217">Camren </option>
+<option value="2218">Jadiel </option>
+<option value="2219">Benjamin </option>
+<option value="2220">Candy </option>
+<option value="2221">Caleyah</option>
+<option value="2222">Caleb </option>
+<option value="2223">Caleb </option>
+<option value="2224">Tiaunnie </option>
+<option value="2225">Justin</option>
+<option value="2226">Brooklyn</option>
+<option value="2227">Kaori</option>
+<option value="2228">Ahman</option>
+<option value="2229">Kharter</option>
+<option value="2230">Jase </option>
+<option value="2231">Jordyn</option>
+<option value="2232">Bethsheba</option>
+<option value="2233">Edgar</option>
+<option value="2234">Erick</option>
+<option value="2235">Isiah</option>
+<option value="2236">Kuduis</option>
+<option value="2237">Latravius</option>
+<option value="2238">Lewis</option>
+<option value="2239">Mariana</option>
+<option value="2240">Osmary</option>
+<option value="2241">Winnas</option>
+<option value="2242">Zayden</option>
+<option value="2243">Tacorreyon</option>
+<option value="2244">Darius</option>
+<option value="2245">Meron</option>
+<option value="2246">Aki</option>
+<option value="2247">Alejandra</option>
+<option value="2248">Autumn</option>
+<option value="2249">Bryana</option>
+<option value="2250">Edwin</option>
+<option value="2251">Jade</option>
+<option value="2252">Joshua</option>
+<option value="2253">Kennya</option>
+<option value="2254">Michael</option>
+<option value="2255">Monica</option>
+<option value="2256">Samantha</option>
+<option value="2257">Fernanda</option>
+<option value="2258">Mikiyas</option>
+<option value="2259">Isaiah</option>
+<option value="2260">Issac</option>
+<option value="2261">Kidus</option>
+<option value="2262">Lewis</option>
+<option value="2263">Darius</option>
+<option value="2264">Tacorreyon</option>
+<option value="2265">Latravias</option>
+<option value="2266">Zayden</option>
+<option value="2267">Allison</option>
+<option value="2268">Kylin</option>
+<option value="2269">Erick</option>
+<option value="2270">Abeselom</option>
+<option value="2271">Jacob</option>
+<option value="2272">Jacobi</option>
+<option value="2273">Jace</option>
+<option value="2274">Christian </option>
+<option value="2275">Tristian </option>
+<option value="2276">Matiyln</option>
+<option value="2277">Samon</option>
+<option value="2278">Kendrick</option>
+<option value="2279">Amy</option>
+<option value="2280">Brendon</option>
+<option value="2281">JaNya</option>
+<option value="2282">Javion</option>
+</select>
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="StudentId" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                            <div class="row">
+                                <div class="text-center"><h3><strong>LANGUAGE ARTS</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered ">
+
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language1 must be a number." id="Language1" name="Language1" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Language1" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language2 must be a number." id="Language2" name="Language2" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Language2" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language3 must be a number." id="Language3" name="Language3" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Language3" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field LanguageSemester must be a number." id="LanguageSemester" name="LanguageSemester" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="LanguageSemester" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language5 must be a number." id="Language5" name="Language5" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Language5" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Language6 must be a number." id="Language6" name="Language6" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Language6" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="text-center"><h3><strong>READING</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered ">
+
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading1 must be a number." id="Reading1" name="Reading1" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Reading1" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading2 must be a number." id="Reading2" name="Reading2" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Reading2" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading3 must be a number." id="Reading3" name="Reading3" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Reading3" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field ReadingSemester must be a number." id="ReadingSemester" name="ReadingSemester" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="ReadingSemester" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading5 must be a number." id="Reading5" name="Reading5" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Reading5" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Reading6 must be a number." id="Reading6" name="Reading6" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Reading6" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="text-center"><h3><strong>MATH</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered ">
+
+                                <tbody>
+                                    <tr>
+
+                                        <td>
+
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math1 must be a number." id="Math1" name="Math1" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Math1" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math2 must be a number." id="Math2" name="Math2" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Math2" data-valmsg-replace="true"></span>
+                                                    </div>
+
+                                                    <!--<div class="clearfix visible-xs-block"></div>-->
+
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math3 must be a number." id="Math3" name="Math3" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Math3" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field MathSemester must be a number." id="MathSemester" name="MathSemester" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="MathSemester" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math5 must be a number." id="Math5" name="Math5" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Math5" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field Math6 must be a number." id="Math6" name="Math6" type="number" value="" />
+                                                        <span class="field-validation-valid text-danger" data-valmsg-for="Math6" data-valmsg-replace="true"></span>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                    <br />
+                    <div class="col-md-offset-2 col-md-10 text-center">
+                        <input type="submit" value="Create" class="btn btn-danger" />
+                    </div>
+</form>
+            </div>
+
+          
+
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <a href="/ReportCardRecords">Back to List</a>
+</div>
+
+
+        <hr />
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+
+    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+	<script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+    <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
+    
+    <script src="/bundles/jqueryval?v=NOVQDySGO89wzMzO5x7mWS4C_uAdynpZe_Lk2y-xEM41"></script>
+
+
+   
+
+	<script> $(function() {
+	$('input[type=number]').on('keydown', function(e) {
+		if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+			// Allow: Ctrl+A
+		   (e.keyCode == 65 && e.ctrlKey === true) ||
+			// Allow: home, end, left, right
+		   (e.keyCode >= 35 && e.keyCode <= 40)) {
+			// let it happen, don't do anything
+			return;
+		}
+		// Ensure that it is a number and stop the keypress
+		if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+});</script>
+</body>
+</html>
