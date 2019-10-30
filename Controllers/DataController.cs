@@ -5,11 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
-namespace Kids_U_Test.Controllers
+namespace test.Controllers
 {
     public class DataController : Controller
     {
-        
         public ActionResult OutcomeMeasurements()
         {
             return View();
@@ -42,6 +41,5 @@ namespace Kids_U_Test.Controllers
         {
             return View();
         }
-
     }
 }

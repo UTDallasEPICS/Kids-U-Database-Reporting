@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 
-namespace Kids_U_Test.Controllers
+namespace test.Controllers
 {
     public class LoginController : Controller
     {
         public ActionResult Index()
         {
-            return View ();
+            return View();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 
 namespace test.Controllers
 {
@@ -10,7 +11,7 @@ namespace test.Controllers
     {
         public ActionResult CreateStudents()
         {
-            return View ();
+            return View();
         }
         public ActionResult CreateOutcomeMeasurements()
         {

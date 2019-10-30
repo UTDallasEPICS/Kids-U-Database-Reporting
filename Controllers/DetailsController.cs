@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 
-namespace Kids_U_Test.Controllers
-
+namespace test.Controllers
 {
     public class DetailsController : Controller
     {
@@ -41,6 +41,5 @@ namespace Kids_U_Test.Controllers
         {
             return View();
         }
-
     }
 }
