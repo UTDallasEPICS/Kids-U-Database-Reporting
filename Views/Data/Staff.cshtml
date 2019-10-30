@@ -45,7 +45,13 @@
 
     <div class="container body-content">
         <h2>Staff Directory and Management</h2>
-        <p>@Html.ActionLink("Create New Staff Account", "CreateStaff", "Create")</p>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "CreateStaff", "Create")
+            </div>
+        </div>
 
         <!--table-->
         <table class="table">

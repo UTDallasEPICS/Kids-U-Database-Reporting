@@ -45,7 +45,13 @@
 
     <div class="container body-content">
         <h2>Organizations</h2>
-        <p>@Html.ActionLink("Create New", "CreateOrganization", "Create")</p>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "CreateOrganization", "Create")
+            </div>
+        </div>
 
         <!--table-->
         <table class="table">
