@@ -4,8 +4,10 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="test" expanded="True" selected="True">
-            <Node name="test" expanded="True" />
+          <Node name="test" expanded="True">
+            <Node name="test" expanded="True">
+              <Node name="Web.config" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
