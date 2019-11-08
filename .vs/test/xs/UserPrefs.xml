@@ -7,8 +7,9 @@
           <Node name="test" expanded="True">
             <Node name="test" expanded="True">
               <Node name="Views" expanded="True">
-                <Node name="Create" expanded="True">
-                  <Node name="CreateStudents.cshtml" selected="True" />
+                <Node name="Data" expanded="True" />
+                <Node name="Details" expanded="True">
+                  <Node name="ShowOutcomeMeasurements.cshtml" selected="True" />
                 </Node>
               </Node>
             </Node>
