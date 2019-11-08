@@ -1,16 +1,6 @@
 ﻿<Properties StartupConfiguration="{E11532E2-9935-4227-B04D-92D154D30042}|">
   <MonoDevelop.Ide.ItemProperties.test PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Create/CreateStudents.cshtml">
-    <Files>
-      <File FileName="Views/Create/CreateOrganization.cshtml" Line="1" Column="1" />
-      <File FileName="Views/Create/CreateOutcomeMeasurements.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateReportCards.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateSchoolDistricts.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateSchools.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateSites.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateStaff.cshtml" Line="2" Column="92" />
-      <File FileName="Views/Create/CreateStudents.cshtml" Line="2" Column="92" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
