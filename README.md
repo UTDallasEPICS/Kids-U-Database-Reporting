@@ -1,33 +1,33 @@
 # kidsuDB: Kids-U Database Refresh:
 
-## Description:
+### Description:
 
 The goal of this project is the refresh the Kids-U staff website and the database system, with new features. 
 Because we were unable to get the source code for the current website, we have started rebuilding the website from scratch. 
 
-### Framework:
+##### Framework:
 
 The current website is being hosted by Everleap, which supports web applications written using the ASP.NET framework. To ensure that Kids-U can continue using this hosting service, we are using ASP.NET MVC.
 
-### Database:
+##### Database:
 
 We originally attempted to use MySQL for our database, but ran into issues connecting the database with our project on Visual Studio. We have switched over to Microsoft SQL Server. So far, things appear to me moving more smoothly.
 
-### Other Software:
+##### Other Software:
 
 Visual Studio for ASP.NET MVC
 Microsoft SQL Server
 Microsoft Windows (Mac only has limited support)
 
-## Requirements:
+### Requirements:
 
-## To-Do:
+### To-Do:
 
-## Project Overview:
+### Project Overview:
 
-## Code Snippets:
+### Code Snippets:
 
-### SQL Queries:
+##### SQL Queries:
 
 Sorting:
 
