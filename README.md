@@ -50,13 +50,13 @@ Microsoft Windows (We've had issues with MacOS)
 
 ## Progress:
 
-So far we have:
+### So far we have:
 
 - Replicated the front end design for most of the pages of the current website. Some additional pages may be missing (e.g. edit interface). The front end is currently not dynamic, so the code will need to be adjusted to display the correct information from the database. 
 - Began rebuilding the database and filling the database with dummy data.
 - Began connecting the database to the project.
 
-To-Do:
+### To-Do:
 
 - Add ability to add new students and other data to database
 - Add ability to view information on each page
@@ -70,23 +70,65 @@ To-Do:
 
 
 
-## Overview of Current Site:
+## Overview of [Current Site](http://staff.kids-u.org):
 
 ### Login and Entry Portal:
+
+- Nothing really special about the login page. We have added a temp button on our working revision to bypass the login for testing purposes. 
+- The entry portal serves as a directory linking to all the other web pages. The navigation bar at the top of the page is shared on all the other pages. We have removed it from the login page on our revision because it serves no purpose on that page. We have also removed the attendance button from the navigation bar, because Kids-U no longer uses that page.
+
 ### Data Entry:
+
+- The enrollment page displays all the student roster in a table.
+- The outcome measurements and report cards pages display academic results of the students. We're not sure what the distinction between them is. Also, the information displayed on those pages had been previously lost somehow, so the pages are empty and unused for now. 
+- The attendance/meals page has been removed because Kids-U not longer uses that page.
+
 ### Management:
 
+- The staff directory page displays the staff roster in a table, along with a staff entry for each Kids-U site.
+- The program/facility sites page displays a list of Kids-U sites.
+- The organizations page displays a list of organizations that support Kids-U.
+- The school districts page displays a list of school districts that students attend. 
+- The schools page displays a list of schools that students attend.
+
+### Notes:
+
+- We have replaced the create new and export buttons on each page with our new function bar in our revision. This function bar has new create new and export buttons, along with a sort-by dropdown, search bar, and advanced search menu.
+- All of the pages have a details options that displays all the information on the entry on a separate page. It might be beneficial to remove the details option and display all the information on the primary table to avoid unnecessary complications and issues with sorting and searching by information that is not displayed. 
 
 
-## Project Overview:
+
+## Overview of Current Project:
+
+### Code:
+
+- **App_Start folder:** sdf
+- **Content folder:**
+- **Controllers folder:**
+- **Scripts folder:**
+- **Views folder:**
+- **bin folder:**
+- **packages folder:**
+- **.DS_Store:**
+- **.gitignore:**
+- **Global.asax:**
+- **Global.asax.cs:**
+- **Web.config:**
+- **packages.config:**
+- **test.csproj:**
+- **test.sln:**
+
+### Database:
+
+### Notes:
 
 
 
-## Database Overview:
+## Setting Up:
 
 
 
-## Links:
+## Relevant Links for Reference:
 
 
 
@@ -96,8 +138,8 @@ To-Do:
 
 Sorting:
 
-	First Name A-Z		select * from test.students order by first_name asc;
-	First Name Z-A		select * from test.students order by first_name desc;
+	**First Name A-Z**		select * from test.students order by first_name asc;
+	**First Name Z-A**		select * from test.students order by first_name desc;
 	Last Name A-Z		select * from test.students order by last_name asc;
 	Last Name Z-A		select * from test.students order by last_name desc;
 	Enrolled Ascending	select * from test.students order by enrolled asc;
