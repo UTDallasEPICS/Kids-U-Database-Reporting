@@ -67,6 +67,7 @@ Microsoft Windows (We've had issues with MacOS)
 - Implement long-term academic tracking system for students
 - Add ability to generate student progress reports
 - Implement sort/search/filter functionality for progress report results
+- Figure out deployment and hosting situation
 
 
 
@@ -79,17 +80,17 @@ Microsoft Windows (We've had issues with MacOS)
 
 ### Data Entry:
 
-- The enrollment page displays all the student roster in a table.
-- The outcome measurements and report cards pages display academic results of the students. We're not sure what the distinction between them is. Also, the information displayed on those pages had been previously lost somehow, so the pages are empty and unused for now. 
-- The attendance/meals page has been removed because Kids-U not longer uses that page.
+- The **enrollment** page displays all the student roster in a table.
+- The **outcome measurements** and **report cards** pages display academic results of the students. We're not sure what the distinction between them is. Also, the information displayed on those pages had been previously lost somehow, so the pages are empty and unused for now. 
+- The **attendance/meals** page has been removed because Kids-U not longer uses that page.
 
 ### Management:
 
-- The staff directory page displays the staff roster in a table, along with a staff entry for each Kids-U site.
-- The program/facility sites page displays a list of Kids-U sites.
-- The organizations page displays a list of organizations that support Kids-U.
-- The school districts page displays a list of school districts that students attend. 
-- The schools page displays a list of schools that students attend.
+- The **staff directory** page displays the staff roster in a table, along with a staff entry for each Kids-U site.
+- The **program/facility sites** page displays a list of Kids-U sites.
+- The **organizations** page displays a list of organizations that support Kids-U.
+- The **school districts** page displays a list of school districts that students attend. 
+- The **schools** page displays a list of schools that students attend.
 
 ### Notes:
 
@@ -102,13 +103,14 @@ Microsoft Windows (We've had issues with MacOS)
 
 ### Code:
 
-- **App_Start folder:** sdf
-- **Content folder:**
-- **Controllers folder:**
-- **Scripts folder:**
-- **Views folder:**
-- **bin folder:**
+- **App_Start folder:** This folder contains RouteConfig.cs, which is used for communication with the browser.
+- **Content folder:** This folder contains all the CSS and images used for the project. Currently we have 1 image used on the home page and 1 CSS file that we wrote that applies to all our pages ('Site.css'). The bootstrap CSS files were included with bootstrap.
+- **Controllers folder:** This folder contains the controllers for the project. The controllers are basically classes that manage user interaction and flow control logic in MVC applications.
+- **Scripts folder:** This folder contains all the Javascript for the project. 'site.js' is the only Javascript file we have written so far, everything else was added either by default or from other packages.
+- **Views folder:** The folder contains the CSHTML files for the project. Each folder corresponds to a controller. There is also one of two 'Web.config' files. Sometimes those file needs to be tweaked to fix errors. Just use Stack Overflow.
+- **bin folder:** This folder contains compiled assemblies. You probably won't have to touch this folder unless something goes terribly wrong.
 - **packages folder:**
+
 - **.DS_Store:**
 - **.gitignore:**
 - **Global.asax:**
@@ -138,8 +140,8 @@ Microsoft Windows (We've had issues with MacOS)
 
 Sorting:
 
-	**First Name A-Z**		select * from test.students order by first_name asc;
-	**First Name Z-A**		select * from test.students order by first_name desc;
+	First Name A-Z		select * from test.students order by first_name asc;
+	First Name Z-A		select * from test.students order by first_name desc;
 	Last Name A-Z		select * from test.students order by last_name asc;
 	Last Name Z-A		select * from test.students order by last_name desc;
 	Enrolled Ascending	select * from test.students order by enrolled asc;
@@ -186,5 +188,10 @@ Advanced (Students Page):
 
 	School Grade	select * from test.students where school_grade like "<n>";
 			(<n> is the grade selected in the Advanced Search menu)
+
+
+
+## Authors
+
 
 
