@@ -122,52 +122,56 @@ Microsoft Windows (We've had issues with MacOS)
 
 - **Organizations:**
 	- Contains information about organizations associated with Kids-U
-	- Corresponds to Organizations page
+	- Corresponds to **Organizations** page
 - **Staff Directory:**
 	- Contains staff information
-	- Corresponds to Staff Directory page
+	- Corresponds to **Staff Directory** page
 	- May be used to store login information
 	- Each facility also seems to have an entry in the staff directory page
 - **Program Facility Sites:**
 	- Contains information about each facility Kids-U uses to host programs
+	- Corresponds to the **Program/Facility Sites** page
 - **School Districts:**
 	- Contains information about school districts
-	- Corresponds to the School Districts page
-	- One-to-many relationship with Schools
+	- Corresponds to the **School Districts** page
+	- One-to-many relationship with **Schools**
 - **Schools:** 
 	- Contains information about each school.
-	- Corresponds to the Schools page
-	- One-to-many relationship with Students
+	- Corresponds to the **Schools** page
+	- One-to-many relationship with **Students**
 - **Students:**
 	- Contains information about each student
-	- Corresponds to the Students page
-	- One-to-many relationship with Outcome Measurements and Report Card
+	- Corresponds to the **Students** page
+	- One-to-many relationship with **Outcome Measurements** and **Report Card**
 - **Outcome Measurements:** 
 	- Contains results for each student of pre- and post-tests designed to measure student growth
-	- Corresponds to the Outcome Measurements page
+	- Corresponds to the **Outcome Measurements** page
 - **Report Card:** 
 	- Contains report card grades of each student
-	- Corresponds to the Report Cards page
-	- One-to-many relationship with Reading, Language Arts, and Math
+	- Corresponds to the **Report Cards** page
+	- One-to-many relationship with **Reading**, **Language Arts**, and **Math**
 - **Reading:** 
 	- Contains report card grades for reading
-	- Corresponds to the Report Cards page
+	- Corresponds to the **Report Cards** page
 - **Language Arts:**
 	- Contains report card grades for language arts
-	- Corresponds to the Report Cards page
+	- Corresponds to the **Report Cards** page
 - **Math:** 
 	- Contains report card grades for math
-	- Corresponds to the Report Cards page
+	- Corresponds to the **Report Cards** page
+
+
+## Setting Up:
 
 
 
 ## Relevant Links for Reference:
 
-[Retrieving data using a DataReader](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/retrieving-data-using-a-datareader)
-[Using SQL Queries in ASP.NET MVC 1](https://stackoverflow.com/questions/20772391/using-simple-queries-in-asp-net-mvc)
-[Using SQL Queries in ASP.NET MVC 2](https://stackoverflow.com/questions/43714608/how-to-use-sql-raw-query-in-asp-net-mvc-web-api)
-[Using SQL Queries in ASP.NET MVC 3](https://stackoverflow.com/questions/16807334/execute-raw-sql-query-in-asp-net-mvc-database-first-mode)
-[Using SQL Queries in ASP.NET MVC 4](https://stackoverflow.com/questions/12233746/asp-net-mvc-and-sql-queries)
+- [Retrieving data using a DataReader](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/retrieving-data-using-a-datareader)
+- [Using SQL Queries in ASP.NET MVC 1](https://stackoverflow.com/questions/20772391/using-simple-queries-in-asp-net-mvc)
+- [Using SQL Queries in ASP.NET MVC 2](https://stackoverflow.com/questions/43714608/how-to-use-sql-raw-query-in-asp-net-mvc-web-api)
+- [Using SQL Queries in ASP.NET MVC 3](https://stackoverflow.com/questions/16807334/execute-raw-sql-query-in-asp-net-mvc-database-first-mode)
+- [Using SQL Queries in ASP.NET MVC 4](https://stackoverflow.com/questions/12233746/asp-net-mvc-and-sql-queries)
 
 
 
@@ -230,8 +234,8 @@ Microsoft Windows (We've had issues with MacOS)
 
 ## Authors
 
-John Zhao (kxz170530@utdallas.edu)
-David Burgwin (dab180001@utdallas.edu)
-Utsav Malik (uxm170000@utdallas.edu)
-Rakeen Murtaza (mxm170055@utdallas.edu)
-Michael Villordon (mhv170000@utdallas.edu)
+- John Zhao (kxz170530@utdallas.edu)
+- David Burgwin (dab180001@utdallas.edu)
+- Utsav Malik (uxm170000@utdallas.edu)
+- Rakeen Murtaza (mxm170055@utdallas.edu)
+- Michael Villordon (mhv170000@utdallas.edu)
