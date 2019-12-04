@@ -81,14 +81,15 @@ Microsoft Windows (We've had issues with MacOS)
 ### Data Entry:
 
 - The **enrollment** page displays all the student roster in a table.
-- The **outcome measurements** and **report cards** pages display academic results of the students. We're not sure what the distinction between them is. Also, the information displayed on those pages had been previously lost somehow, so the pages are empty and unused for now. 
+- The **outcome measurements** page displays results of tests designed to measure student growth. The information displayed on this page was lost somehow previously, so the pages are currently empty.
+- The **report cards** page displays report card grades of the students. Also, the information displayed on this page was also lost.
 - The **attendance/meals** page has been removed because Kids-U not longer uses that page.
 
 ### Management:
 
 - The **staff directory** page displays the staff roster in a table, along with a staff entry for each Kids-U site.
 - The **program/facility sites** page displays a list of Kids-U sites.
-- The **organizations** page displays a list of organizations that support Kids-U.
+- The **organizations** page displays a list of organizations associated with Kids-U.
 - The **school districts** page displays a list of school districts that students attend. 
 - The **schools** page displays a list of schools that students attend.
 
@@ -104,33 +105,69 @@ Microsoft Windows (We've had issues with MacOS)
 ### Code:
 
 - **App_Start folder:** This folder contains RouteConfig.cs, which is used for communication with the browser.
-- **Content folder:** This folder contains all the CSS and images used for the project. Currently we have 1 image used on the home page and 1 CSS file that we wrote that applies to all our pages ('Site.css'). The bootstrap CSS files were included with bootstrap.
+- **Content folder:** This folder contains all the CSS and images used for the project. Currently we have 1 image used on the home page and 1 CSS file that we wrote that applies to all our pages (Site.css). The bootstrap CSS files were included with bootstrap.
 - **Controllers folder:** This folder contains the controllers for the project. The controllers are basically classes that manage user interaction and flow control logic in MVC applications.
-- **Scripts folder:** This folder contains all the Javascript for the project. 'site.js' is the only Javascript file we have written so far, everything else was added either by default or from other packages.
-- **Views folder:** The folder contains the CSHTML files for the project. Each folder corresponds to a controller. There is also one of two 'Web.config' files. Sometimes those file needs to be tweaked to fix errors. Just use Stack Overflow.
+- **Scripts folder:** This folder contains all the Javascript for the project. Site.js is the only Javascript file we have written so far, everything else was added either by default or from other packages.
+- **Views folder:** The folder contains the CSHTML files for the project. Each folder corresponds to a controller. The CSHTML files are similar to HTML with some small differences (e.g. linking between pages).
 - **bin folder:** This folder contains compiled assemblies. You probably won't have to touch this folder unless something goes terribly wrong.
-- **packages folder:**
+- **packages folder:** This folder contains the installed packages. You probably won't have to deal with this folder either.
 
-- **.DS_Store:**
-- **.gitignore:**
-- **Global.asax:**
-- **Global.asax.cs:**
-- **Web.config:**
-- **packages.config:**
-- **test.csproj:**
-- **test.sln:**
+- **.gitignore:** List of files and directories to be excluded when pushing to GitHub. These files all seem to contain local meta-data, so they were excluded to avoid merge conflicts. 
+- **Global.asax & Global.asax.cs:** Handles application level events. We haven't needed to touch these files yet.
+- **Web.config:** Contains the ASP.NET configuration settings that override settings in the Machine.config file, which exists somewhere on your local machine. A Web.config file also exists within the Views folder. I have had to edit these files a few times to fix errors that occurred after updating Visual Studios or certain packages (on MacOS).
+- **packages.config:** Contains configuration settings for installed packages.
+- **test.csproj & test.sln:** Contains information regarding the project and solution.
 
 ### Database:
 
-### Notes:
-
-
-
-## Setting Up:
+- **Organizations:**
+	- Contains information about organizations associated with Kids-U
+	- Corresponds to Organizations page
+- **Staff Directory:**
+	- Contains staff information
+	- Corresponds to Staff Directory page
+	- May be used to store login information
+	- Each facility also seems to have an entry in the staff directory page
+- **Program Facility Sites:**
+	- Contains information about each facility Kids-U uses to host programs
+- **School Districts:**
+	- Contains information about school districts
+	- Corresponds to the School Districts page
+	- One-to-many relationship with Schools
+- **Schools:** 
+	- Contains information about each school.
+	- Corresponds to the Schools page
+	- One-to-many relationship with Students
+- **Students:**
+	- Contains information about each student
+	- Corresponds to the Students page
+	- One-to-many relationship with Outcome Measurements and Report Card
+- **Outcome Measurements:** 
+	- Contains results for each student of pre- and post-tests designed to measure student growth
+	- Corresponds to the Outcome Measurements page
+- **Report Card:** 
+	- Contains report card grades of each student
+	- Corresponds to the Report Cards page
+	- One-to-many relationship with Reading, Language Arts, and Math
+- **Reading:** 
+	- Contains report card grades for reading
+	- Corresponds to the Report Cards page
+- **Language Arts:**
+	- Contains report card grades for language arts
+	- Corresponds to the Report Cards page
+- **Math:** 
+	- Contains report card grades for math
+	- Corresponds to the Report Cards page
 
 
 
 ## Relevant Links for Reference:
+
+[Retrieving data using a DataReader](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/retrieving-data-using-a-datareader)
+[Using SQL Queries in ASP.NET MVC 1](https://stackoverflow.com/questions/20772391/using-simple-queries-in-asp-net-mvc)
+[Using SQL Queries in ASP.NET MVC 2](https://stackoverflow.com/questions/43714608/how-to-use-sql-raw-query-in-asp-net-mvc-web-api)
+[Using SQL Queries in ASP.NET MVC 3](https://stackoverflow.com/questions/16807334/execute-raw-sql-query-in-asp-net-mvc-database-first-mode)
+[Using SQL Queries in ASP.NET MVC 4](https://stackoverflow.com/questions/12233746/asp-net-mvc-and-sql-queries)
 
 
 
@@ -138,7 +175,7 @@ Microsoft Windows (We've had issues with MacOS)
 
 ### SQL Queries:
 
-Sorting:
+**Sorting:**
 
 	First Name A-Z		select * from test.students order by first_name asc;
 	First Name Z-A		select * from test.students order by first_name desc;
@@ -155,12 +192,12 @@ Sorting:
 	Grade Ascending		select * from test.students order by grade asc;
 	Grade Descending	select * from test.students order by grade desc;
 
-Searching by name:
+**Searching by name:**
 	
 	select * from test.students where first_name like "%<name>%" or last_name like "%<name>%";
 	(<name> will be entered in search bar)
 
-Advanced (Students Page):
+**Advanced (Students Page):**
 	
 	Ethnicity	select * from test.students where ethnicity like "<e>";
 			(<e> is the ethnicity selected in the Advanced Search menu)
@@ -193,5 +230,8 @@ Advanced (Students Page):
 
 ## Authors
 
-
-
+John Zhao (kxz170530@utdallas.edu)
+David Burgwin (dab180001@utdallas.edu)
+Utsav Malik (uxm170000@utdallas.edu)
+Rakeen Murtaza (mxm170055@utdallas.edu)
+Michael Villordon (mhv170000@utdallas.edu)
