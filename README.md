@@ -61,6 +61,7 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 - Add ability to add new students and other data to database
 - Add ability to view information on each page
 - Add ability to export CSV files of information
+- Add login functionality
 - Implement searching by name
 - Implement advanced searching
 - Implement sorting
