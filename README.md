@@ -36,7 +36,7 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 ### Search/Filter/Sort:
 
 - Ability to search for students by name on relevant pages
-- Advanced Search feature to filter the list of students based on certain information
+- Advanced search feature to filter the list of students based on certain information
 - Sort-by feature that allows the list of students to be ordered based on certain information
 - Ability to export CSV files of sorted/filtered results
 
@@ -61,7 +61,7 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 - Add ability to add new students and other data to database
 - Add ability to view information on each page
 - Add ability to export CSV files of information
-- Implement search feature by name
+- Implement searching by name
 - Implement advanced searching
 - Implement sorting
 - Implement long-term academic tracking system for students
