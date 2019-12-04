@@ -17,9 +17,9 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 
 ### Other Software:
 
-Visual Studio for ASP.NET MVC
-Microsoft SQL Server
-Microsoft Windows (We've had issues with MacOS)
+- Visual Studio for ASP.NET MVC
+- Microsoft SQL Server
+- Microsoft Windows (We've had issues with MacOS)
 
 
 
@@ -159,9 +159,6 @@ Microsoft Windows (We've had issues with MacOS)
 - **Math:** 
 	- Contains report card grades for math
 	- Corresponds to the **Report Cards** page
-
-
-## Setting Up:
 
 
 
