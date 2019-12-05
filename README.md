@@ -132,6 +132,7 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 - **Program Facility Sites:**
 	- Contains information about each facility Kids-U uses to host programs
 	- Corresponds to the **Program/Facility Sites** page
+	- One-to-one relationship with **Staff Directory**(non-identifying)
 - **School Districts:**
 	- Contains information about school districts
 	- Corresponds to the **School Districts** page
