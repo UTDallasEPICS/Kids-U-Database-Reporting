@@ -123,45 +123,62 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 
 - **Organizations:**
 	- Contains information about organizations associated with Kids-U
+	- Primary Key : name of the organization
 	- Corresponds to **Organizations** page
 - **Staff Directory:**
 	- Contains staff information
+	- Primary Key : email of the member
 	- Corresponds to **Staff Directory** page
 	- May be used to store login information
 	- Each facility also seems to have an entry in the staff directory page
 - **Program Facility Sites:**
 	- Contains information about each facility Kids-U uses to host programs
+	- Primary/Foreign Key : name of the facility
 	- Corresponds to the **Program/Facility Sites** page
 	- One-to-one relationship with **Staff Directory**(non-identifying)
 - **School Districts:**
 	- Contains information about school districts
+	- Primary Key : name of the district
 	- Corresponds to the **School Districts** page
 	- One-to-many relationship with **Schools**
 - **Schools:** 
 	- Contains information about each school.
+	- Primary Key : name of the school
+	- Foreign Key : name of the school's district(non-identifying)
 	- Corresponds to the **Schools** page
 	- One-to-many relationship with **Students**
 - **Students:**
 	- Contains information about each student
+	- Primary Key : Hidden unique student ID
 	- Corresponds to the **Students** page
 	- One-to-many relationship with **Outcome Measurements** and **Report Card**
 - **Outcome Measurements:** 
 	- Contains results for each student of pre- and post-tests designed to measure student growth
+	- Primary/Foreign Key(Students table) : Hidden unique student ID
 	- Corresponds to the **Outcome Measurements** page
 - **Report Card:** 
 	- Contains report card grades of each student
+	- Primary/Foreign Key(Students table) : Hidden unique student ID
 	- Corresponds to the **Report Cards** page
 	- One-to-many relationship with **Reading**, **Language Arts**, and **Math**
 - **Reading:** 
 	- Contains report card grades for reading
+	- Primary/Foreign Key(Students table) : Hidden unique student ID
 	- Corresponds to the **Report Cards** page
 - **Language Arts:**
 	- Contains report card grades for language arts
+	- Primary/Foreign Key(Students table) : Hidden unique student ID
 	- Corresponds to the **Report Cards** page
 - **Math:** 
 	- Contains report card grades for math
+	- Primary/Foreign Key(Students table) : Hidden unique student ID
 	- Corresponds to the **Report Cards** page
 
+
+### Database Notes:
+
+- Initally the database was built with MySql for its simplicity, but it was later found that MySql lacks current support for local hosting, so it was moved to SQL server, which removed local hosting issues.
+- Local hosting for the database is purely for building and testing purposes, ideally the issues faced with MySql and/or SQL will become null once the database is moved to the cloud for deployment.
 
 
 ## Relevant Links for Reference:
