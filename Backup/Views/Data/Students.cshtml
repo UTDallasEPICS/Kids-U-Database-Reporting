@@ -1,0 +1,157 @@
+<head ng-app="kidsu">
+	<meta charset="utf-8" />
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Roster - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+   	<link href="/Content/css/Site.css" rel="stylesheet" />
+	<link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+	<script src="/Scripts/site.js"></script>
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+
+            <!--links-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value=""/>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li>@Html.ActionLink("Log off", "Index","Login")</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+	    <h2>Student Roster</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+	        <div id="left">
+		        @Html.ActionLink("Create New", "CreateStudents", "Create")
+		        <a href="x">Export</a>
+
+                <!--sort-->
+		        <select>
+				    <option value="0">Sort by...</option>
+				    <option value="1">First Name A-Z</option>
+				    <option value="2">First Name Z-A</option>
+				    <option value="3">Last Name A-Z</option>
+				    <option value="4">Last Name Z-A</option>
+				    <option value="5">Enrolled Ascending</option>
+				    <option value="6">Enrolled Descending</option>
+				    <option value="7">Income Ascending</option>
+				    <option value="8">Income Descending</option>
+				    <option value="9">School A-Z</option>
+				    <option value="10">School Z-A</option>
+				    <option value="11">Kids-U Site A-Z</option>
+				    <option value="12">Kids-U Site Z-A</option>
+				    <option value="13">Grade Ascending</option>
+				    <option value="14">Grade Descending</option>
+			    </select>
+	        </div>
+
+            <!--search-->
+	        <div id="search">
+		        <input type="text" placeholder="Search...">
+		        <button type="button" onclick="showHide()">Adv.</button>
+		        <button type="submit">Go</button>
+	        </div>
+        </div>
+
+        <!--advanced-->
+        <div class="expand" id="advancedSearch">
+	        <div id="ethnicity">
+		        Ethnicity:<br>
+		        <select> 
+                    <option value="African American"> African American </option>
+                    <option value="Asian">Asian</option>
+                    <option value="Hispanic/Latino">Hispanic/Latino</option>
+                    <option value="Caucasian/Other">Caucasian/Other</option>
+                </select>
+	        </div> 
+	        <div id="gender">
+		        Gender:<br>
+		        <input type="radio" name="gender">Male<br>
+		        <input type="radio" name="gender">Female
+	        </div>
+	        <div id="enrolled">
+		        Enrolled:<br>
+		        <input type="number" name="enrollmentAge" placeholder="Enter in enrollment age">
+	        </div>
+	        <div id="income">
+		        Income:<br>
+		        <select>
+                    <option value="0-20">< $20K</option>
+                    <option value="20-25">$20K - $25K</option>
+                    <option value=">25">> $25K</option>
+                </select>
+	        </div>
+	        <div id="lunch">
+		        Free Lunch:<br>
+		        <input type="radio" name="lunch">Yes<br>
+		        <input type="radio" name="lunch">No
+	        </div>
+	        <div id="school">
+		        School:<br>
+                <input type="text" name="schoolName" placeholder="Enter school name">
+	        </div>
+	        <div id="facility">
+		        Facility:<br>
+		        <input type="text" name="facilityName" placeholder="Enter facility name">
+	        </div>
+	        <div id="grade">
+		        School Grade:<br>
+		        <select>
+                    <option value="K">K </option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+	        </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Kids-U Site</th>
+                <th>Grade</th>
+                <th></th>
+            </tr>
+            <!--entries-->
+        </table>
+        <hr/>
+
+        <footer>
+	        Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+        </footer>
+    </div>
+</body>

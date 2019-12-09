@@ -1,0 +1,72 @@
+﻿<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schools - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/Scripts/site.js"></script>
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+
+            <!--links-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value=""/>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li>@Html.ActionLink("Log off", "Index","Login")</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <h2>Schools</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "CreateSchools", "Create")
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Name</th>
+                <th>Active</th>
+                <th></th>
+            </tr>
+            <!--entries-->
+        </table>
+        <hr/>
+
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+</body>

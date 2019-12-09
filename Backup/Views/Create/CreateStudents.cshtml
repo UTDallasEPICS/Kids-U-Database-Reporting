@@ -1,0 +1,273 @@
+﻿<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create - Kids-U Data Entry Application</title>
+
+    <link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/Scripts/site.js"></script>
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+
+            <!--links-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value=""/>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li>@Html.ActionLink("Log off", "Index","Login")</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <h2>Student Roster</h2>
+
+        <!--form-->
+        <form action="/Students/Create" method="post">
+            <div class="form-horizontal">
+                <h4>Create New</h4><hr/>
+
+                <!--first-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="FirstName">First Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="FirstName" name="FirstName" type="text" value=""/>
+                    </div>
+                </div>
+
+                <!--last-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="LastName">Last Name</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="LastName" name="LastName" type="text" value=""/>
+                    </div>
+                </div>
+
+                <!--ethnicity-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="EthnicityId">Ethnicity</label>
+
+                    <div class="col-md-10">
+                        <select class="form-control" id="EthnicityId" name="EthnicityId">
+                            <option value="">Select Ethnicity</option>
+                            <option value="1">African American</option>
+                            <option value="2">Asian</option>
+                            <option value="3">Hispanic/Latino</option>
+                            <option value="4">Caucasian/Other</option>
+                            <option value="6">White</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--school-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="SchoolId">School</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="SchoolId" name="SchoolId">
+                            <option value="">Select School</option>
+                            <option value="">Generate at Runtime</option>
+                            <option value="1">T.W. Browne MS</option>
+                            <option value="2">H.W.Lang Middle School</option>
+                            <option value="3">Buchanan Middle School</option>
+                            <option value="4">Ronald E. McNair</option>
+                            <option value="5">Abe Lincoln Elementary</option>
+                            <option value="6">Wallace Elementary</option>
+                            <option value="7">Northlake Elementary</option>
+                            <option value="8">Lake Highlands Junior High</option>
+                            <option value="9">Forest Lane Academy</option>
+                            <option value="10">Audelia Creek </option>
+                            <option value="11">Jack Lowe Elementary</option>
+                            <option value="12">Lee A. McShan Elementary</option>
+                            <option value="13">Jill Stone Elementary</option>
+                            <option value="14">Sam Tasby Middle School</option>
+                            <option value="15">J.C. Cannaday Elementary</option>
+                            <option value="16">L.L. Hotchkiss</option>
+                            <option value="17">O.W. Holmes</option>
+                            <option value="18">Boude Storey MS</option>
+                            <option value="19">Dan D Rogers</option>
+                            <option value="20">Wilmer Hutchinson</option>
+                            <option value="21">Edward Titch Elementary</option>
+                            <option value="22">Onesimo Hernandez Elementary</option>
+                            <option value="23">Skyview </option>
+                            <option value="24">Terrace Elementary</option>
+                            <option value="25">Forest Meadow</option>
+                            <option value="27">Bayles Elementary</option>
+                            <option value="28">Harmony Charter School</option>
+                            <option value="29">Thurgood Marshall </option>
+                            <option value="30">O Henery Elementary</option>
+                            <option value="31">Richardson Classical Academy</option>
+                            <option value="32">Jess Harben Elementary </option>
+                            <option value="33">Garland Christian Academy</option>
+                            <option value="34">Larry Smith Elementary</option>
+                            <option value="35">Southwest Leaderdhip</option>
+                            <option value="36">Couch Elementary</option>
+                            <option value="37">Coyle </option>
+                            <option value="38">Casa View</option>
+                            <option value="39">Hanby Elementary</option>
+                            <option value="40">Wilkinson Elementary</option>
+                            <option value="41">Gill Elementary</option>
+                            <option value="42">Montclair Elementary</option>
+                            <option value="43">Edna Rowe</option>
+                            <option value="44">Nova Academy</option>
+                            <option value="45">J. W. Long Elementary</option>
+                            <option value="46">Merriman Park Elementary</option>
+                            <option value="47">Stultz Road Elementary</option>
+                            <option value="48">Aikin Elemenatry</option>
+                            <option value="49">Yale Elementary</option>
+                            <option value="50">Yale Elementary</option>
+                            <option value="51">Mark Twain Elementary</option>
+                            <option value="52">Gaston Middle School</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--site-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="KuSiteId">KU Site</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="KuSiteId" name="KuSiteId">
+                            <option value="">Select KU Site</option>
+                            <option value="">Generate at Runtime</option>
+                            <option value="1">Park9690</option>
+                            <option value="2">Alista</option>
+                            <option value="3">Mayan Palms</option>
+                            <option value="4">Solaris</option>
+                            <option value="5">Towne Center</option>
+                            <option value="6">The Vineyards</option>
+                            <option value="7">Otto (formerly Cantera Creek)</option>
+                            <option value="8">Fair Oaks</option>
+                            <option value="9">Twenty-Five25</option>
+                            <option value="10">Solaire</option>
+                            <option value="11">600 East</option>
+                            <option value="12">Legends</option>
+                            <option value="13">800 Link</option>
+                            <option value="14">Carrollton Oaks</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--grade-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="GradeId">Grade</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="GradeId" name="GradeId">
+                            <option value="">Select Grade</option>
+                            <option value="1">K</option>
+                            <option value="2">1</option>
+                            <option value="3">2</option>
+                            <option value="4">3</option>
+                            <option value="5">4</option>
+                            <option value="6">5</option>
+                            <option value="7">6</option>
+                            <option value="9">7</option>
+                            <option value="11">8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--gender-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="Gender">Gender</label>
+                    <div class="col-md-10">
+                        <div class="checkbox-inline">
+                            <input id="Gender" name="Gender" type="radio" value="Male"/>Male
+                            <input id="Gender" name="Gender" type="radio" value="Female"/>Female
+                        </div>
+                    </div>
+                </div>
+
+                <!--income-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="HouseHoldIncomeId">Household Income</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="HouseHoldIncomeId" name="HouseHoldIncomeId">
+                            <option value="">Select Income</option>
+                            <option value="1">&lt; $20k</option>
+                            <option value="2">$20k - $25k</option>
+                            <option value="3">&gt; $25k</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--lunch-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="FreeLunch">Free Lunch</label>
+                    <div class="col-md-10">
+                        <div class="checkbox-inline">
+                            <input id="FreeLunch" name="FreeLunch" type="radio" value="True" />Yes
+                            <input checked="checked" id="FreeLunch" name="FreeLunch" type="radio" value="False" />No
+                        </div>
+                    </div>
+                </div>
+
+                <!--enrollment-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="EnrollmentDate">Enrollment Date</label>
+                    <div class="col-md-10">
+                        <input class="form-control datepicker" id="EnrollmentDate" name="EnrollmentDate" type="text" value=""/>
+                    </div>
+                </div>
+
+                <!--age-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="AgeAtEnrollment">Age at Enrollment</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="AgeAtEnrollment" name="AgeAtEnrollment" type="text" value=""/>
+                    </div>
+                </div>
+
+                <!--active-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="IsActive">Active</label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <input checked="checked" class="check-box" id="IsActive" name="IsActive" type="checkbox" value="true"/>
+                            <input name="IsActive" type="hidden" value="false"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to List", "Students", "Data")
+        </div>
+        <hr/>
+
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+</body>

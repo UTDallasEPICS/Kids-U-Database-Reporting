@@ -1,0 +1,168 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details - Kids-U Data Entry Application</title>
+
+    <link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/Scripts/site.js"></script>
+
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new { @class = "navbar-brand" })
+            </div>
+
+            <!--links-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value="" />
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li>@Html.ActionLink("Log off", "Index", "Login")</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+            <h2>Details</h2>
+
+            <div class="panel-default">
+
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Student Information</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Full Name</h4>
+
+                                <span class="label label-danger">David Abass</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Ethnicity</h4>
+
+                                <span class="label label-danger">African American</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Gender</h4>
+
+                                <span class="label label-danger">Male</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Enrolled</h4>
+
+                                <span class="label label-danger">6 years old</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Income</h4>
+                                <span class="label label-danger">&gt; $25k</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-2 text-center">
+                                <h4>Lunch</h4>
+                                <span class="label label-danger">Free Yes</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">School/Grade Information</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-xs-6 col-sm-4 text-center">
+                                <h4>School</h4>
+
+                                <span class="label label-danger s">Forest Lane Academy</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center">
+                                <h4>Kid's U Facility</h4>
+
+                                <span class="label label-danger">Park9690</span>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 text-center">
+                                <h4>School Grade</h4>
+
+                                <span class="label label-danger">K</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                <a href="">Edit</a> |
+                <a href="">Back to List</a>
+            </p>
+
+
+            <hr />
+            <footer>
+                Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+            </footer>
+        </div>
+
+        <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+        <script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+        <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
+
+        <script>
+            $(function () {
+                $('input[type=number]').on('keydown', function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        // Allow: Ctrl+A
+                        (e.keyCode == 65 && e.ctrlKey === true) ||
+                        // Allow: home, end, left, right
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                });
+            });</script>
+</body>
+</html>

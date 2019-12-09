@@ -1,0 +1,138 @@
+﻿<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create - Kids-U Data Entry Application</title>
+
+    <link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/Scripts/site.js"></script>
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+
+            <!--links-->
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+
+                <!--logout-->
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
+                    <input name="__RequestVerificationToken" type="hidden" value=""/>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Hello admin@kids-u.org!</a></li>
+                        <li>@Html.ActionLink("Log off", "Index","Login")</li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content"> 
+        <h2>Staff Directory and Management</h2>
+
+        <!--form-->
+        <form action="/KuUsers/Create" method="post">
+            <div class="form-horizontal">
+		        <h4>Create New</h4><hr/>
+
+                <!--email-->
+		        <div class="form-group">
+			        <label class="control-label col-md-2" for="Email">Email</label>
+			        <div class="col-md-10">
+				        <input class="form-control text-box single-line" id="Email" name="Email" type="text" value=""/>
+			        </div>
+		        </div>
+
+                <!--password-->
+		        <div class="form-group">
+			        <label class="control-label col-md-2" for="Password">Password</label>
+			        <div class="col-md-10">
+				        <input class="form-control text-box single-line" id="Password" name="Password" type="text" value=""/>
+			        </div>
+		        </div>
+
+                <!--role-->
+		        <div class="form-group">
+			        <label class="control-label col-md-2" for="Role">Role</label>
+			        <div class="col-md-10">
+				        <select class="form-control" id="Role" name="Role">
+                            <option value="Global Administrator">Global Administrator</option>
+                            <option value="Site Coordinator">Site Coordinator</option>
+                            <option value="Site Volunteer">Site Volunteer</option>
+                            <option value="Student">Student</option>
+                        </select>
+			        </div>
+		        </div>
+
+                <!--site-->
+		        <div class="form-group">
+			        <label class="control-label col-md-2" for="KuSiteId">Kids-U Site</label>
+			        <div class="col-md-10">
+				        <select class="form-control" id="KuSiteId" name="KuSiteId">
+                            <option value="">N/A</option>
+                            <option value="">Generate at Runtime</option>
+                            <option value="4">Park9690</option>
+                            <option value="6">Alista</option>
+                            <option value="8">Mayan Palms</option>
+                            <option value="9">Solaris</option>
+                            <option value="11">Towne Center</option>
+                            <option value="15">The Vineyards</option>
+                            <option value="16">Otto (formerly Cantera Creek)</option>
+                            <option value="17">Fair Oaks</option>
+                            <option value="20">Twenty-Five25</option>
+                            <option value="21">Solaire</option>
+                            <option value="22">600 East</option>
+                            <option value="23">Legends</option>
+                            <option value="24">800 Link</option>
+                            <option value="25">Carrollton Oaks</option>
+                        </select>
+			        </div>
+		        </div>
+
+                <!--active-->
+		        <div class="form-group">
+			        <label class="control-label col-md-2" for="IsActive">Active</label>
+			        <div class="col-md-10">
+				        <div class="checkbox">
+					        <input class="check-box" id="IsActive" name="IsActive" type="checkbox" value="true"/>
+                            <input name="IsActive" type="hidden" value="false"/>
+				        </div>
+			        </div>
+		        </div>
+
+                <!--submit-->
+		        <div class="form-group">
+			        <div class="col-md-offset-2 col-md-10">
+				        <input type="submit" value="Create" class="btn btn-default"/>
+			        </div>
+		        </div>
+	        </div>
+        </form>
+
+        <!--back-->
+        <div>
+	        @Html.ActionLink("Back to List", "Staff", "Data")
+        </div>
+        <hr/>
+
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+</body>

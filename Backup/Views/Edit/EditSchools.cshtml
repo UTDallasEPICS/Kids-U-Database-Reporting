@@ -1,0 +1,910 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index - Kids-U Data Entry Application</title>
+
+	<link href="/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/css/Site.css" rel="stylesheet" />
+    <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Directory", "Home", null, new{@class = "navbar-brand"})
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                    <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                    <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                </ul>
+                <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="GUlJIZeysaM8JsnSCL9yuuFfPIQwhL7BuI-4X9A821eEn5Ax7BB-KEYfu5jnD8Rxd0O-8DVqe-mgM3KTEcJpOv247btoELCFX8W6DW0OpQJWYkZSwuLTU9MqB82kmbzn0" />    <ul class="nav navbar-nav navbar-right">
+	    <li><a>Hello diana@kids-u.org!</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        
+
+
+<h2>Index</h2>
+
+<p>
+    <a href="/Schools/Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Active
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            T.W. Browne MS
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/1">Edit</a> |
+            <a href="/Schools/Details/1">Details</a> |
+            <a href="/Schools/Delete/1">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            H.W.Lang Middle School
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/2">Edit</a> |
+            <a href="/Schools/Details/2">Details</a> |
+            <a href="/Schools/Delete/2">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Buchanan Middle School
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/3">Edit</a> |
+            <a href="/Schools/Details/3">Details</a> |
+            <a href="/Schools/Delete/3">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Ronald E. McNair
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/4">Edit</a> |
+            <a href="/Schools/Details/4">Details</a> |
+            <a href="/Schools/Delete/4">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Jack Lowe Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/11">Edit</a> |
+            <a href="/Schools/Details/11">Details</a> |
+            <a href="/Schools/Delete/11">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Lee A. McShan Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/12">Edit</a> |
+            <a href="/Schools/Details/12">Details</a> |
+            <a href="/Schools/Delete/12">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Jill Stone Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/13">Edit</a> |
+            <a href="/Schools/Details/13">Details</a> |
+            <a href="/Schools/Delete/13">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Sam Tasby Middle School
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/14">Edit</a> |
+            <a href="/Schools/Details/14">Details</a> |
+            <a href="/Schools/Delete/14">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            J.C. Cannaday Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/15">Edit</a> |
+            <a href="/Schools/Details/15">Details</a> |
+            <a href="/Schools/Delete/15">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            L.L. Hotchkiss
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/16">Edit</a> |
+            <a href="/Schools/Details/16">Details</a> |
+            <a href="/Schools/Delete/16">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            O.W. Holmes
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/17">Edit</a> |
+            <a href="/Schools/Details/17">Details</a> |
+            <a href="/Schools/Delete/17">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Boude Storey MS
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/18">Edit</a> |
+            <a href="/Schools/Details/18">Details</a> |
+            <a href="/Schools/Delete/18">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Dan D Rogers
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/19">Edit</a> |
+            <a href="/Schools/Details/19">Details</a> |
+            <a href="/Schools/Delete/19">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Wilmer Hutchinson
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/20">Edit</a> |
+            <a href="/Schools/Details/20">Details</a> |
+            <a href="/Schools/Delete/20">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Edward Titch Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/21">Edit</a> |
+            <a href="/Schools/Details/21">Details</a> |
+            <a href="/Schools/Delete/21">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Onesimo Hernandez Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/22">Edit</a> |
+            <a href="/Schools/Details/22">Details</a> |
+            <a href="/Schools/Delete/22">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Skyview 
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/23">Edit</a> |
+            <a href="/Schools/Details/23">Details</a> |
+            <a href="/Schools/Delete/23">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Terrace Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/24">Edit</a> |
+            <a href="/Schools/Details/24">Details</a> |
+            <a href="/Schools/Delete/24">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Forest Meadow
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/25">Edit</a> |
+            <a href="/Schools/Details/25">Details</a> |
+            <a href="/Schools/Delete/25">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Bayles Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/27">Edit</a> |
+            <a href="/Schools/Details/27">Details</a> |
+            <a href="/Schools/Delete/27">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Harmony Charter School
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/28">Edit</a> |
+            <a href="/Schools/Details/28">Details</a> |
+            <a href="/Schools/Delete/28">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Thurgood Marshall 
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/29">Edit</a> |
+            <a href="/Schools/Details/29">Details</a> |
+            <a href="/Schools/Delete/29">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            O Henery Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/30">Edit</a> |
+            <a href="/Schools/Details/30">Details</a> |
+            <a href="/Schools/Delete/30">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Garland Christian Academy
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/33">Edit</a> |
+            <a href="/Schools/Details/33">Details</a> |
+            <a href="/Schools/Delete/33">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Larry Smith Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/34">Edit</a> |
+            <a href="/Schools/Details/34">Details</a> |
+            <a href="/Schools/Delete/34">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Southwest Leaderdhip
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/35">Edit</a> |
+            <a href="/Schools/Details/35">Details</a> |
+            <a href="/Schools/Delete/35">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Couch Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/36">Edit</a> |
+            <a href="/Schools/Details/36">Details</a> |
+            <a href="/Schools/Delete/36">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Coyle 
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/37">Edit</a> |
+            <a href="/Schools/Details/37">Details</a> |
+            <a href="/Schools/Delete/37">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Casa View
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/38">Edit</a> |
+            <a href="/Schools/Details/38">Details</a> |
+            <a href="/Schools/Delete/38">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Hanby Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/39">Edit</a> |
+            <a href="/Schools/Details/39">Details</a> |
+            <a href="/Schools/Delete/39">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Wilkinson Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/40">Edit</a> |
+            <a href="/Schools/Details/40">Details</a> |
+            <a href="/Schools/Delete/40">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Gill Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/41">Edit</a> |
+            <a href="/Schools/Details/41">Details</a> |
+            <a href="/Schools/Delete/41">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Montclair Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/42">Edit</a> |
+            <a href="/Schools/Details/42">Details</a> |
+            <a href="/Schools/Delete/42">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Edna Rowe
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/43">Edit</a> |
+            <a href="/Schools/Details/43">Details</a> |
+            <a href="/Schools/Delete/43">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Nova Academy
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/44">Edit</a> |
+            <a href="/Schools/Details/44">Details</a> |
+            <a href="/Schools/Delete/44">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            J. W. Long Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/45">Edit</a> |
+            <a href="/Schools/Details/45">Details</a> |
+            <a href="/Schools/Delete/45">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Stultz Road Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/47">Edit</a> |
+            <a href="/Schools/Details/47">Details</a> |
+            <a href="/Schools/Delete/47">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Aikin Elemenatry
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/48">Edit</a> |
+            <a href="/Schools/Details/48">Details</a> |
+            <a href="/Schools/Delete/48">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Yale Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/49">Edit</a> |
+            <a href="/Schools/Details/49">Details</a> |
+            <a href="/Schools/Delete/49">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Yale Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/50">Edit</a> |
+            <a href="/Schools/Details/50">Details</a> |
+            <a href="/Schools/Delete/50">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Mark Twain Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/51">Edit</a> |
+            <a href="/Schools/Details/51">Details</a> |
+            <a href="/Schools/Delete/51">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dallas ISD
+        </td>
+        <td>
+            Gaston Middle School
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/52">Edit</a> |
+            <a href="/Schools/Details/52">Details</a> |
+            <a href="/Schools/Delete/52">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Abe Lincoln Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/5">Edit</a> |
+            <a href="/Schools/Details/5">Details</a> |
+            <a href="/Schools/Delete/5">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Wallace Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/6">Edit</a> |
+            <a href="/Schools/Details/6">Details</a> |
+            <a href="/Schools/Delete/6">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Northlake Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/7">Edit</a> |
+            <a href="/Schools/Details/7">Details</a> |
+            <a href="/Schools/Delete/7">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Lake Highlands Junior High
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/8">Edit</a> |
+            <a href="/Schools/Details/8">Details</a> |
+            <a href="/Schools/Delete/8">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Forest Lane Academy
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/9">Edit</a> |
+            <a href="/Schools/Details/9">Details</a> |
+            <a href="/Schools/Delete/9">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Audelia Creek 
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/10">Edit</a> |
+            <a href="/Schools/Details/10">Details</a> |
+            <a href="/Schools/Delete/10">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Richardson Classical Academy
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/31">Edit</a> |
+            <a href="/Schools/Details/31">Details</a> |
+            <a href="/Schools/Delete/31">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Jess Harben Elementary 
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/32">Edit</a> |
+            <a href="/Schools/Details/32">Details</a> |
+            <a href="/Schools/Delete/32">Delete</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Richardson ISD
+        </td>
+        <td>
+            Merriman Park Elementary
+        </td>
+        <td>
+            <input checked="checked" class="check-box" disabled="disabled" type="checkbox" />
+        </td>
+        <td>
+            <a href="/Schools/Edit/46">Edit</a> |
+            <a href="/Schools/Details/46">Details</a> |
+            <a href="/Schools/Delete/46">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+        <hr />
+		<footer>
+			Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+		</footer>
+    </div>
+
+    <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+	<script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+    <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
+    
+	<script> $(function() {
+	$('input[type=number]').on('keydown', function(e) {
+		if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+			// Allow: Ctrl+A
+		   (e.keyCode == 65 && e.ctrlKey === true) ||
+			// Allow: home, end, left, right
+		   (e.keyCode >= 35 && e.keyCode <= 40)) {
+			// let it happen, don't do anything
+			return;
+		}
+		// Ensure that it is a number and stop the keypress
+		if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+			e.preventDefault();
+		}
+	});
+});</script>
+</body>
+</html>
