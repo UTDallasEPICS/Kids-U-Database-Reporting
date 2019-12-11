@@ -1,7 +1,10 @@
-﻿<!--        This code was directly copied and pasted from inspect element. -->
-<!-- NOTE:  It has not been fully cleaned up or edited.                    -->
-<!--        This may or may not work                                       -->
+﻿@{
+    Layout = null;
+}
 
+<!DOCTYPE html>
+
+<html>
 <head ng-app="kidsu">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +15,7 @@
     <link href="/Content/css/bootstrap-datepicker3.css" rel="stylesheet" />
 
     <script src="/Scripts/site.js"></script>
+
 </head>
 
 <body>
@@ -48,7 +52,8 @@
     </div>
 
     <div class="container body-content">
-        <h2>Outcome Measurements</h2>
+
+            <h2>Details</h2>
 
             <div class="panel-default">
 
@@ -135,4 +140,29 @@
                 Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
             </footer>
         </div>
+
+        <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
+
+        <script src="/bundles/bootstrap?v=XFQ6ekRmUKkC5q116_4vvIKt0mhNOzNmfxA0NYVcPDY1"></script>
+
+        <script src="/Scripts/jquery.bootstrap.wizard.min.js"></script>
+
+        <script>
+            $(function () {
+                $('input[type=number]').on('keydown', function (e) {
+                    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                        // Allow: Ctrl+A
+                        (e.keyCode == 65 && e.ctrlKey === true) ||
+                        // Allow: home, end, left, right
+                        (e.keyCode >= 35 && e.keyCode <= 40)) {
+                        // let it happen, don't do anything
+                        return;
+                    }
+                    // Ensure that it is a number and stop the keypress
+                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                        e.preventDefault();
+                    }
+                });
+            });</script>
 </body>
+</html>
