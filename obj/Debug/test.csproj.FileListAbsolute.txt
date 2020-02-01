@@ -70,3 +70,33 @@ C:\Users\dbbur\OneDrive\Desktop\kidsuDB-master\bin\EntityFramework.xml
 C:\Users\dbbur\OneDrive\Desktop\kidsuDB-master\bin\EntityFramework.SqlServer.dll
 C:\Users\dbbur\OneDrive\Desktop\kidsuDB-master\bin\EntityFramework.SqlServer.xml
 C:\Users\dbbur\OneDrive\Desktop\kidsuDB-master\bin\MySqlConnector.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\test.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\test.pdb
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\EntityFramework.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\EntityFramework.SqlServer.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\MySqlConnector.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Buffers.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Memory.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.Mvc.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.Razor.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.Deployment.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.Razor.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\EntityFramework.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\EntityFramework.SqlServer.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\MySqlConnector.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Buffers.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Memory.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.Razor.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.Deployment.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.WebPages.Razor.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\bin\System.Web.Mvc.xml
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\obj\Debug\test.csprojAssemblyReference.cache
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\obj\Debug\test.csproj.CopyComplete
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\obj\Debug\test.dll
+C:\Users\mhumz\OneDrive\Desktop\KIDS-U Database Reporting\Kids-U-Database-Reporting\obj\Debug\test.pdb
