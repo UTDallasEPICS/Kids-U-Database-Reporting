@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KidsUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="language_arts">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="int" />
+          <Property Name="second" Type="int" />
+          <Property Name="third" Type="int" />
+          <Property Name="fourth" Type="int" />
+          <Property Name="fifth" Type="int" />
+          <Property Name="semester" Type="int" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="math">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="int" />
+          <Property Name="second" Type="int" />
+          <Property Name="third" Type="int" />
+          <Property Name="fourth" Type="int" />
+          <Property Name="fifth" Type="int" />
+          <Property Name="semester" Type="int" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="organizations">
+          <Key>
+            <PropertyRef Name="organization_name" />
+          </Key>
+          <Property Name="organization_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="program_Number" Type="varchar" MaxLength="50" />
+          <Property Name="is_Active" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="outcome_measurement">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="grade" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="math_Pre_Test" Type="int" Nullable="false" />
+          <Property Name="math_Post_Test" Type="int" Nullable="false" />
+          <Property Name="language_Pre_Test" Type="int" Nullable="false" />
+          <Property Name="language_Post_Test" Type="int" Nullable="false" />
+          <Property Name="reading_Pre_Test" Type="int" Nullable="false" />
+          <Property Name="reading_Fluency_Test_1" Type="int" Nullable="false" />
+          <Property Name="reading_Fluency_Test_2" Type="int" Nullable="false" />
+          <Property Name="reading_Fluency_Test_3" Type="int" Nullable="false" />
+          <Property Name="self_Esteem_Pre_Test" Type="int" Nullable="false" />
+          <Property Name="self_Esteem_Post_Test" Type="int" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="program_facility_sites">
+          <Key>
+            <PropertyRef Name="facility_Name" />
+          </Key>
+          <Property Name="facility_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_Active" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reading">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="int" />
+          <Property Name="second" Type="int" />
+          <Property Name="third" Type="int" />
+          <Property Name="fourth" Type="int" />
+          <Property Name="fifth" Type="int" />
+          <Property Name="semester" Type="int" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="report_card">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="school_districts">
+          <Key>
+            <PropertyRef Name="district_name" />
+          </Key>
+          <Property Name="district_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_active" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schools">
+          <Key>
+            <PropertyRef Name="school_name" />
+          </Key>
+          <Property Name="school_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="district_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="is_active" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="staff_directory">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="assigned_site" Type="varchar" MaxLength="50" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="is_Active" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="student_Unique_ID" Type="int" Nullable="false" />
+          <Property Name="first_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="school_Grade" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="kids_U_Site" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="income" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ethnicity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enrolled" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="lunch" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="school_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_language_arts_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="language_arts" Type="Self.language_arts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="language_arts">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_math_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="math" Type="Self.math" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="math">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_outcome_measurement_students">
+          <End Role="students" Type="Self.students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="outcome_measurement" Type="Self.outcome_measurement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="outcome_measurement">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_program_facility_sites_staff_directory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_program_facility_sites_staff_directory" />-->
+        <Association Name="FK_reading_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="reading" Type="Self.reading" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="reading">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_card_students">
+          <End Role="students" Type="Self.students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="report_card" Type="Self.report_card" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schools_school_districts">
+          <End Role="school_districts" Type="Self.school_districts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="schools" Type="Self.schools" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="school_districts">
+              <PropertyRef Name="district_name" />
+            </Principal>
+            <Dependent Role="schools">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_schools1">
+          <End Role="schools" Type="Self.schools" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="students" Type="Self.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schools">
+              <PropertyRef Name="school_name" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KidsUModelStoreContainer">
+          <EntitySet Name="language_arts" EntityType="Self.language_arts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="math" EntityType="Self.math" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="organizations" EntityType="Self.organizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="outcome_measurement" EntityType="Self.outcome_measurement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="program_facility_sites" EntityType="Self.program_facility_sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reading" EntityType="Self.reading" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="report_card" EntityType="Self.report_card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="school_districts" EntityType="Self.school_districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schools" EntityType="Self.schools" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="staff_directory" EntityType="Self.staff_directory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_language_arts_report_card" Association="Self.FK_language_arts_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="language_arts" EntitySet="language_arts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_math_report_card" Association="Self.FK_math_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="math" EntitySet="math" />
+          </AssociationSet>
+          <AssociationSet Name="FK_outcome_measurement_students" Association="Self.FK_outcome_measurement_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="outcome_measurement" EntitySet="outcome_measurement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reading_report_card" Association="Self.FK_reading_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="reading" EntitySet="reading" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_card_students" Association="Self.FK_report_card_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="report_card" EntitySet="report_card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schools_school_districts" Association="Self.FK_schools_school_districts">
+            <End Role="school_districts" EntitySet="school_districts" />
+            <End Role="schools" EntitySet="schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_schools1" Association="Self.FK_students_schools1">
+            <End Role="schools" EntitySet="schools" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KidsUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="language_arts">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="Int32" />
+          <Property Name="second" Type="Int32" />
+          <Property Name="third" Type="Int32" />
+          <Property Name="fourth" Type="Int32" />
+          <Property Name="fifth" Type="Int32" />
+          <Property Name="semester" Type="Int32" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="report_card" Relationship="Self.FK_language_arts_report_card" FromRole="language_arts" ToRole="report_card" />
+        </EntityType>
+        <EntityType Name="math">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="Int32" />
+          <Property Name="second" Type="Int32" />
+          <Property Name="third" Type="Int32" />
+          <Property Name="fourth" Type="Int32" />
+          <Property Name="fifth" Type="Int32" />
+          <Property Name="semester" Type="Int32" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="report_card" Relationship="Self.FK_math_report_card" FromRole="math" ToRole="report_card" />
+        </EntityType>
+        <EntityType Name="organization">
+          <Key>
+            <PropertyRef Name="organization_name" />
+          </Key>
+          <Property Name="organization_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="program_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_Active" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="outcome_measurement">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="grade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="math_Pre_Test" Type="Int32" Nullable="false" />
+          <Property Name="math_Post_Test" Type="Int32" Nullable="false" />
+          <Property Name="language_Pre_Test" Type="Int32" Nullable="false" />
+          <Property Name="language_Post_Test" Type="Int32" Nullable="false" />
+          <Property Name="reading_Pre_Test" Type="Int32" Nullable="false" />
+          <Property Name="reading_Fluency_Test_1" Type="Int32" Nullable="false" />
+          <Property Name="reading_Fluency_Test_2" Type="Int32" Nullable="false" />
+          <Property Name="reading_Fluency_Test_3" Type="Int32" Nullable="false" />
+          <Property Name="self_Esteem_Pre_Test" Type="Int32" Nullable="false" />
+          <Property Name="self_Esteem_Post_Test" Type="Int32" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="student" Relationship="Self.FK_outcome_measurement_students" FromRole="outcome_measurement" ToRole="students" />
+        </EntityType>
+        <EntityType Name="program_facility_sites">
+          <Key>
+            <PropertyRef Name="facility_Name" />
+          </Key>
+          <Property Name="facility_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_Active" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reading">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="first" Type="Int32" />
+          <Property Name="second" Type="Int32" />
+          <Property Name="third" Type="Int32" />
+          <Property Name="fourth" Type="Int32" />
+          <Property Name="fifth" Type="Int32" />
+          <Property Name="semester" Type="Int32" Nullable="false" />
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="report_card" Relationship="Self.FK_reading_report_card" FromRole="reading" ToRole="report_card" />
+        </EntityType>
+        <EntityType Name="report_card">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="language_arts" Relationship="Self.FK_language_arts_report_card" FromRole="report_card" ToRole="language_arts" />
+          <NavigationProperty Name="math" Relationship="Self.FK_math_report_card" FromRole="report_card" ToRole="math" />
+          <NavigationProperty Name="reading" Relationship="Self.FK_reading_report_card" FromRole="report_card" ToRole="reading" />
+          <NavigationProperty Name="student" Relationship="Self.FK_report_card_students" FromRole="report_card" ToRole="students" />
+        </EntityType>
+        <EntityType Name="school_districts">
+          <Key>
+            <PropertyRef Name="district_name" />
+          </Key>
+          <Property Name="district_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_active" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="school" Relationship="Self.FK_schools_school_districts" FromRole="school_districts" ToRole="schools" />
+        </EntityType>
+        <EntityType Name="school">
+          <Key>
+            <PropertyRef Name="school_name" />
+          </Key>
+          <Property Name="school_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="district_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="is_active" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="school_districts" Relationship="Self.FK_schools_school_districts" FromRole="schools" ToRole="school_districts" />
+          <NavigationProperty Name="students" Relationship="Self.FK_students_schools1" FromRole="schools" ToRole="students" />
+        </EntityType>
+        <EntityType Name="staff_directory">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="assigned_site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_Active" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="student_Unique_ID" />
+          </Key>
+          <Property Name="student_Unique_ID" Type="Int32" Nullable="false" />
+          <Property Name="first_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="school_Grade" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kids_U_Site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="income" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ethnicity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="enrolled" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lunch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="school_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="outcome_measurement" Relationship="Self.FK_outcome_measurement_students" FromRole="students" ToRole="outcome_measurement" />
+          <NavigationProperty Name="report_card" Relationship="Self.FK_report_card_students" FromRole="students" ToRole="report_card" />
+          <NavigationProperty Name="school" Relationship="Self.FK_students_schools1" FromRole="students" ToRole="schools" />
+        </EntityType>
+        <Association Name="FK_language_arts_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="language_arts" Type="Self.language_arts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="language_arts">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_math_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="math" Type="Self.math" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="math">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_outcome_measurement_students">
+          <End Role="students" Type="Self.student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="outcome_measurement" Type="Self.outcome_measurement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="outcome_measurement">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reading_report_card">
+          <End Role="report_card" Type="Self.report_card" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="reading" Type="Self.reading" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="reading">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_card_students">
+          <End Role="students" Type="Self.student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="report_card" Type="Self.report_card" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="student_Unique_ID" />
+            </Principal>
+            <Dependent Role="report_card">
+              <PropertyRef Name="student_Unique_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schools_school_districts">
+          <End Role="school_districts" Type="Self.school_districts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="schools" Type="Self.school" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="school_districts">
+              <PropertyRef Name="district_name" />
+            </Principal>
+            <Dependent Role="schools">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_schools1">
+          <End Role="schools" Type="Self.school" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="students" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schools">
+              <PropertyRef Name="school_name" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KidsUEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="language_arts" EntityType="Self.language_arts" />
+          <EntitySet Name="maths" EntityType="Self.math" />
+          <EntitySet Name="organizations" EntityType="Self.organization" />
+          <EntitySet Name="outcome_measurement" EntityType="Self.outcome_measurement" />
+          <EntitySet Name="program_facility_sites" EntityType="Self.program_facility_sites" />
+          <EntitySet Name="readings" EntityType="Self.reading" />
+          <EntitySet Name="report_card" EntityType="Self.report_card" />
+          <EntitySet Name="school_districts" EntityType="Self.school_districts" />
+          <EntitySet Name="schools" EntityType="Self.school" />
+          <EntitySet Name="staff_directory" EntityType="Self.staff_directory" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <AssociationSet Name="FK_language_arts_report_card" Association="Self.FK_language_arts_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="language_arts" EntitySet="language_arts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_math_report_card" Association="Self.FK_math_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="math" EntitySet="maths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_outcome_measurement_students" Association="Self.FK_outcome_measurement_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="outcome_measurement" EntitySet="outcome_measurement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reading_report_card" Association="Self.FK_reading_report_card">
+            <End Role="report_card" EntitySet="report_card" />
+            <End Role="reading" EntitySet="readings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_card_students" Association="Self.FK_report_card_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="report_card" EntitySet="report_card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schools_school_districts" Association="Self.FK_schools_school_districts">
+            <End Role="school_districts" EntitySet="school_districts" />
+            <End Role="schools" EntitySet="schools" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_schools1" Association="Self.FK_students_schools1">
+            <End Role="schools" EntitySet="schools" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KidsUModelStoreContainer" CdmEntityContainer="KidsUEntities1">
+          <EntitySetMapping Name="language_arts">
+            <EntityTypeMapping TypeName="KidsUModel.language_arts">
+              <MappingFragment StoreEntitySet="language_arts">
+                <ScalarProperty Name="first" ColumnName="first" />
+                <ScalarProperty Name="second" ColumnName="second" />
+                <ScalarProperty Name="third" ColumnName="third" />
+                <ScalarProperty Name="fourth" ColumnName="fourth" />
+                <ScalarProperty Name="fifth" ColumnName="fifth" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maths">
+            <EntityTypeMapping TypeName="KidsUModel.math">
+              <MappingFragment StoreEntitySet="math">
+                <ScalarProperty Name="first" ColumnName="first" />
+                <ScalarProperty Name="second" ColumnName="second" />
+                <ScalarProperty Name="third" ColumnName="third" />
+                <ScalarProperty Name="fourth" ColumnName="fourth" />
+                <ScalarProperty Name="fifth" ColumnName="fifth" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="organizations">
+            <EntityTypeMapping TypeName="KidsUModel.organization">
+              <MappingFragment StoreEntitySet="organizations">
+                <ScalarProperty Name="organization_name" ColumnName="organization_name" />
+                <ScalarProperty Name="program_Number" ColumnName="program_Number" />
+                <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="outcome_measurement">
+            <EntityTypeMapping TypeName="KidsUModel.outcome_measurement">
+              <MappingFragment StoreEntitySet="outcome_measurement">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="math_Pre_Test" ColumnName="math_Pre_Test" />
+                <ScalarProperty Name="math_Post_Test" ColumnName="math_Post_Test" />
+                <ScalarProperty Name="language_Pre_Test" ColumnName="language_Pre_Test" />
+                <ScalarProperty Name="language_Post_Test" ColumnName="language_Post_Test" />
+                <ScalarProperty Name="reading_Pre_Test" ColumnName="reading_Pre_Test" />
+                <ScalarProperty Name="reading_Fluency_Test_1" ColumnName="reading_Fluency_Test_1" />
+                <ScalarProperty Name="reading_Fluency_Test_2" ColumnName="reading_Fluency_Test_2" />
+                <ScalarProperty Name="reading_Fluency_Test_3" ColumnName="reading_Fluency_Test_3" />
+                <ScalarProperty Name="self_Esteem_Pre_Test" ColumnName="self_Esteem_Pre_Test" />
+                <ScalarProperty Name="self_Esteem_Post_Test" ColumnName="self_Esteem_Post_Test" />
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="program_facility_sites">
+            <EntityTypeMapping TypeName="KidsUModel.program_facility_sites">
+              <MappingFragment StoreEntitySet="program_facility_sites">
+                <ScalarProperty Name="facility_Name" ColumnName="facility_Name" />
+                <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="readings">
+            <EntityTypeMapping TypeName="KidsUModel.reading">
+              <MappingFragment StoreEntitySet="reading">
+                <ScalarProperty Name="first" ColumnName="first" />
+                <ScalarProperty Name="second" ColumnName="second" />
+                <ScalarProperty Name="third" ColumnName="third" />
+                <ScalarProperty Name="fourth" ColumnName="fourth" />
+                <ScalarProperty Name="fifth" ColumnName="fifth" />
+                <ScalarProperty Name="semester" ColumnName="semester" />
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="report_card">
+            <EntityTypeMapping TypeName="KidsUModel.report_card">
+              <MappingFragment StoreEntitySet="report_card">
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="school_districts">
+            <EntityTypeMapping TypeName="KidsUModel.school_districts">
+              <MappingFragment StoreEntitySet="school_districts">
+                <ScalarProperty Name="district_name" ColumnName="district_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schools">
+            <EntityTypeMapping TypeName="KidsUModel.school">
+              <MappingFragment StoreEntitySet="schools">
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+                <ScalarProperty Name="district_name" ColumnName="district_name" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="staff_directory">
+            <EntityTypeMapping TypeName="KidsUModel.staff_directory">
+              <MappingFragment StoreEntitySet="staff_directory">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="assigned_site" ColumnName="assigned_site" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="KidsUModel.student">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+                <ScalarProperty Name="first_Name" ColumnName="first_Name" />
+                <ScalarProperty Name="last_Name" ColumnName="last_Name" />
+                <ScalarProperty Name="school_Grade" ColumnName="school_Grade" />
+                <ScalarProperty Name="kids_U_Site" ColumnName="kids_U_Site" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="income" ColumnName="income" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="enrolled" ColumnName="enrolled" />
+                <ScalarProperty Name="lunch" ColumnName="lunch" />
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ddd42826dfdf46e2afdb2873211199aa" Name="Diagram1">
+        <EntityTypeShape EntityType="KidsUModel.language_arts" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.math" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.organization" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.outcome_measurement" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.program_facility_sites" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.reading" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.report_card" Width="1.5" PointX="7.5" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.school_districts" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.school" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.staff_directory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KidsUModel.student" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <AssociationConnector Association="KidsUModel.FK_language_arts_report_card" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_math_report_card" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_outcome_measurement_students" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_reading_report_card" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_report_card_students" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_schools_school_districts" ManuallyRouted="false" />
+        <AssociationConnector Association="KidsUModel.FK_students_schools1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

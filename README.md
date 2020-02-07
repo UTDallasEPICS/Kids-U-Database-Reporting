@@ -1,3 +1,7 @@
+
+# kidsuDB
+Kids-U Database Refresh
+=======
 # kidsuDB: Kids-U Database Refresh:
 
 
@@ -236,3 +240,4 @@ We originally attempted to use MySQL for our database, but ran into issues conne
 - Utsav Malik (uxm170000@utdallas.edu)
 - Rakeen Murtaza (mxm170055@utdallas.edu)
 - Michael Villordon (mhv170000@utdallas.edu)
+
