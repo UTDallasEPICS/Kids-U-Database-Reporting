@@ -3,8 +3,6 @@
 
 .vs/
 
-bin/test.dll
+Kids-U-Database-Reporint/bin/
 
-bin/test.pdb
-
-obj/
+Kids-U-Database-Reporting/obj/
