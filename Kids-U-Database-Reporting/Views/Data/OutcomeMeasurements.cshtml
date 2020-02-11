@@ -1,0 +1,57 @@
+﻿
+<body>
+ 
+
+    <div class="container body-content">
+        <h2>Outcome Measurements</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+	        <div id="left">
+		        @Html.ActionLink("Create New", "CreateOutcomeMeasurements", "Create")
+		        <a href="/OutcomeMeasurements/Export">Export</a>
+
+                <!--sort-->
+		        <select>
+				    <option value="1">Sort by...</option>
+				    <option value="2">to-do</option>
+			    </select>
+	        </div>
+
+            <!--search-->
+	        <div id="search">
+		        <input type="text" placeholder="Search...">
+                <button type="button" onclick="showHide()">Adv.</button>
+		        <button type="submit">Go</button>
+	        </div>
+        </div>
+        <!--advanced-->
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>School Year</th>
+                <th>Facility Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Grade</th>
+                <th>Math Pre-Test</th>
+                <th>Math Post-Test</th>
+                <th>Language Pre-Test</th>
+                <th>Language Post-Test</th>
+                <th>Reading Pre-Test</th>
+                <th>Reading Post-Test</th>
+                <th>Reading Fluency Test 1</th>
+                <th>Reading Fluency Test 2</th>
+                <th>Reading Fluency Test 3</th>
+                <th>Self-Esteem Pre-Test</th>
+                <th>Self-Esteem Post-Test</th>
+                <th></th>
+            </tr>
+            <!--entries-->
+        </table>
+        
+
+		
+    </div>
+</body>

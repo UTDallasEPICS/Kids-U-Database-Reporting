@@ -1,0 +1,74 @@
+﻿<head ng-app="kidsu">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Kids-U Data Entry Application</title>
+
+	<link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/bootstrap-datepicker3.css" rel="stylesheet" />
+
+    <script src="/js/site.js"></script>
+</head>
+
+<body>
+    <!--navigation-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Kids-U Data Entry", "Index", "Login", null, new{@class = "navbar-brand"})
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <!--login-->
+        <form action="Login" method="post">
+            <input name="__RequestVerificationToken" type="hidden" value=""/>
+            <div class="form-horizontal">
+		        <h4>Log In</h4>
+		        <hr/>
+
+                <!--Email/Username-->
+		        <div class="form-group">
+			        <label for="Username" class="control-label col-md-2">Email</label>
+			        <div class="col-md-10">
+				        <input class="form-control" id="Username" name="Username" type="text" value="" />
+			        </div>
+		        </div>
+
+                <!--Password-->
+		        <div class="form-group">
+			        <label for="Password" class="control-label col-md-2">Password</label>
+			        <div class="col-md-10">
+				        <input class="form-control" id="Password" name="Password" type="password" />
+			        </div>
+		        </div>
+
+                <!--RememberMe-->
+		        <div class="form-group">
+			        <label for="RememberMe" class="control-label col-md-2">Remember Me?</label>
+			        <div class="col-md-10">
+				        <input class="check-box" data-val="true" data-val-required="The RememberMe field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true" /><input name="RememberMe" type="hidden" value="false" />
+			        </div>
+		        </div>
+
+                <!--Submission-->
+		        <div class="form-group">
+			        <div class="col-md-offset-2 col-md-10">
+				        <input type="submit" id="SubmitButton" value="Submit" class="btn btn-default"/>
+                        <!--Temporary Button-->
+                        @Html.ActionLink("Temp Button", "Index", "Home", null, new { @class = "btn btn-default" })
+                        <!--Temporary Button-->
+			        </div>
+		        </div>
+	        </div>
+        </form>
+        
+
+    </div>
+</body>

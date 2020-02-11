@@ -1,0 +1,133 @@
+﻿
+<body>
+    
+    <div class="container body-content">
+        <h2>Outcome Measurements</h2>
+
+        <!--form-->
+        <form action="/OutcomeMeasurements/Create" method="post">
+            <div class="form-horizontal">
+                <h4>Create New</h4><hr/>
+
+                <!--student-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="StudentId">Student</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="StudentId" name="StudentId">
+                            <option value="">Choose a name</option>
+                            <option value="">Generate at Runtime</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--year-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="SchoolYearId">School Year</label>
+                    <div class="col-md-10">
+                        <select class="form-control" id="SchoolYearId" name="SchoolYearId"></select>
+                    </div>
+                </div>
+
+                <!--premath-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="MathPreTest">Math Pre-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="MathPreTest" name="MathPreTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--postmath-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="MathPostTest">Math Post-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="MathPostTest" name="MathPostTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--prelanguage-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="LanguagePreTest">Language Pre-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="LanguagePreTest" name="LanguagePreTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--postlanguage-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="LanguagePostTest">Language Post-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="LanguagePostTest" name="LanguagePostTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--prereading-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReadingPreTest">Reading Pre-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="ReadingPreTest" name="ReadingPreTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--postreading-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReadingPostTest">Reading Post-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="ReadingPostTest" name="ReadingPostTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--fluency1-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReadingFluencyTest1">Reading Fluency Test 1</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="ReadingFluencyTest1" name="ReadingFluencyTest1" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--fluency2-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReadingFluencyTest2">Reading Fluency Test 2</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="ReadingFluencyTest2" name="ReadingFluencyTest2" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--fluency3-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="ReadingFluencyTest3">Reading Fluency Test 3</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="ReadingFluencyTest3" name="ReadingFluencyTest3" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--preesteem-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="EsteemPreTest">Self-Esteem Pre-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="EsteemPreTest" name="EsteemPreTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--postesteem-->
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="EsteemPostTest">Self-Esteem Post-Test</label>
+                    <div class="col-md-10">
+                        <input class="form-control text-box single-line" id="EsteemPostTest" name="EsteemPostTest" type="number" value=""/>
+                    </div>
+                </div>
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to List", "OutcomeMeasurements", "Data")
+        </div>
+     </div>
+</body>

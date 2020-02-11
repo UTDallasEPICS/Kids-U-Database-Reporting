@@ -1,0 +1,234 @@
+﻿
+
+<body>
+
+
+    <div class="container body-content">
+        <h2>Report Card Records</h2>
+
+        <!--chart-->
+        <div id="rootwizard">
+            <div class="container">
+                <div class="bs-example">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-8"><h4><strong>Grade Entry Form</strong></h4></div>
+                            </div>
+                        </div>
+
+                        <!--form-->
+                        <form action="/ReportCardRecords/Create" method="post">
+                            <div class="row">
+                                <input id="Id" name="Id" type="hidden" value="0"/>
+                            </div>
+
+                            <!--student-->
+                            <div class="tab-content">
+                                <div class="row">
+                                    <div class="text-center"><h3><strong>STUDENT DATA</strong></h3></div>
+                                </div>
+
+                                <table class="table table-condensed table-bordered ">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <!--year-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2" for="SchoolYearId">Year:</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control" id="SchoolYearId" name="SchoolYearId"></select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!--name-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-2" for="StudentId">Student:</label>
+                                                    <div class="col-md-10">
+                                                        <select class="form-control" id="StudentId" name="StudentId">
+                                                            <option value="">Select a Student...</option>
+                                                            <option value="">Generate at Runtime</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!--language-->
+                            <div class="row">
+                                <div class="text-center"><h3><strong>LANGUAGE ARTS</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <!--first-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" id="Language1" name="Language1" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--second-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" id="Language2" name="Language2" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--third-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" id="Language3" name="Language3" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--semester-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" id="LanguageSemester" name="LanguageSemester" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--fifth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" id="Language5" name="Language5" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--sixth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" id="Language6" name="Language6" type="number" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!--reading-->
+                            <div class="row">
+                                <div class="text-center"><h3><strong>READING</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered ">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <!--first-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" id="Reading1" name="Reading1" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--second-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" id="Reading2" name="Reading2" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--third-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" id="Reading3" name="Reading3" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--semester-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" id="ReadingSemester" name="ReadingSemester" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--fifth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" id="Reading5" name="Reading5" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--sixth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" id="Reading6" name="Reading6" type="number" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!--math-->
+                            <div class="row">
+                                <div class="text-center"><h3><strong>MATH</strong></h3></div>
+                            </div>
+                            <table class="table table-condensed table-bordered ">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <!--first-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="FirstName">1st:</label>
+                                                        <input class="form-control text-box single-line" id="Math1" name="Math1" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--second-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="MiddleName">2nd:</label>
+                                                        <input class="form-control text-box single-line" id="Math2" name="Math2" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--third-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">3rd:</label>
+                                                        <input class="form-control text-box single-line" id="Math3" name="Math3" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--semester-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">Semester:</label>
+                                                        <input class="form-control text-box single-line" id="MathSemester" name="MathSemester" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--fifth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">4th:</label>
+                                                        <input class="form-control text-box single-line" id="Math5" name="Math5" type="number" value=""/>
+                                                    </div>
+
+                                                    <!--sixth-->
+                                                    <div class="col-xs-6 col-sm-2 text-center">
+                                                        <label for="LastName">5th</label>
+                                                        <input class="form-control text-box single-line" id="Math6" name="Math6" type="number" value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+
+                            <!--submit-->
+                            <div class="col-md-offset-2 col-md-10 text-center">
+                                <input type="submit" value="Create" class="btn btn-danger"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to List", "ReportCardRecords", "Data")
+        </div>
+       
+    </div>
+</body>
