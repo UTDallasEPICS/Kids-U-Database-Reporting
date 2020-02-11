@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head ng-app="kidsu">
-    <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create - Kids-U Data Entry Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/bootstrap-datepicker3.css" rel="stylesheet" />
 
-        <link href="/css/bootstrap.css" rel="stylesheet" />
-        <link href="/css/site.css" rel="stylesheet" />
-        <link href="/css/bootstrap-datepicker3.css" rel="stylesheet" />
-
-        <script src="/js/site.js"></script>
-        <!--navigation-->
+    <script src="/js/site.js"></script>
+</head>
+<body>
+    <header>
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -42,16 +42,22 @@
                 </div>
             </div>
         </div>
-    </head>
+    </header>
 
-    <body>
-        @RenderBody()
-    </body>
-    <hr/>
 
-    <div>
-        <footer>
-            Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
-        </footer>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
+
+
+    <hr>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+        </div>
+    </footer>
+
+</body>
 </html>
