@@ -1,0 +1,10 @@
+
+.DS_Store
+
+.vs/
+
+bin/test.dll
+
+bin/test.pdb
+
+obj/
