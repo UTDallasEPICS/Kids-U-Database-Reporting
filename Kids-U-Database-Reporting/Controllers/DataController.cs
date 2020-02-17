@@ -43,5 +43,10 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             return View();
         }
+
+        public IActionResult Sites()
+        {
+            return View();
+        }
     }
 }
