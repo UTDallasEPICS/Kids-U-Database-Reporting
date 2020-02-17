@@ -62,8 +62,10 @@ namespace Kids_U_Database_Reporting
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                    //sets the page the webapp opens up to first when starting up
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
+                    //pattern: "{controller=Home}/{action=Index}/{id?}");
+            endpoints.MapRazorPages();
             });
         }
     }
