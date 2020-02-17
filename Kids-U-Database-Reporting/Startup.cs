@@ -12,6 +12,7 @@ using Kids_U_Database_Reporting.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Kids_U_Database_Reporting.Services;
 
 namespace Kids_U_Database_Reporting
 {
@@ -34,6 +35,11 @@ namespace Kids_U_Database_Reporting
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //adds service to service container using scoped lifecycle
+            //meaning a new instance of StudentService class will be created during each web request
+            //this is required for service classes that interact with database
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
