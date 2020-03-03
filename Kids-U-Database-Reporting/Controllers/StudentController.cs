@@ -23,6 +23,7 @@ namespace Kids_U_Database_Reporting.Controllers
             //get students from database
             var items = await _studentService.GetIncompleteItemsAsync();
             var model = new StudentViewModel()
+
             {
                 Students = items
             };
@@ -31,6 +32,23 @@ namespace Kids_U_Database_Reporting.Controllers
             //pass view to model and render
 
             return View(model);
+        }
+
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddStudent(Student newStudent)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var successful = await _studentService.AddStudentAsync(newStudent);
+            if (!successful)
+            {
+                return BadRequest("Could not add student.");
+            }
+
+            return RedirectToAction("Index");
         }
 
 

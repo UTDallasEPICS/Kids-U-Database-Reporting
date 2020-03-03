@@ -10,5 +10,7 @@ namespace Kids_U_Database_Reporting.Services
     {
         //returns array of students
         Task<Student[]> GetIncompleteItemsAsync();
+
+        Task<bool> AddStudentAsync(Student newStudent);
     }
 }

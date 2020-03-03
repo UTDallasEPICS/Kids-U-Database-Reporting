@@ -12,16 +12,30 @@ namespace Kids_U_Database_Reporting.Services
     {
         private readonly ApplicationDbContext _context;
 
+
         public StudentService(ApplicationDbContext context)
         {
+            //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
 
+        //TODO: add search parameters to method call 
         public async Task<Student[]> GetIncompleteItemsAsync()
         {
+            //returns all items in Student
             return await _context.Students
-                //.Where(x => x.IsDone == false) //example of how to filter for search
+                //.Where(x => x.IsDone == false) //example of how to filter for search with LINQ query
                 .ToArrayAsync();
+        }
+
+        public async Task<bool> AddStudentAsync(Student newStudent)
+        {
+
+            newStudent.StudentId = Guid.NewGuid();
+            _context.Students.Add(newStudent);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
         }
     }
 }

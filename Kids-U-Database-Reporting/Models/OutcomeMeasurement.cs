@@ -7,6 +7,11 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class OutcomeMeasurement
     {
+        public int OutcomeMeasurementId { get; set; }
+        public int ReportCardId { get; set; }
+        public ReportCard ReportCard { get; set; }
+
+
         public string Grade { get; set; }
         public int? MathPreTest { get; set; }
         public int? MathPostTest { get; set; }
@@ -18,5 +23,6 @@ namespace Kids_U_Database_Reporting.Models
         public int? ReadingFluencyTest3 { get; set; }
         public int? SelfEsteemPreTest { get; set; }
         public int? SelfEsteemPostTest { get; set; }
+
     }
 }

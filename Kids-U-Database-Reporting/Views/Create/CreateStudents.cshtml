@@ -1,52 +1,55 @@
-﻿
+﻿<!--connects to student model-->
+@model Student
+<!--asp-for="FirstName" tag will put the input into the FirstName variable of student model and replaces id="FirstName" name="FirstName" type="text" value=""-->
+
 <body>
- 
+
 
     <div class="container body-content">
         <h2>Student Roster</h2>
 
         <!--form-->
-        <form action="/Students/Create" method="post">
+        <form asp-action="AddStudent" method="post">
             <div class="form-horizontal">
-                <h4>Create New</h4><hr/>
+                <h4>Create New</h4><hr />
 
-                <!--first-->
+                <!--FirstName-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="FirstName">First Name</label>
+                    <label class="control-label col-md-2">First Name</label>
                     <div class="col-md-10">
-                        <input class="form-control text-box single-line" id="FirstName" name="FirstName" type="text" value=""/>
+                        <input asp-for="FirstName" class="form-control text-box single-line" />
                     </div>
                 </div>
 
-                <!--last-->
+                <!--LastName-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="LastName">Last Name</label>
+                    <label class="control-label col-md-2">Last Name</label>
                     <div class="col-md-10">
-                        <input class="form-control text-box single-line" id="LastName" name="LastName" type="text" value=""/>
+                        <input asp-for="LastName" class="form-control text-box single-line" />
                     </div>
                 </div>
 
-                <!--ethnicity-->
+                <!--Ethnicity-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="EthnicityId">Ethnicity</label>
-
+                    <label class="control-label col-md-2">Ethnicity</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="EthnicityId" name="EthnicityId">
+                        <select asp-for="Ethnicity" class="form-control">
                             <option value="">Select Ethnicity</option>
-                            <option value="1">African American</option>
-                            <option value="2">Asian</option>
-                            <option value="3">Hispanic/Latino</option>
-                            <option value="4">Caucasian/Other</option>
-                            <option value="6">White</option>
+                            <option value="Black or African American">Black or African American</option>
+                            <option value="Asian">Asian</option>
+                            <option value="Hispanic/Latino">Hispanic/Latino</option>
+                            <option value="Caucasian">Caucasian</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                 </div>
 
-                <!--school-->
+                <!--SchoolName-->
+                <!--TODO: DYNAMICALLY ALLOCATE THIS LIST-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="SchoolId">School</label>
+                    <label class="control-label col-md-2">School</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="SchoolId" name="SchoolId">
+                        <select asp-for="SchoolName" class="form-control">
                             <option value="">Select School</option>
                             <option value="1">T.W. Browne MS</option>
                             <option value="2">H.W.Lang Middle School</option>
@@ -103,11 +106,12 @@
                     </div>
                 </div>
 
-                <!--site-->
+                <!--Facility-->
+                <!--TODO: DYNAMICALLY ALLOCATE THIS LIST-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="KuSiteId">KU Site</label>
+                    <label class="control-label col-md-2">KU Site</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="KuSiteId" name="KuSiteId">
+                        <select asp-for="Facility" class="form-control">
                             <option value="">Select KU Site</option>
                             <option value="1">Park9690</option>
                             <option value="2">Alista</option>
@@ -127,13 +131,13 @@
                     </div>
                 </div>
 
-                <!--grade-->
+                <!--SchoolGrade-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="GradeId">Grade</label>
+                    <label class="control-label col-md-2">Grade</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="GradeId" name="GradeId">
+                        <select asp-for="SchoolGrade" class="form-control">
                             <option value="">Select Grade</option>
-                            <option value="0">K</option>
+                            <option value="K">K</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -146,64 +150,64 @@
                     </div>
                 </div>
 
-                <!--gender-->
+                <!--Gender-->
                 <div class="form-group">
                     <label class="control-label col-md-2" for="Gender">Gender</label>
                     <div class="col-md-10">
                         <div class="checkbox-inline">
-                            <input id="Gender" name="Gender" type="radio" value="Male"/>Male
-                            <input id="Gender" name="Gender" type="radio" value="Female"/>Female
+                            <input type="radio" asp-for="Gender" value="Male" />Male
+                            <input type="radio" asp-for="Gender" value="Female" />Female
                         </div>
                     </div>
                 </div>
 
-                <!--income-->
+                <!--Income-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="HouseHoldIncomeId">Household Income</label>
+                    <label class="control-label col-md-2">Household Income</label>
                     <div class="col-md-10">
-                        <select class="form-control" id="HouseHoldIncomeId" name="HouseHoldIncomeId">
+                        <select asp-for="Income" class="form-control">
                             <option value="">Select Income</option>
-                            <option value="1">&lt; $20k</option>
-                            <option value="2">$20k - $25k</option>
-                            <option value="3">&gt; $25k</option>
+                            <option value="&lt; $20k">&lt; $20k</option>
+                            <option value="$20k - $25k">$20k - $25k</option>
+                            <option value="&gt; $25k">&gt; $25k</option>
                         </select>
                     </div>
                 </div>
 
-                <!--lunch-->
+                <!--Lunch-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="FreeLunch">Free Lunch</label>
+                    <label class="control-label col-md-2">Free Lunch</label>
                     <div class="col-md-10">
                         <div class="checkbox-inline">
-                            <input id="FreeLunch" name="FreeLunch" type="radio" value="True" />Yes
-                            <input checked="checked" id="FreeLunch" name="FreeLunch" type="radio" value="False" />No
+                            <input type="radio" asp-for="Lunch" value="true" />Yes
+                            <input type="radio" checked="checked" asp-for="Lunch" value="false"/>No
                         </div>
                     </div>
                 </div>
 
-                <!--enrollment-->
+                <!--Enrolled-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="EnrollmentDate">Enrollment Date</label>
+                    <label class="control-label col-md-2">Enrollment Date</label>
                     <div class="col-md-10">
-                        <input class="form-control datepicker" id="EnrollmentDate" name="EnrollmentDate" type="text" value=""/>
+                        <input class="form-control datepicker" asp-for="Enrolled" type="text" value="" />
                     </div>
                 </div>
 
-                <!--age-->
+                <!--Birthday-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="AgeAtEnrollment">Age at Enrollment</label>
+                    <label class="control-label col-md-2">Age at Enrollment</label>
                     <div class="col-md-10">
-                        <input class="form-control text-box single-line" id="AgeAtEnrollment" name="AgeAtEnrollment" type="text" value=""/>
+                        <input class="form-control datepicker" asp-for="Birthday" type="text" value="" />
                     </div>
                 </div>
 
-                <!--active-->
+                <!--Active-->
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="IsActive">Active</label>
+                    <label class="control-label col-md-2">Active</label>
                     <div class="col-md-10">
                         <div class="checkbox">
-                            <input checked="checked" class="check-box" id="IsActive" name="IsActive" type="checkbox" value="true"/>
-                            <input name="IsActive" type="hidden" value="false"/>
+                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox"/>
+                            <input asp-for="Birthday" type="hidden"/>
                         </div>
                     </div>
                 </div>
@@ -211,7 +215,7 @@
                 <!--submit-->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default"/>
+                        <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -221,7 +225,7 @@
         <div>
             @Html.ActionLink("Back to List", "Students", "Data")
         </div>
-       
-		
+
+
     </div>
 </body>

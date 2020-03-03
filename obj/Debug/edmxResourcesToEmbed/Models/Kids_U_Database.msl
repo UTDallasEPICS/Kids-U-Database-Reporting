@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KidsUModelStoreContainer" CdmEntityContainer="KidsUEntities1">
+    <EntitySetMapping Name="language_arts">
+      <EntityTypeMapping TypeName="KidsUModel.language_arts">
+        <MappingFragment StoreEntitySet="language_arts">
+          <ScalarProperty Name="first" ColumnName="first" />
+          <ScalarProperty Name="second" ColumnName="second" />
+          <ScalarProperty Name="third" ColumnName="third" />
+          <ScalarProperty Name="fourth" ColumnName="fourth" />
+          <ScalarProperty Name="fifth" ColumnName="fifth" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maths">
+      <EntityTypeMapping TypeName="KidsUModel.math">
+        <MappingFragment StoreEntitySet="math">
+          <ScalarProperty Name="first" ColumnName="first" />
+          <ScalarProperty Name="second" ColumnName="second" />
+          <ScalarProperty Name="third" ColumnName="third" />
+          <ScalarProperty Name="fourth" ColumnName="fourth" />
+          <ScalarProperty Name="fifth" ColumnName="fifth" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="organizations">
+      <EntityTypeMapping TypeName="KidsUModel.organization">
+        <MappingFragment StoreEntitySet="organizations">
+          <ScalarProperty Name="organization_name" ColumnName="organization_name" />
+          <ScalarProperty Name="program_Number" ColumnName="program_Number" />
+          <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="outcome_measurement">
+      <EntityTypeMapping TypeName="KidsUModel.outcome_measurement">
+        <MappingFragment StoreEntitySet="outcome_measurement">
+          <ScalarProperty Name="grade" ColumnName="grade" />
+          <ScalarProperty Name="math_Pre_Test" ColumnName="math_Pre_Test" />
+          <ScalarProperty Name="math_Post_Test" ColumnName="math_Post_Test" />
+          <ScalarProperty Name="language_Pre_Test" ColumnName="language_Pre_Test" />
+          <ScalarProperty Name="language_Post_Test" ColumnName="language_Post_Test" />
+          <ScalarProperty Name="reading_Pre_Test" ColumnName="reading_Pre_Test" />
+          <ScalarProperty Name="reading_Fluency_Test_1" ColumnName="reading_Fluency_Test_1" />
+          <ScalarProperty Name="reading_Fluency_Test_2" ColumnName="reading_Fluency_Test_2" />
+          <ScalarProperty Name="reading_Fluency_Test_3" ColumnName="reading_Fluency_Test_3" />
+          <ScalarProperty Name="self_Esteem_Pre_Test" ColumnName="self_Esteem_Pre_Test" />
+          <ScalarProperty Name="self_Esteem_Post_Test" ColumnName="self_Esteem_Post_Test" />
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="program_facility_sites">
+      <EntityTypeMapping TypeName="KidsUModel.program_facility_sites">
+        <MappingFragment StoreEntitySet="program_facility_sites">
+          <ScalarProperty Name="facility_Name" ColumnName="facility_Name" />
+          <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="readings">
+      <EntityTypeMapping TypeName="KidsUModel.reading">
+        <MappingFragment StoreEntitySet="reading">
+          <ScalarProperty Name="first" ColumnName="first" />
+          <ScalarProperty Name="second" ColumnName="second" />
+          <ScalarProperty Name="third" ColumnName="third" />
+          <ScalarProperty Name="fourth" ColumnName="fourth" />
+          <ScalarProperty Name="fifth" ColumnName="fifth" />
+          <ScalarProperty Name="semester" ColumnName="semester" />
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="report_card">
+      <EntityTypeMapping TypeName="KidsUModel.report_card">
+        <MappingFragment StoreEntitySet="report_card">
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="school_districts">
+      <EntityTypeMapping TypeName="KidsUModel.school_districts">
+        <MappingFragment StoreEntitySet="school_districts">
+          <ScalarProperty Name="district_name" ColumnName="district_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schools">
+      <EntityTypeMapping TypeName="KidsUModel.school">
+        <MappingFragment StoreEntitySet="schools">
+          <ScalarProperty Name="school_name" ColumnName="school_name" />
+          <ScalarProperty Name="district_name" ColumnName="district_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="staff_directory">
+      <EntityTypeMapping TypeName="KidsUModel.staff_directory">
+        <MappingFragment StoreEntitySet="staff_directory">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="assigned_site" ColumnName="assigned_site" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="is_Active" ColumnName="is_Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="KidsUModel.student">
+        <MappingFragment StoreEntitySet="students">
+          <ScalarProperty Name="student_Unique_ID" ColumnName="student_Unique_ID" />
+          <ScalarProperty Name="first_Name" ColumnName="first_Name" />
+          <ScalarProperty Name="last_Name" ColumnName="last_Name" />
+          <ScalarProperty Name="school_Grade" ColumnName="school_Grade" />
+          <ScalarProperty Name="kids_U_Site" ColumnName="kids_U_Site" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="income" ColumnName="income" />
+          <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+          <ScalarProperty Name="enrolled" ColumnName="enrolled" />
+          <ScalarProperty Name="lunch" ColumnName="lunch" />
+          <ScalarProperty Name="school_name" ColumnName="school_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
