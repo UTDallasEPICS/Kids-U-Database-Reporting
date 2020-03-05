@@ -37,12 +37,14 @@ namespace Kids_U_Database_Reporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddStudent(Student newStudent)
         {
+
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Index");
             }
 
             var successful = await _studentService.AddStudentAsync(newStudent);
+
             if (!successful)
             {
                 return BadRequest("Could not add student.");

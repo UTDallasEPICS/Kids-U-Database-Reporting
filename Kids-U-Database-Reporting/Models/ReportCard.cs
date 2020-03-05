@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,8 +9,12 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class ReportCard
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReportCardId { get; set; }
-        public int ReportSchoolGrade { get; set; }
+
+        public char ReportSchoolGrade { get; set; }
+        public int ReportSchoolSemester { get; set; }
         public OutcomeMeasurement Outcome { get; set; }
         public Grades LanguageArts { get; set; }
         public Grades Reading { get; set; }
@@ -17,7 +23,7 @@ namespace Kids_U_Database_Reporting.Models
         //Reference navigation property having a multiplicity of zero or one
         public Student Student { get; set; }
         //foreign key property
-        public Guid StudentId { get; set; }
+        public int StudentId { get; set; }
 
     }
 }
