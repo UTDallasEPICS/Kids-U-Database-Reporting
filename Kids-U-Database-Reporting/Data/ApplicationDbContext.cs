@@ -16,6 +16,7 @@ namespace Kids_U_Database_Reporting.Data
 
         //add DbSet property (table/collection in database) refers to model class of same name for columns
         //MUST sync to database after editing with:
+        //tools -> nuget package manager -> console
         //add-migration exampleName
         //Update-Database
 

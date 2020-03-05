@@ -12,11 +12,8 @@ namespace Kids_U_Database_Reporting.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int GradesId { get; set; }
-
-        public int ReportCardId { get; set; }
-        public ReportCard ReportCard { get; set; }
-
-
+        //[ForeignKey("ReportCardId")]
+        //public ReportCard ReportCard { get; set; }
         public int? First { get; set; }
         public int? Second { get; set; }
         public int? Third { get; set; }

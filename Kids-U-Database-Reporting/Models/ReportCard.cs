@@ -12,18 +12,15 @@ namespace Kids_U_Database_Reporting.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReportCardId { get; set; }
-
         public char ReportSchoolGrade { get; set; }
         public int ReportSchoolSemester { get; set; }
         public OutcomeMeasurement Outcome { get; set; }
         public Grades LanguageArts { get; set; }
-        public Grades Reading { get; set; }
-        public Grades Math { get; set; }
+        //public Grades Reading { get; set; }
+        //public Grades Math { get; set; }
 
-        //Reference navigation property having a multiplicity of zero or one
+        [ForeignKey("StudentId")]
         public Student Student { get; set; }
-        //foreign key property
-        public int StudentId { get; set; }
 
     }
 }

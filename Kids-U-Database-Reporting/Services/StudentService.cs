@@ -30,8 +30,6 @@ namespace Kids_U_Database_Reporting.Services
 
         public async Task<bool> AddStudentAsync(Student newStudent)
         {
-
-            newStudent.StudentId = Guid.NewGuid();
             _context.Students.Add(newStudent);
 
             var saveResult = await _context.SaveChangesAsync();
