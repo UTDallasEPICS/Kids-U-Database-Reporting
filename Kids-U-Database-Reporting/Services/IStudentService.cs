@@ -9,7 +9,7 @@ namespace Kids_U_Database_Reporting.Services
     public interface IStudentService
     {
         //returns array of students
-        Task<Student[]> GetIncompleteItemsAsync();
+        Task<Student[]> GetStudentsAsync();
 
         Task<bool> AddStudentAsync(Student newStudent);
     }

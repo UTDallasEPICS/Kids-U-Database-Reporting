@@ -536,3 +536,5 @@ D:\Kids-U-Database-Reporting2\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\
 D:\Kids-U-Database-Reporting2\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Kids-U-Database-Reporting.dll
 D:\Kids-U-Database-Reporting2\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Kids-U-Database-Reporting.pdb
 C:\Users\julie\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Students.cshtml.g.cs
+C:\Users\julie\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Views\Student\Index.cshtml.g.cs
+C:\Users\julie\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Views\Student\CreateStudent.cshtml.g.cs

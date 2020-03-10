@@ -20,7 +20,7 @@ namespace Kids_U_Database_Reporting.Services
         }
 
         //TODO: add search parameters to method call 
-        public async Task<Student[]> GetIncompleteItemsAsync()
+        public async Task<Student[]> GetStudentsAsync()
         {
             //returns all items in Student
             return await _context.Students
@@ -31,7 +31,6 @@ namespace Kids_U_Database_Reporting.Services
         public async Task<bool> AddStudentAsync(Student newStudent)
         {
             _context.Students.Add(newStudent);
-
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }

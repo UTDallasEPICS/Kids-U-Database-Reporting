@@ -21,7 +21,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             
             //get students from database
-            var items = await _studentService.GetIncompleteItemsAsync();
+            var items = await _studentService.GetStudentsAsync();
             var model = new StudentViewModel()
 
             {
@@ -37,20 +37,28 @@ namespace Kids_U_Database_Reporting.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddStudent(Student newStudent)
         {
-
+            Console.WriteLine("beginning");
+            /*
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Students", "Data");
+                Console.WriteLine("not valid");
+                return RedirectToAction("Index", "Student");
             }
-
+            */
+            Console.WriteLine("pre call");
             var successful = await _studentService.AddStudentAsync(newStudent);
+            Console.WriteLine(successful);
 
             if (!successful)
             {
                 return BadRequest("Could not add student.");
             }
+            return RedirectToAction("Index", "Student");
+        }
 
-            return RedirectToAction("Students", "Data");
+        public IActionResult CreateStudent()
+        {
+            return View();
         }
 
 

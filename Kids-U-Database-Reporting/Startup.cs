@@ -25,7 +25,6 @@ namespace Kids_U_Database_Reporting
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -36,13 +35,13 @@ namespace Kids_U_Database_Reporting
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            //adds service to service container using scoped lifecycle
-            //meaning a new instance of StudentService class will be created during each web request
-            //this is required for service classes that interact with database
+            //adds service to service container using scoped lifecycle meaning a new instance of StudentService class will be created during each web request
+            //this is required for all service classes that interact with database
             services.AddScoped<IStudentService, StudentService>();
+            //TODO: add other service classes
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -69,8 +68,7 @@ namespace Kids_U_Database_Reporting
                 endpoints.MapControllerRoute(
                     name: "default",
                     //sets the page the webapp opens up to first when starting up
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
-                    //pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             endpoints.MapRazorPages();
             });
         }
