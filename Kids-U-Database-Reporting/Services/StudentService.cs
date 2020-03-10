@@ -34,5 +34,13 @@ namespace Kids_U_Database_Reporting.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
+
+        public async Task<bool> DeleteStudentAsync(int Id)
+        {
+            Student deleteStudent = await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
+            _context.Students.Remove(deleteStudent);
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

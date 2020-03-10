@@ -8,7 +8,7 @@
             <!--search/filter/sort-->
             <div class="tabletop">
                 <div id="left">
-                    @Html.ActionLink("Create New", "CreateStudent", "Student")
+                    @Html.ActionLink("Create New", "Create", "Student")
                     <a href="x">Export</a>
 
                     <!--sort-->
@@ -125,6 +125,7 @@
                     <th>Kids-U Site</th>
                     <th>Grade</th>
                     <th></th>
+                    <th></th>
                 </tr>
 
                 <!--TODO: this returns all, need to add switch cases for filters-->
@@ -135,6 +136,11 @@
                         <td>@item.LastName</td>
                         <td>@item.Facility</td>
                         <td>@item.SchoolGrade</td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.StudentId }) | 
+                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                        </td>
                     </tr>
                 }
 

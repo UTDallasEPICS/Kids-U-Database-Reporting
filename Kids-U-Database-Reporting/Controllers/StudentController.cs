@@ -17,37 +17,30 @@ namespace Kids_U_Database_Reporting.Controllers
             _studentService = studentService;
         }
 
+        //displays all students
         public async Task<IActionResult> Index()
         {
-            
-            //get students from database
             var items = await _studentService.GetStudentsAsync();
             var model = new StudentViewModel()
 
             {
                 Students = items
             };
-            
-            //put items into a model
-            //pass view to model and render
-
             return View(model);
         }
 
+        //makes new students
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddStudent(Student newStudent)
+        public async Task<IActionResult> Create(Student newStudent)
         {
-            Console.WriteLine("beginning");
-            /*
+            /* not working properly but is kind of a reduntant check?
             if (!ModelState.IsValid)
             {
                 Console.WriteLine("not valid");
                 return RedirectToAction("Index", "Student");
             }
             */
-            Console.WriteLine("pre call");
             var successful = await _studentService.AddStudentAsync(newStudent);
-            Console.WriteLine(successful);
 
             if (!successful)
             {
@@ -56,9 +49,26 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Student");
         }
 
-        public IActionResult CreateStudent()
+        public async Task<IActionResult> Delete(int Id)
         {
-            return View();
+
+            var successful = await _studentService.DeleteStudentAsync(Id);
+
+            if (!successful)
+            {
+                return BadRequest("Could not delete Student.");
+            }
+            return RedirectToAction("Index", "Student");
+        }
+
+        public async Task<IActionResult> Edit(int Id)
+        {
+
+        }
+
+        public async Task<IActionResult> Details(int Id)
+        {
+
         }
 
 
