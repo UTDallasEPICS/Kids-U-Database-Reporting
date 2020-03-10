@@ -1,44 +1,44 @@
 ﻿<body>
 
 
-    <div class="container body-content">
-	    <h2>Student Roster</h2>
+	<div class="container body-content">
+		<h2>Student Roster</h2>
 
-        <!--search/filter/sort-->
-        <div class="tabletop">
-	        <div id="left">
-		        @Html.ActionLink("Create New", "CreateStudents", "Create")
-		        <a href="x">Export</a>
+		<!--search/filter/sort-->
+		<div class="tabletop">
+			<div id="left">
+				@Html.ActionLink("Create New", "CreateStudents", "Create")
+				<a href="x">Export</a>
 
-                <!--sort-->
-		        <select>
-				    <option value="">Sort by...</option>
-				    <option value="1">First Name A-Z</option>
-				    <option value="2">First Name Z-A</option>
-				    <option value="3">Last Name A-Z</option>
-				    <option value="4">Last Name Z-A</option>
-				    <option value="5">Enrolled Ascending</option>
-				    <option value="6">Enrolled Descending</option>
-				    <option value="7">Income Ascending</option>
-				    <option value="8">Income Descending</option>
-				    <option value="9">School A-Z</option>
-				    <option value="10">School Z-A</option>
-				    <option value="11">Kids-U Site A-Z</option>
-				    <option value="12">Kids-U Site Z-A</option>
-				    <option value="13">Grade Ascending</option>
-				    <option value="14">Grade Descending</option>
-			    </select>
-	        </div>
+				<!--sort-->
+				<select>
+					<option value="">Sort by...</option>
+					<option value="1">First Name A-Z</option>
+					<option value="2">First Name Z-A</option>
+					<option value="3">Last Name A-Z</option>
+					<option value="4">Last Name Z-A</option>
+					<option value="5">Enrolled Ascending</option>
+					<option value="6">Enrolled Descending</option>
+					<option value="7">Income Ascending</option>
+					<option value="8">Income Descending</option>
+					<option value="9">School A-Z</option>
+					<option value="10">School Z-A</option>
+					<option value="11">Kids-U Site A-Z</option>
+					<option value="12">Kids-U Site Z-A</option>
+					<option value="13">Grade Ascending</option>
+					<option value="14">Grade Descending</option>
+				</select>
+			</div>
 
-            <!--search-->
-	        <div id="search">
-		        <input type="text" placeholder="Enter Student Name">
-		        <button type="button" onclick="showHide()">Adv.</button>
-		        <button type="submit">Go</button>
-	        </div>
-        </div>
+			<!--search-->
+			<div id="search">
+				<input type="text" placeholder="Enter Student Name">
+				<button type="button" onclick="showHide()">Adv.</button>
+				<button type="submit">Go</button>
+			</div>
+		</div>
 
-        <!--advanced-->
+		<!--advanced-->
 		<div class="expand" id="advancedSearch">
 			<div id="ethnicity">
 				Ethnicity:<br>
@@ -114,32 +114,10 @@
 			</div>
 		</div>
 
-        <!--table-->
-		<table class="table">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Kids-U Site</th>
-				<th>Grade</th>
-				<th></th>
-			</tr>
 
-			@*
-			<!--TODO: this returns all, need to add switch cases for filters-->
-			@foreach (var item in Model.Students)
-			{
-				<tr>
-					<td>@item.FirstName</td>
-					<td>@item.LastName</td>
-					<td>@item.Facility</td>
-					<td>@item.SchoolGrade</td>
-				</tr>
-			}
-			*@
+		<!--student display table-->
+		@await Html.PartialAsync("_Students")
 
-		</table>
-        
 
-       
-    </div>
+	</div>
 </body>

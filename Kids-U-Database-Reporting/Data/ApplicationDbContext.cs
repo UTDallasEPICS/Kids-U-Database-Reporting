@@ -23,7 +23,9 @@ namespace Kids_U_Database_Reporting.Data
         //Students is name of table that matches the Student class
         public DbSet<Student> Students { get; set; }
         public DbSet<OutcomeMeasurement> OutcomeMeasurements { get; set; }
-        public DbSet<Grades> Grades { get; set; }
+        public DbSet<Reading> Reading { get; set; }
+        public DbSet<LanguageArts> LanguageArts { get; set; }
+        public DbSet<Models.Math> Math { get; set; }
         public DbSet<ReportCard> ReportCards { get; set; }
 
         //uncomment these when created:

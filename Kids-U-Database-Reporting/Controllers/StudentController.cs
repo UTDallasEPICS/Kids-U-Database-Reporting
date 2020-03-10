@@ -40,7 +40,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Students", "Data");
             }
 
             var successful = await _studentService.AddStudentAsync(newStudent);
@@ -50,7 +50,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 return BadRequest("Could not add student.");
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Students", "Data");
         }
 
 

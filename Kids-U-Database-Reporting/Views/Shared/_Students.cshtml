@@ -1,0 +1,24 @@
+﻿@model StudentViewModel
+
+<!--table-->
+    <table class="table">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Kids-U Site</th>
+            <th>Grade</th>
+            <th></th>
+        </tr>
+
+        <!--TODO: this returns all, need to add switch cases for filters-->
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Facility</td>
+                <td>@item.SchoolGrade</td>
+            </tr>
+        }
+
+    </table>

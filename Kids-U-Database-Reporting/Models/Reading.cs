@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Kids_U_Database_Reporting.Models
 {
-    //class not in use anymore, reading/languagearts/math copy this
-    public class Grades
+    public class Reading
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int GradesId { get; set; }
+        public int ReadingId { get; set; }
         [ForeignKey("ReportCardId")]
         public ReportCard ReportCard { get; set; }
         public int? First { get; set; }

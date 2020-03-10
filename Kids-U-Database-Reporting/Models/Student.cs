@@ -22,9 +22,8 @@ namespace Kids_U_Database_Reporting.Models
         public string Gender { get; set; }
         public string Income { get; set; }
         public string Ethnicity { get; set; }
-        [Required]
-        public int Enrolled { get; set; }
-        public int? UnEnrolled { get; set; }
+        public int? EnrolledYear { get; set; }
+        public int? UnEnrolledYear { get; set; }
         public string EnrolledSemester { get; set; }
         public string UnEnrolledSemester { get; set; }
         public DateTime? Birthday { get; set; }
