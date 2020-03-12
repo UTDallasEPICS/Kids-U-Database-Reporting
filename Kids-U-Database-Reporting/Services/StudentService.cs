@@ -22,7 +22,7 @@ namespace Kids_U_Database_Reporting.Services
         //TODO: add search parameters to method call 
         public async Task<Student[]> GetStudentsAsync()
         {
-            //returns all items in Student
+            //returns all Students in Student database
             return await _context.Students
                 //.Where(x => x.IsDone == false) //example of how to filter for search with LINQ query
                 .ToArrayAsync();
@@ -30,6 +30,7 @@ namespace Kids_U_Database_Reporting.Services
 
         public async Task<bool> AddStudentAsync(Student newStudent)
         {
+            //puts new student in database
             _context.Students.Add(newStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
@@ -37,10 +38,16 @@ namespace Kids_U_Database_Reporting.Services
 
         public async Task<bool> DeleteStudentAsync(int Id)
         {
+            //deletes student in database by id
             Student deleteStudent = await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
             _context.Students.Remove(deleteStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
+        }
+        public async Task<Student> EditStudentAsync(int Id)
+        {
+            //returns student by id
+            return await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
         }
     }
 }

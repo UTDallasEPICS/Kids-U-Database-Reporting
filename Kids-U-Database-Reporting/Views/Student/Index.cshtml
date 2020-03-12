@@ -8,7 +8,8 @@
             <!--search/filter/sort-->
             <div class="tabletop">
                 <div id="left">
-                    @Html.ActionLink("Create New", "Create", "Student")
+                    <!--This button goes to the Add view which is the form for creating a student-->
+                    @Html.ActionLink("Create New", "Add", "Student")
                     <a href="x">Export</a>
 
                     <!--sort-->
@@ -102,7 +103,7 @@
                     School Grade:<br>
                     <select>
                         <option value="">Select School Grade </option>
-                        <option value="0">K </option>
+                        <option value="K">K </option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -128,7 +129,7 @@
                     <th></th>
                 </tr>
 
-                <!--TODO: this returns all, need to add switch cases for filters-->
+                <!--TODO: this returns all, need to add filters-->
                 @foreach (var item in Model.Students)
                 {
                     <tr>

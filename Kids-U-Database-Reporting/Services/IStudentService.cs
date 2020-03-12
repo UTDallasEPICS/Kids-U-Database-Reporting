@@ -11,6 +11,8 @@ namespace Kids_U_Database_Reporting.Services
         //returns array of students
         Task<Student[]> GetStudentsAsync();
 
+        Task<Student> EditStudentAsync(int Id);
+
         Task<bool> DeleteStudentAsync(int Id);
 
         Task<bool> AddStudentAsync(Student newStudent);

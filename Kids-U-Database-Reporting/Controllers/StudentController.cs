@@ -11,15 +11,17 @@ namespace Kids_U_Database_Reporting.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
-
+        
         public StudentController(IStudentService studentService)
         {
+            //constructor
             _studentService = studentService;
         }
-
-        //displays all students
+        
         public async Task<IActionResult> Index()
         {
+            //displays all students
+
             var items = await _studentService.GetStudentsAsync();
             var model = new StudentViewModel()
 
@@ -29,17 +31,17 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        //makes new students
+        public IActionResult Add()
+        {
+            //goes to view to create student
+            return View();
+        }
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Student newStudent)
         {
-            /* not working properly but is kind of a reduntant check?
-            if (!ModelState.IsValid)
-            {
-                Console.WriteLine("not valid");
-                return RedirectToAction("Index", "Student");
-            }
-            */
+            //puts new student in database
+
             var successful = await _studentService.AddStudentAsync(newStudent);
 
             if (!successful)
@@ -51,7 +53,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Delete(int Id)
         {
-
+            //deletes student from database
             var successful = await _studentService.DeleteStudentAsync(Id);
 
             if (!successful)
@@ -63,14 +65,37 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Edit(int Id)
         {
+            //goes to view to edit student
+            var model = new Student();
+            model = await _studentService.EditStudentAsync(Id);
+            
+            return View(model);
+        }
+
+        public async Task<IActionResult> SubmitEdit(Student newStudent)
+        {
+            //submits eddits
+
+            /*var successful = await _studentService.EditStudentAsync(newStudent);
+
+            if (!successful)
+            {
+                return BadRequest("Could not edit student.");
+            }
+            */
+            return RedirectToAction("Index", "Student");
 
         }
 
+
+        /*
         public async Task<IActionResult> Details(int Id)
         {
 
         }
+        */
 
+        
 
     }
 }
