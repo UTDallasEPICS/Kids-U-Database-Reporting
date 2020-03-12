@@ -1,8 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Kids_U_Database_Reporting.Data.Migrations
+namespace Kids_U_Database_Reporting.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
@@ -15,7 +14,8 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,13 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Site = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: true),
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,11 +54,54 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Grades",
+                columns: table => new
+                {
+                    GradesId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    First = table.Column<int>(nullable: true),
+                    Second = table.Column<int>(nullable: true),
+                    Third = table.Column<int>(nullable: true),
+                    Fourth = table.Column<int>(nullable: true),
+                    Fifth = table.Column<int>(nullable: true),
+                    Semester = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grades", x => x.GradesId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    StudentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    SchoolGrade = table.Column<string>(nullable: false),
+                    Facility = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true),
+                    Income = table.Column<string>(nullable: true),
+                    Ethnicity = table.Column<string>(nullable: true),
+                    Enrolled = table.Column<int>(nullable: false),
+                    UnEnrolled = table.Column<int>(nullable: true),
+                    Birthday = table.Column<DateTime>(nullable: true),
+                    Lunch = table.Column<bool>(nullable: false),
+                    SchoolName = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.StudentId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +122,7 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -93,8 +142,8 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -138,8 +187,8 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -151,6 +200,64 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportCards",
+                columns: table => new
+                {
+                    ReportCardId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReportSchoolGrade = table.Column<int>(nullable: false),
+                    ReportSchoolSemester = table.Column<string>(nullable: true),
+                    LanguageArtsGradesId = table.Column<int>(nullable: true),
+                    StudentId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReportCards", x => x.ReportCardId);
+                    table.ForeignKey(
+                        name: "FK_ReportCards_Grades_LanguageArtsGradesId",
+                        column: x => x.LanguageArtsGradesId,
+                        principalTable: "Grades",
+                        principalColumn: "GradesId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ReportCards_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "StudentId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OutcomeMeasurements",
+                columns: table => new
+                {
+                    OutcometId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReportCardId = table.Column<int>(nullable: true),
+                    Grade = table.Column<string>(nullable: true),
+                    MathPreTest = table.Column<int>(nullable: true),
+                    MathPostTest = table.Column<int>(nullable: true),
+                    LanguagePreTest = table.Column<int>(nullable: true),
+                    LanguagePostTest = table.Column<int>(nullable: true),
+                    ReadingPreTest = table.Column<int>(nullable: true),
+                    ReadingFluencyTest = table.Column<int>(nullable: true),
+                    ReadingFluencyTest2 = table.Column<int>(nullable: true),
+                    ReadingFluencyTest3 = table.Column<int>(nullable: true),
+                    SelfEsteemPreTest = table.Column<int>(nullable: true),
+                    SelfEsteemPostTest = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutcomeMeasurements", x => x.OutcometId);
+                    table.ForeignKey(
+                        name: "FK_OutcomeMeasurements_ReportCards_ReportCardId",
+                        column: x => x.ReportCardId,
+                        principalTable: "ReportCards",
+                        principalColumn: "ReportCardId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -191,6 +298,23 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OutcomeMeasurements_ReportCardId",
+                table: "OutcomeMeasurements",
+                column: "ReportCardId",
+                unique: true,
+                filter: "[ReportCardId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReportCards_LanguageArtsGradesId",
+                table: "ReportCards",
+                column: "LanguageArtsGradesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReportCards_StudentId",
+                table: "ReportCards",
+                column: "StudentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +335,22 @@ namespace Kids_U_Database_Reporting.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "OutcomeMeasurements");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ReportCards");
+
+            migrationBuilder.DropTable(
+                name: "Grades");
+
+            migrationBuilder.DropTable(
+                name: "Students");
         }
     }
 }

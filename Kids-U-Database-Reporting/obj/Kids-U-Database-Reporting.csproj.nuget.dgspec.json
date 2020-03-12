@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julie\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj": {}
+    "C:\\Users\\bfmon\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julie\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj": {
+    "C:\\Users\\bfmon\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julie\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj",
+        "projectUniqueName": "C:\\Users\\bfmon\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj",
         "projectName": "Kids-U-Database-Reporting",
-        "projectPath": "C:\\Users\\julie\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj",
-        "packagesPath": "C:\\Users\\julie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julie\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\obj\\",
+        "projectPath": "C:\\Users\\bfmon\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting.csproj",
+        "packagesPath": "C:\\Users\\bfmon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\bfmon\\Source\\Repos\\Kids-U-Database-Reporting\\Kids-U-Database-Reporting\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\julie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\bfmon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -44,27 +44,33 @@
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.Extensions.Logging.Debug": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

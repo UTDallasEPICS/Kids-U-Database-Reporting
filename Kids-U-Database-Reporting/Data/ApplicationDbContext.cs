@@ -25,6 +25,10 @@ namespace Kids_U_Database_Reporting.Data
         public DbSet<Grades> Grades { get; set; }
         public DbSet<ReportCard> ReportCards { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUser{get; set;}
+
+        public DbSet<UserRole> UserRole {get; set;}
+
         //uncomment these when created:
         //public DbSet<School> Schools { get; set; }
         //public DbSet<District> Districts { get; set; }

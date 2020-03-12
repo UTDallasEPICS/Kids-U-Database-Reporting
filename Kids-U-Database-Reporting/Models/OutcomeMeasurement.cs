@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,8 +9,11 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class OutcomeMeasurement
     {
-        public int OutcomeMeasurementId { get; set; }
-        public int ReportCardId { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int OutcometId { get; set; }
+
+        [ForeignKey("ReportCardId")]
         public ReportCard ReportCard { get; set; }
 
 

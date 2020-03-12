@@ -1,0 +1,47 @@
+﻿@model  ApplicationUserViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+
+
+    <div class="container body-content">
+        <h2>Staff Directory and Management</h2>
+
+        
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Site</th>
+                <th>Active</th>
+                <th></th>
+                
+            </tr>
+            <!--entries-->
+            @foreach(var item in Model.Users)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Role</td>
+                    <td>@item.Site</td>
+                    <td>@item.Active</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Staff", new { Email = item.Email }) | 
+                    @Html.ActionLink("Delete", "Delete", "Staff", new { Email = item.Email })
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+
+    </div>
+</body>
+
