@@ -60,6 +60,7 @@ namespace Kids_U_Database_Reporting
             //this is required for service classes that interact with database
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<IStaffService, StaffService>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

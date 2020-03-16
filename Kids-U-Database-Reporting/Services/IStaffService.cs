@@ -10,7 +10,11 @@ namespace Kids_U_Database_Reporting.Services
     {
 
         Task<ApplicationUser[]> GetAllStaffAsync();
-        Task<ApplicationUser> GetStaffAsync(String x);
+        Task<ApplicationUser> GetStaffAsync(string x);
         Task<UserRole[]> GetUserRolesAsync();
+
+        Task<int> UpdateStaffAsync(ApplicationUser x);
+
+        Task<int> DeleteStaffAsync(string Email);
     }
 }

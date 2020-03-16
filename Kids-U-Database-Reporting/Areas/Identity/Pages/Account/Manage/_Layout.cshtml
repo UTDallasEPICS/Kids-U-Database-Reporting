@@ -1,6 +1,54 @@
-﻿@{
+﻿
+@{
     Layout = "/Areas/Identity/Pages/_Layout.cshtml";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <script src="/js/site.js"></script>
+    <!--USED TO GIVE THE LOOK AND FEEL TO THE LOGOUT BUTTON-->
+    <style>
+        .sugar {
+            color: white;
+            border: none;
+            background-color: inherit;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+            .sugar:hover {
+                background-color: #000C7C;
+                color: white;
+                text-decoration: none;
+            }
+    </style>
+</head>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a class="sugar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name</a> </li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li>
+                    <form asp-area="Identity" asp-page="/Account/Logout">
+                        <button type="submit" class="sugar" formmethod="post">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
 
 <h1>Manage your account</h1>
 
@@ -14,9 +62,13 @@
         <div class="col-md-9">
             @RenderBody()
         </div>
+
     </div>
 </div>
+
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
+

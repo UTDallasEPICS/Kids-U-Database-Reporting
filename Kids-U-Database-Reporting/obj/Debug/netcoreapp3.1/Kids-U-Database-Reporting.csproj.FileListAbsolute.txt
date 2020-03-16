@@ -753,3 +753,5 @@ C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\
 C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Kids-U-Database-Reporting.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Views\Staff\Index.cshtml.g.cs
 C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Views\Staff\Edit.cshtml.g.cs
+C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\ChangeName.cshtml.g.cs
+C:\Users\bfmon\Source\Repos\Kids-U-Database-Reporting\Kids-U-Database-Reporting\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_Layout.cshtml.g.cs
