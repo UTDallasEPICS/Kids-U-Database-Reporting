@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Kids_U_Database_Reporting.Services;
+using Kids_U_Database_Reporting.Models;
+using Kids_U_Database_Reporting.Configure;
 
 namespace Kids_U_Database_Reporting
 {
@@ -30,14 +32,32 @@ namespace Kids_U_Database_Reporting
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, UserRole>(options => {
+            //options.SignIn.RequireConfirmedAccount = true
+
+            options.Password.RequireDigit = false;
+            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireLowercase = false;
+
+            })
+               
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+                
             services.AddControllersWithViews();
             services.AddRazorPages();
+            //services.ConfigureApplicationCookie(options =>
+            //{
+                //options.ExpireTimeSpan = TimeSpan.FromSeconds(0);
+            //});
 
             //adds service to service container using scoped lifecycle meaning a new instance of StudentService class will be created during each web request
             //this is required for all service classes that interact with database
             services.AddScoped<IStudentService, StudentService>();
+<<<<<<< HEAD
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<IDistrictService, DistrictService>();
             services.AddScoped<ISiteService, SiteService>();
@@ -47,6 +67,14 @@ namespace Kids_U_Database_Reporting
 
         //Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+=======
+            services.AddScoped<IStaffService, StaffService>();
+            
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context, RoleManager<UserRole> roleManager, UserManager<ApplicationUser> userManager)
+>>>>>>> login
         {
             if (env.IsDevelopment())
             {
@@ -61,12 +89,11 @@ namespace Kids_U_Database_Reporting
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            SeedRoles.Seed(context, roleManager, userManager).Wait();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

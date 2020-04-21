@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Kids_U_Database_Reporting.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        
 
         public HomeController(ILogger<HomeController> logger)
         {
+            
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
+            
             return View();
         }
 

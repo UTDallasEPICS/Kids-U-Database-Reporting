@@ -6,14 +6,57 @@
     <RootNamespace>Kids_U_Database_Reporting</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200305224357_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305224357_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200305233545_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305233545_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200305233802_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305233802_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200305234125_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305234125_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200305235003_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305235003_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200305235441_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200305235441_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306000110_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306000110_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306000659_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306000659_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306001129_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306001129_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306001337_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306001337_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306001703_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306001703_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306024126_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306024126_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306035735_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306035735_Roles.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306042456_Roles.cs" />
+    <Compile Remove="Data\Migrations\20200306042456_Roles.Designer.cs" />
+    <Compile Remove="Migrations\20200306044606_Roles.cs" />
+    <Compile Remove="Migrations\20200306044606_Roles.Designer.cs" />
+    <Compile Remove="Migrations\20200306045137_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200306045137_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200306050133_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200306050133_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.cs" />
+    <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="popper.js" Version="1.16.1" />
   </ItemGroup>

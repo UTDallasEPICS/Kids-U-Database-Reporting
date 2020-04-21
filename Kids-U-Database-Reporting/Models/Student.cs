@@ -9,10 +9,14 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class Student
     {
+<<<<<<< HEAD
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudentId { get; set; }
 
+=======
+        public int StudentId { get; set; }
+>>>>>>> login
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -22,6 +26,7 @@ namespace Kids_U_Database_Reporting.Models
         public string Gender { get; set; }
         public string Income { get; set; }
         public string Ethnicity { get; set; }
+<<<<<<< HEAD
         public int? EnrolledYear { get; set; }
         public int? UnEnrolledYear { get; set; }
         public string EnrolledSemester { get; set; }
@@ -29,6 +34,11 @@ namespace Kids_U_Database_Reporting.Models
         public int? AgeAtEnrollment { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+=======
+        [Required]
+        public int Enrolled { get; set; }
+        public int? UnEnrolled { get; set; }
+>>>>>>> login
         public DateTime? Birthday { get; set; }
         public bool Lunch { get; set; }
         public string SchoolName { get; set; }

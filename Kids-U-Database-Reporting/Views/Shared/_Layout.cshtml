@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <html lang="en">
 <head ng-app="kidsu">
     <meta charset="utf-8" />
@@ -9,6 +12,25 @@
     <link href="/css/bootstrap-datepicker3.css" rel="stylesheet" />
 
     <script src="/js/site.js"></script>
+    <!--USED TO GIVE THE LOOK AND FEEL TO THE LOGOUT BUTTON-->
+    <style>
+        .sugar
+        {
+            color:  white;
+            border: none;
+            background-color: inherit;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .sugar:hover 
+        {
+            background-color: #000C7C;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -20,25 +42,32 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Kids-U Data Entry", "Index", "Home", null, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })
                 </div>
 
                 <!--links-->
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+<<<<<<< HEAD
                         <li>@Html.ActionLink("Student Enrollment", "Index", "Student")</li>
                         <li>@Html.ActionLink("Outcomes", "OutcomeIndex", "Student")</li>
                         <li>@Html.ActionLink("Report Cards", "ReportCardIndex", "Student")</li>
+=======
+                        <li>@Html.ActionLink("Student Enrollment", "Students", "Data")</li>
+                        <li>@Html.ActionLink("Outcomes", "OutcomeMeasurements", "Data")</li>
+                        <li>@Html.ActionLink("Report Cards", "ReportCardRecords", "Data")</li>
+                        <li><a class="sugar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage @User.Identity.Name</a> </li>
+>>>>>>> login
                     </ul>
 
-                    <!--logout-->
-                    <form action="/Login/LogOff" class="navbar-right" id="logoutForm" method="post">
-                        <input name="__RequestVerificationToken" type="hidden" value="" />
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a>Hello admin@kids-u.org!</a></li>
-                            <li>@Html.ActionLink("Log off", "Index", "Login")</li>
-                        </ul>
-                    </form>
+                    <!--THIS IS THE LOGOUT BUTTON-->
+                     <ul class="nav navbar-nav navbar-right">
+                         <li class="navbar-collapse collapse">
+                             <form asp-area="Identity" asp-page="/Account/Logout">
+                                 <button type="submit" class="sugar" formmethod="post">Logout</button>
+                             </form>
+                         </li>
+                     </ul>
                 </div>
             </div>
         </div>
@@ -55,7 +84,7 @@
     <hr>
     <footer class="border-top footer text-muted">
         <div class="container">
-            Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> | Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
+            <!--Site Built at <a href="http://www.dallasgivecamp.org">Dallas GiveCamp</a> |--> Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
         </div>
     </footer>
 
