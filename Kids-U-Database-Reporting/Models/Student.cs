@@ -26,6 +26,9 @@ namespace Kids_U_Database_Reporting.Models
         public int? UnEnrolledYear { get; set; }
         public string EnrolledSemester { get; set; }
         public string UnEnrolledSemester { get; set; }
+        public int? AgeAtEnrollment { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? Birthday { get; set; }
         public bool Lunch { get; set; }
         public string SchoolName { get; set; }
@@ -34,5 +37,6 @@ namespace Kids_U_Database_Reporting.Models
 
         //one to many relationship of students to report cards
         public ICollection<ReportCard> ReportCards { get; set; }
+        public ICollection<OutcomeMeasurement> OutcomeMeasurements { get; set; }
     }
 }

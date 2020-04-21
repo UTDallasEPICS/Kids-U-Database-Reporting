@@ -188,13 +188,13 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Year (e.g. 1995)</label>
                     <div class="col-md-10">
-                        <input class="form-control datepicker" asp-for="EnrolledYear" type="number" value="" />
+                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" />
                     </div>
                 </div>
 
                 <!--EnrolledSemester-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">Grade</label>
+                    <label class="control-label col-md-2">Enrollment Semester</label>
                     <div class="col-md-10">
                         <select asp-for="EnrolledSemester" class="form-control">
                             <option value="">Select Semester</option>
@@ -205,11 +205,19 @@
                     </div>
                 </div>
 
-                <!--Birthday-->
+                <!--AgeAtEnrollment-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Age at Enrollment</label>
                     <div class="col-md-10">
-                        <input class="form-control datepicker" asp-for="Birthday" type="text" value="" />
+                        <input class="form-control text-box single-line" asp-for="AgeAtEnrollment" type="number" />
+                    </div>
+                </div>
+
+                <!--Birthday-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Birthday</label>
+                    <div class="col-md-10">
+                        <input class="date" asp-for="Birthday" />
                     </div>
                 </div>
 
@@ -235,7 +243,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to List", "Index", "Student")
+            @Html.ActionLink("Back to Students", "Index", "Student")
         </div>
 
 

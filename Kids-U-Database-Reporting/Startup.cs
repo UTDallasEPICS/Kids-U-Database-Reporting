@@ -38,6 +38,10 @@ namespace Kids_U_Database_Reporting
             //adds service to service container using scoped lifecycle meaning a new instance of StudentService class will be created during each web request
             //this is required for all service classes that interact with database
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<ISchoolService, SchoolService>();
+            services.AddScoped<IDistrictService, DistrictService>();
+            services.AddScoped<ISiteService, SiteService>();
+            services.AddScoped<IOrganizationsService, OrganizationsService>();
             //TODO: add other service classes
         }
 

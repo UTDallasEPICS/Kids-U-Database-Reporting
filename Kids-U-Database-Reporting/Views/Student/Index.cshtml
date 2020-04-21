@@ -10,6 +10,8 @@
                 <div id="left">
                     <!--This button goes to the Add view which is the form for creating a student-->
                     @Html.ActionLink("Create New", "Add", "Student")
+
+                    <!--does nothing right now-->
                     <a href="x">Export</a>
 
                     <!--sort-->
@@ -132,17 +134,20 @@
                 <!--TODO: this returns all, need to add filters-->
                 @foreach (var item in Model.Students)
                 {
-                    <tr>
-                        <td>@item.FirstName</td>
-                        <td>@item.LastName</td>
-                        <td>@item.Facility</td>
-                        <td>@item.SchoolGrade</td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.StudentId }) | 
-                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-                        </td>
-                    </tr>
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Facility</td>
+                <td>@item.SchoolGrade</td>
+                <td>
+                    @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
+                    @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                </td>
+            </tr>
                 }
 
             </table>
