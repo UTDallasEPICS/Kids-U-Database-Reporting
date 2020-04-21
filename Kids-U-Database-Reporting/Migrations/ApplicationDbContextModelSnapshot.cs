@@ -4,37 +4,21 @@ using Kids_U_Database_Reporting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-<<<<<<< HEAD
-=======
-using Microsoft.EntityFrameworkCore.Migrations;
->>>>>>> login
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kids_U_Database_Reporting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<< HEAD
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-=======
-    [Migration("20200420234259_outcomeMeasurements")]
-    partial class outcomeMeasurements
-    {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
-        {
-#pragma warning disable 612, 618
-            modelBuilder
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.District", b =>
                 {
                     b.Property<int>("DistrictId")
@@ -80,28 +64,10 @@ namespace Kids_U_Database_Reporting.Migrations
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.OutcomeMeasurement", b =>
                 {
                     b.Property<int>("OutcomeId")
-=======
-            modelBuilder.Entity("Kids_U_Database_Reporting.Models.OutcomeMeasurement", b =>
-                {
-                    b.Property<int>("OutcomeId")
-=======
-                .HasAnnotation("ProductVersion", "3.1.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Kids_U_Database_Reporting.Models.Grades", b =>
-                {
-                    b.Property<int>("GradesId")
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
                     b.Property<string>("LanguagePostTest")
                         .HasColumnType("nvarchar(max)");
 
@@ -151,45 +117,10 @@ namespace Kids_U_Database_Reporting.Migrations
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.ReportCard", b =>
                 {
                     b.Property<int>("ReportCardId")
-<<<<<<< HEAD
-=======
-=======
-                    b.Property<int?>("Fifth")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("First")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Fourth")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Second")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Semester")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Third")
-                        .HasColumnType("int");
-
-                    b.HasKey("GradesId");
-
-                    b.ToTable("Grades");
-                });
-
-            modelBuilder.Entity("Kids_U_Database_Reporting.Models.OutcomeMeasurement", b =>
-                {
-                    b.Property<int>("OutcometId")
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
                     b.Property<string>("LanguageFifth")
                         .HasColumnType("nvarchar(max)");
 
@@ -246,7 +177,6 @@ namespace Kids_U_Database_Reporting.Migrations
 
                     b.Property<string>("ReportSchoolGrade")
                         .HasColumnType("nvarchar(max)");
-<<<<<<< HEAD
 
                     b.Property<string>("ReportSchoolSemester")
                         .HasColumnType("nvarchar(max)");
@@ -287,62 +217,10 @@ namespace Kids_U_Database_Reporting.Migrations
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.Site", b =>
                 {
                     b.Property<int>("SiteId")
-=======
-=======
-                    b.Property<string>("Grade")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LanguagePostTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LanguagePreTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MathPostTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MathPreTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReadingFluencyTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReadingFluencyTest2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReadingFluencyTest3")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReadingPreTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ReportCardId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SelfEsteemPostTest")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SelfEsteemPreTest")
-                        .HasColumnType("int");
-
-                    b.HasKey("OutcometId");
-
-                    b.HasIndex("ReportCardId")
-                        .IsUnique()
-                        .HasFilter("[ReportCardId] IS NOT NULL");
-
-                    b.ToTable("OutcomeMeasurements");
-                });
-
-            modelBuilder.Entity("Kids_U_Database_Reporting.Models.ReportCard", b =>
-                {
-                    b.Property<int>("ReportCardId")
->>>>>>> login
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-<<<<<<< HEAD
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
@@ -353,31 +231,6 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.HasKey("SiteId");
 
                     b.ToTable("Sites");
-=======
-                    b.Property<int?>("LanguageArtsGradesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReportSchoolGrade")
-                        .HasColumnType("int");
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
-
-                    b.Property<string>("ReportSchoolSemester")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ReportCardId");
-
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
-=======
-                    b.HasIndex("LanguageArtsGradesId");
-
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("ReportCards");
->>>>>>> login
                 });
 
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.Student", b =>
@@ -390,10 +243,6 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
                     b.Property<int?>("AgeAtEnrollment")
                         .HasColumnType("int");
 
@@ -404,15 +253,6 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("EnrolledYear")
-<<<<<<< HEAD
-=======
-=======
-                    b.Property<DateTime?>("Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Enrolled")
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
                         .HasColumnType("int");
 
                     b.Property<string>("Ethnicity")
@@ -445,20 +285,10 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("SchoolName")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
                     b.Property<string>("UnEnrolledSemester")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UnEnrolledYear")
-<<<<<<< HEAD
-=======
-=======
-                    b.Property<int?>("UnEnrolled")
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
                         .HasColumnType("int");
 
                     b.HasKey("StudentId");
@@ -475,13 +305,10 @@ namespace Kids_U_Database_Reporting.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> login
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -498,11 +325,8 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-<<<<<<< HEAD
-=======
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityRole");
->>>>>>> login
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -541,13 +365,10 @@ namespace Kids_U_Database_Reporting.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> login
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -599,11 +420,8 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-<<<<<<< HEAD
-=======
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
->>>>>>> login
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -633,19 +451,10 @@ namespace Kids_U_Database_Reporting.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-=======
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
                         .HasColumnType("nvarchar(450)");
->>>>>>> login
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -682,19 +491,10 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-<<<<<<< HEAD
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
-=======
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(450)");
->>>>>>> login
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -704,18 +504,6 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
->>>>>>> login
-            modelBuilder.Entity("Kids_U_Database_Reporting.Models.OutcomeMeasurement", b =>
-                {
-                    b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
-                        .WithMany("OutcomeMeasurements")
-                        .HasForeignKey("StudentId");
-<<<<<<< HEAD
-=======
-=======
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.UserRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityRole");
@@ -747,25 +535,13 @@ namespace Kids_U_Database_Reporting.Migrations
 
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.OutcomeMeasurement", b =>
                 {
-                    b.HasOne("Kids_U_Database_Reporting.Models.ReportCard", "ReportCard")
-                        .WithOne("Outcome")
-                        .HasForeignKey("Kids_U_Database_Reporting.Models.OutcomeMeasurement", "ReportCardId");
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
+                    b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
+                        .WithMany("OutcomeMeasurements")
+                        .HasForeignKey("StudentId");
                 });
 
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.ReportCard", b =>
                 {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:Kids-U-Database-Reporting/Migrations/20200420234259_outcomeMeasurements.Designer.cs
-=======
-                    b.HasOne("Kids_U_Database_Reporting.Models.Grades", "LanguageArts")
-                        .WithMany()
-                        .HasForeignKey("LanguageArtsGradesId");
-
->>>>>>> login:Kids-U-Database-Reporting/Migrations/ApplicationDbContextModelSnapshot.cs
->>>>>>> login
                     b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
                         .WithMany("ReportCards")
                         .HasForeignKey("StudentId");

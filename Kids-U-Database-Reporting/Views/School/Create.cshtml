@@ -18,19 +18,9 @@
                     </div>
                 </div>
 
-                <!--active-->
-                <div class="form-group">
-                    <label class="control-label col-md-2">Active</label>
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
-                        </div>
-                    </div>
-                </div>
-
                 <!--district-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">School</label>
+                    <label class="control-label col-md-2">District</label>
                     <div class="col-md-10">
                         <select asp-for="District" class="form-control">
                             <option value="">Select District</option>
@@ -40,6 +30,15 @@
                             <option value="Duncanville ISD">Duncanville ISD</option>
                             <option value="Arlington ISD">Arlington ISD</option>
                         </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Active</label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
+                        </div>
                     </div>
                 </div>
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
+
 using System.ComponentModel.DataAnnotations;
-=======
->>>>>>> login
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +10,7 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class ReportCard
     {
-<<<<<<< HEAD
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReportCardId { get; set; }
@@ -47,24 +45,9 @@ namespace Kids_U_Database_Reporting.Models
         public string LanguageFourth { get; set; }
         public string LanguageFifth { get; set; }
         public string LanguageSemester { get; set; }
-=======
-       
-        public int ReportCardId { get; set; }
-        public int ReportSchoolGrade { get; set; }
-        
-        public string ReportSchoolSemester { get; set; }
-        public OutcomeMeasurement Outcome { get; set; }
-        public Grades LanguageArts { get; set; }
-       // public Grades Reading { get; set; }
-        //public Grades Math { get; set; }
 
-        //Reference navigation property having a multiplicity of zero or one
+ 
 
-        [ForeignKey("StudentId")]
-        public Student Student { get; set; }
-        
-        
->>>>>>> login
 
     }
 }

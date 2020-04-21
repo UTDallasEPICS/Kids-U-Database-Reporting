@@ -11,25 +11,27 @@ namespace Kids_U_Database_Reporting.Controllers
     public class SchoolController : Controller
     {
         private readonly ISchoolService _schoolService;
-        public SchoolController(ISchoolService schoolService)
+        private readonly IDistrictService _districtService;
+        public SchoolController(ISchoolService schoolService, IDistrictService districtService)
         {
             //constructor
             _schoolService = schoolService;
+            _districtService = districtService;
         }
 
         public async Task<IActionResult> Index()
         {
             var items = await _schoolService.GetSchoolsAsync();
             var model = new SchoolViewModel()
-
             {
                 Schools = items
             };
             return View(model);
         }
 
-        public IActionResult Create()
+        public  IActionResult CreateAsync()
         {
+           
             return View();
         }
 
