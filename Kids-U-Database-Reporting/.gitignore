@@ -1,8 +1,15 @@
 
 .DS_Store
 
-.vs/
+.vs/**
 
-/bin
+bin/**
 
-/obj
+obj/**
+
+Migrations/**
+
+v16/**
+
+/Kids-U-Database-Reporting.csproj.user
+
