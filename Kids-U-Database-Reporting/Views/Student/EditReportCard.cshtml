@@ -1,0 +1,202 @@
+﻿@model ReportCard
+
+<body>
+
+    <div class="container body-content">
+        <h2>Edit Report Card</h2>
+
+        <!--form-->
+        <form asp-controller="Student" asp-action="ApplyEditReportCard" method="post">
+            <div class="form-horizontal">
+                <h4>@Model.Student.FirstName @Model.Student.LastName</h4><hr />
+
+                <!--SchoolGrade-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">School Grade</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolGrade" class="form-control">
+                            <option value="">Select Grade</option>
+                            <option value="K">K</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--EnrolledSemester-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolSemester" class="form-control">
+                            <option value="">Select Semester</option>
+                            <option value="fall">fall</option>
+                            <option value="spring">spring</option>
+                            <option value="summer">summer</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--MATH-->
+                <h4>Math</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">1st: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathFirst" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">2nd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathSecond" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">3rd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathThird" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">4th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathFourth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">5th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathFifth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathSemester" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+
+
+                <!--READING-->
+                <h4>Reading</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">1st: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFirst" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">2nd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingSecond" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">3rd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingThird" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">4th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFourth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">5th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFifth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingSemester" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+
+
+                <!--LANGUAGE ARTS-->
+                <h4>Language Arts</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">1st: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageFirst" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">2nd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageSecond" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">3rd: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageThird" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">4th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageFourth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">5th: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageFifth" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguageSemester" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--variables that need to retain values (hidden from user)-->
+                @Html.Hidden("ReportCardId")
+                @Html.Hidden("Student")
+
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" formmethod="post" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to Report Cards", "ReportCardIndex", new { id = Model.Student.StudentId })
+        </div>
+
+
+    </div>
+</body>

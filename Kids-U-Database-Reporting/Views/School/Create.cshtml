@@ -1,0 +1,62 @@
+﻿@model School
+<body>
+
+
+    <div class="container body-content">
+        <h2>Schools</h2>
+
+        <!--form-->
+        <form asp-controller="School" asp-action="CreateSchool" method="post">
+            <div class="form-horizontal">
+                <h4>Create New</h4><hr />
+
+                <!--name-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">School Name</label>
+                    <div class="col-md-10">
+                        <input asp-for="SchoolName" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--active-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Active</label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
+                        </div>
+                    </div>
+                </div>
+
+                <!--district-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">School</label>
+                    <div class="col-md-10">
+                        <select asp-for="District" class="form-control">
+                            <option value="">Select District</option>
+                            <option value="Dallas ISD">Dallas ISD</option>
+                            <option value="Richardson ISD">Richardson ISD</option>
+                            <option value="Carrollton/Farmers Branch ISD">Carrollton/Farmers Branch ISD</option>
+                            <option value="Duncanville ISD">Duncanville ISD</option>
+                            <option value="Arlington ISD">Arlington ISD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" formmethod="post" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to List", "Index", "School")
+        </div>
+
+    </div>
+
+</body>

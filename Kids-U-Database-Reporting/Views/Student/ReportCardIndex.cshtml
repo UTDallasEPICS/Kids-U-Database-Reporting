@@ -1,0 +1,129 @@
+﻿@model ReportCardViewModel
+
+<body>
+
+
+    <div class="container body-content">
+        <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "CreateReportCard", new { id = Model.Student.StudentId })
+
+                <!--does nothing right now-->
+                <a href="/ReportCardRecords/Export">Export</a>
+
+            </div>
+        </div>
+
+
+
+
+        <!--Math table-->
+        <h3>Math</h3>
+        <table class="table">
+
+            <tr>
+                <th>School Grade</th>
+                <th>Semester</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>Semester Grade</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ReportCards)
+            {
+                <tr>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolGrade) ? "--" : item.ReportSchoolGrade) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolSemester) ? "--" : item.ReportSchoolSemester) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathFirst) ? "--" : item.MathFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathSecond) ? "--" : item.MathSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathThird) ? "--" : item.MathThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathFourth) ? "--" : item.MathFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathFifth) ? "--" : item.MathFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathSemester) ? "--" : item.MathSemester) </td>
+                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                </tr>
+            }
+
+        </table>
+
+        <!--Reading table-->
+        <h3>Reading</h3>
+        <table class="table">
+
+            <tr>
+                <th>School Grade</th>
+                <th>Semester</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>Semester Grade</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ReportCards)
+            {
+                <tr>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolGrade) ? "--" : item.ReportSchoolGrade) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolSemester) ? "--" : item.ReportSchoolSemester) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFirst) ? "--" : item.ReadingFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingSecond) ? "--" : item.ReadingSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingThird) ? "--" : item.ReadingThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFourth) ? "--" : item.ReadingFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFifth) ? "--" : item.ReadingFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingSemester) ? "--" : item.ReadingSemester) </td>
+                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                </tr>
+            }
+
+        </table>
+
+
+        <!--LanguageArts table-->
+        <h3>Language Arts</h3>
+        <table class="table">
+
+            <tr>
+                <th>School Grade</th>
+                <th>Semester</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>Semester Grade</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ReportCards)
+            {
+                <tr>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolGrade) ? "--" : item.ReportSchoolGrade) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolSemester) ? "--" : item.ReportSchoolSemester) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFirst) ? "--" : item.LanguageFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageSecond) ? "--" : item.LanguageSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageThird) ? "--" : item.LanguageThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFourth) ? "--" : item.LanguageFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFifth) ? "--" : item.LanguageFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageSemester) ? "--" : item.LanguageSemester) </td>
+                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                </tr>
+            }
+
+        </table>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to Students", "Index", "Student")
+        </div>
+
+    </div>
+</body>

@@ -1,0 +1,40 @@
+﻿@model SiteViewModel
+<body>
+
+
+    <div class="container body-content">
+        <h2>Facilities/Sites</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "Create", "Site")
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>Site Name</th>
+                <th>Active</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <!--TODO: this returns all, need to add filters-->
+            @foreach (var item in Model.Sites)
+            {
+                <tr>
+                    <td>@item.SiteName</td>
+                    <td>@item.Active</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.SiteId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.SiteId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</body>

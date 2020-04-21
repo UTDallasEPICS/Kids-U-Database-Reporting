@@ -1,0 +1,42 @@
+﻿@model OrganizationViewModel
+<body>
+
+
+    <div class="container body-content">
+        <h2>Organizations</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Add New", "Create", "Organization")
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>Organization Name</th>
+                <th>Program Number</th>
+                <th>Active</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <!--TODO: this returns all, need to add filters-->
+            @foreach (var item in Model.Organizations)
+            {
+            <tr>
+                <td>@item.OrganizationName</td>
+                <td>@item.ProgramNumber</td>
+                <td>@item.Active</td>
+                <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrganizationId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrganizationId })
+                </td>
+            </tr>
+            }
+
+        </table>
+
+    </div>
+</body>

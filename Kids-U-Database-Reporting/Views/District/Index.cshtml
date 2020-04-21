@@ -1,0 +1,40 @@
+﻿@model DistrictViewModel
+<body>
+
+
+    <div class="container body-content">
+        <h2>Districts</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "Create", "District")
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>District Name</th>
+                <th>Active</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+            <!--TODO: this returns all, need to add filters-->
+            @foreach (var item in Model.Districts)
+            {
+                <tr>
+                    <td>@item.DistrictName</td>
+                    <td>@item.Active</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DistrictId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DistrictId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</body>

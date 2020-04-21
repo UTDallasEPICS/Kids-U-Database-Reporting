@@ -1,0 +1,55 @@
+﻿@model Organization
+
+
+<body>
+
+
+    <div class="container body-content">
+        <h2>Organizations</h2>
+
+        <!--form-->
+        <form asp-controller="Organization" asp-action="CreateOrganization" method="post">
+            <div class="form-horizontal">
+                <h4>Create New</h4><hr />
+
+                <!--name-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Organization Name</label>
+                    <div class="col-md-10">
+                        <input asp-for="OrganizationName" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Program Number</label>
+                    <div class="col-md-10">
+                        <input asp-for="ProgramNumber" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--active-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Active</label>
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
+                        </div>
+                    </div>
+                </div>
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to List", "Index", "Organization")
+        </div>
+
+    </div>
+</body>
