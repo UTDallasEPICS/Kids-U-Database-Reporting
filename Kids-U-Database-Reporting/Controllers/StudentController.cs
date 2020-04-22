@@ -5,20 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Kids_U_Database_Reporting.Services;
 using Kids_U_Database_Reporting.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
+        private readonly ISchoolService _schoolService;
         
-        public StudentController(IStudentService studentService)
+        public StudentController(IStudentService studentService, ISchoolService schoolService)
         {
             //constructor
 
             _studentService = studentService;
+            _schoolService = schoolService;
         }
-        
+
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index()
         {
             //displays all students
@@ -32,9 +36,25 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public IActionResult Add()
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        public async Task<IActionResult> AddAsync()
         {
             //goes to form to create student
+
+
+            //this part is for dynamically allocating school list
+            var items = await _schoolService.GetSchoolsAsync();
+            List<String> schoolList = new List<string>();
+
+            schoolList.Add("Select School");
+
+            foreach (School school in items)
+            {
+                schoolList.Add(school.SchoolName);
+            }
+            ViewBag.SchoolList = schoolList;
+
+
 
             return View();
         }
@@ -54,6 +74,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Student");
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             //deletes student from database
@@ -68,6 +89,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Student");
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             //goes to form to edit student
@@ -75,7 +97,22 @@ namespace Kids_U_Database_Reporting.Controllers
             var model = new Student();
 
             model = await _studentService.EditStudentAsync(Id);
-            
+
+
+            //this part is for dynamically allocating school list
+            var items = await _schoolService.GetSchoolsAsync();
+            List<String> schoolList = new List<string>();
+
+            schoolList.Add("Select School");
+
+            foreach (School school in items)
+            {
+                schoolList.Add(school.SchoolName);
+            }
+            ViewBag.SchoolList = schoolList;
+
+
+
             return View(model);
         }
 
@@ -101,6 +138,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
 
         //REPORT CARD STUFF STARTS HERE
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> ReportCardIndex(int Id)
         {
             //displays all report cards for one student
@@ -118,6 +156,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> CreateReportCard(int Id)
         {
             //goes to form to create report card
@@ -147,6 +186,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> EditReportCard(int Id)
         {
             //goes to form to edit report card
@@ -182,6 +222,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
 
         //OUTCOME MEASUREMENTS STUFF STARTS HERE
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> OutcomeIndex(int Id)
         {
             //displays all outcome measurements for one student
@@ -199,6 +240,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> CreateOutcome(int Id)
         {
             //goes to form to create outcome measurement
@@ -228,6 +270,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> EditOutcome(int Id)
         {
             //goes to form to edit outcome measurement

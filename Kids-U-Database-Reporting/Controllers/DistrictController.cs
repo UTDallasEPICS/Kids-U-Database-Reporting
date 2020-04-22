@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kids_U_Database_Reporting.Models;
 using Kids_U_Database_Reporting.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kids_U_Database_Reporting.Controllers
@@ -17,6 +18,7 @@ namespace Kids_U_Database_Reporting.Controllers
             _districtService = districtService;
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index()
         {
             var items = await _districtService.GetDistrictsAsync();
@@ -28,11 +30,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             var model = new District();
@@ -41,6 +45,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             var successful = await _districtService.DeleteDistrictAsync(Id);

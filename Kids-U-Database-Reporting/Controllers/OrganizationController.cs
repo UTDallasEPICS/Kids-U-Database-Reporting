@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Kids_U_Database_Reporting.Models;
 using Kids_U_Database_Reporting.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
@@ -17,6 +18,7 @@ namespace Kids_U_Database_Reporting.Controllers
             _orgaizationService = orgaizationService;
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Index()
         {
             var items = await _orgaizationService.GetOrganizationsAsync();
@@ -28,11 +30,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             var model = new Organization();
@@ -41,6 +45,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             var successful = await _orgaizationService.DeleteOrganizationAsync(Id);

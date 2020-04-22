@@ -22,13 +22,17 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">District</label>
                     <div class="col-md-10">
-                        <select asp-for="District" class="form-control">
+                        <select asp-for="District" class="form-control" asp-items="@(new SelectList(ViewBag.DistrictList))">
+                            
+                            <!--this list is now dynamically allocated from the database
                             <option value="">Select District</option>
                             <option value="Dallas ISD">Dallas ISD</option>
                             <option value="Richardson ISD">Richardson ISD</option>
                             <option value="Carrollton/Farmers Branch ISD">Carrollton/Farmers Branch ISD</option>
                             <option value="Duncanville ISD">Duncanville ISD</option>
                             <option value="Arlington ISD">Arlington ISD</option>
+                                -->
+
                         </select>
                     </div>
                 </div>

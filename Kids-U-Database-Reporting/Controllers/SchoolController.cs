@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Kids_U_Database_Reporting.Models;
 using Kids_U_Database_Reporting.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kids_U_Database_Reporting.Controllers
@@ -19,6 +20,7 @@ namespace Kids_U_Database_Reporting.Controllers
             _districtService = districtService;
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index()
         {
             var items = await _schoolService.GetSchoolsAsync();
@@ -29,20 +31,50 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public  IActionResult CreateAsync()
+        [Authorize(Roles = "Global Administrator")]
+        public async Task<IActionResult> CreateAsync()
         {
-           
+            
+            //this part is for dynamically allocating district list
+            var items = await _districtService.GetDistrictsAsync();
+            List<String> districtList = new List<string>();
+
+            districtList.Add("Select District");
+
+            foreach (District district in items)
+            {
+                districtList.Add(district.DistrictName);
+            }
+            ViewBag.DistrictList = districtList;
+
+
+
             return View();
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             var model = new School();
             model = await _schoolService.EditSchoolAsync(Id);
 
+            //this part is for dynamically allocating district list
+            var items = await _districtService.GetDistrictsAsync();
+            List<String> districtList = new List<string>();
+
+            districtList.Add("Select District");
+
+            foreach (District district in items)
+            {
+                districtList.Add(district.DistrictName);
+            }
+            ViewBag.DistrictList = districtList;
+
+
             return View(model);
         }
 
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             var successful = await _schoolService.DeleteSchoolAsync(Id);

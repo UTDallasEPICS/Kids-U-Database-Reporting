@@ -109,7 +109,7 @@ namespace Kids_U_Database_Reporting.Areas.Identity.Pages.Account
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
                     }*/
-                    RedirectToPage("/Login");
+                    return RedirectToPage("/Login");
                 }
                 foreach (var error in result.Errors)
                 {

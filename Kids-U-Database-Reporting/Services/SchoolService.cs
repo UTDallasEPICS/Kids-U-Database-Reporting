@@ -21,8 +21,7 @@ namespace Kids_U_Database_Reporting.Services
         }
         public async Task<School[]> GetSchoolsAsync()
         {
-            return await _context.Schools
-               .ToArrayAsync();
+            return await _context.Schools.ToArrayAsync();
         }
 
         public async Task<School> EditSchoolAsync(int Id)

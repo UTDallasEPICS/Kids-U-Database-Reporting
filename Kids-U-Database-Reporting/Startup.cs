@@ -101,6 +101,7 @@ namespace Kids_U_Database_Reporting
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             endpoints.MapRazorPages();
             });
+            
         }
     }
 }

@@ -45,11 +45,13 @@
                 </div>
 
                 <!--SchoolName-->
-                <!--TODO: DYNAMICALLY ALLOCATE THIS LIST-->
                 <div class="form-group">
                     <label class="control-label col-md-2">School</label>
                     <div class="col-md-10">
-                        <select asp-for="SchoolName" class="form-control">
+                        <select asp-for="SchoolName" class="form-control" asp-items="@(new SelectList(ViewBag.SchoolList))">
+                            
+                            <!-- This list is dynamically allocated from the schools in the database now, this list is left here for reference (deleting it doesn't hurt anything')
+
                             <option value="">Select School</option>
                             <option value="T.W. Browne MS">T.W. Browne MS</option>
                             <option value="H.W.Lang Middle School">H.W.Lang Middle School</option>
@@ -101,6 +103,10 @@
                             <option value="Yale Elementary">Yale Elementary</option>
                             <option value="Mark Twain Elementary">Mark Twain Elementary</option>
                             <option value="Gaston Middle School">Gaston Middle School</option>
+
+                                -->
+
+
                         </select>
                     </div>
                 </div>
