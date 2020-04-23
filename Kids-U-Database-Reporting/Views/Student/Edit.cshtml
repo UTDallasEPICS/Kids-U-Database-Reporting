@@ -114,7 +114,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">KU Site</label>
                     <div class="col-md-10">
-                        <select asp-for="Facility" class="form-control">
+                        <select asp-for="Facility" class="form-control" asp-items="@(new SelectList(ViewBag.SiteList))">
+                            <!--
                             <option value="">Select KU Site</option>
                             <option value="1">Park9690</option>
                             <option value="2">Alista</option>
@@ -130,6 +131,7 @@
                             <option value="12">Legends</option>
                             <option value="13">800 Link</option>
                             <option value="14">Carrollton Oaks</option>
+                                -->
                         </select>
                     </div>
                 </div>

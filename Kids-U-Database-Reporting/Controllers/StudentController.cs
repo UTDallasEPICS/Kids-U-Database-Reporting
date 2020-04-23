@@ -13,13 +13,15 @@ namespace Kids_U_Database_Reporting.Controllers
     {
         private readonly IStudentService _studentService;
         private readonly ISchoolService _schoolService;
+        private readonly ISiteService _siteService;
         
-        public StudentController(IStudentService studentService, ISchoolService schoolService)
+        public StudentController(IStudentService studentService, ISchoolService schoolService, ISiteService siteService)
         {
             //constructor
 
             _studentService = studentService;
             _schoolService = schoolService;
+            _siteService = siteService;
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
@@ -53,6 +55,17 @@ namespace Kids_U_Database_Reporting.Controllers
                 schoolList.Add(school.SchoolName);
             }
             ViewBag.SchoolList = schoolList;
+            
+            var locations = await _siteService.GetSitesAsync();
+            List<String> siteList = new List<string>();
+
+            siteList.Add("Select KU Site");
+
+            foreach (Site site in locations)
+            {
+                siteList.Add(site.SiteName);
+            }
+            ViewBag.SiteList = siteList;
 
 
 
@@ -110,6 +123,17 @@ namespace Kids_U_Database_Reporting.Controllers
                 schoolList.Add(school.SchoolName);
             }
             ViewBag.SchoolList = schoolList;
+
+            var locations = await _siteService.GetSitesAsync();
+            List<String> siteList = new List<string>();
+
+            siteList.Add("Select KU Site");
+
+            foreach (Site site in locations)
+            {
+                siteList.Add(site.SiteName);
+            }
+            ViewBag.SiteList = siteList;
 
 
 
