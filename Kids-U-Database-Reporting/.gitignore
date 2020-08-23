@@ -1,18 +1,14 @@
-**.vs/
+.vs/
 
 .DS_Store
 
-.vs/**
+bin/
 
-bin/**
-
-obj/**
+obj/
 
 Migrations/**
 
-v16/**
+v16/
 
 /Kids-U-Database-Reporting.csproj.user
-
-**v16/
 
