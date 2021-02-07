@@ -25,15 +25,17 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchName, string ethnicity, string gender, string school)
         {
             //displays all students
 
-            var items = await _studentService.GetStudentsAsync();
-
-            var model = new StudentViewModel()
+            var items = await _studentService.GetStudentsAsync(searchName,ethnicity,gender,school);
+            StudentViewModel model = new StudentViewModel()
             {
-                Students = items
+                Students = items,
+                ResultCount = items.Length,
+                SelectedEthnicity = ethnicity,
+                SearchName = searchName
             };
             return View(model);
         }

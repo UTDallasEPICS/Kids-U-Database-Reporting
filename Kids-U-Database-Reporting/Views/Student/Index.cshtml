@@ -1,7 +1,5 @@
 ﻿@model StudentViewModel
-    <body>
-
-
+    <body onload="setSelectValue('@Model.SelectedEthnicity')">
         <div class="container body-content">
             <h2>Student Roster</h2>
 
@@ -34,35 +32,39 @@
                     </select>
                 </div>
 
-                <!--search-->
+                <!--Search Bar reloads view with selected form data-->
                 <div id="search">
-                    <input type="text" placeholder="Enter Student Name">
-                    <button type="button" onclick="showHide()">Adv.</button>
-                    <button type="submit">Go</button>
+                    <form id="searchForm" asp-controller="Student" asp-action="Index" method="post">
+                        <input type="text" name="SearchName" value=@Model.SearchName placeholder="Enter Student Name" />
+                        <button type="button" onclick="showHide()">Adv.</button>
+                        <button type="submit" value="Search">Go</button>
+                    </form>
                 </div>
             </div>
 
             <!--advanced-->
             <div class="expand" id="advancedSearch">
                 <div id="ethnicity">
-                    Ethnicity:<br>
-                    <select>
+                    <br>
+                    Ethnicity:
+                    <select id="ethnicitySelect" form="searchForm" name="Ethnicity">
                         <option value=""> Select Ethnicity </option>
                         <option value="African American"> African American </option>
                         <option value="Asian">Asian</option>
                         <option value="Hispanic/Latino">Hispanic/Latino</option>
-                        <option value="Caucasian/Other">Caucasian/Other</option>
+                        <option value="Caucasian">Caucasian</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
-                <div id="gender">
+                <form id="searchForm" name="Gender">
                     Gender:<br>
-                    <input type="radio" name="gender">Male<br>
-                    <input type="radio" name="gender">Female
-                </div>
+                    <input type="radio" name="Gender">Male<br>
+                    <input type="radio" name="Gender">Female
+                </form>
                 <div id="enrolled">
                     Number of Years Enrolled:<br>
                     <select>
-                        <option value="">Select Number of Years Enrolled </option>
+                        <option value="" selected>Select Number of Years Enrolled </option>
                         <option value="0">< 1 </option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -82,7 +84,7 @@
                 <div id="income">
                     Income:<br>
                     <select>
-                        <option value=""> Select Income</option>
+                        <option value="" selected> Select Income</option>
                         <option value="1">< $20K</option>
                         <option value="2">$20K - $25K</option>
                         <option value="3">> $25K</option>
@@ -95,7 +97,7 @@
                 </div>
                 <div id="school">
                     School:<br>
-                    <input type="text" name="schoolName" placeholder="Enter school name">
+                    @*<select form="searchForm" name="School" asp-items="@(new SelectList(ViewBag.SchoolList))" />*@
                 </div>
                 <div id="facility">
                     Facility:<br>
@@ -104,7 +106,7 @@
                 <div id="grade">
                     School Grade:<br>
                     <select>
-                        <option value="">Select School Grade </option>
+                        <option value="" selected>Select School Grade </option>
                         <option value="K">K </option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -118,8 +120,6 @@
                 </div>
             </div>
 
-
-
             <!--table-->
             <table class="table">
                 <tr>
@@ -128,29 +128,29 @@
                     <th>Kids-U Site</th>
                     <th>Grade</th>
                     <th></th>
-                    <th></th>
+                    <th>@Model.ResultCount Results</th>
                 </tr>
 
-                <!--TODO: this returns all, need to add filters-->
+                <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
                 @foreach (var item in Model.Students)
                 {
-            <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.Facility</td>
-                <td>@item.SchoolGrade</td>
-                <td>
-                    @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
-                    @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-                </td>
-            </tr>
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Facility</td>
+                        <td>@item.SchoolGrade</td>
+                        <td>
+                            @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
+                            @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                        </td>
+                    </tr>
                 }
 
             </table>
 
-    </div>
+        </div>
 </body>

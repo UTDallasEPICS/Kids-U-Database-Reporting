@@ -10,3 +10,7 @@ function showHide() {
 		x.style.display = "none";
 	}
 }
+
+function setSelectValue(selectedEthnicity) {
+	document.getElementById("ethnicitySelect").value = selectedEthnicity
+}

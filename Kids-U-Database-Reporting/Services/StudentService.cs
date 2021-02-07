@@ -19,12 +19,13 @@ namespace Kids_U_Database_Reporting.Services
             _context = context;
         }
 
-        //TODO: add search parameters to method call 
-        public async Task<Student[]> GetStudentsAsync()
+        // Returns list of all students matching the parameters passed
+        public async Task<Student[]> GetStudentsAsync(string name, string ethnicity, string gender, string schoolName)
         {
-            //returns all Students in Student database
             return await _context.Students
-                //.Where(x => x.IsDone == false) //example of how to filter for search with LINQ query
+                .Where(x => name==null || x.FirstName.Contains(name) || x.LastName.Contains(name)) 
+                .Where(x => ethnicity==null || x.Ethnicity.Equals(ethnicity)) 
+                .Where(x => schoolName==null || x.SchoolName.Equals(schoolName)) 
                 .ToArrayAsync();
         }
 
