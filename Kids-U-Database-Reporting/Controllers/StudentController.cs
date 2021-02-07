@@ -24,18 +24,42 @@ namespace Kids_U_Database_Reporting.Controllers
             _siteService = siteService;
         }
 
+        // Displays all students with filters from parameters
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> Index(string searchName, string ethnicity, string gender, string school)
+        public async Task<IActionResult> Index(string searchName, string selectedEthnicity, string selectedGender, string selectedSchool, string selectedLunch, string selectedIncome, string selectedActive, string selectedSchoolGrade, string selectedYearsEnrolled, string selectedSite)
         {
-            //displays all students
+            // Get all students who match the parameters
+            var items = await _studentService.GetStudentsAsync(searchName,selectedEthnicity,selectedGender,selectedSchool,selectedLunch,selectedIncome,selectedActive,selectedSchoolGrade,selectedYearsEnrolled,selectedSite);
 
-            var items = await _studentService.GetStudentsAsync(searchName,ethnicity,gender,school);
+            List<String> schoolList = new List<string>(); // Get current schools from database
+            schoolList.Add("Select School");
+            var schools = await _schoolService.GetSchoolsAsync();
+            foreach (School school in schools)
+                schoolList.Add(school.SchoolName);
+
+            List<String> siteList = new List<string>(); // Get current sites from database
+            siteList.Add("Select KU Site");
+            var sites = await _siteService.GetSitesAsync();
+            foreach (Site site in sites)
+                siteList.Add(site.SiteName);
+
+            // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
             {
                 Students = items,
                 ResultCount = items.Length,
-                SelectedEthnicity = ethnicity,
-                SearchName = searchName
+                SelectedEthnicity = selectedEthnicity,
+                SelectedGender = selectedGender,
+                SearchName = searchName,
+                SelectedLunch = selectedLunch,
+                SelectedIncome = selectedIncome,
+                SelectedActive = selectedActive,
+                SelectedSchoolGrade = selectedSchoolGrade,
+                SelectedYearsEnrolled = selectedYearsEnrolled,
+                SelectedSchool = selectedSchool!=null ? selectedSchool : "Select School", // If no school selected, use default value
+                SelectedSite = selectedSite!=null ? selectedSite : "Select KU Site",
+                SchoolList = schoolList,
+                SiteList = siteList
             };
             return View(model);
         }
@@ -47,23 +71,23 @@ namespace Kids_U_Database_Reporting.Controllers
 
 
             //this part is for dynamically allocating school list
-            var items = await _schoolService.GetSchoolsAsync();
+            var schools = await _schoolService.GetSchoolsAsync();
             List<String> schoolList = new List<string>();
 
             schoolList.Add("Select School");
 
-            foreach (School school in items)
+            foreach (School school in schools)
             {
                 schoolList.Add(school.SchoolName);
             }
             ViewBag.SchoolList = schoolList;
             
-            var locations = await _siteService.GetSitesAsync();
+            var sites = await _siteService.GetSitesAsync();
             List<String> siteList = new List<string>();
 
             siteList.Add("Select KU Site");
 
-            foreach (Site site in locations)
+            foreach (Site site in sites)
             {
                 siteList.Add(site.SiteName);
             }

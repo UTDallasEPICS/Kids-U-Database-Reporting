@@ -9,7 +9,7 @@ namespace Kids_U_Database_Reporting.Services
     public interface IStudentService
     {
         //student CRUD operations
-        Task<Student[]> GetStudentsAsync(string name, string ethnicity, string gender, string schoolName);
+        Task<Student[]> GetStudentsAsync(string name, string ethnicity, string gender, string schoolName, string lunch, string income, string active, string schoolGrade, string yearsEnrolled, string site);
         Task<Student> EditStudentAsync(int Id);
         Task<bool> ApplyEditStudentAsync(Student editedStudent);
         Task<bool> DeleteStudentAsync(int Id);

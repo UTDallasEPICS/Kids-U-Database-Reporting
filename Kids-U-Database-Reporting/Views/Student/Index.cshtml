@@ -1,156 +1,165 @@
 ﻿@model StudentViewModel
-    <body onload="setSelectValue('@Model.SelectedEthnicity')">
-        <div class="container body-content">
-            <h2>Student Roster</h2>
 
-            <!--search/filter/sort-->
-            <div class="tabletop">
-                <div id="left">
-                    <!--This button goes to the Add view which is the form for creating a student-->
-                    @Html.ActionLink("Create New", "Add", "Student")
+<!--When page loads, use setSelectValue() to reset the search options to what was last searched-->
+<body onload="setSelectValue('@Model.SelectedEthnicity','@Model.SelectedGender','@Model.SelectedSchool','@Model.SelectedLunch','@Model.SelectedIncome','@Model.SelectedActive','@Model.SelectedSchoolGrade','@Model.SelectedYearsEnrolled','@Model.SelectedSite')">
+    <div class="container body-content">
+        <h2>Student Roster</h2>
+        
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                <!--This button goes to the Add view which is the form for creating a student-->
+                @Html.ActionLink("Create New", "Add", "Student")
 
-                    <!--does nothing right now-->
-                    <a href="x">Export</a>
+                <!--does nothing right now-->
+                <a href="x">Export</a>
 
-                    <!--sort-->
-                    <select>
-                        <option value="">Sort by...</option>
-                        <option value="1">First Name A-Z</option>
-                        <option value="2">First Name Z-A</option>
-                        <option value="3">Last Name A-Z</option>
-                        <option value="4">Last Name Z-A</option>
-                        <option value="5">Enrolled Ascending</option>
-                        <option value="6">Enrolled Descending</option>
-                        <option value="7">Income Ascending</option>
-                        <option value="8">Income Descending</option>
-                        <option value="9">School A-Z</option>
-                        <option value="10">School Z-A</option>
-                        <option value="11">Kids-U Site A-Z</option>
-                        <option value="12">Kids-U Site Z-A</option>
-                        <option value="13">Grade Ascending</option>
-                        <option value="14">Grade Descending</option>
-                    </select>
-                </div>
-
-                <!--Search Bar reloads view with selected form data-->
-                <div id="search">
-                    <form id="searchForm" asp-controller="Student" asp-action="Index" method="post">
-                        <input type="text" name="SearchName" value=@Model.SearchName placeholder="Enter Student Name" />
-                        <button type="button" onclick="showHide()">Adv.</button>
-                        <button type="submit" value="Search">Go</button>
-                    </form>
-                </div>
+                <!--sort-->
+                <select>
+                    <option value="">Sort by...</option>
+                    <option value="1">First Name A-Z</option>
+                    <option value="2">First Name Z-A</option>
+                    <option value="3">Last Name A-Z</option>
+                    <option value="4">Last Name Z-A</option>
+                    <option value="5">Enrolled Ascending</option>
+                    <option value="6">Enrolled Descending</option>
+                    <option value="7">Income Ascending</option>
+                    <option value="8">Income Descending</option>
+                    <option value="9">School A-Z</option>
+                    <option value="10">School Z-A</option>
+                    <option value="11">Kids-U Site A-Z</option>
+                    <option value="12">Kids-U Site Z-A</option>
+                    <option value="13">Grade Ascending</option>
+                    <option value="14">Grade Descending</option>
+                </select>
             </div>
 
-            <!--advanced-->
-            <div class="expand" id="advancedSearch">
-                <div id="ethnicity">
-                    <br>
-                    Ethnicity:
-                    <select id="ethnicitySelect" form="searchForm" name="Ethnicity">
-                        <option value=""> Select Ethnicity </option>
-                        <option value="African American"> African American </option>
-                        <option value="Asian">Asian</option>
-                        <option value="Hispanic/Latino">Hispanic/Latino</option>
-                        <option value="Caucasian">Caucasian</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
-                <form id="searchForm" name="Gender">
-                    Gender:<br>
-                    <input type="radio" name="Gender">Male<br>
-                    <input type="radio" name="Gender">Female
+            <!--Search Bar reloads view with selected form data-->
+            <div id="search">
+                <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
+                    <input type="text" name="SearchName" value=@Model.SearchName placeholder="Enter Student Name" />
+                    <button type="button" onclick="showHide()">Adv.</button>
+                    <button type="submit" value="Search">Go</button>
                 </form>
-                <div id="enrolled">
-                    Number of Years Enrolled:<br>
-                    <select>
-                        <option value="" selected>Select Number of Years Enrolled </option>
-                        <option value="0">< 1 </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
-                </div>
-                <div id="active">
-                    Active:<br>
-                    <input type="radio" name="active">Yes<br>
-                    <input type="radio" name="active">No
-                </div>
-                <div id="income">
-                    Income:<br>
-                    <select>
-                        <option value="" selected> Select Income</option>
-                        <option value="1">< $20K</option>
-                        <option value="2">$20K - $25K</option>
-                        <option value="3">> $25K</option>
-                    </select>
-                </div>
-                <div id="lunch">
-                    Free Lunch:<br>
-                    <input type="radio" name="lunch">Yes<br>
-                    <input type="radio" name="lunch">No
-                </div>
-                <div id="school">
-                    School:<br>
-                    @*<select form="searchForm" name="School" asp-items="@(new SelectList(ViewBag.SchoolList))" />*@
-                </div>
-                <div id="facility">
-                    Facility:<br>
-                    <input type="text" name="facilityName" placeholder="Enter facility name">
-                </div>
-                <div id="grade">
-                    School Grade:<br>
-                    <select>
-                        <option value="" selected>Select School Grade </option>
-                        <option value="K">K </option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
-                </div>
             </div>
-
-            <!--table-->
-            <table class="table">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Kids-U Site</th>
-                    <th>Grade</th>
-                    <th></th>
-                    <th>@Model.ResultCount Results</th>
-                </tr>
-
-                <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
-                @foreach (var item in Model.Students)
-                {
-                    <tr>
-                        <td>@item.FirstName</td>
-                        <td>@item.LastName</td>
-                        <td>@item.Facility</td>
-                        <td>@item.SchoolGrade</td>
-                        <td>
-                            @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
-                            @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-                        </td>
-                    </tr>
-                }
-
-            </table>
-
         </div>
+
+        <!--advanced-->
+        <!--each select is tied to the searchForm so its value is passed to Index(), the name determines which parameter the value is-->
+        <div class="expand" id="advancedSearch">
+            <div id="ethnicity">
+                Ethnicity:<br>
+                <select id="ethnicitySelect" form="searchForm" name="SelectedEthnicity">
+                    <option value="">Select Ethnicity</option>
+                    <option value="African American">African American</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Hispanic/Latino">Hispanic/Latino</option>
+                    <option value="Caucasian">Caucasian</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div id="gender">
+                Gender:<br>
+                <select id="genderSelect" form="searchForm" name="SelectedGender">
+                    <option value="">Select Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+            <div id="enrolled">
+                Number of Years Enrolled:<br>
+                <select id="yearsEnrolledSelect" form="searchForm" name="SelectedYearsEnrolled">
+                    <option value="">Select Number of Years Enrolled</option>
+                    <option value="0">< 1</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            <div id="active">
+                Active:<br>
+                <select id="activeSelect" form="searchForm" name="SelectedActive">
+                    <option value="">Active?</option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+            <div id="income">
+                Income:<br>
+                <select id="incomeSelect" form="searchForm" name="SelectedIncome">
+                    <option value="">Select Income</option>
+                    <option value="&lt; $20k">< $20K</option>
+                    <option value="$20k - $25k">$20K - $25K</option>
+                    <option value="&gt; $25k">> $25K</option>
+                </select>
+            </div>
+            <div id="lunch">
+                Free Lunch:<br>
+                <select id="lunchSelect" form="searchForm" name="SelectedLunch">
+                    <option value="">Free Lunch?</option>
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+            <div id="school">
+                School:<br>
+                <select id="schoolSelect" form="searchForm" name="SelectedSchool" asp-items="@(new SelectList(Model.SchoolList))"></select>
+            </div>
+            <div id="facility">
+                Facility:<br>
+                <select id="siteSelect" form="searchForm" name="SelectedSite" asp-items="@(new SelectList(Model.SiteList))"></select>
+            </div>
+            <div id="grade">
+                School Grade:<br>
+                <select id="schoolGradeSelect" form="searchForm" name="SelectedSchoolGrade">
+                    <option value="">Select School Grade</option>
+                    <option value="K">K</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Kids-U Site</th>
+                <th>Grade</th>
+                <th></th>
+                <th>@Model.ResultCount Results</th>
+            </tr>
+
+            <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
+            @foreach (var item in Model.Students)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Facility</td>
+                    <td>@item.SchoolGrade</td>
+                    <td>
+                        @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
+                        @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 </body>

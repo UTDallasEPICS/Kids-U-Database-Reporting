@@ -11,6 +11,15 @@ function showHide() {
 	}
 }
 
-function setSelectValue(selectedEthnicity) {
+// Sets the select inputs to the value from the last search
+function setSelectValue(selectedEthnicity, selectedGender, selectedSchool, selectedLunch, selectedIncome, selectedActive, selectedSchoolGrade, selectedYearsEnrolled, selectedSite) {
 	document.getElementById("ethnicitySelect").value = selectedEthnicity
+	document.getElementById("genderSelect").value = selectedGender
+	document.getElementById("schoolSelect").value = selectedSchool
+	document.getElementById("lunchSelect").value = selectedLunch
+	document.getElementById("incomeSelect").value = selectedIncome
+	document.getElementById("activeSelect").value = selectedActive
+	document.getElementById("schoolGradeSelect").value = selectedSchoolGrade
+	document.getElementById("yearsEnrolledSelect").value = selectedYearsEnrolled
+	document.getElementById("siteSelect").value = selectedSite
 }
