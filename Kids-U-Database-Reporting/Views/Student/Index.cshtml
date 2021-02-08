@@ -17,29 +17,27 @@
                 <a href="x">Export</a>
 
                 <!--sort-->
-                <select>
-                    <option value="">Sort by...</option>
+                Sort by 
+                <select id="sortOrderSelect" form="searchForm" name="SortOrder">
                     <option value="1">First Name A-Z</option>
                     <option value="2">First Name Z-A</option>
                     <option value="3">Last Name A-Z</option>
                     <option value="4">Last Name Z-A</option>
-                    <option value="5">Enrolled Ascending</option>
-                    <option value="6">Enrolled Descending</option>
-                    <option value="7">Income Ascending</option>
-                    <option value="8">Income Descending</option>
-                    <option value="9">School A-Z</option>
-                    <option value="10">School Z-A</option>
-                    <option value="11">Kids-U Site A-Z</option>
-                    <option value="12">Kids-U Site Z-A</option>
-                    <option value="13">Grade Ascending</option>
-                    <option value="14">Grade Descending</option>
+                    <option value="5">Active First</option>
+                    <option value="6">Active Last</option>
+                    <option value="7">School A-Z</option>
+                    <option value="8">School Z-A</option>
+                    <option value="9">Kids-U Site A-Z</option>
+                    <option value="10">Kids-U Site Z-A</option>
+                    <option value="11">Grade Ascending</option>
+                    <option value="12">Grade Descending</option>
                 </select>
             </div>
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
                 <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
-                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" />
+                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus/>
                     <button type="button" onclick="showHide()">Adv.</button>
                     <button type="submit" value="Search">Go</button>
                 </form>
@@ -48,7 +46,7 @@
 
         <!--advanced-->
         <!--each select is tied to the searchForm so its value is passed to Index(), the name determines which parameter the value is-->
-        <div class="expand" id="advancedSearch">
+        <div class="expand" id="advancedSearch" style="display:grid">
             <div id="ethnicity">
                 <strong>Ethnicity:</strong><br>
                 <select id="ethnicitySelect" form="searchForm" name="Ethnicity">
@@ -60,21 +58,9 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-            <div id="gender">
-                <strong>Gender:</strong><br>
-                <select id="genderSelect" form="searchForm" name="Gender">
-                    <option value="">Select Gender</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                </select>
-            </div>
-            <div id="active">
-                <strong>Active</strong>:<br>
-                <select id="activeSelect" form="searchForm" name="Active">
-                    <option value="">Active?</option>
-                    <option value="True">Yes</option>
-                    <option value="False">No</option>
-                </select>
+            <div id="site">
+                <strong>KU Site:</strong><br>
+                <select id="siteSelect" form="searchForm" name="Site" asp-items="@(new SelectList(Model.SearchData.SiteList))"></select>
             </div>
             <div id="income">
                 <strong>Income:</strong><br>
@@ -85,11 +71,46 @@
                     <option value="&gt; $25k">> $25K</option>
                 </select>
             </div>
+            <div id="active">
+                <strong>Active</strong>:<br>
+                <select id="activeSelect" form="searchForm" name="Active">
+                    <option value="">Active?</option>
+                    <option value="True">Yes</option>
+                    <option value="False" selected>No</option>
+                </select>
+            </div>
             <div id="enrolled">
                 <strong>Number of Years Enrolled:</strong><br>
                 <select id="yearsEnrolledSelect" form="searchForm" name="YearsEnrolled">
                     <option value="">Select Number of Years Enrolled</option>
                     <option value="0">< 1</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+            <div id="gender">
+                <strong>Gender:</strong><br>
+                <select id="genderSelect" form="searchForm" name="Gender">
+                    <option value="">Select Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+            <div id="school">
+                <strong>School:</strong><br>
+                <select id="schoolSelect" form="searchForm" name="School" asp-items="@(new SelectList(Model.SearchData.SchoolList))"></select>
+            </div>
+            <div id="grade">
+                <strong>School Grade:</strong><br>
+                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade">
+                    <option value="">Select School Grade</option>
+                    <option value="K">K</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -108,29 +129,6 @@
                     <option value="False">No</option>
                 </select>
             </div>
-            <div id="school">
-                <strong>School:</strong><br>
-                <select id="schoolSelect" form="searchForm" name="School" asp-items="@(new SelectList(Model.SearchData.SchoolList))"></select>
-            </div>
-            <div id="site">
-                <strong>KU Site:</strong><br>
-                <select id="siteSelect" form="searchForm" name="Site" asp-items="@(new SelectList(Model.SearchData.SiteList))"></select>
-            </div>
-            <div id="grade">
-                <strong>School Grade:</strong><br>
-                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade">
-                    <option value="">Select School Grade</option>
-                    <option value="K">K</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-            </div>
         </div>
 
         <!--table-->
@@ -140,6 +138,8 @@
                 <th>Last Name</th>
                 <th>Kids-U Site</th>
                 <th>Grade</th>
+                <th>School</th>
+                <th>Active</th>
                 <th></th>
                 <th>@Model.SearchData.ResultCount Results</th>
             </tr>
@@ -152,11 +152,14 @@
                     <td>@item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
+                    <td>@item.SchoolName</td>
+                    <td>@item.Active</td>
                     <td>
                         @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
                         @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
                     </td>
                     <td>
+                        @Html.ActionLink("View", "View", new { id = item.StudentId }) |
                         @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
                     </td>

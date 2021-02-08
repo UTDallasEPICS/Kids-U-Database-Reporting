@@ -10,6 +10,7 @@ namespace Kids_U_Database_Reporting.Services
     {
         //student CRUD operations
         Task<Student[]> GetStudentsAsync(Search search);
+        Task<Student> GetStudentById(int Id);
         Task<Student> EditStudentAsync(int Id);
         Task<bool> ApplyEditStudentAsync(Student editedStudent);
         Task<bool> DeleteStudentAsync(int Id);

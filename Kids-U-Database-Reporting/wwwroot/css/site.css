@@ -80,7 +80,7 @@ footer {
 }
 #left select {
 	height: 35px;
-	padding: 5px 8px;
+	padding: 5px 5px 5px 0;
 	border: none;
 }
 #left select:focus {

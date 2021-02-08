@@ -26,28 +26,15 @@ namespace Kids_U_Database_Reporting.Controllers
 
         // Displays all students with filters from parameters
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        //public async Task<IActionResult> Index(string searchName, string selectedEthnicity, string selectedGender, string selectedSchool, string selectedLunch, string selectedIncome, string selectedActive, string selectedSchoolGrade, string selectedYearsEnrolled, string selectedSite)
         public async Task<IActionResult> Index(Search searchData)
         {
-            Console.Write(searchData);
             // Get all students who match the parameters
             var items = await _studentService.GetStudentsAsync(searchData);
 
-            List<String> schoolList = new List<string>(); // Get current schools from database
-            schoolList.Add("Select School");
-            var schools = await _schoolService.GetSchoolsAsync();
-            foreach (School school in schools)
-                schoolList.Add(school.SchoolName);
-
-            List<String> siteList = new List<string>(); // Get current sites from database
-            siteList.Add("Select KU Site");
-            var sites = await _siteService.GetSitesAsync();
-            foreach (Site site in sites)
-                siteList.Add(site.SiteName);
 
             searchData.ResultCount = items.Length;
-            searchData.SchoolList = schoolList;
-            searchData.SiteList = siteList;
+            searchData.SchoolList = await GetSchoolSelectList();
+            searchData.SiteList = await GetSiteSelectList();
 
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
@@ -63,31 +50,8 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to create student
 
-
-            //this part is for dynamically allocating school list
-            var schools = await _schoolService.GetSchoolsAsync();
-            List<String> schoolList = new List<string>();
-
-            schoolList.Add("Select School");
-
-            foreach (School school in schools)
-            {
-                schoolList.Add(school.SchoolName);
-            }
-            ViewBag.SchoolList = schoolList;
-            
-            var sites = await _siteService.GetSitesAsync();
-            List<String> siteList = new List<string>();
-
-            siteList.Add("Select KU Site");
-
-            foreach (Site site in sites)
-            {
-                siteList.Add(site.SiteName);
-            }
-            ViewBag.SiteList = siteList;
-
-
+            ViewBag.SchoolList = await GetSchoolSelectList();
+            ViewBag.SiteList = await GetSiteSelectList();
 
             return View();
         }
@@ -123,39 +87,20 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
+        public async Task<IActionResult> View(int Id)
+        {
+            return View(await _studentService.GetStudentById(Id));
+        }
+
+        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             //goes to form to edit student
 
-            var model = new Student();
+            var model = await _studentService.GetStudentById(Id);
 
-            model = await _studentService.EditStudentAsync(Id);
-
-
-            //this part is for dynamically allocating school list
-            var items = await _schoolService.GetSchoolsAsync();
-            List<String> schoolList = new List<string>();
-
-            schoolList.Add("Select School");
-
-            foreach (School school in items)
-            {
-                schoolList.Add(school.SchoolName);
-            }
-            ViewBag.SchoolList = schoolList;
-
-            var locations = await _siteService.GetSitesAsync();
-            List<String> siteList = new List<string>();
-
-            siteList.Add("Select KU Site");
-
-            foreach (Site site in locations)
-            {
-                siteList.Add(site.SiteName);
-            }
-            ViewBag.SiteList = siteList;
-
-
+            ViewBag.SchoolList = await GetSchoolSelectList();
+            ViewBag.SiteList = await GetSiteSelectList();
 
             return View(model);
         }
@@ -179,8 +124,6 @@ namespace Kids_U_Database_Reporting.Controllers
 
 
 
-
-
         //REPORT CARD STUFF STARTS HERE
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> ReportCardIndex(int Id)
@@ -191,11 +134,9 @@ namespace Kids_U_Database_Reporting.Controllers
 
             var model = new ReportCardViewModel()
             {
-                ReportCards = items
+                ReportCards = items,
+                Student = await _studentService.GetStudentById(Id)
             };
-
-            //EditStudentAsync actually returns a student based on id... it is poorly named
-            model.Student = await _studentService.EditStudentAsync(Id);
 
             return View(model);
         }
@@ -235,9 +176,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to edit report card
 
-            var model = new ReportCard();
-
-            model = await _studentService.GetReportCardAsync(Id);
+            var model = await _studentService.GetReportCardAsync(Id);
 
             return View(model);
         }
@@ -275,11 +214,9 @@ namespace Kids_U_Database_Reporting.Controllers
 
             var model = new OutcomeViewModel()
             {
-                OutcomeMeasurements = items
+                OutcomeMeasurements = items,
+                Student = await _studentService.GetStudentById(Id)
             };
-
-            //EditStudentAsync actually returns a student based on id... it is poorly named
-            model.Student = await _studentService.EditStudentAsync(Id);
 
             return View(model);
         }
@@ -289,7 +226,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to create outcome measurement
 
-            Student student = await _studentService.EditStudentAsync(Id);
+            Student student = await _studentService.GetStudentById(Id);
 
             ViewBag.FirstName = student.FirstName;
             ViewBag.LastName = student.LastName;
@@ -319,9 +256,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to edit outcome measurement
 
-            var model = new OutcomeMeasurement();
-
-            model = await _studentService.GetOutcomeAsync(Id);
+            var model = await _studentService.GetOutcomeAsync(Id);
 
             return View(model);
         }
@@ -342,5 +277,22 @@ namespace Kids_U_Database_Reporting.Controllers
 
         }
 
+        public async Task<List<String>> GetSiteSelectList() // Get current sites from database for html select element, default value is Select KU Site
+        {
+            List<String> siteList = new List<string> { "Select KU Site" }; 
+            var sites = await _siteService.GetSitesAsync();
+            foreach (Site site in sites)
+                siteList.Add(site.SiteName);
+            return siteList;
+        }
+
+        public async Task<List<String>> GetSchoolSelectList() // Get current schools from database for html select element, default value is Select School
+        {
+            List<String> schoolList = new List<string> { "Select School" };
+            var schools = await _schoolService.GetSchoolsAsync();
+            foreach (School school in schools)
+                schoolList.Add(school.SchoolName);
+            return schoolList;
+        }
     }
 }

@@ -7,6 +7,11 @@ namespace Kids_U_Database_Reporting.Models
 {
     public class Search
     {
+        public Search()
+        {
+            Active = "True"; // Default filter out inactive students
+        }
+        public string SortOrder { get; set; }
         public int ResultCount { get; set; }
         public string Name { get; set; }
         public string Gender { get; set; }

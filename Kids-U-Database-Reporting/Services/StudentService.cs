@@ -22,23 +22,40 @@ namespace Kids_U_Database_Reporting.Services
         // Returns list of all students matching the parameters passed
         public async Task<Student[]> GetStudentsAsync(Search s)
         {
-            // Convert string from input form to bool used in database. Needed since string is tested to be null for no input and bool can't be null
+            // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
             bool activeBool = s.Active == "True";
             int year = DateTime.Now.Year;
 
-            return await _context.Students
-                .Where(x => s.Name ==null || x.FirstName.Contains(s.Name) || x.LastName.Contains(s.Name)) 
-                .Where(x => s.Ethnicity==null || x.Ethnicity.Equals(s.Ethnicity)) 
-                .Where(x => s.Gender==null || x.Gender.Equals(s.Gender))
+            var students = _context.Students
+                .Where(x => s.Name == null || x.FirstName.Contains(s.Name) || x.LastName.Contains(s.Name))
+                .Where(x => s.Ethnicity == null || x.Ethnicity.Equals(s.Ethnicity))
+                .Where(x => s.Gender == null || x.Gender.Equals(s.Gender))
                 .Where(x => s.School == null || s.School.Equals("Select School") || x.SchoolName.Equals(s.School))
-                .Where(x => s.Lunch==null || x.Lunch == lunchBool)
-                .Where(x => s.Income==null || x.Income.Equals(s.Income))
-                .Where(x => s.Active==null || x.Active == activeBool)
-                .Where(x => s.SchoolGrade==null || x.SchoolGrade.Equals(s.SchoolGrade))
-                .Where(x => s.YearsEnrolled == null || year-x.EnrolledYear == int.Parse(s.YearsEnrolled))
-                .Where(x => s.Site == null || s.Site.Equals("Select KU Site") || x.Facility.Equals(s.Site))
-                .ToArrayAsync();
+                .Where(x => s.Lunch == null || x.Lunch == lunchBool)
+                .Where(x => s.Income == null || x.Income.Equals(s.Income))
+                .Where(x => s.Active == null || x.Active == activeBool)
+                .Where(x => s.SchoolGrade == null || x.SchoolGrade.Equals(s.SchoolGrade))
+                .Where(x => s.YearsEnrolled == null || year - x.EnrolledYear == int.Parse(s.YearsEnrolled))
+                .Where(x => s.Site == null || s.Site.Equals("Select KU Site") || x.Facility.Equals(s.Site));
+
+            switch (s.SortOrder)
+            {
+                case "1": students = students.OrderBy(s => s.FirstName); break;
+                case "2": students = students.OrderByDescending(s => s.FirstName); break;
+                case "3": students = students.OrderBy(s => s.LastName); break;
+                case "4": students = students.OrderByDescending(s => s.LastName); break;
+                case "5": students = students.OrderByDescending(s => s.Active); break; // Active ("True") first
+                case "6": students = students.OrderBy(s => s.Active); break; // Inactive ("False") first
+                case "7": students = students.OrderBy(s => s.SchoolName); break;
+                case "8": students = students.OrderByDescending(s => s.SchoolName); break;
+                case "9": students = students.OrderBy(s => s.Facility); break;
+                case "10": students = students.OrderByDescending(s => s.Facility); break;
+                case "11": students = students.OrderBy(s => s.SchoolGrade); break;
+                case "12": students = students.OrderByDescending(s => s.SchoolGrade); break;
+            }
+
+            return await students.ToArrayAsync();
         }
 
         public async Task<bool> AddStudentAsync(Student newStudent)
@@ -55,6 +72,10 @@ namespace Kids_U_Database_Reporting.Services
             _context.Students.Remove(deleteStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
+        }
+        public async Task<Student> GetStudentById(int Id)
+        {
+            return await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
         }
         public async Task<Student> EditStudentAsync(int Id)
         {
@@ -168,7 +189,5 @@ namespace Kids_U_Database_Reporting.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
-
-
     }
 }
