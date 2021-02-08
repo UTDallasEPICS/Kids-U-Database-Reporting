@@ -26,10 +26,12 @@ namespace Kids_U_Database_Reporting.Controllers
 
         // Displays all students with filters from parameters
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> Index(string searchName, string selectedEthnicity, string selectedGender, string selectedSchool, string selectedLunch, string selectedIncome, string selectedActive, string selectedSchoolGrade, string selectedYearsEnrolled, string selectedSite)
+        //public async Task<IActionResult> Index(string searchName, string selectedEthnicity, string selectedGender, string selectedSchool, string selectedLunch, string selectedIncome, string selectedActive, string selectedSchoolGrade, string selectedYearsEnrolled, string selectedSite)
+        public async Task<IActionResult> Index(Search searchData)
         {
+            Console.Write(searchData);
             // Get all students who match the parameters
-            var items = await _studentService.GetStudentsAsync(searchName,selectedEthnicity,selectedGender,selectedSchool,selectedLunch,selectedIncome,selectedActive,selectedSchoolGrade,selectedYearsEnrolled,selectedSite);
+            var items = await _studentService.GetStudentsAsync(searchData);
 
             List<String> schoolList = new List<string>(); // Get current schools from database
             schoolList.Add("Select School");
@@ -43,23 +45,15 @@ namespace Kids_U_Database_Reporting.Controllers
             foreach (Site site in sites)
                 siteList.Add(site.SiteName);
 
+            searchData.ResultCount = items.Length;
+            searchData.SchoolList = schoolList;
+            searchData.SiteList = siteList;
+
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
             {
                 Students = items,
-                ResultCount = items.Length,
-                SelectedEthnicity = selectedEthnicity,
-                SelectedGender = selectedGender,
-                SearchName = searchName,
-                SelectedLunch = selectedLunch,
-                SelectedIncome = selectedIncome,
-                SelectedActive = selectedActive,
-                SelectedSchoolGrade = selectedSchoolGrade,
-                SelectedYearsEnrolled = selectedYearsEnrolled,
-                SelectedSchool = selectedSchool!=null ? selectedSchool : "Select School", // If no school selected, use default value
-                SelectedSite = selectedSite!=null ? selectedSite : "Select KU Site",
-                SchoolList = schoolList,
-                SiteList = siteList
+                SearchData = searchData
             };
             return View(model);
         }

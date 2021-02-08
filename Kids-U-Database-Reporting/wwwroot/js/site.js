@@ -12,14 +12,14 @@ function showHide() {
 }
 
 // Sets the select inputs to the value from the last search
-function setSelectValue(selectedEthnicity, selectedGender, selectedSchool, selectedLunch, selectedIncome, selectedActive, selectedSchoolGrade, selectedYearsEnrolled, selectedSite) {
-	document.getElementById("ethnicitySelect").value = selectedEthnicity
-	document.getElementById("genderSelect").value = selectedGender
-	document.getElementById("schoolSelect").value = selectedSchool
-	document.getElementById("lunchSelect").value = selectedLunch
-	document.getElementById("incomeSelect").value = selectedIncome
-	document.getElementById("activeSelect").value = selectedActive
-	document.getElementById("schoolGradeSelect").value = selectedSchoolGrade
-	document.getElementById("yearsEnrolledSelect").value = selectedYearsEnrolled
-	document.getElementById("siteSelect").value = selectedSite
+function setSelectValue(search) {
+	document.getElementById("ethnicitySelect").value = search.ethnicity || ""
+	document.getElementById("genderSelect").value = search.gender || ""
+	document.getElementById("lunchSelect").value = search.lunch || ""
+	document.getElementById("incomeSelect").value = search.income || ""
+	document.getElementById("activeSelect").value = search.active || ""
+	document.getElementById("schoolGradeSelect").value = search.schoolGrade || ""
+	document.getElementById("yearsEnrolledSelect").value = search.yearsEnrolled || ""
+	document.getElementById("schoolSelect").value = search.school || "Select School"
+	document.getElementById("siteSelect").value = search.site || "Select KU Site"
 }

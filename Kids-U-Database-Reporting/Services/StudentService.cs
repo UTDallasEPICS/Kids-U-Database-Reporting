@@ -20,24 +20,24 @@ namespace Kids_U_Database_Reporting.Services
         }
 
         // Returns list of all students matching the parameters passed
-        public async Task<Student[]> GetStudentsAsync(string name, string ethnicity, string gender, string schoolName, string lunch, string income, string active, string schoolGrade, string yearsEnrolled, string site)
+        public async Task<Student[]> GetStudentsAsync(Search s)
         {
             // Convert string from input form to bool used in database. Needed since string is tested to be null for no input and bool can't be null
-            bool lunchBool = lunch == "True";
-            bool activeBool = active == "True";
+            bool lunchBool = s.Lunch == "True";
+            bool activeBool = s.Active == "True";
             int year = DateTime.Now.Year;
 
             return await _context.Students
-                .Where(x => name==null || x.FirstName.Contains(name) || x.LastName.Contains(name)) 
-                .Where(x => ethnicity==null || x.Ethnicity.Equals(ethnicity)) 
-                .Where(x => gender==null || x.Gender.Equals(gender))
-                .Where(x => schoolName == null || schoolName.Equals("Select School") || x.SchoolName.Equals(schoolName))
-                .Where(x => lunch==null || x.Lunch == lunchBool)
-                .Where(x => income==null || x.Income.Equals(income))
-                .Where(x => active==null || x.Active == activeBool)
-                .Where(x => schoolGrade==null || x.SchoolGrade.Equals(schoolGrade))
-                .Where(x => yearsEnrolled == null || year-x.EnrolledYear == int.Parse(yearsEnrolled))
-                .Where(x => site == null || site.Equals("Select KU Site") || x.Facility.Equals(site))
+                .Where(x => s.Name ==null || x.FirstName.Contains(s.Name) || x.LastName.Contains(s.Name)) 
+                .Where(x => s.Ethnicity==null || x.Ethnicity.Equals(s.Ethnicity)) 
+                .Where(x => s.Gender==null || x.Gender.Equals(s.Gender))
+                .Where(x => s.School == null || s.School.Equals("Select School") || x.SchoolName.Equals(s.School))
+                .Where(x => s.Lunch==null || x.Lunch == lunchBool)
+                .Where(x => s.Income==null || x.Income.Equals(s.Income))
+                .Where(x => s.Active==null || x.Active == activeBool)
+                .Where(x => s.SchoolGrade==null || x.SchoolGrade.Equals(s.SchoolGrade))
+                .Where(x => s.YearsEnrolled == null || year-x.EnrolledYear == int.Parse(s.YearsEnrolled))
+                .Where(x => s.Site == null || s.Site.Equals("Select KU Site") || x.Facility.Equals(s.Site))
                 .ToArrayAsync();
         }
 
