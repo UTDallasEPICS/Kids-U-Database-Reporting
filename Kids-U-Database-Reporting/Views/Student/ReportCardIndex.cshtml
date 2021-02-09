@@ -1,8 +1,6 @@
 ﻿@model ReportCardViewModel
 
 <body>
-
-
     <div class="container body-content">
         <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
 
@@ -13,12 +11,8 @@
 
                 <!--does nothing right now-->
                 <a href="/ReportCardRecords/Export">Export</a>
-
             </div>
         </div>
-
-
-
 
         <!--Math table-->
         <h3>Math</h3>
@@ -124,6 +118,5 @@
         <div>
             @Html.ActionLink("Back to Students", "Index", "Student")
         </div>
-
     </div>
 </body>

@@ -22,5 +22,5 @@ function setSelectValue(search) {
 	document.getElementById("yearsEnrolledSelect").value = search.yearsEnrolled || ""
 	document.getElementById("schoolSelect").value = search.school || "Select School"
 	document.getElementById("siteSelect").value = search.site || "Select KU Site"
-	document.getElementById("sortOrderSelect").value = search.sortOrder || "1"
+	document.getElementById("sortOrderSelect").value = search.sortOrder || "0"
 }

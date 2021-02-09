@@ -12,15 +12,13 @@ namespace Kids_U_Database_Reporting.Services
     {
         private readonly ApplicationDbContext _context;
 
-
         public StudentService(ApplicationDbContext context)
         {
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
 
-        // Returns list of all students matching the parameters passed
-        public async Task<Student[]> GetStudentsAsync(Search s)
+        public async Task<Student[]> GetStudentsAsync(Search s) // Returns list of all students matching the parameters passed
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
@@ -41,6 +39,7 @@ namespace Kids_U_Database_Reporting.Services
 
             switch (s.SortOrder)
             {
+                case "0": break; // Default is no sorting applied
                 case "1": students = students.OrderBy(s => s.FirstName); break;
                 case "2": students = students.OrderByDescending(s => s.FirstName); break;
                 case "3": students = students.OrderBy(s => s.LastName); break;
@@ -56,6 +55,10 @@ namespace Kids_U_Database_Reporting.Services
             }
 
             return await students.ToArrayAsync();
+        }
+        public async Task<Student[]> GetStudentsAsync() // Get all students, no filtering
+        {
+            return await _context.Students.ToArrayAsync();
         }
 
         public async Task<bool> AddStudentAsync(Student newStudent)

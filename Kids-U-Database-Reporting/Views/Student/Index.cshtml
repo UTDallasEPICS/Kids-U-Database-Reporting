@@ -13,12 +13,14 @@
                 <!--This button goes to the Add view which is the form for creating a student-->
                 @Html.ActionLink("Create New", "Add", "Student")
 
-                <!--does nothing right now-->
-                <a href="x">Export</a>
+                <!--Enter always submits first button, hidden search button for priority over export button-->
+                <button hidden form="searchForm" type="submit"></button>
+                <!--Export button, connected to the searchForm so that the selected filtering is applied-->
+                <button form="searchForm" formaction="Student/ExportStudents" type="submit">Export</button>
 
                 <!--sort-->
-                Sort by 
                 <select id="sortOrderSelect" form="searchForm" name="SortOrder">
+                    <option value="0">Sort by...</option>
                     <option value="1">First Name A-Z</option>
                     <option value="2">First Name Z-A</option>
                     <option value="3">Last Name A-Z</option>
@@ -134,8 +136,7 @@
         <!--table-->
         <table class="table">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
                 <th>Kids-U Site</th>
                 <th>Grade</th>
                 <th>School</th>
@@ -148,8 +149,7 @@
             @foreach (var item in Model.Students)
             {
                 <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
+                    <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>

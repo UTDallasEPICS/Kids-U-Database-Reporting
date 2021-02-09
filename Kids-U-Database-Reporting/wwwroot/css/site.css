@@ -78,6 +78,19 @@ footer {
 	color: white;
 	text-decoration: none;
 }
+#left button {
+	background-color: #8F0306;
+	color: white;
+	border: none;
+	padding: 8px 15px;
+	text-align: center;
+	font-size: 12px;
+}
+#left button:hover {
+	background-color: #000C7C;
+	color: white;
+	text-decoration: none;
+}
 #left select {
 	height: 35px;
 	padding: 5px 5px 5px 0;

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Kids_U_Database_Reporting.Services;
 using Kids_U_Database_Reporting.Models;
 using Microsoft.AspNetCore.Authorization;
+using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
@@ -120,6 +124,19 @@ namespace Kids_U_Database_Reporting.Controllers
 
         }
 
+        public async Task<ActionResult> ExportStudents(Search searchData) // Export a csv of student data https://stackoverflow.com/a/62125940
+        {
+            var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
+
+            using var ms = new MemoryStream();
+            using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
+            using (var cw = new CsvWriter(sw, cc))
+            {
+                cw.WriteRecords(await _studentService.GetStudentsAsync(searchData));
+            }
+            return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date.ToString("d")}.csv");
+        }
+
 
 
 
@@ -129,7 +146,6 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ReportCardIndex(int Id)
         {
             //displays all report cards for one student
-
             var items = await _studentService.GetReportCardsAsync(Id);
 
             var model = new ReportCardViewModel()
@@ -137,7 +153,6 @@ namespace Kids_U_Database_Reporting.Controllers
                 ReportCards = items,
                 Student = await _studentService.GetStudentById(Id)
             };
-
             return View(model);
         }
 
@@ -158,24 +173,18 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard)
         {
             //puts new reportCard in database
-
             var successful = await _studentService.SubmitNewReportCardAsync(newReportCard);
 
             if (!successful)
-            {
                 return BadRequest("Could not add report card.");
-            }
 
             return RedirectToAction("ReportCardIndex", "Student", new { id = newReportCard.Student.StudentId });
-
-
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> EditReportCard(int Id)
         {
             //goes to form to edit report card
-
             var model = await _studentService.GetReportCardAsync(Id);
 
             return View(model);
@@ -187,14 +196,11 @@ namespace Kids_U_Database_Reporting.Controllers
             var successful = await _studentService.ApplyEditReportCardAsync(editedReportCard);
 
             if (!successful)
-            {
                 return BadRequest("Could not edit report card.");
-            }
 
             editedReportCard = await _studentService.GetReportCardAsync(editedReportCard.ReportCardId);
 
             return RedirectToAction("ReportCardIndex", "Student", new { id = editedReportCard.Student.StudentId });
-
         }
 
 
