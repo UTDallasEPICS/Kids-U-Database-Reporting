@@ -8,5 +8,6 @@ namespace Kids_U_Database_Reporting.Models
     public class StudentViewModel
     {
         public Student[] Students { get; set; }
+        public Search SearchData { get; set; }
     }
 }

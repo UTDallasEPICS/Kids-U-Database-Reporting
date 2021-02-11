@@ -78,9 +78,22 @@ footer {
 	color: white;
 	text-decoration: none;
 }
+#left button {
+	background-color: #8F0306;
+	color: white;
+	border: none;
+	padding: 8px 15px;
+	text-align: center;
+	font-size: 12px;
+}
+#left button:hover {
+	background-color: #000C7C;
+	color: white;
+	text-decoration: none;
+}
 #left select {
 	height: 35px;
-	padding: 5px 8px;
+	padding: 5px 5px 5px 0;
 	border: none;
 }
 #left select:focus {
@@ -126,11 +139,11 @@ footer {
 
 /* advanced search area */
 .expand {
-	display: none;
-	grid-gap: 50px;
-	grid-template-columns: auto auto auto auto;
+	display: grid;
+	grid-gap: 20px;
+	grid-template-columns: auto auto auto auto auto;
 	justify-content: center;
 	align-content: center;
 	background-color: #eef6ff;
-	height: 300px;
+	height: 200px;
 }

@@ -1,0 +1,19 @@
+﻿@model Student
+
+<body>
+    <div class="container body-content">
+        <h2>Student Roster</h2>
+
+        <h4>@Model.FirstName @Model.LastName</h4>
+        <hr>
+
+        <div class="student-info">
+            <h5>@Model.Ethnicity</h5>
+        </div>
+                
+        <!--Back, just like brower back button so search settings are preserved-->
+        <div>
+            <a href='javascript:history.go(-1)'>Back to Students</a>
+        </div>
+    </div>
+</body>
