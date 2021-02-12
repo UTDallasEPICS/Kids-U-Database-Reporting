@@ -60,6 +60,10 @@ namespace Kids_U_Database_Reporting.Services
         {
             return await _context.Students.ToArrayAsync();
         }
+        public async Task<Student[]> GetStudentsRCAsync(Search searchData) // Get all students, no filtering
+        {
+            return await _context.Students.Include(s => s.ReportCards).ToArrayAsync();
+        }
 
         public async Task<bool> AddStudentAsync(Student newStudent)
         {
