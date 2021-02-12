@@ -5,7 +5,7 @@
 </script>
 <body onload="setSelectValue(searchData)">
     <div class="container body-content">
-        <h2>Student Roster</h2>
+        <h2>Student Latest Report Cards</h2>
 
         <!--search/filter/sort-->
         <div class="tabletop">
@@ -38,7 +38,7 @@
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
-                <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
+                <form id="searchForm" asp-controller="ReportCard" asp-action="Index" method="get">
                     <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
                     <button type="button" onclick="showHide()">Adv.</button>
                     <button type="submit" value="Search">Go</button>
@@ -134,11 +134,13 @@
         </div>
 
         <!--table-->
-        <table class="report-card-table">
+        <table class="table report-card-table">
             <tr>
                 <th colspan="6"></th>
                 <th colspan="6" align="center">Math</th>
+                <th></th>
                 <th colspan="6" align="center">Reading</th>
+                <th></th>
                 <th colspan="6" align="center">Language</th>
             </tr>
             <tr>
@@ -155,6 +157,7 @@
                 <th>4</th>
                 <th>5</th>
                 <th>S</th>
+                <th></th>
 
                 <th>1</th>
                 <th>2</th>
@@ -162,6 +165,7 @@
                 <th>4</th>
                 <th>5</th>
                 <th>S</th>
+                <th></th>
 
                 <th>1</th>
                 <th>2</th>
@@ -169,10 +173,10 @@
                 <th>4</th>
                 <th>5</th>
                 <th>S</th>
-                <th>@Model.SearchData.ResultCount Results</th>
+                <th></th>
             </tr>
 
-            <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
+            <!--Displays the lastest report card for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
             @foreach (Student item in Model.Students)
             {
                 <tr>
@@ -180,88 +184,40 @@
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>
-                </tr>
-                if (item.ReportCards == null || item.ReportCards.Count == 0) 
-                {
-                    <tr>
-                        <td>No Report Cards</td>
-                    </tr>
-                }
-                else
-                {
-                    foreach (ReportCard rc in item.ReportCards)
+                    @if (item.ReportCards == null || item.ReportCards.Count == 0)
                     {
-                        <tr>
-                            <td colspan="4"></td>
-                            <td>@rc.ReportSchoolGrade</td>
-                            <td>@rc.ReportSchoolSemester</td>
-                            <td>@rc.MathFirst</td>
-                            <td>@rc.MathSecond</td>
-                            <td>@rc.MathThird</td>
-                            <td>@rc.MathFourth</td>
-                            <td>@rc.MathFifth</td>
-                            <td>@rc.MathSemester</td>
-                            <td>@rc.ReadingFirst</td>
-                            <td>@rc.ReadingSecond</td>
-                            <td>@rc.ReadingThird</td>
-                            <td>@rc.ReadingFourth</td>
-                            <td>@rc.ReadingFifth</td>
-                            <td>@rc.ReadingSemester</td>
-                            <td>@rc.LanguageFirst</td>
-                            <td>@rc.LanguageSecond</td>
-                            <td>@rc.LanguageThird</td>
-                            <td>@rc.LanguageFourth</td>
-                            <td>@rc.LanguageFifth</td>
-                            <td>@rc.LanguageSemester</td>
-                            <td>@Html.ActionLink("View", "View", new { id = item.StudentId })</td>
-                        </tr>
+                        <td colspan="25">No Report Cards</td>
                     }
-                }
+                    else
+                    {
+                        ReportCard rc = item.ReportCards.ToList().Last(); // Get the latest report card for the student
+
+                        <td>@rc.ReportSchoolGrade</td>
+                        <td>@rc.ReportSchoolSemester</td>
+                        <td>@rc.MathFirst</td>
+                        <td>@rc.MathSecond</td>
+                        <td>@rc.MathThird</td>
+                        <td>@rc.MathFourth</td>
+                        <td>@rc.MathFifth</td>
+                        <td>@rc.MathSemester</td>
+                        <td></td>
+                        <td>@rc.ReadingFirst</td>
+                        <td>@rc.ReadingSecond</td>
+                        <td>@rc.ReadingThird</td>
+                        <td>@rc.ReadingFourth</td>
+                        <td>@rc.ReadingFifth</td>
+                        <td>@rc.ReadingSemester</td>
+                        <td></td>
+                        <td>@rc.LanguageFirst</td>
+                        <td>@rc.LanguageSecond</td>
+                        <td>@rc.LanguageThird</td>
+                        <td>@rc.LanguageFourth</td>
+                        <td>@rc.LanguageFifth</td>
+                        <td>@rc.LanguageSemester</td>
+                        <td>@Html.ActionLink("View", "View", new { id = item.StudentId })</td>
+                    }
+                </tr>
             }
         </table>
     </div>
 </body>
-
-@*
-<th>ReportSchoolGrade</th>
-<th>ReportSchoolSemester</th>
-<th>MathFirst</th>
-<th>MathSecond</th>
-<th>MathThird</th>
-<th>MathFourth</th>
-<th>MathFifth</th>
-<th>MathSemester</th>
-<th>ReadingFirst</th>
-<th>ReadingSecond</th>
-<th>ReadingThird</th>
-<th>ReadingFourth</th>
-<th>ReadingFifth</th>
-<th>ReadingSemester</th>
-<th>LanguageFirst</th>
-<th>LanguageSecond</th>
-<th>LanguageThird</th>
-<th>LanguageFourth</th>
-<th>LanguageFifth</th>
-<th>LanguageSemester</th>
-
-<td>item.ReportSchoolGrade</td>
-<td>item.ReportSchoolSemester</td>
-<td>item.MathFirst</td>
-<td>item.MathSecond</td>
-<td>item.MathThird</td>
-<td>item.MathFourth</td>
-<td>item.MathFifth</td>
-<td>item.MathSemester</td>
-<td>item.ReadingFirst</td>
-<td>item.ReadingSecond</td>
-<td>item.ReadingThird</td>
-<td>item.ReadingFourth</td>
-<td>item.ReadingFifth</td>
-<td>item.ReadingSemester</td>
-<td>item.LanguageFirst</td>
-<td>item.LanguageSecond</td>
-<td>item.LanguageThird</td>
-<td>item.LanguageFourth</td>
-<td>item.LanguageFifth</td>
-<td>item.LanguageSemester</td>
-    *@

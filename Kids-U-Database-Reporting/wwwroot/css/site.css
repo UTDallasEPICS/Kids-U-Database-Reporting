@@ -147,3 +147,9 @@ footer {
 	background-color: #eef6ff;
 	height: 200px;
 }
+
+/*Table of all report cards*/
+.report-card-table td {
+	border: solid #ddd;
+	border-width: 0 1px 0 1px;
+}

@@ -33,7 +33,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters
-            var items = await _studentService.GetStudentsRCAsync(searchData);
+            var items = await _studentService.GetStudentsWithReportCardsAsync(searchData);
 
             searchData.ResultCount = items.Length;
             searchData.SchoolList = await GetSchoolSelectList();
