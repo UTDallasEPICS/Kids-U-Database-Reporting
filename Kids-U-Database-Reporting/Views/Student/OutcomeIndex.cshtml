@@ -1,8 +1,9 @@
 ﻿@model OutcomeViewModel
+@{
+    ViewData["Title"] = "Outcome Measurements";
+}
 
 <body>
-
-
     <div class="container body-content">
         <h2>Outcome Measurements for @Model.Student.FirstName @Model.Student.LastName</h2>
 
@@ -54,13 +55,9 @@
             </table>
         }
 
-
-
-            <!--back-->
-            <div>
-                @Html.ActionLink("Back to Students", "Index", "Student")
-            </div>
-
-
+        <!--back-->
+        <div>
+            @Html.ActionLink("Back to Students", "Index", "Student")
         </div>
+    </div>
 </body>

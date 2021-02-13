@@ -153,3 +153,17 @@ footer {
 	border: solid #ddd;
 	border-width: 0 1px 0 1px;
 }
+/*Center certain table headers*/
+.report-card-table .th-center {
+	text-align: center;
+}
+
+/*Grouping for report card editing/creation*/
+.report-card-topics {
+	display: flex;
+	flex-direction: row;
+}
+.report-card-topic {
+	margin: 30px;
+	padding: 10px;
+}

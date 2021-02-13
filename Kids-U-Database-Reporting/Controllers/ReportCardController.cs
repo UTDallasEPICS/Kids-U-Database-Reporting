@@ -28,11 +28,11 @@ namespace Kids_U_Database_Reporting.Controllers
             _siteService = siteService;
         }
 
-        // Displays the report cards for all students with filters from parameters
+        // Displays the latest report card for all students with filters from parameters
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index(Search searchData)
         {
-            // Get all students who match the parameters
+            // Get all students who match the parameters with their report card data loaded
             var items = await _studentService.GetStudentsWithReportCardsAsync(searchData);
 
             searchData.ResultCount = items.Length;
@@ -50,80 +50,17 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> AddAsync()
+        public async Task<IActionResult> Add() // Create new report card for any student
         {
-            //goes to form to create student
-
-            ViewBag.SchoolList = await GetSchoolSelectList();
-            ViewBag.SiteList = await GetSiteSelectList();
+            // Create list for making student select element, use custom object to show a full name
+            var studentList = await _studentService.GetStudentsAsync();
+            var studentSelectList = new List<object>(); // List of anon objects, select list needs key-value pair for data
+            foreach(var student in studentList)
+                studentSelectList.Add(new {Id = student.StudentId, Name = student.FirstName+" "+student.LastName }); // Create anon object with the Id and Name
+            ViewBag.StudentList = studentSelectList;
 
             return View();
         }
-
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Student newStudent)
-        {
-            //puts new student in database
-
-            var successful = await _studentService.AddStudentAsync(newStudent);
-
-            if (!successful)
-            {
-                return BadRequest("Could not add student.");
-            }
-
-            return RedirectToAction("Index", "Student");
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Delete(int Id)
-        {
-            //deletes student from database
-
-            var successful = await _studentService.DeleteStudentAsync(Id);
-
-            if (!successful)
-            {
-                return BadRequest("Could not delete Student.");
-            }
-
-            return RedirectToAction("Index", "Student");
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> View(int Id)
-        {
-            return View(await _studentService.GetStudentById(Id));
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Edit(int Id)
-        {
-            //goes to form to edit student
-
-            var model = await _studentService.GetStudentById(Id);
-
-            ViewBag.SchoolList = await GetSchoolSelectList();
-            ViewBag.SiteList = await GetSiteSelectList();
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> ApplyEdit(Student editedStudent)
-        {
-            //submit edits of student
-
-            var successful = await _studentService.ApplyEditStudentAsync(editedStudent);
-
-            if (!successful)
-            {
-                return BadRequest("Could not edit student.");
-            }
-            
-            return RedirectToAction("Index", "Student");
-
-        }
-
         public async Task<ActionResult> ExportStudents(Search searchData) // Export a csv of student data https://stackoverflow.com/a/62125940
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
@@ -138,10 +75,6 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
 
-
-
-
-        //REPORT CARD STUFF STARTS HERE
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> ReportCardIndex(int Id)
         {
@@ -178,7 +111,7 @@ namespace Kids_U_Database_Reporting.Controllers
             if (!successful)
                 return BadRequest("Could not add report card.");
 
-            return RedirectToAction("ReportCardIndex", "Student", new { id = newReportCard.Student.StudentId });
+            return RedirectToAction("ReportCardIndex", "ReportCard", new { id = newReportCard.Student.StudentId });
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
@@ -201,86 +134,6 @@ namespace Kids_U_Database_Reporting.Controllers
             editedReportCard = await _studentService.GetReportCardAsync(editedReportCard.ReportCardId);
 
             return RedirectToAction("ReportCardIndex", "Student", new { id = editedReportCard.Student.StudentId });
-        }
-
-
-
-
-
-
-
-
-        //OUTCOME MEASUREMENTS STUFF STARTS HERE
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> OutcomeIndex(int Id)
-        {
-            //displays all outcome measurements for one student
-
-            var items = await _studentService.GetOutcomesAsync(Id);
-
-            var model = new OutcomeViewModel()
-            {
-                OutcomeMeasurements = items,
-                Student = await _studentService.GetStudentById(Id)
-            };
-
-            return View(model);
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> CreateOutcome(int Id)
-        {
-            //goes to form to create outcome measurement
-
-            Student student = await _studentService.GetStudentById(Id);
-
-            ViewBag.FirstName = student.FirstName;
-            ViewBag.LastName = student.LastName;
-            ViewBag.Student = student;
-
-            return View();
-        }
-        
-        public async Task<IActionResult> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement)
-        {
-            //puts new outcome measurement in database
-
-            var successful = await _studentService.SubmitNewOutcomeAsync(newOutcomeMeasurement);
-
-            if (!successful)
-            {
-                return BadRequest("Could not add outcome measurement.");
-            }
-
-            return RedirectToAction("OutcomeIndex", "Student", new { id = newOutcomeMeasurement.Student.StudentId });
-
-
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> EditOutcome(int Id)
-        {
-            //goes to form to edit outcome measurement
-
-            var model = await _studentService.GetOutcomeAsync(Id);
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement)
-        {
-            //submit edit of report card
-            var successful = await _studentService.ApplyEditOutcomeAsync(editedOutcomeMeasurement);
-
-            if (!successful)
-            {
-                return BadRequest("Could not edit outcome measurement.");
-            }
-
-            editedOutcomeMeasurement = await _studentService.GetOutcomeAsync(editedOutcomeMeasurement.OutcomeId);
-
-            return RedirectToAction("OutcomeIndex", "Student", new { id = editedOutcomeMeasurement.Student.StudentId });
-
         }
 
         public async Task<List<String>> GetSiteSelectList() // Get current sites from database for html select element, default value is Select KU Site

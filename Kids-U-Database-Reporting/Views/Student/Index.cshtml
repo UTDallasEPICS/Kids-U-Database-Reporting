@@ -1,4 +1,7 @@
 ﻿@model StudentViewModel
+@{
+    ViewData["Title"] = "Student Roster";
+}
 
 <script>
     var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads, use setSelectValue() to reset the search options to what was last searched
@@ -39,7 +42,7 @@
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
                 <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
-                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus/>
+                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
                     <button type="button" onclick="showHide()">Adv.</button>
                     <button type="submit" value="Search">Go</button>
                 </form>

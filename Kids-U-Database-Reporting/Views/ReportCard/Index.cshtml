@@ -1,17 +1,20 @@
 ﻿@model StudentViewModel
+@{
+    ViewData["Title"] = "Report Cards";
+}
 
 <script>
     var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads, use setSelectValue() to reset the search options to what was last searched
 </script>
 <body onload="setSelectValue(searchData)">
     <div class="container body-content">
-        <h2>Student Latest Report Cards</h2>
+        <h2>Report Cards</h2>
 
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                <!--This button goes to the Add view which is the form for creating a student-->
-                @Html.ActionLink("Create New", "Add", "Student")
+                <!--This button goes to the Add view which is the form for creating a report card-->
+                @Html.ActionLink("Create New", "Add", "ReportCard", new { id = 2 })
 
                 <!--Enter always submits first button, hidden search button for priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
@@ -136,12 +139,13 @@
         <!--table-->
         <table class="table report-card-table">
             <tr>
-                <th colspan="6"></th>
-                <th colspan="6" align="center">Math</th>
+                <th colspan="4"></th>
+                <th colspan="2">Report Card</th>
+                <th colspan="6" class="th-center">Math</th>
                 <th></th>
-                <th colspan="6" align="center">Reading</th>
+                <th colspan="6" class="th-center">Reading</th>
                 <th></th>
-                <th colspan="6" align="center">Language</th>
+                <th colspan="6" class="th-center">Language</th>
             </tr>
             <tr>
                 <th>Name</th>
@@ -151,8 +155,8 @@
                 <th>Grade</th>
                 <th>Semester</th>
 
-                <th> 1 </th>
-                <th> 2 </th>
+                <th>1</th>
+                <th>2</th>
                 <th>3</th>
                 <th>4</th>
                 <th>5</th>
@@ -214,7 +218,7 @@
                         <td>@rc.LanguageFourth</td>
                         <td>@rc.LanguageFifth</td>
                         <td>@rc.LanguageSemester</td>
-                        <td>@Html.ActionLink("View", "View", new { id = item.StudentId })</td>
+                        <td>@Html.ActionLink("View", "ReportCardIndex", new { id = item.StudentId })</td>
                     }
                 </tr>
             }

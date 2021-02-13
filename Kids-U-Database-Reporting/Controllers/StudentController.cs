@@ -134,7 +134,7 @@ namespace Kids_U_Database_Reporting.Controllers
             {
                 cw.WriteRecords(await _studentService.GetStudentsAsync(searchData));
             }
-            return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date.ToString("d")}.csv");
+            return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
         }
 
 
