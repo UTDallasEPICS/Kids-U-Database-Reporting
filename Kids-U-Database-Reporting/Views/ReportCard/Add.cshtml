@@ -1,9 +1,10 @@
 ﻿@model ReportCard
-
+@{ 
+    ViewData["Title"] = "New Report Card";
+}
 <body>
     <div class="container body-content">
         <h2>Create New Report Card</h2>
-
         <!--form-->
         <form asp-controller="ReportCard" asp-action="SubmitNewReportCard" method="post">
             <div class="form-horizontal">
@@ -12,7 +13,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Student</label>
                     <div class="col-md-10">
-                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList,"Id","Name"))"></select>
+                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList,"Id","Name",ViewBag.StudentId))"></select>
                     </div>
                 </div>
 
@@ -203,9 +204,10 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to Report Cards", "ReportCardIndex", "ReportCard")
+            @if (ViewBag.StudentId == null)
+                Html.ActionLink("Back to Report Cards", "Index", "ReportCard");
+            else
+                Html.ActionLink("Back to Report Cards", "View", "ReportCard", new { id = ViewBag.StudentId });
         </div>
-
-
     </div>
 </body>

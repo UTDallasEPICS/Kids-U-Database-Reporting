@@ -30,6 +30,10 @@ footer {
 .table > tbody > tr:nth-child(odd) > td {
   background-color: #eef6ff;
 }
+/*table-entry-row class is for tr with data like a student, used for clicking a row to view the student*/
+.table-entry-row:hover { 
+	cursor: pointer;
+}
 .jumbotron {
 	background: #E8FAFD;
 }

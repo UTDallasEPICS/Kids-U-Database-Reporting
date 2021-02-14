@@ -14,12 +14,12 @@
         <div class="tabletop">
             <div id="left">
                 <!--This button goes to the Add view which is the form for creating a report card-->
-                @Html.ActionLink("Create New", "Add", "ReportCard", new { id = 2 })
+                @Html.ActionLink("Create New", "Add", "ReportCard")
 
                 <!--Enter always submits first button, hidden search button for priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
-                <button form="searchForm" formaction="Student/ExportStudents" type="submit">Export</button>
+                <button form="searchForm" formaction="ReportCard/Export" type="submit">Export</button>
 
                 <!--sort-->
                 <select id="sortOrderSelect" form="searchForm" name="SortOrder">
@@ -177,20 +177,19 @@
                 <th>4</th>
                 <th>5</th>
                 <th>S</th>
-                <th></th>
             </tr>
 
             <!--Displays the lastest report card for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
             @foreach (Student item in Model.Students)
             {
-                <tr>
+                <tr class="table-entry-row" onclick="window.location = '/ReportCard/View/@item.StudentId'"> <!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>
                     @if (item.ReportCards == null || item.ReportCards.Count == 0)
                     {
-                        <td colspan="25">No Report Cards</td>
+                        <td colspan="24">No Report Cards</td>
                     }
                     else
                     {
@@ -218,7 +217,6 @@
                         <td>@rc.LanguageFourth</td>
                         <td>@rc.LanguageFifth</td>
                         <td>@rc.LanguageSemester</td>
-                        <td>@Html.ActionLink("View", "ReportCardIndex", new { id = item.StudentId })</td>
                     }
                 </tr>
             }

@@ -19,7 +19,7 @@
                 <!--Enter always submits first button, hidden search button for priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
-                <button form="searchForm" formaction="Student/ExportStudents" type="submit">Export</button>
+                <button form="searchForm" formaction="Student/Export" type="submit">Export</button>
 
                 <!--sort-->
                 <select id="sortOrderSelect" form="searchForm" name="SortOrder">
@@ -151,7 +151,7 @@
             <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
             @foreach (var item in Model.Students)
             {
-                <tr>
+                <tr class="table-entry-row" onclick="window.location = '/Student/View/@item.StudentId'"> <!--Click the row to run View(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
@@ -162,7 +162,6 @@
                         @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
                     </td>
                     <td>
-                        @Html.ActionLink("View", "View", new { id = item.StudentId }) |
                         @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
                     </td>

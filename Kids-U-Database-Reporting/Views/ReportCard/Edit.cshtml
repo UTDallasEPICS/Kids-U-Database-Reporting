@@ -1,13 +1,15 @@
 ﻿@model ReportCard
-
+@{
+    ViewData["Title"] = "Edit Report Card";
+}
 <body>
     <div class="container body-content">
-        <h2>Create New Report Card</h2>
+        <h2>Edit Report Card</h2>
 
         <!--form-->
-        <form asp-controller="ReportCard" asp-action="SubmitNewReportCard" asp-route-id="@ViewBag.Student.StudentId" method="post">
+        <form asp-controller="Student" asp-action="ApplyEditReportCard" method="post">
             <div class="form-horizontal">
-                <h4>@ViewBag.FirstName @ViewBag.LastName</h4><hr />
+                <h4>@Model.Student.FirstName @Model.Student.LastName</h4><hr />
 
                 <!--SchoolGrade-->
                 <div class="form-group">
@@ -177,15 +179,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-10">
-                    <input type="hidden" asp-for="Student.StudentId" value="@ViewBag.Student.StudentId" />
-                </div>
-                <div class="col-md-10">
-                    <input type="hidden" asp-for="Student.FirstName" value="@ViewBag.Student.FirstName" />
-                </div>
-                <div class="col-md-10">
-                    <input type="hidden" asp-for="Student.LastName" value="@ViewBag.Student.LastName" />
-                </div>
+                <!--variables that need to retain values (hidden from user)-->
+                @Html.Hidden("ReportCardId")
+                @Html.Hidden("Student")
+
 
                 <!--submit-->
                 <div class="form-group">
@@ -198,7 +195,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to Report Cards", "ReportCardIndex", new { id = ViewBag.Student.StudentId })
+            @Html.ActionLink("Back to Report Cards", "View", new { id = Model.Student.StudentId })
         </div>
     </div>
 </body>

@@ -18,11 +18,6 @@ namespace Kids_U_Database_Reporting.Services
         Task<bool> DeleteStudentAsync(int Id);
         Task<bool> AddStudentAsync(Student newStudent);
 
-        //report card CRUD operations
-        Task<ReportCard[]> GetReportCardsAsync(int Id);
-        Task<ReportCard> GetReportCardAsync(int Id);
-        Task<bool> SubmitNewReportCardAsync(ReportCard newReportCard);
-        Task<bool> ApplyEditReportCardAsync(ReportCard editedReportCard);
 
         //outcome measurement CRUD operations
         Task<OutcomeMeasurement[]> GetOutcomesAsync(int Id);

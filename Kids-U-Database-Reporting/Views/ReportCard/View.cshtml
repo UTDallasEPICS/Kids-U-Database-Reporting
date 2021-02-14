@@ -1,5 +1,7 @@
 ﻿@model ReportCardViewModel
-
+@{
+    ViewData["Title"] = "View Report Cards";
+}
 <body>
     <div class="container body-content">
         <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
@@ -7,10 +9,9 @@
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                @Html.ActionLink("Create New", "CreateReportCard", new { id = Model.Student.StudentId })
+                @Html.ActionLink("Create New", "Add", "ReportCard", new { studentId = Model.Student.StudentId })
 
-                <!--does nothing right now-->
-                <a href="/ReportCardRecords/Export">Export</a>
+                @Html.ActionLink("Export", "ExportStudent", "ReportCard", new { studentId = Model.Student.StudentId })
             </div>
         </div>
 
@@ -41,7 +42,7 @@
                     <td>@(String.IsNullOrEmpty(item.MathFourth) ? "--" : item.MathFourth) </td>
                     <td>@(String.IsNullOrEmpty(item.MathFifth) ? "--" : item.MathFifth) </td>
                     <td>@(String.IsNullOrEmpty(item.MathSemester) ? "--" : item.MathSemester) </td>
-                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.ReportCardId })</td>
                 </tr>
             }
 
@@ -50,7 +51,6 @@
         <!--Reading table-->
         <h3>Reading</h3>
         <table class="table">
-
             <tr>
                 <th>School Grade</th>
                 <th>Semester</th>
@@ -74,17 +74,15 @@
                     <td>@(String.IsNullOrEmpty(item.ReadingFourth) ? "--" : item.ReadingFourth) </td>
                     <td>@(String.IsNullOrEmpty(item.ReadingFifth) ? "--" : item.ReadingFifth) </td>
                     <td>@(String.IsNullOrEmpty(item.ReadingSemester) ? "--" : item.ReadingSemester) </td>
-                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.ReportCardId })</td>
                 </tr>
             }
-
         </table>
 
 
         <!--LanguageArts table-->
         <h3>Language Arts</h3>
         <table class="table">
-
             <tr>
                 <th>School Grade</th>
                 <th>Semester</th>
@@ -108,10 +106,9 @@
                     <td>@(String.IsNullOrEmpty(item.LanguageFourth) ? "--" : item.LanguageFourth) </td>
                     <td>@(String.IsNullOrEmpty(item.LanguageFifth) ? "--" : item.LanguageFifth) </td>
                     <td>@(String.IsNullOrEmpty(item.LanguageSemester) ? "--" : item.LanguageSemester) </td>
-                    <td>@Html.ActionLink("Edit", "EditReportCard", new { id = item.ReportCardId })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.ReportCardId })</td>
                 </tr>
             }
-
         </table>
 
         <!--back-->

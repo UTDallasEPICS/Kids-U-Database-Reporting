@@ -18,14 +18,16 @@ namespace Kids_U_Database_Reporting.Controllers
         private readonly IStudentService _studentService;
         private readonly ISchoolService _schoolService;
         private readonly ISiteService _siteService;
-        
-        public StudentController(IStudentService studentService, ISchoolService schoolService, ISiteService siteService)
-        {
-            //constructor
+        private readonly IReportCardService _reportCardService;
+        private readonly ICommonService _commonService;
 
+        public StudentController(IStudentService studentService, ISchoolService schoolService, ISiteService siteService, IReportCardService reportCardService, ICommonService commonService)
+        {
             _studentService = studentService;
             _schoolService = schoolService;
             _siteService = siteService;
+            _reportCardService = reportCardService;
+            _commonService = commonService;
         }
 
         // Displays all students with filters from parameters
@@ -35,10 +37,9 @@ namespace Kids_U_Database_Reporting.Controllers
             // Get all students who match the parameters
             var items = await _studentService.GetStudentsAsync(searchData);
 
-
             searchData.ResultCount = items.Length;
-            searchData.SchoolList = await GetSchoolSelectList();
-            searchData.SiteList = await GetSiteSelectList();
+            searchData.SchoolList = await _commonService.GetSchoolSelectList();
+            searchData.SiteList = await _commonService.GetSiteSelectList();
 
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
@@ -54,8 +55,8 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to create student
 
-            ViewBag.SchoolList = await GetSchoolSelectList();
-            ViewBag.SiteList = await GetSiteSelectList();
+            ViewBag.SchoolList = await _commonService.GetSchoolSelectList();
+            ViewBag.SiteList = await _commonService.GetSiteSelectList();
 
             return View();
         }
@@ -103,8 +104,8 @@ namespace Kids_U_Database_Reporting.Controllers
 
             var model = await _studentService.GetStudentById(Id);
 
-            ViewBag.SchoolList = await GetSchoolSelectList();
-            ViewBag.SiteList = await GetSiteSelectList();
+            ViewBag.SchoolList = await _commonService.GetSchoolSelectList();
+            ViewBag.SiteList = await _commonService.GetSiteSelectList();
 
             return View(model);
         }
@@ -124,7 +125,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         }
 
-        public async Task<ActionResult> ExportStudents(Search searchData) // Export a csv of student data https://stackoverflow.com/a/62125940
+        public async Task<ActionResult> Export(Search searchData) // Export a csv of student data https://stackoverflow.com/a/62125940
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 
@@ -146,7 +147,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ReportCardIndex(int Id)
         {
             //displays all report cards for one student
-            var items = await _studentService.GetReportCardsAsync(Id);
+            var items = await _reportCardService.GetStudentReportCardsAsync(Id);
 
             var model = new ReportCardViewModel()
             {
@@ -173,7 +174,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard)
         {
             //puts new reportCard in database
-            var successful = await _studentService.SubmitNewReportCardAsync(newReportCard);
+            var successful = await _reportCardService.SubmitNewReportCardAsync(newReportCard);
 
             if (!successful)
                 return BadRequest("Could not add report card.");
@@ -185,7 +186,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> EditReportCard(int Id)
         {
             //goes to form to edit report card
-            var model = await _studentService.GetReportCardAsync(Id);
+            var model = await _reportCardService.GetReportCardAsync(Id);
 
             return View(model);
         }
@@ -193,19 +194,15 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ApplyEditReportCard(ReportCard editedReportCard)
         {
             //submit edit of report card
-            var successful = await _studentService.ApplyEditReportCardAsync(editedReportCard);
+            var successful = await _reportCardService.ApplyEditReportCardAsync(editedReportCard);
 
             if (!successful)
                 return BadRequest("Could not edit report card.");
 
-            editedReportCard = await _studentService.GetReportCardAsync(editedReportCard.ReportCardId);
+            editedReportCard = await _reportCardService.GetReportCardAsync(editedReportCard.ReportCardId);
 
             return RedirectToAction("ReportCardIndex", "Student", new { id = editedReportCard.Student.StudentId });
         }
-
-
-
-
 
 
 
@@ -281,24 +278,6 @@ namespace Kids_U_Database_Reporting.Controllers
 
             return RedirectToAction("OutcomeIndex", "Student", new { id = editedOutcomeMeasurement.Student.StudentId });
 
-        }
-
-        public async Task<List<String>> GetSiteSelectList() // Get current sites from database for html select element, default value is Select KU Site
-        {
-            List<String> siteList = new List<string> { "Select KU Site" }; 
-            var sites = await _siteService.GetSitesAsync();
-            foreach (Site site in sites)
-                siteList.Add(site.SiteName);
-            return siteList;
-        }
-
-        public async Task<List<String>> GetSchoolSelectList() // Get current schools from database for html select element, default value is Select School
-        {
-            List<String> schoolList = new List<string> { "Select School" };
-            var schools = await _schoolService.GetSchoolsAsync();
-            foreach (School school in schools)
-                schoolList.Add(school.SchoolName);
-            return schoolList;
         }
     }
 }
