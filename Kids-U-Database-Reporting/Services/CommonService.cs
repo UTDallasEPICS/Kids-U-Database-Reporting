@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Kids_U_Database_Reporting.Models;
 
 namespace Kids_U_Database_Reporting.Services
@@ -18,21 +19,21 @@ namespace Kids_U_Database_Reporting.Services
             _siteService = siteService;
         }
 
-        public async Task<List<String>> GetSiteSelectList() // Get current sites from database for html select element, default value is Select KU Site
+        public async Task<List<SelectListItem>> GetSiteSelectList() // Get current sites from database for html select element, default value is Select KU Site
         {
-            List<String> siteList = new List<string> { "Select KU Site" };
+            List<SelectListItem> siteList = new List<SelectListItem> { new SelectListItem { Text = "Select KU Site" } };
             var sites = await _siteService.GetSitesAsync();
             foreach (Site site in sites)
-                siteList.Add(site.SiteName);
+                siteList.Add(new SelectListItem { Text = site.SiteName });
             return siteList;
         }
 
-        public async Task<List<String>> GetSchoolSelectList() // Get current schools from database for html select element, default value is Select School
+        public async Task<List<SelectListItem>> GetSchoolSelectList() // Get current schools from database for html select element, default value is Select School
         {
-            List<String> schoolList = new List<string> { "Select School" };
+            List<SelectListItem> schoolList = new List<SelectListItem> { new SelectListItem { Text =  "Select School" } };
             var schools = await _schoolService.GetSchoolsAsync();
             foreach (School school in schools)
-                schoolList.Add(school.SchoolName);
+                schoolList.Add(new SelectListItem { Text = school.SchoolName });
             return schoolList;
         }
     }

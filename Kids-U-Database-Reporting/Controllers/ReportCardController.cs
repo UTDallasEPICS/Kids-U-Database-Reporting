@@ -37,15 +37,20 @@ namespace Kids_U_Database_Reporting.Controllers
             // Get all students who match the parameters with their report card data loaded
             var items = await _studentService.GetStudentsWithReportCardsAsync(searchData);
 
+            var selectLists = new SelectLists
+            {
+                SchoolList = await _commonService.GetSchoolSelectList(),
+                SiteList = await _commonService.GetSiteSelectList()
+            };
+
             searchData.ResultCount = items.Length;
-            searchData.SchoolList = await _commonService.GetSchoolSelectList();
-            searchData.SiteList = await _commonService.GetSiteSelectList();
 
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
             {
                 Students = items,
-                SearchData = searchData
+                SearchData = searchData,
+                SelectLists = selectLists
             };
             
             return View(model);

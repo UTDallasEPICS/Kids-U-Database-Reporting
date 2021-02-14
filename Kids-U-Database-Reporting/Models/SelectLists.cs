@@ -6,24 +6,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Kids_U_Database_Reporting.Models
 {
-    public class Search
+    public class SelectLists
     {
-        public Search()
-        {
-            Active = "True"; // Default filter out inactive students
-        }
-        public string SortOrder { get; set; }
-        public int ResultCount { get; set; }
-        public string Name { get; set; }
-        public string Gender { get; set; }
-        public string Ethnicity { get; set; }
-        public string SchoolGrade { get; set; }
-        public string Lunch { get; set; }
-        public string Income { get; set; }
-        public string Active { get; set; }
-        public string YearsEnrolled { get; set; }
-        public string School { get; set; }
-        public string Site { get; set; }
         public List<SelectListItem> SchoolList { get; set; }
         public List<SelectListItem> SiteList { get; set; }
 
@@ -86,6 +70,22 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="", Text="Free Lunch?" },
             new SelectListItem { Value="True", Text="Yes" },
             new SelectListItem { Value="False", Text="No" }
+        };
+        public List<SelectListItem> SortOrderList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value="0", Text="Sort by..." },
+            new SelectListItem { Value="1", Text="First Name A-Z" },
+            new SelectListItem { Value="2", Text="First Name Z-A" },
+            new SelectListItem { Value="3", Text="Last Name A-Z" },
+            new SelectListItem { Value="4", Text="Last Name Z-A" },
+            new SelectListItem { Value="5", Text="Active First" },
+            new SelectListItem { Value="6", Text="Active Last" },
+            new SelectListItem { Value="7", Text="School A-Z" },
+            new SelectListItem { Value="8", Text="School Z-A" },
+            new SelectListItem { Value="9", Text="Kids-U Site A-Z" },
+            new SelectListItem { Value="10", Text="Kids-U Site Z-A" },
+            new SelectListItem { Value="11", Text="Grade Ascending" },
+            new SelectListItem { Value="12", Text="Grade Descending" }
         };
     }
 }

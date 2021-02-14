@@ -9,5 +9,6 @@ namespace Kids_U_Database_Reporting.Models
     {
         public Student[] Students { get; set; }
         public Search SearchData { get; set; }
+        public SelectLists SelectLists { get; set; }
     }
 }

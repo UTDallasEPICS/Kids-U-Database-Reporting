@@ -1,16 +1,17 @@
 ﻿<!--connects to student model-->
 @model Student
+@{
+    ViewData["Title"] = "Edit Student";
+}
 <!--asp-for="FirstName" tag will put the input into the FirstName variable of student model and replaces id="FirstName" name="FirstName" type="text" value=""-->
 
 <body>
     <div class="container body-content">
-        <h2>Student Roster</h2>
+        <h2>Edit Student</h2>
 
         <!--form-->
         <form asp-controller="Student" asp-action="ApplyEdit" method="post">
             <div class="form-horizontal">
-                <h4>Create New</h4><hr />
-
                 <!--FirstName-->
                 <div class="form-group">
                     <label class="control-label col-md-2">First Name</label>
