@@ -65,11 +65,18 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="7", Text="7" },
             new SelectListItem { Value="8", Text="8" }
         };
-        public List<SelectListItem> LunchList { get; }=new List<SelectListItem>
+        public List<SelectListItem> LunchList { get; } = new List<SelectListItem>
         {
             new SelectListItem { Value="", Text="Free Lunch?" },
             new SelectListItem { Value="True", Text="Yes" },
             new SelectListItem { Value="False", Text="No" }
+        };
+        public List<SelectListItem> SemesterList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value="", Text="Select Semester" },
+            new SelectListItem { Value="fall", Text="Fall" },
+            new SelectListItem { Value="spring", Text="Spring" },
+            new SelectListItem { Value="summer", Text="Summer" }
         };
         public List<SelectListItem> SortOrderList { get; } = new List<SelectListItem>
         {

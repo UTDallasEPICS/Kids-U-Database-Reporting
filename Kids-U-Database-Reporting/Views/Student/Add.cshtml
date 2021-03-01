@@ -31,14 +31,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Ethnicity</label>
                     <div class="col-md-10">
-                        <select asp-for="Ethnicity" class="form-control">
-                            <option value="">Select Ethnicity</option>
-                            <option value="African American">African American</option>
-                            <option value="Asian">Asian</option>
-                            <option value="Hispanic/Latino">Hispanic/Latino</option>
-                            <option value="Caucasian">Caucasian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList" class="form-control"></select>
                     </div>
                 </div>
 
@@ -46,93 +39,15 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">School</label>
                     <div class="col-md-10">
-                        <select asp-for="SchoolName" class="form-control" asp-items="@(new SelectList(ViewBag.SchoolList))">
-                            
-                            <!-- This list is dynamically allocated from the schools in the database now, this list is left here for reference (deleting it doesn't hurt anything')
-
-                            <option value="">Select School</option>
-                            <option value="T.W. Browne MS">T.W. Browne MS</option>
-                            <option value="H.W.Lang Middle School">H.W.Lang Middle School</option>
-                            <option value="Buchanan Middle School">Buchanan Middle School</option>
-                            <option value="Ronald E. McNair">Ronald E. McNair</option>
-                            <option value="Abe Lincoln Elementary">Abe Lincoln Elementary</option>
-                            <option value="Wallace Elementary">Wallace Elementary</option>
-                            <option value="Northlake Elementary">Northlake Elementary</option>
-                            <option value="Lake Highlands Junior High">Lake Highlands Junior High</option>
-                            <option value="Forest Lane Academy">Forest Lane Academy</option>
-                            <option value="Audelia Creek">Audelia Creek</option>
-                            <option value="Jack Lowe Elementary">Jack Lowe Elementary</option>
-                            <option value="Lee A. McShan Elementary">Lee A. McShan Elementary</option>
-                            <option value="Jill Stone Elementary">Jill Stone Elementary</option>
-                            <option value="Sam Tasby Middle School">Sam Tasby Middle School</option>
-                            <option value="J.C. Cannaday Elementary">J.C. Cannaday Elementary</option>
-                            <option value="L.L. Hotchkiss">L.L. Hotchkiss</option>
-                            <option value="O.W. Holmes">O.W. Holmes</option>
-                            <option value="Boude Storey MS">Boude Storey MS</option>
-                            <option value="Dan D Rogers">Dan D Rogers</option>
-                            <option value="Wilmer Hutchinson">Wilmer Hutchinson</option>
-                            <option value="Edward Titch Elementary">Edward Titch Elementary</option>
-                            <option value="Onesimo Hernandez Elementary">Onesimo Hernandez Elementary</option>
-                            <option value="Skyview">Skyview</option>
-                            <option value="Terrace Elementary">Terrace Elementary</option>
-                            <option value="Forest Meadow">Forest Meadow</option>
-                            <option value="Bayles Elementary">Bayles Elementary</option>
-                            <option value="Harmony Charter School">Harmony Charter School</option>
-                            <option value="Thurgood Marshall">Thurgood Marshall</option>
-                            <option value="O Henery Elementary">O Henery Elementary</option>
-                            <option value="Richardson Classical Academy">Richardson Classical Academy</option>
-                            <option value="Jess Harben Elementary">Jess Harben Elementary</option>
-                            <option value="Garland Christian Academy">Garland Christian Academy</option>
-                            <option value="Larry Smith Elementary">Larry Smith Elementary</option>
-                            <option value="Southwest Leaderdhip">Southwest Leaderdhip</option>
-                            <option value="Couch Elementary">Couch Elementary</option>
-                            <option value="Coyle">Coyle</option>
-                            <option value="Casa View">Casa View</option>
-                            <option value="Hanby Elementary">Hanby Elementary</option>
-                            <option value="Wilkinson Elementary">Wilkinson Elementary</option>
-                            <option value="Gill Elementary">Gill Elementary</option>
-                            <option value="Montclair Elementary">Montclair Elementary</option>
-                            <option value="Edna Rowe">Edna Rowe</option>
-                            <option value="Nova Academy">Nova Academy</option>
-                            <option value="J. W. Long Elementary">J. W. Long Elementary</option>
-                            <option value="Merriman Park Elementary">Merriman Park Elementary</option>
-                            <option value="Stultz Road Elementary">Stultz Road Elementary</option>
-                            <option value="Aikin Elemenatry">Aikin Elemenatry</option>
-                            <option value="Yale Elementary">Yale Elementary</option>
-                            <option value="Mark Twain Elementary">Mark Twain Elementary</option>
-                            <option value="Gaston Middle School">Gaston Middle School</option>
-
-                                -->
-
-
-                        </select>
+                        <select asp-for="SchoolName" class="form-control" asp-items=ViewBag.Selectlists.SchoolList></select>
                     </div>
                 </div>
 
                 <!--Facility-->
-                <!--TODO: DYNAMICALLY ALLOCATE THIS LIST-->
                 <div class="form-group">
                     <label class="control-label col-md-2">KU Site</label>
                     <div class="col-md-10">
-                        <select asp-for="Facility" class="form-control" asp-items="@(new SelectList(ViewBag.SiteList))">
-                            <!--
-                            <option value="">Select KU Site</option>
-                            <option value="1">Park9690</option>
-                            <option value="2">Alista</option>
-                            <option value="3">Mayan Palms</option>
-                            <option value="4">Solaris</option>
-                            <option value="5">Towne Center</option>
-                            <option value="6">The Vineyards</option>
-                            <option value="7">Otto (formerly Cantera Creek)</option>
-                            <option value="8">Fair Oaks</option>
-                            <option value="9">Twenty-Five25</option>
-                            <option value="10">Solaire</option>
-                            <option value="11">600 East</option>
-                            <option value="12">Legends</option>
-                            <option value="13">800 Link</option>
-                            <option value="14">Carrollton Oaks</option>
-                                -->
-                        </select>
+                        <select asp-for="Facility" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
                     </div>
                 </div>
 
@@ -140,18 +55,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Grade</label>
                     <div class="col-md-10">
-                        <select asp-for="SchoolGrade" class="form-control">
-                            <option value="">Select Grade</option>
-                            <option value="K">K</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
+                        <select asp-for="SchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
                     </div>
                 </div>
 
@@ -159,10 +63,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="Gender">Gender</label>
                     <div class="col-md-10">
-                        <div class="checkbox-inline">
-                            <input type="radio" asp-for="Gender" value="Male" />Male
-                            <input type="radio" asp-for="Gender" value="Female" />Female
-                        </div>
+                        <select asp-for="Gender" class="form-control" asp-items=ViewBag.SelectLists.GenderList></select>
                     </div>
                 </div>
 
@@ -170,12 +71,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Household Income</label>
                     <div class="col-md-10">
-                        <select asp-for="Income" class="form-control">
-                            <option value="">Select Income</option>
-                            <option value="&lt; $20k">&lt; $20k</option>
-                            <option value="$20k - $25k">$20k - $25k</option>
-                            <option value="&gt; $25k">&gt; $25k</option>
-                        </select>
+                        <select asp-for="Income" class="form-control" asp-items=ViewBag.SelectLists.IncomeList></select>
                     </div>
                 </div>
 
@@ -183,10 +79,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Free Lunch</label>
                     <div class="col-md-10">
-                        <div class="checkbox-inline">
-                            <input type="radio" asp-for="Lunch" value="true" />Yes
-                            <input type="radio" checked="checked" asp-for="Lunch" value="false" />No
-                        </div>
+                        <select asp-for="Lunch" class="form-control" asp-items=ViewBag.SelectLists.LunchList></select>
                     </div>
                 </div>
 
@@ -202,12 +95,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Semester</label>
                     <div class="col-md-10">
-                        <select asp-for="EnrolledSemester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="fall">fall</option>
-                            <option value="spring">spring</option>
-                            <option value="summer">summer</option>
-                        </select>
+                        <select asp-for="EnrolledSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                     </div>
                 </div>
 
@@ -249,7 +137,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to Students", "Index", "Student")
+            @Html.ActionLink("Back", "Index", "Student")
         </div>
     </div>
 </body>

@@ -17,15 +17,15 @@ namespace Kids_U_Database_Reporting.Services
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
-        public async Task<ReportCard[]> GetStudentReportCardsAsync(int Id)
+        public async Task<ReportCard[]> GetReportCardsAsync(int studentId)
         {
             //returns all report cards for a Student
-            return await _context.ReportCards.Where(x => x.Student.StudentId == Id).ToArrayAsync();
+            return await _context.ReportCards.Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
-        public async Task<ReportCard[]> GetStudentReportCardsWithStudentAsync(int Id)
+        public async Task<ReportCard[]> GetReportCardsWithStudentAsync(int studentId)
         {
             //returns all report cards for a Student
-            return await _context.ReportCards.Include(s => s.Student).Where(x => x.Student.StudentId == Id).ToArrayAsync();
+            return await _context.ReportCards.Include(s => s.Student).Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
         public async Task<ReportCard[]> GetAllReportCardsAsync(Search s) // Gets all report cards with a student that matches the search
         {

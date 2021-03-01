@@ -36,13 +36,6 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             // Get all students who match the parameters
             var items = await _studentService.GetStudentsAsync(searchData);
-
-            var selectLists = new SelectLists
-            {
-                SchoolList = await _commonService.GetSchoolSelectList(),
-                SiteList = await _commonService.GetSiteSelectList()
-            };
-
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -50,19 +43,29 @@ namespace Kids_U_Database_Reporting.Controllers
             {
                 Students = items,
                 SearchData = searchData,
-                SelectLists = selectLists
+            };
+
+            ViewBag.selectLists = new SelectLists
+            {
+                SchoolList = await _commonService.GetSchoolSelectList(),
+                SiteList = await _commonService.GetSiteSelectList()
             };
 
             return View(model);
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> AddAsync()
+        public async Task<IActionResult> Add()
         {
             //goes to form to create student
 
             ViewBag.SchoolList = await _commonService.GetSchoolSelectList();
             ViewBag.SiteList = await _commonService.GetSiteSelectList();
+            ViewBag.SelectLists = new SelectLists
+            {
+                SchoolList = await _commonService.GetSchoolSelectList(),
+                SiteList = await _commonService.GetSiteSelectList()
+            };
 
             return View();
         }
@@ -109,9 +112,11 @@ namespace Kids_U_Database_Reporting.Controllers
             //goes to form to edit student
 
             var model = await _studentService.GetStudentById(Id);
-
-            ViewBag.SchoolList = await _commonService.GetSchoolSelectList();
-            ViewBag.SiteList = await _commonService.GetSiteSelectList();
+            ViewBag.SelectLists = new SelectLists
+            {
+                SchoolList = await _commonService.GetSchoolSelectList(),
+                SiteList = await _commonService.GetSiteSelectList()
+            };
 
             return View(model);
         }
@@ -143,74 +148,6 @@ namespace Kids_U_Database_Reporting.Controllers
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
         }
-
-
-
-
-
-        //REPORT CARD STUFF STARTS HERE
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> ReportCardIndex(int Id)
-        {
-            //displays all report cards for one student
-            var items = await _reportCardService.GetStudentReportCardsAsync(Id);
-
-            var model = new ReportCardViewModel()
-            {
-                ReportCards = items,
-                Student = await _studentService.GetStudentById(Id)
-            };
-            return View(model);
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> CreateReportCard(int Id)
-        {
-            //goes to form to create report card
-
-            Student student = await _studentService.EditStudentAsync(Id);
-
-            ViewBag.FirstName = student.FirstName;
-            ViewBag.LastName = student.LastName;
-            ViewBag.Student = student;
-
-            return View();
-        }
-        
-        public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard)
-        {
-            //puts new reportCard in database
-            var successful = await _reportCardService.SubmitNewReportCardAsync(newReportCard);
-
-            if (!successful)
-                return BadRequest("Could not add report card.");
-
-            return RedirectToAction("ReportCardIndex", "Student", new { id = newReportCard.Student.StudentId });
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> EditReportCard(int Id)
-        {
-            //goes to form to edit report card
-            var model = await _reportCardService.GetReportCardAsync(Id);
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> ApplyEditReportCard(ReportCard editedReportCard)
-        {
-            //submit edit of report card
-            var successful = await _reportCardService.ApplyEditReportCardAsync(editedReportCard);
-
-            if (!successful)
-                return BadRequest("Could not edit report card.");
-
-            editedReportCard = await _reportCardService.GetReportCardAsync(editedReportCard.ReportCardId);
-
-            return RedirectToAction("ReportCardIndex", "Student", new { id = editedReportCard.Student.StudentId });
-        }
-
-
 
 
         //OUTCOME MEASUREMENTS STUFF STARTS HERE

@@ -22,7 +22,7 @@
                 <button form="searchForm" formaction="Student/Export" type="submit">Export</button>
 
                 <!--sort-->
-                <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="Model.SelectLists.SortOrderList"></select>
+                <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
             </div>
 
             <!--Search Bar reloads view with selected form data-->
@@ -35,44 +35,43 @@
             </div>
         </div>
 
-        <!--advanced-->
         <!--each select is tied to the searchForm so its value is passed to Index(), the name determines which parameter the value is-->
         <div class="expand" id="advancedSearch" style="display:grid">
             <div>
                 <strong>Ethnicity:</strong><br>
-                <select id="ethnicitySelect" form="searchForm" name="Ethnicity" asp-items="Model.SelectLists.EthnicityList"></select>
+                <select id="ethnicitySelect" form="searchForm" name="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList"></select>
             </div>
             <div>
                 <strong>KU Site:</strong><br>
-                <select id="siteSelect" form="searchForm" name="Site" asp-items="Model.SelectLists.SiteList"></select>
+                <select id="siteSelect" form="searchForm" name="Site" asp-items="ViewBag.SelectLists.SiteList"></select>
             </div>
             <div>
                 <strong>Income:</strong><br>
-                <select id="incomeSelect" form="searchForm" name="Income" asp-items="Model.SelectLists.IncomeList"></select>
+                <select id="incomeSelect" form="searchForm" name="Income" asp-items="ViewBag.SelectLists.IncomeList"></select>
             </div>
             <div>
                 <strong>Active</strong>:<br>
-                <select id="activeSelect" form="searchForm" name="Active" asp-items="Model.SelectLists.ActiveList"></select>
+                <select id="activeSelect" form="searchForm" name="Active" asp-items="ViewBag.SelectLists.ActiveList"></select>
             </div>
             <div>
                 <strong>Years Enrolled:</strong><br>
-                <select id="yearsEnrolledSelect" form="searchForm" name="YearsEnrolled" asp-items="Model.SelectLists.YearsEnrolledList"></select>
+                <select id="yearsEnrolledSelect" form="searchForm" name="YearsEnrolled" asp-items="ViewBag.SelectLists.YearsEnrolledList"></select>
             </div>
             <div>
                 <strong>Gender:</strong><br>
-                <select id="genderSelect" form="searchForm" name="Gender" asp-items="Model.SelectLists.GenderList"></select>
+                <select id="genderSelect" form="searchForm" name="Gender" asp-items="ViewBag.SelectLists.GenderList"></select>
             </div>
             <div>
                 <strong>School:</strong><br>
-                <select id="schoolSelect" form="searchForm" name="School" asp-items="Model.SelectLists.SchoolList"></select>
+                <select id="schoolSelect" form="searchForm" name="School" asp-items="ViewBag.SelectLists.SchoolList"></select>
             </div>
             <div>
                 <strong>School Grade:</strong><br>
-                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade" asp-items="Model.SelectLists.SchoolGradeList"></select>
+                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade" asp-items="ViewBag.SelectLists.SchoolGradeList"></select>
             </div>
             <div>
                 <strong>Free Lunch:</strong><br>
-                <select id="lunchSelect" form="searchForm" name="Lunch" asp-items="Model.SelectLists.LunchList"></select>
+                <select id="lunchSelect" form="searchForm" name="Lunch" asp-items="ViewBag.SelectLists.LunchList"></select>
             </div>
         </div>
 
@@ -98,7 +97,7 @@
                     <td>@item.SchoolName</td>
                     <td>@item.Active</td>
                     <td>
-                        @Html.ActionLink("Report Cards", "ReportCardIndex", new { id = item.StudentId }) |
+                        @Html.ActionLink("Report Cards", "View", "ReportCard", new { id = item.StudentId, returnUrl = "/Student" }) |
                         @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
                     </td>
                     <td>

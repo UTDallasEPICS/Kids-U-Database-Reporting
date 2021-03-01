@@ -32,14 +32,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Ethnicity</label>
                     <div class="col-md-10">
-                        <select asp-for="Ethnicity" class="form-control">
-                            <option value="">Select Ethnicity</option>
-                            <option value="African American">African American</option>
-                            <option value="Asian">Asian</option>
-                            <option value="Hispanic/Latino">Hispanic/Latino</option>
-                            <option value="Caucasian">Caucasian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList" class="form-control"></select>
                     </div>
                 </div>
 
@@ -47,7 +40,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">School</label>
                     <div class="col-md-10">
-                        <select asp-for="SchoolName" class="form-control" asp-items="@(new SelectList(ViewBag.SchoolList))"></select>
+                        <select asp-for="SchoolName" class="form-control" asp-items=ViewBag.Selectlists.SchoolList></select>
                     </div>
                 </div>
 
@@ -55,7 +48,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">KU Site</label>
                     <div class="col-md-10">
-                        <select asp-for="Facility" class="form-control" asp-items="@(new SelectList(ViewBag.SiteList))"></select>
+                        <select asp-for="Facility" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
                     </div>
                 </div>
 
@@ -63,18 +56,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Grade</label>
                     <div class="col-md-10">
-                        <select asp-for="SchoolGrade" class="form-control">
-                            <option value="">Select Grade</option>
-                            <option value="K">K</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
+                        <select asp-for="SchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
                     </div>
                 </div>
 
@@ -82,10 +64,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="Gender">Gender</label>
                     <div class="col-md-10">
-                        <div class="checkbox-inline">
-                            <input type="radio" asp-for="Gender" value="Male" />Male
-                            <input type="radio" asp-for="Gender" value="Female" />Female
-                        </div>
+                        <select asp-for="Gender" class="form-control" asp-items=ViewBag.SelectLists.GenderList></select>
                     </div>
                 </div>
 
@@ -93,12 +72,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Household Income</label>
                     <div class="col-md-10">
-                        <select asp-for="Income" class="form-control">
-                            <option value="">Select Income</option>
-                            <option value="&lt; $20k">&lt; $20k</option>
-                            <option value="$20k - $25k">$20k - $25k</option>
-                            <option value="&gt; $25k">&gt; $25k</option>
-                        </select>
+                        <select asp-for="Income" class="form-control" asp-items=ViewBag.SelectLists.IncomeList></select>
                     </div>
                 </div>
 
@@ -106,10 +80,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Free Lunch</label>
                     <div class="col-md-10">
-                        <div class="checkbox-inline">
-                            <input type="radio" asp-for="Lunch" value="true" />Yes
-                            <input type="radio" checked="checked" asp-for="Lunch" value="false" />No
-                        </div>
+                        <select asp-for="Lunch" class="form-control" asp-items=ViewBag.SelectLists.LunchList></select>
                     </div>
                 </div>
 
@@ -125,12 +96,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Semester</label>
                     <div class="col-md-10">
-                        <select asp-for="EnrolledSemester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="fall">fall</option>
-                            <option value="spring">spring</option>
-                            <option value="summer">summer</option>
-                        </select>
+                        <select asp-for="EnrolledSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                     </div>
                 </div>
 
@@ -199,7 +165,7 @@
         </form>
 
         <div>
-            @Html.ActionLink("Back to Students", "Index", "Student")
+            @Html.ActionLink("Back", "Index", "Student")
         </div>
 
 

@@ -5,7 +5,7 @@
 <body>
     <div class="container body-content">
         <h2>Create New Report Card</h2>
-        <!--form-->
+
         <form asp-controller="ReportCard" asp-action="SubmitNewReportCard" method="post">
             <div class="form-horizontal">
 
@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Student</label>
                     <div class="col-md-10">
-                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList,"Id","Name",ViewBag.StudentId))"></select>
+                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
                     </div>
                 </div>
 
@@ -21,18 +21,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">School Grade</label>
                     <div class="col-md-10">
-                        <select asp-for="ReportSchoolGrade" class="form-control">
-                            <option value="">Select Grade</option>
-                            <option value="K">K</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
+                        <select asp-for="ReportSchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
                     </div>
                 </div>
 
@@ -40,16 +29,10 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Semester</label>
                     <div class="col-md-10">
-                        <select asp-for="ReportSchoolSemester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="fall">fall</option>
-                            <option value="spring">spring</option>
-                            <option value="summer">summer</option>
-                        </select>
+                        <select asp-for="ReportSchoolSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                     </div>
                 </div>
 
-                <!--MATH-->
                 <div class="report-card-topics">
                     <div class="report-card-topic">
                         <h4>Math</h4><hr />
@@ -96,9 +79,6 @@
                         </div>
                     </div>
 
-
-
-                    <!--READING-->
                     <div class="report-card-topic">
                         <h4>Reading</h4><hr />
                         <div class="form-group">
@@ -144,9 +124,6 @@
                         </div>
                     </div>
 
-
-
-                    <!--LANGUAGE ARTS-->
                     <div class="report-card-topic">
                         <h4>Language Arts</h4><hr />
                         <div class="form-group">
@@ -193,6 +170,8 @@
                     </div>
                 </div>
 
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
                 <!--submit-->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -202,12 +181,13 @@
             </div>
         </form>
 
-        <!--back-->
-        <div>
-            @if (ViewBag.StudentId == null)
-                Html.ActionLink("Back to Report Cards", "Index", "ReportCard");
-            else
-                Html.ActionLink("Back to Report Cards", "View", "ReportCard", new { id = ViewBag.StudentId });
-        </div>
+        @if (ViewBag.StudentId == null)
+        {
+            <div>@Html.ActionLink("Back", "Index", "ReportCard")</div>
+        }
+        else
+        {
+            <div>@Html.ActionLink("Back", "View", "ReportCard", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+        }
     </div>
 </body>
