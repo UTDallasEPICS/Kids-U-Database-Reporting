@@ -63,7 +63,8 @@ namespace Kids_U_Database_Reporting
             services.AddScoped<ISiteService, SiteService>();
             services.AddScoped<IOrganizationsService, OrganizationsService>();
             services.AddScoped<IStaffService, StaffService>();
-            //TODO: add other service classes
+            services.AddScoped<IReportCardService, ReportCardService>();
+            services.AddScoped<ICommonService, CommonService>();
         }
 
         //Use this method to configure the HTTP request pipeline.

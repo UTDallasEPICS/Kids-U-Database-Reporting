@@ -1,6 +1,6 @@
 ﻿@model StudentViewModel
 @{
-    ViewData["Title"] = "Student Roster";
+    ViewData["Title"] = "Report Cards";
 }
 
 <script>
@@ -8,18 +8,18 @@
 </script>
 <body onload="setSelectValue(searchData)">
     <div class="container body-content">
-        <h2>Student Roster</h2>
+        <h2>Report Cards</h2>
 
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                <!--This button goes to the Add view which is the form for creating a student-->
-                @Html.ActionLink("Create New", "Add", "Student")
+                <!--This button goes to the Add view which is the form for creating a report card-->
+                @Html.ActionLink("Create New", "Add", "ReportCard")
 
                 <!--Enter always submits first button, hidden search button for priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
-                <button form="searchForm" formaction="Student/Export" type="submit">Export</button>
+                <button form="searchForm" formaction="ReportCard/Export" type="submit">Export</button>
 
                 <!--sort-->
                 <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
@@ -27,7 +27,7 @@
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
-                <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
+                <form id="searchForm" asp-controller="ReportCard" asp-action="Index" method="get">
                     <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
                     <button type="button" onclick="showHide()">Adv.</button>
                     <button type="submit" value="Search">Go</button>
@@ -76,34 +76,86 @@
         </div>
 
         <!--table-->
-        <table class="table">
+        <table class="table report-card-table">
+            <tr>
+                <th colspan="4"></th>
+                <th colspan="2">Report Card</th>
+                <th colspan="6" class="th-center">Math</th>
+                <th></th>
+                <th colspan="6" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="6" class="th-center">Language</th>
+            </tr>
             <tr>
                 <th>Name</th>
                 <th>Kids-U Site</th>
                 <th>Grade</th>
                 <th>School</th>
-                <th>Active</th>
+                <th>Grade</th>
+                <th>Semester</th>
+
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
                 <th></th>
-                <th>@Model.SearchData.ResultCount Results</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
             </tr>
 
-            <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
-            @foreach (var item in Model.Students)
+            <!--Displays the lastest report card for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
+            @foreach (Student item in Model.Students)
             {
-                <tr class="table-entry-row" onclick="window.location = '/Student/View/@item.StudentId'"> <!--Click the row to run View(StudentId), goes to individual view-->
+                <tr class="table-entry-row" onclick="window.location = '/ReportCard/View/@item.StudentId'"><!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>
-                    <td>@item.Active</td>
-                    <td>
-                        @Html.ActionLink("Report Cards", "View", "ReportCard", new { id = item.StudentId, returnUrl = "/Student" }) |
-                        @Html.ActionLink("Outcome Measurements", "OutcomeIndex", new { id = item.StudentId })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
-                    </td>
+                    @if (item.ReportCards == null || item.ReportCards.Count == 0)
+                    {
+                        <td colspan="24">No Report Cards</td>
+                    }
+                    else
+                    {
+                        ReportCard rc = item.ReportCards.ToList().Last(); // Get the latest report card for the student
+
+                        <td>@rc.ReportSchoolGrade</td>
+                        <td>@rc.ReportSchoolSemester</td>
+
+                        <td>@rc.MathFirst</td>
+                        <td>@rc.MathSecond</td>
+                        <td>@rc.MathThird</td>
+                        <td>@rc.MathFourth</td>
+                        <td>@rc.MathFifth</td>
+                        <td>@rc.MathSemester</td>
+                        <td></td>
+                        <td>@rc.ReadingFirst</td>
+                        <td>@rc.ReadingSecond</td>
+                        <td>@rc.ReadingThird</td>
+                        <td>@rc.ReadingFourth</td>
+                        <td>@rc.ReadingFifth</td>
+                        <td>@rc.ReadingSemester</td>
+                        <td></td>
+                        <td>@rc.LanguageFirst</td>
+                        <td>@rc.LanguageSecond</td>
+                        <td>@rc.LanguageThird</td>
+                        <td>@rc.LanguageFourth</td>
+                        <td>@rc.LanguageFifth</td>
+                        <td>@rc.LanguageSemester</td>
+                    }
                 </tr>
             }
         </table>

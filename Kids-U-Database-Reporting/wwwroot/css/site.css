@@ -30,6 +30,13 @@ footer {
 .table > tbody > tr:nth-child(odd) > td {
   background-color: #eef6ff;
 }
+.table a {
+	padding: 10px 0 10px 0;
+}
+/*table-entry-row class is for tr with data like a student, used for clicking a row to view the student*/
+.table-entry-row:hover { 
+	cursor: pointer;
+}
 .jumbotron {
 	background: #E8FAFD;
 }
@@ -146,4 +153,24 @@ footer {
 	align-content: center;
 	background-color: #eef6ff;
 	height: 200px;
+}
+
+/*Table of all report cards*/
+.report-card-table td {
+	border: solid #ddd;
+	border-width: 0 1px 0 1px;
+}
+/*Center certain table headers*/
+.report-card-table .th-center {
+	text-align: center;
+}
+
+/*Grouping for report card editing/creation*/
+.report-card-topics {
+	display: flex;
+	flex-direction: row;
+}
+.report-card-topic {
+	margin: 30px;
+	padding: 10px;
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Kids_U_Database_Reporting.Models
 {
@@ -23,7 +24,5 @@ namespace Kids_U_Database_Reporting.Models
         public string YearsEnrolled { get; set; }
         public string School { get; set; }
         public string Site { get; set; }
-        public List<String> SchoolList { get; set; }
-        public List<String> SiteList { get; set; }
     }
 }

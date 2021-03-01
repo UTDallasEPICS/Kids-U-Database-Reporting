@@ -1,0 +1,193 @@
+﻿@model ReportCard
+@{ 
+    ViewData["Title"] = "New Report Card";
+}
+<body>
+    <div class="container body-content">
+        <h2>Create New Report Card</h2>
+
+        <form asp-controller="ReportCard" asp-action="SubmitNewReportCard" method="post">
+            <div class="form-horizontal">
+
+                <!--Sets StudentId of Student, allows for choosing any student-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Student</label>
+                    <div class="col-md-10">
+                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
+                    </div>
+                </div>
+
+                <!--SchoolGrade-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">School Grade</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
+                    </div>
+                </div>
+
+                <!--EnrolledSemester-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
+                    </div>
+                </div>
+
+                <div class="report-card-topics">
+                    <div class="report-card-topic">
+                        <h4>Math</h4><hr />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">1st: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathFirst" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">2nd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathSecond" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">3rd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathThird" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">4th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathFourth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">5th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathFifth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Sem: </label>
+                            <div class="col-md-10">
+                                <input asp-for="MathSemester" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-card-topic">
+                        <h4>Reading</h4><hr />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">1st: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingFirst" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">2nd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingSecond" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">3rd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingThird" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">4th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingFourth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">5th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingFifth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Sem: </label>
+                            <div class="col-md-10">
+                                <input asp-for="ReadingSemester" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="report-card-topic">
+                        <h4>Language Arts</h4><hr />
+                        <div class="form-group">
+                            <label class="control-label col-md-2">1st: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageFirst" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">2nd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageSecond" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">3rd: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageThird" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">4th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageFourth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">5th: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageFifth" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Sem: </label>
+                            <div class="col-md-10">
+                                <input asp-for="LanguageSemester" class="form-control text-box single-line" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" formmethod="post" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        @if (ViewBag.StudentId == null)
+        {
+            <div>@Html.ActionLink("Back", "Index", "ReportCard")</div>
+        }
+        else
+        {
+            <div>@Html.ActionLink("Back", "View", "ReportCard", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+        }
+    </div>
+</body>

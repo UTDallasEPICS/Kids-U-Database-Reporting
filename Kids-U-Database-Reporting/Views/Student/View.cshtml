@@ -11,9 +11,8 @@
             <h5>@Model.Ethnicity</h5>
         </div>
                 
-        <!--Back, just like brower back button so search settings are preserved-->
         <div>
-            <a href='javascript:history.go(-1)'>Back to Students</a>
+            @Html.ActionLink("Back", "Index", "Student")
         </div>
     </div>
 </body>

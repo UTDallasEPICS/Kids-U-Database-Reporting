@@ -1,0 +1,94 @@
+﻿@model ReportCardViewModel
+@{
+    ViewData["Title"] = "View Report Cards";
+}
+<body>
+    <div class="container body-content">
+        <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "Add", "ReportCard", new { studentId = Model.Student.StudentId, ViewBag.returnUrl })
+
+                @Html.ActionLink("Export", "ExportSingle", "ReportCard", new { studentId = Model.Student.StudentId })
+            </div>
+        </div>
+
+        <table class="table report-card-table">
+
+            <tr>
+                <th colspan="2"></th>
+                <th colspan="6" class="th-center">Math</th>
+                <th></th>
+                <th colspan="6" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="6" class="th-center">Language</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <th>Semester</th>
+
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
+                <th></th>
+
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
+                <th></th>
+
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>S</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ReportCards)
+            {
+                <tr>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolGrade) ? "--" : item.ReportSchoolGrade) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReportSchoolSemester) ? "--" : item.ReportSchoolSemester) </td>
+
+                    <td>@(String.IsNullOrEmpty(item.MathFirst) ? "--" : item.MathFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathSecond) ? "--" : item.MathSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathThird) ? "--" : item.MathThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathFourth) ? "--" : item.MathFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathFifth) ? "--" : item.MathFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.MathSemester) ? "--" : item.MathSemester) </td>
+                    <td></td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFirst) ? "--" : item.ReadingFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingSecond) ? "--" : item.ReadingSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingThird) ? "--" : item.ReadingThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFourth) ? "--" : item.ReadingFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingFifth) ? "--" : item.ReadingFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.ReadingSemester) ? "--" : item.ReadingSemester) </td>
+                    <td></td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFirst) ? "--" : item.LanguageFirst) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageSecond) ? "--" : item.LanguageSecond) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageThird) ? "--" : item.LanguageThird) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFourth) ? "--" : item.LanguageFourth) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageFifth) ? "--" : item.LanguageFifth) </td>
+                    <td>@(String.IsNullOrEmpty(item.LanguageSemester) ? "--" : item.LanguageSemester) </td>
+                    <td>@Html.ActionLink("Edit", "Edit", "ReportCard", new { id = item.ReportCardId, ViewBag.returnUrl })</td>
+                </tr>
+            }
+        </table>
+
+        <!--back-->
+        <div>
+            <a href=@ViewBag.returnUrl>Back</a>
+        </div>
+    </div>
+</body>
