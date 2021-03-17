@@ -35,7 +35,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters
-            var items = await _studentService.GetStudentsAsync(searchData);
+            var items = await _studentService.GetStudents(searchData);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -75,7 +75,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //puts new student in database
 
-            var successful = await _studentService.AddStudentAsync(newStudent);
+            var successful = await _studentService.AddStudent(newStudent);
 
             if (!successful)
             {
@@ -90,7 +90,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //deletes student from database
 
-            var successful = await _studentService.DeleteStudentAsync(Id);
+            var successful = await _studentService.DeleteStudent(Id);
 
             if (!successful)
             {
@@ -125,7 +125,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //submit edits of student
 
-            var successful = await _studentService.ApplyEditStudentAsync(editedStudent);
+            var successful = await _studentService.ApplyEditStudent(editedStudent);
 
             if (!successful)
             {
@@ -144,7 +144,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _studentService.GetStudentsAsync(searchData));
+                cw.WriteRecords(await _studentService.GetStudents(searchData));
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
         }
@@ -156,7 +156,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //displays all outcome measurements for one student
 
-            var items = await _studentService.GetOutcomesAsync(Id);
+            var items = await _studentService.GetOutcomes(Id);
 
             var model = new OutcomeViewModel()
             {
@@ -185,7 +185,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //puts new outcome measurement in database
 
-            var successful = await _studentService.SubmitNewOutcomeAsync(newOutcomeMeasurement);
+            var successful = await _studentService.SubmitNewOutcome(newOutcomeMeasurement);
 
             if (!successful)
             {
@@ -202,7 +202,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //goes to form to edit outcome measurement
 
-            var model = await _studentService.GetOutcomeAsync(Id);
+            var model = await _studentService.GetOutcome(Id);
 
             return View(model);
         }
@@ -210,14 +210,14 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement)
         {
             //submit edit of report card
-            var successful = await _studentService.ApplyEditOutcomeAsync(editedOutcomeMeasurement);
+            var successful = await _studentService.ApplyEditOutcome(editedOutcomeMeasurement);
 
             if (!successful)
             {
                 return BadRequest("Could not edit outcome measurement.");
             }
 
-            editedOutcomeMeasurement = await _studentService.GetOutcomeAsync(editedOutcomeMeasurement.OutcomeId);
+            editedOutcomeMeasurement = await _studentService.GetOutcome(editedOutcomeMeasurement.OutcomeId);
 
             return RedirectToAction("OutcomeIndex", "Student", new { id = editedOutcomeMeasurement.Student.StudentId });
 

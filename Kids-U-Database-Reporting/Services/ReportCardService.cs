@@ -17,17 +17,17 @@ namespace Kids_U_Database_Reporting.Services
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
-        public async Task<ReportCard[]> GetReportCardsAsync(int studentId)
+        public async Task<ReportCard[]> GetReportCards(int studentId)
         {
             //returns all report cards for a Student
             return await _context.ReportCards.Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
-        public async Task<ReportCard[]> GetReportCardsWithStudentAsync(int studentId)
+        public async Task<ReportCard[]> GetReportCardsWithStudent(int studentId)
         {
             //returns all report cards for a Student
             return await _context.ReportCards.Include(s => s.Student).Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
-        public async Task<ReportCard[]> GetAllReportCardsAsync(Search s) // Gets all report cards with a student that matches the search
+        public async Task<ReportCard[]> GetAllReportCards(Search s) // Gets all report cards with a student that matches the search
         {
             Console.WriteLine("id" + s.Lunch);
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
@@ -67,13 +67,13 @@ namespace Kids_U_Database_Reporting.Services
 
             return await reports.ToArrayAsync();
         }
-        public async Task<ReportCard> GetReportCardAsync(int Id)
+        public async Task<ReportCard> GetReportCard(int Id)
         {
             //returns single report card from report card id
             return await _context.ReportCards.Where(x => x.ReportCardId == Id).Include(r => r.Student).FirstAsync();
         }
 
-        public async Task<bool> SubmitNewReportCardAsync(ReportCard newReportCard)
+        public async Task<bool> SubmitNewReportCard(ReportCard newReportCard)
         {
             //puts new report card in database
 
@@ -94,7 +94,7 @@ namespace Kids_U_Database_Reporting.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> ApplyEditReportCardAsync(ReportCard editedReportCard)
+        public async Task<bool> ApplyEditReportCard(ReportCard editedReportCard)
         {
             _context.Entry(await _context.ReportCards.FirstAsync(x => x.ReportCardId == editedReportCard.ReportCardId)).CurrentValues.SetValues(editedReportCard);
 

@@ -35,7 +35,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters with their report card data loaded
-            var items = await _studentService.GetStudentsWithReportCardsAsync(searchData);
+            var items = await _studentService.GetStudentsWithReportCards(searchData);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -57,9 +57,9 @@ namespace Kids_U_Database_Reporting.Controllers
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Add(int? studentId, string returnUrl) // Create new report card for any student
         {
-            // Create list for making student select element, use custom object to show a full name
+            // Create list for selecting student by full name
             var studentSelectList = new List<object>(); // Hold a list of anon objects. Select list needs key-value pairs for each option
-            var studentList = await _studentService.GetStudentsAsync();
+            var studentList = await _studentService.GetStudents();
             foreach(var student in studentList)
                 studentSelectList.Add(new {Id = student.StudentId, Name = student.FirstName+" "+student.LastName }); // Create anon object key and value for each select option
             ViewBag.StudentList = studentSelectList;
@@ -78,7 +78,7 @@ namespace Kids_U_Database_Reporting.Controllers
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> View(int Id, string returnUrl) //displays all report cards for one student
         {
-            var items = await _reportCardService.GetReportCardsAsync(Id);
+            var items = await _reportCardService.GetReportCards(Id);
 
             var model = new ReportCardViewModel()
             {
@@ -94,7 +94,7 @@ namespace Kids_U_Database_Reporting.Controllers
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Edit(int Id, string returnUrl) //goes to form to edit report card
         {
-            var model = await _reportCardService.GetReportCardAsync(Id);
+            var model = await _reportCardService.GetReportCard(Id);
 
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
@@ -109,12 +109,12 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ApplyEditReportCard(ReportCard editedReportCard, string returnUrl)
         {
             //submit edit of report card
-            var successful = await _reportCardService.ApplyEditReportCardAsync(editedReportCard);
+            var successful = await _reportCardService.ApplyEditReportCard(editedReportCard);
 
             if (!successful)
                 return BadRequest("Could not edit report card.");
 
-            editedReportCard = await _reportCardService.GetReportCardAsync(editedReportCard.ReportCardId);
+            editedReportCard = await _reportCardService.GetReportCard(editedReportCard.ReportCardId);
 
             return RedirectToAction("View", "ReportCard", new { id = editedReportCard.Student.StudentId, returnUrl });
         }
@@ -122,7 +122,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard, string returnUrl)
         {
             //puts new reportCard in database
-            var successful = await _reportCardService.SubmitNewReportCardAsync(newReportCard);
+            var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
 
             if (!successful)
                 return BadRequest("Could not add report card.");
@@ -138,7 +138,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetAllReportCardsAsync(searchData));
+                cw.WriteRecords(await _reportCardService.GetAllReportCards(searchData));
             }
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }
@@ -151,7 +151,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudentAsync(studentId));
+                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudent(studentId));
             }
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }

@@ -1,0 +1,150 @@
+﻿@model OutcomeMeasurement
+
+<body>
+    <div class="container body-content">
+        <h2>Create New Outcome Measurement</h2>
+
+        <!--form-->
+        <form asp-controller="OutcomeMeasurement" asp-action="SubmitNewOutcome" asp-route-id="@ViewBag.StudentId" method="post">
+            <div class="form-horizontal">
+                <!--Sets StudentId of Student, allows for choosing any student-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Student</label>
+                    <div class="col-md-10">
+                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
+                    </div>
+                </div>
+
+                <!--SchoolGrade-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">School Grade</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
+                    </div>
+                </div>
+
+                <!--EnrolledSemester-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Semester</label>
+                    <div class="col-md-10">
+                        <select asp-for="ReportSchoolSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
+                    </div>
+                </div>
+
+                <!--MATH-->
+                <h4>Math</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Pre-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathPreTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Post-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="MathPostTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+
+
+                <!--Language Arts-->
+                <h4>Language Arts</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Pre-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguagePreTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Post-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="LanguagePostTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+
+
+                <!--Reading-->
+                <h4>Reading</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Pre-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingPreTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <label class="control-label col-md-2">Post-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingPostTest" class="form-control text-box single-line" />
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fluency 1: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFluencyTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fluency 2: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFluencyTest2" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fluency 3: </label>
+                    <div class="col-md-10">
+                        <input asp-for="ReadingFluencyTest3" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+
+
+                <!--Self Esteem-->
+                <h4>Self-Esteem</h4><hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Pre-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="SelfEsteemPreTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Post-test: </label>
+                    <div class="col-md-10">
+                        <input asp-for="SelfEsteemPostTest" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <div class="col-md-10">
+                    <input type="hidden" asp-for="Student.StudentId" value="@ViewBag.StudentId" />
+                </div>
+
+                <!--submit-->
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" formmethod="post" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!--back-->
+        <div>
+            @if (ViewBag.StudentId == null)
+            {
+                <div>@Html.ActionLink("Back", "Index", "OutcomeMeasurement")</div>
+            }
+            else
+            {
+                <div>@Html.ActionLink("Back", "View", "OutcomeMeasurement", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+            }
+        </div>
+    </div>
+</body>

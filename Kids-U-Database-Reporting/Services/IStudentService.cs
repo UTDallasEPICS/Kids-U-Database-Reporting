@@ -9,20 +9,21 @@ namespace Kids_U_Database_Reporting.Services
     public interface IStudentService
     {
         //student CRUD operations
-        Task<Student[]> GetStudentsAsync();
-        Task<Student[]> GetStudentsAsync(Search search);
-        Task<Student[]> GetStudentsWithReportCardsAsync(Search searchData);
+        Task<Student[]> GetStudents();
+        Task<Student[]> GetStudents(Search search);
+        Task<Student[]> GetStudentsWithReportCards(Search searchData);
+        Task<Student[]> GetStudentsWithOutcomeMeasurements(Search searchData);
         Task<Student> GetStudentById(int Id);
-        Task<Student> EditStudentAsync(int Id);
-        Task<bool> ApplyEditStudentAsync(Student editedStudent);
-        Task<bool> DeleteStudentAsync(int Id);
-        Task<bool> AddStudentAsync(Student newStudent);
+        Task<Student> EditStudent(int Id);
+        Task<bool> ApplyEditStudent(Student editedStudent);
+        Task<bool> DeleteStudent(int Id);
+        Task<bool> AddStudent(Student newStudent);
 
 
         //outcome measurement CRUD operations
-        Task<OutcomeMeasurement[]> GetOutcomesAsync(int Id);
-        Task<OutcomeMeasurement> GetOutcomeAsync(int Id);
-        Task<bool> SubmitNewOutcomeAsync(OutcomeMeasurement newOutcomeMeasurement);
-        Task<bool> ApplyEditOutcomeAsync(OutcomeMeasurement editedOutcomeMeasurement);
+        Task<OutcomeMeasurement[]> GetOutcomes(int Id);
+        Task<OutcomeMeasurement> GetOutcome(int Id);
+        Task<bool> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement);
+        Task<bool> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement);
     }
 }

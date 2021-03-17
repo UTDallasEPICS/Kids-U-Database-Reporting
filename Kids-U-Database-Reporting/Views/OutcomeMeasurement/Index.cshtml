@@ -1,0 +1,158 @@
+﻿@model StudentViewModel
+@{
+    ViewData["Title"] = "Outcome Measurements";
+}
+
+<script>
+    var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads, use setSelectValue() to reset the search options to what was last searched
+</script>
+<body onload="setSelectValue(searchData)">
+    <div class="container body-content">
+        <h2>Outcome Measurements</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                <!--This button goes to the Add view which is the form for creating a report card-->
+                @Html.ActionLink("Create New", "Add", "OutcomeMeasurement")
+
+                <!--Enter always submits first button, hidden search button for priority over export button-->
+                <button hidden form="searchForm" type="submit"></button>
+                <!--Export button, connected to the searchForm so that the selected filtering is applied-->
+                <button form="searchForm" formaction="OutcomeMeasurement/Export" type="submit">Export</button>
+
+                <!--sort-->
+                <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
+            </div>
+
+            <!--Search Bar reloads view with selected form data-->
+            <div id="search">
+                <form id="searchForm" asp-controller="OutcomeMeasurement" asp-action="Index" method="get">
+                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
+                    <button type="button" onclick="showHide()">Adv.</button>
+                    <button type="submit" value="Search">Go</button>
+                </form>
+            </div>
+        </div>
+
+        <!--each select is tied to the searchForm so its value is passed to Index(), the name determines which parameter the value is-->
+        <div class="expand" id="advancedSearch" style="display:grid">
+            <div>
+                <strong>Ethnicity:</strong><br>
+                <select id="ethnicitySelect" form="searchForm" name="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList"></select>
+            </div>
+            <div>
+                <strong>KU Site:</strong><br>
+                <select id="siteSelect" form="searchForm" name="Site" asp-items="ViewBag.SelectLists.SiteList"></select>
+            </div>
+            <div>
+                <strong>Income:</strong><br>
+                <select id="incomeSelect" form="searchForm" name="Income" asp-items="ViewBag.SelectLists.IncomeList"></select>
+            </div>
+            <div>
+                <strong>Active</strong>:<br>
+                <select id="activeSelect" form="searchForm" name="Active" asp-items="ViewBag.SelectLists.ActiveList"></select>
+            </div>
+            <div>
+                <strong>Years Enrolled:</strong><br>
+                <select id="yearsEnrolledSelect" form="searchForm" name="YearsEnrolled" asp-items="ViewBag.SelectLists.YearsEnrolledList"></select>
+            </div>
+            <div>
+                <strong>Gender:</strong><br>
+                <select id="genderSelect" form="searchForm" name="Gender" asp-items="ViewBag.SelectLists.GenderList"></select>
+            </div>
+            <div>
+                <strong>School:</strong><br>
+                <select id="schoolSelect" form="searchForm" name="School" asp-items="ViewBag.SelectLists.SchoolList"></select>
+            </div>
+            <div>
+                <strong>School Grade:</strong><br>
+                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade" asp-items="ViewBag.SelectLists.SchoolGradeList"></select>
+            </div>
+            <div>
+                <strong>Free Lunch:</strong><br>
+                <select id="lunchSelect" form="searchForm" name="Lunch" asp-items="ViewBag.SelectLists.LunchList"></select>
+            </div>
+        </div>
+
+        <!--table-->
+        <table class="table report-card-table">
+            <tr>
+                <th colspan="4"></th>
+                <th colspan="2">Outcome</th>
+                <th colspan="2" class="th-center">Math</th>
+                <th></th>
+                <th colspan="2" class="th-center">Language</th>
+                <th></th>
+                <th colspan="2" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="3" class="th-center">Fluency</th>
+                <th></th>
+                <th colspan="2" class="th-center">Esteem</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Kids-U Site</th>
+                <th>Grade</th>
+                <th>School</th>
+                <th>Grade</th>
+                <th>Semester</th>
+
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+            </tr>
+
+            <!--Displays the lastest OM for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
+            @foreach (Student item in Model.Students)
+            {
+                <tr class="table-entry-row" onclick="window.location = '/OutcomeMeasurement/View/@item.StudentId'"><!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Facility</td>
+                    <td>@item.SchoolGrade</td>
+                    <td>@item.SchoolName</td>
+                    @if (item.OutcomeMeasurements == null || item.OutcomeMeasurements.Count == 0)
+                    {
+                        <td colspan="17">No Outcome Measurements</td>
+                    }
+                    else
+                    {
+                        OutcomeMeasurement om = item.OutcomeMeasurements.ToList().Last(); // Get the latest OM for the student
+
+                        <td>@om.ReportSchoolGrade</td>
+                        <td>@om.ReportSchoolSemester</td>
+
+                        <td>@om.MathPreTest</td>
+                        <td>@om.MathPostTest</td>
+                        <td></td>
+                        <td>@om.LanguagePreTest</td>
+                        <td>@om.LanguagePostTest</td>
+                        <td></td>
+                        <td>@om.ReadingPreTest</td>
+                        <td>hi</td>
+                        @*<td>@om.ReadingPostTest</td>*@
+                        <td></td>
+                        <td>@om.ReadingFluencyTest</td>
+                        <td>@om.ReadingFluencyTest2</td>
+                        <td>@om.ReadingFluencyTest3</td>
+                        <td></td>
+                        <td>@om.SelfEsteemPreTest</td>
+                        <td>@om.SelfEsteemPostTest</td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</body>
