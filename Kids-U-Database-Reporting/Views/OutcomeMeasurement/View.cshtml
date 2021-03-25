@@ -10,50 +10,75 @@
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                @Html.ActionLink("Create New", "Add", new { studentId = Model.Student.StudentId, ViewBag.returnUrl  })
-                @Html.ActionLink("Export", "ExportSingle", "OutcomeMeasurementController", new { studentId = Model.Student.StudentId })
+                @Html.ActionLink("Create New", "Add", new { studentId = Model.Student.StudentId, ViewBag.returnUrl })
+                @Html.ActionLink("Export", "ExportSingle", "OutcomeMeasurement", new { studentId = Model.Student.StudentId })
             </div>
         </div>
 
+        <!--Displays all Outcome Measurements for a Student-->
+        <table class="table report-card-table">
+            <tr>
+                <th colspan="2">Outcome</th>
+                <th colspan="2" class="th-center">Math</th>
+                <th></th>
+                <th colspan="2" class="th-center">Language</th>
+                <th></th>
+                <th colspan="2" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="3" class="th-center">Fluency</th>
+                <th></th>
+                <th colspan="2" class="th-center">Esteem</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <th>Semester</th>
 
-        @foreach (var item in Model.OutcomeMeasurements)
-        {
-            <h3>Grade: @(item.ReportSchoolGrade) Semester: @(item.ReportSchoolSemester)</h3>
-            <table class="table">
-                <tr>
-                    <th>Math Pre-test</th>
-                    <th>Math Post-test</th>
-                    <th>Language Arts Pre-test</th>
-                    <th>Language Arts Post-test</th>
-                    <th>Reading Pre-test</th>
-                    <th>Reading Post-test</th>
-                    <th>Reading Fluency 1</th>
-                    <th>Reading Fluency 2</th>
-                    <th>Reading Fluency 3</th>
-                    <th>Self-Esteem Pre-test</th>
-                    <th>Self-Esteem Post-test</th>
-                    <th></th>
-                </tr>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+            </tr>
 
-                <tr>
-                    <td>@(String.IsNullOrEmpty(item.MathPreTest) ? "--" : item.MathPreTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.MathPostTest) ? "--" : item.MathPostTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.LanguagePreTest) ? "--" : item.LanguagePreTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.LanguagePostTest) ? "--" : item.LanguagePostTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.ReadingPreTest) ? "--" : item.ReadingPreTest) </td>
+            @foreach (OutcomeMeasurement om in Model.OutcomeMeasurements)
+            {
+                <tr class="table-entry-row">
+                    <td>@om.ReportSchoolGrade</td>
+                    <td>@om.ReportSchoolSemester</td>
+
+                    <td>@om.MathPreTest</td>
+                    <td>@om.MathPostTest</td>
+                    <td></td>
+                    <td>@om.LanguagePreTest</td>
+                    <td>@om.LanguagePostTest</td>
+                    <td></td>
+                    <td>@om.ReadingPreTest</td>
                     <td>hi</td>
-                    @*<td>@(String.IsNullOrEmpty(item.ReadingPostTest) ? "--" : item.ReadingPreTest) </td>*@
-                    <td>@(String.IsNullOrEmpty(item.ReadingFluencyTest) ? "--" : item.ReadingFluencyTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.ReadingFluencyTest2) ? "--" : item.ReadingFluencyTest2) </td>
-                    <td>@(String.IsNullOrEmpty(item.ReadingFluencyTest3) ? "--" : item.ReadingFluencyTest3) </td>
-                    <td>@(String.IsNullOrEmpty(item.SelfEsteemPreTest) ? "--" : item.SelfEsteemPreTest) </td>
-                    <td>@(String.IsNullOrEmpty(item.SelfEsteemPostTest) ? "--" : item.SelfEsteemPostTest) </td>
-                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.OutcomeId, ViewBag.returnUrl })</td>
+                    @*<td>@om.ReadingPostTest</td>*@
+                    <td></td>
+                    <td>@om.ReadingFluencyTest</td>
+                    <td>@om.ReadingFluencyTest2</td>
+                    <td>@om.ReadingFluencyTest3</td>
+                    <td></td>
+                    <td>@om.SelfEsteemPreTest</td>
+                    <td>@om.SelfEsteemPostTest</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = om.OutcomeId, ViewBag.returnUrl }) | @Html.ActionLink("Delete", "Delete", new { om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl })</td>
                 </tr>
-            </table>
-        }
+            }
+        </table>
 
-        <!--back-->
         <div>
             <a href=@ViewBag.returnUrl>Back</a>
         </div>

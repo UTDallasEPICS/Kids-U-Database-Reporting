@@ -117,21 +117,35 @@ namespace Kids_U_Database_Reporting.Controllers
 
             editedReportCard = await _reportCardService.GetReportCard(editedReportCard.ReportCardId);
 
-            return RedirectToAction("View", "ReportCard", new { id = editedReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { Id = editedReportCard.Student.StudentId, returnUrl });
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        public async Task<IActionResult> Delete(int reportId, int studentId, string returnUrl)
+        {
+            var successful = await _reportCardService.DeleteReport(reportId);
+
+            if (!successful)
+            {
+                return BadRequest("Could not delete Report Card.");
+            }
+
+            return RedirectToAction("View", "ReportCard", new { Id = studentId, returnUrl });
+        }
+
+        // Puts new reportCard in database
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard, string returnUrl)
         {
-            //puts new reportCard in database
             var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
 
             if (!successful)
                 return BadRequest("Could not add report card.");
 
-            return RedirectToAction("View", "ReportCard", new { id = newReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { Id = newReportCard.Student.StudentId, returnUrl });
         }
 
-        public async Task<ActionResult> Export(Search searchData) // Export a csv of report card data
+        // Export a csv of Report Card data using current search filters
+        public async Task<ActionResult> Export(Search searchData) 
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 
@@ -141,10 +155,12 @@ namespace Kids_U_Database_Reporting.Controllers
             {
                 cw.WriteRecords(await _reportCardService.GetAllReportCards(searchData));
             }
+            
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }
 
-        public async Task<ActionResult> ExportSingle(int studentId) // Export a csv of a single student's report card data
+        // Export a csv of a single student's Report Card data
+        public async Task<ActionResult> ExportSingle(int studentId) 
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 

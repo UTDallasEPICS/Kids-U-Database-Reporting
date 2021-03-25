@@ -16,7 +16,7 @@
                 <!--This button goes to the Add view which is the form for creating a student-->
                 @Html.ActionLink("Create New", "Add", "Student", new { ViewBag.returnUrl })
 
-                <!--Enter always submits first button, hidden search button for priority over export button-->
+                <!--Pressing Enter always submits the first button, this hidden search button gets priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
                 <button form="searchForm" formaction="Student/Export" type="submit">Export</button>

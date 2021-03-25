@@ -17,19 +17,22 @@ namespace Kids_U_Database_Reporting.Services
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
+
+        // Returns all Report Cards for a Student using StudentId
         public async Task<ReportCard[]> GetReportCards(int studentId)
         {
-            //returns all report cards for a Student
             return await _context.ReportCards.Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
+        
+        // Returns all Report Cards for a Student using StudentId with Student data included
         public async Task<ReportCard[]> GetReportCardsWithStudent(int studentId)
         {
-            //returns all report cards for a Student
             return await _context.ReportCards.Include(s => s.Student).Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
-        public async Task<ReportCard[]> GetAllReportCards(Search s) // Gets all report cards with a student that matches the search
+
+        // Gets all Report Cards with Student data included that matches the search filters
+        public async Task<ReportCard[]> GetAllReportCards(Search s) 
         {
-            Console.WriteLine("id" + s.Lunch);
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
             bool activeBool = s.Active == "True";
@@ -67,10 +70,11 @@ namespace Kids_U_Database_Reporting.Services
 
             return await reports.ToArrayAsync();
         }
-        public async Task<ReportCard> GetReportCard(int Id)
+
+        // Returns single Report Card using ReportCardId
+        public async Task<ReportCard> GetReportCard(int reportId)
         {
-            //returns single report card from report card id
-            return await _context.ReportCards.Where(x => x.ReportCardId == Id).Include(r => r.Student).FirstAsync();
+            return await _context.ReportCards.Where(x => x.ReportCardId == reportId).Include(r => r.Student).FirstAsync();
         }
 
         public async Task<bool> SubmitNewReportCard(ReportCard newReportCard)
@@ -98,6 +102,15 @@ namespace Kids_U_Database_Reporting.Services
         {
             _context.Entry(await _context.ReportCards.FirstAsync(x => x.ReportCardId == editedReportCard.ReportCardId)).CurrentValues.SetValues(editedReportCard);
 
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+
+        // Deletes Report Card in database by id
+        public async Task<bool> DeleteReport(int reportId)
+        {
+            ReportCard outcome = await _context.ReportCards.Where(x => x.ReportCardId == reportId).FirstAsync();
+            _context.ReportCards.Remove(outcome);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }

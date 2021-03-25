@@ -16,7 +16,7 @@
                 <!--This button goes to the Add view which is the form for creating a report card-->
                 @Html.ActionLink("Create New", "Add", "OutcomeMeasurement", new { ViewBag.returnUrl })
 
-                <!--Enter always submits first button, hidden search button for priority over export button-->
+                <!--Pressing Enter always submits the first button, this hidden search button gets priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
                 <button form="searchForm" formaction="OutcomeMeasurement/Export" type="submit">Export</button>
@@ -75,7 +75,6 @@
             </div>
         </div>
 
-        <!--table-->
         <table class="table report-card-table">
             <tr>
                 <th colspan="4"></th>

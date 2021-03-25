@@ -81,7 +81,7 @@
                     <td>@(String.IsNullOrEmpty(item.LanguageFourth) ? "--" : item.LanguageFourth) </td>
                     <td>@(String.IsNullOrEmpty(item.LanguageFifth) ? "--" : item.LanguageFifth) </td>
                     <td>@(String.IsNullOrEmpty(item.LanguageSemester) ? "--" : item.LanguageSemester) </td>
-                    <td>@Html.ActionLink("Edit", "Edit", "ReportCard", new { id = item.ReportCardId, ViewBag.returnUrl })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "ReportCard", new { id = item.ReportCardId, ViewBag.returnUrl }) | @Html.ActionLink("Delete","Delete","ReportCard", new { reportId = item.ReportCardId, Model.Student.StudentId, ViewBag.returnUrl })</td>
                 </tr>
             }
         </table>

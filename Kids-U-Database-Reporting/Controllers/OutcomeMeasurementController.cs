@@ -19,14 +19,16 @@ namespace Kids_U_Database_Reporting.Controllers
         private readonly ISchoolService _schoolService;
         private readonly ISiteService _siteService;
         private readonly IReportCardService _reportCardService;
+        private readonly IOutcomeMeasurementService _outcomeMeasurementService;
         private readonly ICommonService _commonService;
 
-        public OutcomeMeasurementController(IStudentService studentService, ISchoolService schoolService, ISiteService siteService, IReportCardService reportCardService, ICommonService commonService)
+        public OutcomeMeasurementController(IStudentService studentService, ISchoolService schoolService, ISiteService siteService, IReportCardService reportCardService, IOutcomeMeasurementService outcomeMeasurementService, ICommonService commonService)
         {
             _studentService = studentService;
             _schoolService = schoolService;
             _siteService = siteService;
             _reportCardService = reportCardService;
+            _outcomeMeasurementService = outcomeMeasurementService;
             _commonService = commonService;
         }
 
@@ -35,7 +37,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters with their report card data loaded
-            var items = await _studentService.GetStudentsWithOutcomeMeasurements(searchData);
+            var items = await _studentService.GetStudentsWithOutcomes(searchData);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -55,16 +57,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Displays all outcome measurements for one student
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> View(int Id, string returnUrl)
+        public async Task<IActionResult> View(int Id, string returnUrl) 
         {
-            //displays all outcome measurements for one student
-
-            var items = await _studentService.GetOutcomes(Id);
-
             var model = new OutcomeViewModel()
             {
-                OutcomeMeasurements = items,
+                OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(Id),
                 Student = await _studentService.GetStudentById(Id)
             };
 
@@ -85,7 +84,6 @@ namespace Kids_U_Database_Reporting.Controllers
 
             ViewBag.returnUrl = returnUrl;
             ViewBag.StudentId = studentId; // Id used for default selected value of the student list
-            Console.WriteLine("Add id " + studentId);
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -96,11 +94,11 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
         
+        // Puts new outcome measurement in database
         public async Task<IActionResult> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement, string returnUrl)
         {
-            //puts new outcome measurement in database
 
-            var successful = await _studentService.SubmitNewOutcome(newOutcomeMeasurement);
+            var successful = await _outcomeMeasurementService.SubmitNewOutcome(newOutcomeMeasurement);
 
             if (!successful)
             {
@@ -111,11 +109,24 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        public async Task<IActionResult> Delete(int outcomeId, int studentId, string returnUrl)
+        {
+            var successful = await _outcomeMeasurementService.DeleteOutcome(outcomeId);
+
+            if (!successful)
+            {
+                return BadRequest("Could not delete Outcome Measurement.");
+            }
+
+            return RedirectToAction("View", "OutcomeMeasurement", new { id = studentId, returnUrl });
+        }
+
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Edit(int Id, string returnUrl)
         {
             //goes to form to edit outcome measurement
 
-            var model = await _studentService.GetOutcome(Id);
+            var model = await _outcomeMeasurementService.GetOutcome(Id);
 
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
@@ -130,16 +141,44 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement, string returnUrl)
         {
             //submit edit of report card
-            var successful = await _studentService.ApplyEditOutcome(editedOutcomeMeasurement);
+            var successful = await _outcomeMeasurementService.ApplyEditOutcome(editedOutcomeMeasurement);
 
             if (!successful)
             {
                 return BadRequest("Could not edit outcome measurement.");
             }
 
-            editedOutcomeMeasurement = await _studentService.GetOutcome(editedOutcomeMeasurement.OutcomeId);
+            editedOutcomeMeasurement = await _outcomeMeasurementService.GetOutcome(editedOutcomeMeasurement.OutcomeId);
 
             return RedirectToAction("View", "OutcomeMeasurement", new { id = editedOutcomeMeasurement.Student.StudentId, returnUrl });
+        }
+
+        // Export a csv of Outcome Measurement data using current search filters
+        public async Task<ActionResult> Export(Search searchData)
+        {
+            var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
+
+            using var ms = new MemoryStream();
+            using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
+            using (var cw = new CsvWriter(sw, cc))
+            {
+                cw.WriteRecords(await _outcomeMeasurementService.GetAllOutcomes(searchData));
+            }
+            return File(ms.ToArray(), "text/csv", $"OutcomeMeasurements_{DateTime.UtcNow.Date:d}.csv");
+        }
+
+        // Export a csv of a single student's Outcome Measurement data
+        public async Task<ActionResult> ExportSingle(int studentId) 
+        {
+            var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
+
+            using var ms = new MemoryStream();
+            using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
+            using (var cw = new CsvWriter(sw, cc))
+            {
+                cw.WriteRecords(await _outcomeMeasurementService.GetOutcomesWithStudent(studentId));
+            }
+            return File(ms.ToArray(), "text/csv", $"OutcomeMeasurements_{DateTime.UtcNow.Date:d}.csv");
         }
     }
 }

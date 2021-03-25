@@ -60,7 +60,9 @@ namespace Kids_U_Database_Reporting.Services
 
             return await students.ToArrayAsync();
         }
-        public async Task<Student[]> GetStudentsWithReportCards(Search s) // Returns list of all students matching the parameters passed, with report card data loaded
+
+        // Returns list of all students matching the search filters, with Report Card data included
+        public async Task<Student[]> GetStudentsWithReportCards(Search s) 
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
@@ -100,7 +102,8 @@ namespace Kids_U_Database_Reporting.Services
             return await students.ToArrayAsync();
         }
 
-        public async Task<Student[]> GetStudentsWithOutcomeMeasurements(Search s) // Returns list of all students matching the parameters passed, with report card data loaded
+        // Returns list of all students matching the search filters, with Outcome Measurement data included
+        public async Task<Student[]> GetStudentsWithOutcomes(Search s) 
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
@@ -147,80 +150,25 @@ namespace Kids_U_Database_Reporting.Services
             return saveResult == 1;
         }
 
-        public async Task<bool> DeleteStudent(int Id)
+        // Deletes student in database by id
+        public async Task<bool> DeleteStudent(int studentId)
         {
-            //deletes student in database by id
-            Student deleteStudent = await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
+            Student deleteStudent = await _context.Students.Where(x => x.StudentId == studentId).FirstAsync();
             _context.Students.Remove(deleteStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
-        public async Task<Student> GetStudentById(int Id)
+
+        // Return a Student using the StudentId
+        public async Task<Student> GetStudentById(int studentId)
         {
-            return await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
-        }
-        public async Task<Student> EditStudent(int Id)
-        {
-            //returns student by id
-            return await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
+            return await _context.Students.Where(x => x.StudentId == studentId).FirstAsync();
         }
 
         public async Task<bool> ApplyEditStudent(Student editedStudent)
         {
             //_context.Students.Update(editedStudent);
             _context.Entry(await _context.Students.FirstAsync(x => x.StudentId == editedStudent.StudentId)).CurrentValues.SetValues(editedStudent);
-
-            var saveResult = await _context.SaveChangesAsync();
-            return saveResult == 1;
-        }
-
-
-
-
-
-
-
-
-
-        //OUTCOME MEASUREMENTS STUFF STARTS HERE
-
-        public async Task<OutcomeMeasurement[]> GetOutcomes(int Id)
-        {
-            //returns all outcome measurements for a Student
-            Student student = await _context.Students.Where(x => x.StudentId == Id).FirstAsync();
-            return await _context.OutcomeMeasurements.Where(x => x.Student == student).ToArrayAsync();
-        }
-
-        public async Task<OutcomeMeasurement> GetOutcome(int Id)
-        {
-            //returns single outcome measurement from outcome measurement id
-            return await _context.OutcomeMeasurements.Where(x => x.OutcomeId == Id).Include(r => r.Student).FirstAsync();
-        }
-
-        public async Task<bool> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement)
-        {
-            //puts new outcome measurement in database
-
-            //gets the student the outcome measurement is for from the database
-            Student student = await _context.Students.Where(x => x.StudentId == newOutcomeMeasurement.Student.StudentId).FirstAsync();
-
-            newOutcomeMeasurement.Student = student;
-            await _context.OutcomeMeasurements.AddAsync(newOutcomeMeasurement);
-
-            //adds outcome measurement to the student
-            student.OutcomeMeasurements.Add(newOutcomeMeasurement);
-
-            //updates student in database
-            _context.Entry(await _context.Students.FirstAsync(x => x.StudentId == student.StudentId)).CurrentValues.SetValues(student);
-
-            var saveResult = await _context.SaveChangesAsync();
-
-            return saveResult == 1;
-        }
-
-        public async Task<bool> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement)
-        {
-            _context.Entry(await _context.OutcomeMeasurements.FirstAsync(x => x.OutcomeId == editedOutcomeMeasurement.OutcomeId)).CurrentValues.SetValues(editedOutcomeMeasurement);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;

@@ -11,8 +11,9 @@ namespace Kids_U_Database_Reporting.Services
         Task<ReportCard[]> GetReportCards(int studentId);
         Task<ReportCard[]> GetReportCardsWithStudent(int studentId);
         Task<ReportCard[]> GetAllReportCards(Search searchData);
-        Task<ReportCard> GetReportCard(int Id);
+        Task<ReportCard> GetReportCard(int reportId);
         Task<bool> SubmitNewReportCard(ReportCard newReportCard);
         Task<bool> ApplyEditReportCard(ReportCard editedReportCard);
+        Task<bool> DeleteReport(int reportId);
     }
 }
