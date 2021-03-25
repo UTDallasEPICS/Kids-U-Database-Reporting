@@ -37,7 +37,7 @@ namespace Kids_U_Database_Reporting.Controllers
             // Get all students who match the parameters with their report card data loaded
             var items = await _studentService.GetStudentsWithReportCards(searchData);
             searchData.ResultCount = items.Length;
-
+            
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
             {
@@ -45,6 +45,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 SearchData = searchData,
             };
 
+            ViewBag.returnUrl = Url.Action() + Request.QueryString; // Get the current url with query string
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -76,7 +77,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> View(int Id, string returnUrl) //displays all report cards for one student
+        public async Task<IActionResult> View(int Id, string returnUrl) // Displays all report cards for one student
         {
             var items = await _reportCardService.GetReportCards(Id);
 
@@ -86,13 +87,13 @@ namespace Kids_U_Database_Reporting.Controllers
                 Student = await _studentService.GetStudentById(Id)
             };
 
-            ViewBag.returnUrl = returnUrl ?? "/ReportCard"; // If referer is null, default to the ReportCard page
+            ViewBag.returnUrl = returnUrl;
 
             return View(model);
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Edit(int Id, string returnUrl) //goes to form to edit report card
+        public async Task<IActionResult> Edit(int Id, string returnUrl) // Goes to form to edit report card
         {
             var model = await _reportCardService.GetReportCard(Id);
 

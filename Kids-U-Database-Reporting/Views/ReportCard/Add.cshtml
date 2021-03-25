@@ -181,9 +181,10 @@
             </div>
         </form>
 
+        <!--Back-->
         @if (ViewBag.StudentId == null)
         {
-            <div>@Html.ActionLink("Back", "Index", "ReportCard")</div>
+            <a href=@ViewBag.returnUrl>Back</a>
         }
         else
         {

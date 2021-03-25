@@ -14,18 +14,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">School Grade</label>
                     <div class="col-md-10">
-                        <select asp-for="ReportSchoolGrade" class="form-control">
-                            <option value="">Select Grade</option>
-                            <option value="K">K</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                        </select>
+                        <select asp-for="ReportSchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
                     </div>
                 </div>
 
@@ -33,12 +22,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Semester</label>
                     <div class="col-md-10">
-                        <select asp-for="ReportSchoolSemester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="fall">fall</option>
-                            <option value="spring">spring</option>
-                            <option value="summer">summer</option>
-                        </select>
+                        <select asp-for="ReportSchoolSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                     </div>
                 </div>
 
@@ -59,7 +43,6 @@
                 </div>
 
 
-
                 <!--Language Arts-->
                 <h4>Language Arts</h4><hr />
                 <div class="form-group">
@@ -75,7 +58,6 @@
                         <input asp-for="LanguagePostTest" class="form-control text-box single-line" />
                     </div>
                 </div>
-
 
 
                 <!--Reading-->
@@ -109,7 +91,6 @@
                 </div>
 
 
-
                 <!--Self Esteem-->
                 <h4>Self-Esteem</h4><hr />
                 <div class="form-group">
@@ -130,6 +111,7 @@
                 <!--variables that need to retain values (hidden from user)-->
                 @Html.Hidden("OutcomeId")
                 @Html.Hidden("Student")
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 
 
                 <!--submit-->
@@ -143,7 +125,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to Outcome Measurements", "View", new { id = Model.Student.StudentId })
+            @Html.ActionLink("Back", "View", new { id = Model.Student.StudentId, returnUrl = ViewBag.returnUrl })
         </div>
     </div>
 </body>

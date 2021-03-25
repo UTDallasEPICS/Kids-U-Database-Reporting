@@ -77,11 +77,11 @@
                 </div>
 
                 @*<div class="form-group">
-                    <label class="control-label col-md-2">Post-test: </label>
-                    <div class="col-md-10">
-                        <input asp-for="ReadingPostTest" class="form-control text-box single-line" />
-                    </div>
-                </div>*@
+            <label class="control-label col-md-2">Post-test: </label>
+            <div class="col-md-10">
+                <input asp-for="ReadingPostTest" class="form-control text-box single-line" />
+            </div>
+        </div>*@
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Fluency 1: </label>
@@ -126,6 +126,8 @@
                     <input type="hidden" asp-for="Student.StudentId" value="@ViewBag.StudentId" />
                 </div>
 
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+
                 <!--submit-->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -135,16 +137,14 @@
             </div>
         </form>
 
-        <!--back-->
-        <div>
-            @if (ViewBag.StudentId == null)
-            {
-                <div>@Html.ActionLink("Back", "Index", "OutcomeMeasurement")</div>
-            }
-            else
-            {
-                <div>@Html.ActionLink("Back", "View", "OutcomeMeasurement", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
-            }
-        </div>
+        <!--Back-->
+        @if (ViewBag.StudentId == null)
+        {
+            <a href=@ViewBag.returnUrl>Back</a>
+        }
+        else
+        {
+            <div>@Html.ActionLink("Back", "View", "OutcomeMeasurement", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+        }
     </div>
 </body>

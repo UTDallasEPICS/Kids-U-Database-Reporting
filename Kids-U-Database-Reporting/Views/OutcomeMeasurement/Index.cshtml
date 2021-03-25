@@ -14,7 +14,7 @@
         <div class="tabletop">
             <div id="left">
                 <!--This button goes to the Add view which is the form for creating a report card-->
-                @Html.ActionLink("Create New", "Add", "OutcomeMeasurement")
+                @Html.ActionLink("Create New", "Add", "OutcomeMeasurement", new { ViewBag.returnUrl })
 
                 <!--Enter always submits first button, hidden search button for priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
@@ -118,7 +118,7 @@
             <!--Displays the lastest OM for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
             @foreach (Student item in Model.Students)
             {
-                <tr class="table-entry-row" onclick="window.location = '/OutcomeMeasurement/View/@item.StudentId'"><!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
+                <tr class="table-entry-row" onclick="window.location = '/OutcomeMeasurement/View/@item.StudentId?returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'"><!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>

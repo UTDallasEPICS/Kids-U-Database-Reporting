@@ -10,7 +10,7 @@
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                @Html.ActionLink("Create New", "Add", new { studentId = Model.Student.StudentId })
+                @Html.ActionLink("Create New", "Add", new { studentId = Model.Student.StudentId, ViewBag.returnUrl  })
                 @Html.ActionLink("Export", "ExportSingle", "OutcomeMeasurementController", new { studentId = Model.Student.StudentId })
             </div>
         </div>
@@ -48,14 +48,14 @@
                     <td>@(String.IsNullOrEmpty(item.ReadingFluencyTest3) ? "--" : item.ReadingFluencyTest3) </td>
                     <td>@(String.IsNullOrEmpty(item.SelfEsteemPreTest) ? "--" : item.SelfEsteemPreTest) </td>
                     <td>@(String.IsNullOrEmpty(item.SelfEsteemPostTest) ? "--" : item.SelfEsteemPostTest) </td>
-                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.OutcomeId })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = item.OutcomeId, ViewBag.returnUrl })</td>
                 </tr>
             </table>
         }
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back to Students", "Index", "OutcomeMeasurement")
+            <a href=@ViewBag.returnUrl>Back</a>
         </div>
     </div>
 </body>
