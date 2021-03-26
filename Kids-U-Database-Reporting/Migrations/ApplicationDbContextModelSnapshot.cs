@@ -278,6 +278,9 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Lunch")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ParentName1")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SchoolGrade")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");

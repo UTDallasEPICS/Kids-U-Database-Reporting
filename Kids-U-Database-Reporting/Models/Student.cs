@@ -20,6 +20,8 @@ namespace Kids_U_Database_Reporting.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        
+        public string ParentName1 { get; set; }
         public char SchoolGrade { get; set; }
         public string Facility { get; set; }
         public string Gender { get; set; }
