@@ -278,7 +278,19 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Lunch")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ParentEmailAddress1")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ParentName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentNumber1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelationshipParent1")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolGrade")
