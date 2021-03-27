@@ -45,6 +45,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 SearchData = searchData,
             };
 
+            ViewBag.resultPercent = (100.0 * items.Length / _studentService.GetActiveStudentCount()).ToString("n1"); // Percent of active students visible in search results, formatted to 1 decimal point
             ViewBag.returnUrl = Url.Action()+Request.QueryString; // Get the current url with query string to preserve search settings
             ViewBag.selectLists = new SelectLists
             {

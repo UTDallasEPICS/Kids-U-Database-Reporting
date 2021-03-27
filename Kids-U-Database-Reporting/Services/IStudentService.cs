@@ -8,7 +8,7 @@ namespace Kids_U_Database_Reporting.Services
 {
     public interface IStudentService
     {
-        //student CRUD operations
+        int GetActiveStudentCount();
         Task<Student[]> GetStudents();
         Task<Student[]> GetStudents(Search search);
         Task<Student[]> GetStudentsWithReportCards(Search searchData);

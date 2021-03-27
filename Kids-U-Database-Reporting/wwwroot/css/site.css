@@ -34,7 +34,7 @@ footer {
 	padding: 10px 0 10px 0;
 }
 /*table-entry-row class is for tr with data like a student, used for clicking a row to view the student*/
-.table-entry-row:hover { 
+.table-clickable-row:hover { 
 	cursor: pointer;
 }
 .jumbotron {
@@ -161,7 +161,7 @@ footer {
 	border-width: 0 1px 0 1px;
 }
 /*Center certain table headers*/
-.report-card-table .th-center {
+.th-center {
 	text-align: center;
 }
 

@@ -18,11 +18,20 @@ namespace Kids_U_Database_Reporting.Services
             _context = context;
         }
 
-        public async Task<Student[]> GetStudents() // Get all students, no filtering
+        // Return an int with the number of active students
+        public int GetActiveStudentCount()
+        {
+            return _context.Students.Count(x => x.Active);
+        }
+
+        // Get all students, no filtering
+        public async Task<Student[]> GetStudents() 
         {
             return await _context.Students.ToArrayAsync();
         }
-        public async Task<Student[]> GetStudents(Search s) // Returns list of all students matching the parameters passed
+
+        // Returns list of all students matching the parameters passed
+        public async Task<Student[]> GetStudents(Search s) 
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
