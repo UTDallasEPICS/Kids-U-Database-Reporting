@@ -29,7 +29,7 @@
             <div id="search">
                 <form id="searchForm" asp-controller="ReportCard" asp-action="Index" method="get">
                     <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
-                    <button type="button" onclick="showHide()">Adv.</button>
+                    <button type="button" onclick="window.location = '/ReportCard/Index'" style="margin: 0 0 0 -10px;">Clear</button> <!--Reload page to reset filters-->
                     <button type="submit" value="Search">Go</button>
                 </form>
             </div>

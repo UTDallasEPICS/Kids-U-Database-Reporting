@@ -55,18 +55,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Create new Report Card for any student
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Add(int? studentId, string returnUrl) // Create new report card for any student
+        public async Task<IActionResult> Add(int? studentId, string returnUrl) 
         {
-            // Create list for selecting student by full name
-            var studentSelectList = new List<object>(); // Hold a list of anon objects. Select list needs key-value pairs for each option
-            var studentList = await _studentService.GetStudents();
-            foreach(var student in studentList)
-                studentSelectList.Add(new {Id = student.StudentId, Name = student.FirstName+" "+student.LastName }); // Create anon object key and value for each select option
-            ViewBag.StudentList = studentSelectList;
-
             ViewBag.returnUrl = returnUrl;
             ViewBag.StudentId = studentId; // Id used for default selected value of the student list
+            ViewBag.StudentList = await _commonService.GetStudentNameList(); // List of students' full names and their Id
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -76,8 +71,9 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
+        // Displays all report cards for one student
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> View(int Id, string returnUrl) // Displays all report cards for one student
+        public async Task<IActionResult> View(int Id, string returnUrl) 
         {
             var items = await _reportCardService.GetReportCards(Id);
 
@@ -92,8 +88,9 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Goes to form to edit report card
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Edit(int Id, string returnUrl) // Goes to form to edit report card
+        public async Task<IActionResult> Edit(int Id, string returnUrl) 
         {
             var model = await _reportCardService.GetReportCard(Id);
 
@@ -121,6 +118,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int reportId, int studentId, string returnUrl)
         {
             var successful = await _reportCardService.DeleteReport(reportId);
@@ -133,7 +131,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "ReportCard", new { Id = studentId, returnUrl });
         }
 
-        // Puts new reportCard in database
+        // Puts new ReportCard in database
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard, string returnUrl)
         {
             var successful = await _reportCardService.SubmitNewReportCard(newReportCard);

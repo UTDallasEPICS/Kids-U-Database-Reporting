@@ -75,15 +75,9 @@ namespace Kids_U_Database_Reporting.Controllers
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Add(int? studentId, string returnUrl)
         {
-            // Create list for selecting student by full name
-            var studentSelectList = new List<object>(); // Hold a list of anon objects. Select list needs key-value pairs for each option
-            var studentList = await _studentService.GetStudents();
-            foreach (var student in studentList)
-                studentSelectList.Add(new { Id = student.StudentId, Name = student.FirstName + " " + student.LastName }); // Create anon object key and value for each select option
-            ViewBag.StudentList = studentSelectList;
-
             ViewBag.returnUrl = returnUrl;
             ViewBag.StudentId = studentId; // Id used for default selected value of the student list
+            ViewBag.StudentList = await _commonService.GetStudentNameList(); // List of students' full names and their Id
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -109,6 +103,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int outcomeId, int studentId, string returnUrl)
         {
             var successful = await _outcomeMeasurementService.DeleteOutcome(outcomeId);

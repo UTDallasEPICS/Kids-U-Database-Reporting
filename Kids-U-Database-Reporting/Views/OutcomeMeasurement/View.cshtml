@@ -73,7 +73,10 @@
                     <td></td>
                     <td>@om.SelfEsteemPreTest</td>
                     <td>@om.SelfEsteemPostTest</td>
-                    <td>@Html.ActionLink("Edit", "Edit", new { id = om.OutcomeId, ViewBag.returnUrl }) | @Html.ActionLink("Delete", "Delete", new { om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl })</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = om.OutcomeId, ViewBag.returnUrl }) | 
+                        @using (Html.BeginForm("Delete", "OutcomeMeasurement", new { id = om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl }))
+                            { <input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Outcome Measurement?')" /> }
+                    </td>
                 </tr>
             }
         </table>

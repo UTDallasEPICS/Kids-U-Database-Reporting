@@ -7,6 +7,7 @@ namespace Kids_U_Database_Reporting.Services
 {
     public interface ICommonService
     {
+        Task<List<object>> GetStudentNameList();
         Task<List<SelectListItem>> GetSiteSelectList();
         Task<List<SelectListItem>> GetSchoolSelectList();
     }

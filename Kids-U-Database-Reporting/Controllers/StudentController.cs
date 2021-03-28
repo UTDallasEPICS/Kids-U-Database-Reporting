@@ -87,6 +87,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int Id)
         {
             //deletes student from database

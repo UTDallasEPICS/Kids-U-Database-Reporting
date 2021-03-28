@@ -13,6 +13,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Student</label>
                     <div class="col-md-10">
+                        <!--Select list of students using their full name. Default selected value is ViewBag.StudentId-->
                         <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
                     </div>
                 </div>
