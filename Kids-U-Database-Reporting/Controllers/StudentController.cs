@@ -88,7 +88,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(int Id, string returnUrl)
         {
             //deletes student from database
 
@@ -99,7 +99,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 return BadRequest("Could not delete Student.");
             }
 
-            return RedirectToAction("Index", "Student");
+            return Redirect(returnUrl); // Redirect to the page so search parameters are preserved
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
