@@ -21,6 +21,7 @@ namespace Kids_U_Database_Reporting.Models
         public string LanguagePreTest { get; set; }
         public string LanguagePostTest { get; set; }
         public string ReadingPreTest { get; set; }
+        public string ReadingPostTest { get; set; }
         public string ReadingFluencyTest { get; set; }
         public string ReadingFluencyTest2 { get; set; }
         public string ReadingFluencyTest3 { get; set; }

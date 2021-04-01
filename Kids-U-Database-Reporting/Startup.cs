@@ -64,6 +64,7 @@ namespace Kids_U_Database_Reporting
             services.AddScoped<IOrganizationsService, OrganizationsService>();
             services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IReportCardService, ReportCardService>();
+            services.AddScoped<IOutcomeMeasurementService, OutcomeMeasurementService>();
             services.AddScoped<ICommonService, CommonService>();
         }
 

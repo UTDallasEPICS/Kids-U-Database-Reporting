@@ -1,34 +1,35 @@
 ﻿@model StudentViewModel
 @{
-    ViewData["Title"] = "Student Roster";
+    ViewData["Title"] = "Outcome Measurements";
 }
 
 <script>
-    var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads setSelectValue(searchData) is run to set the search options to what was just searched
+    var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads, use setSelectValue() to reset the search options to what was last searched
 </script>
 <body onload="setSelectValue(searchData)">
     <div class="container body-content">
-        <h2>Student Roster</h2>
+        <h2>Outcome Measurements</h2>
 
         <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                <!--This button goes to the Add view which is the form for creating a student-->
-                @Html.ActionLink("Create New", "Add", "Student", new { ViewBag.returnUrl })
+                <!--This button goes to the Add view which is the form for creating a report card-->
+                @Html.ActionLink("Create New", "Add", "OutcomeMeasurement", new { ViewBag.returnUrl })
 
                 <!--Pressing Enter always submits the first button, this hidden search button gets priority over export button-->
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
-                <button form="searchForm" formaction="Student/Export" type="submit">Export</button>
-                <!--Sort-->
+                <button form="searchForm" formaction="OutcomeMeasurement/Export" type="submit">Export</button>
+
+                <!--sort-->
                 <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
             </div>
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
-                <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
+                <form id="searchForm" asp-controller="OutcomeMeasurement" asp-action="Index" method="get">
                     <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
-                    <button type="button" onclick="window.location = '/Student/Index'" style="margin: 0 0 0 -10px;">Clear</button> <!--Reload page to reset filters-->
+                    <button type="button" onclick="window.location = '/OutcomeMeasurement/Index'" style="margin: 0 0 0 -10px;">Clear</button> <!--Reload page to reset filters-->
                     <button type="submit" value="Search">Go</button>
                 </form>
             </div>
@@ -74,36 +75,80 @@
             </div>
         </div>
 
-        <!--table-->
-        <table class="table">
+        <table class="table report-card-table">
+            <tr>
+                <th colspan="4"></th>
+                <th colspan="2">Outcome</th>
+                <th colspan="2" class="th-center">Math</th>
+                <th></th>
+                <th colspan="2" class="th-center">Language</th>
+                <th></th>
+                <th colspan="2" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="3" class="th-center">Fluency</th>
+                <th></th>
+                <th colspan="2" class="th-center">Esteem</th>
+            </tr>
             <tr>
                 <th>Name</th>
                 <th>Kids-U Site</th>
                 <th>Grade</th>
                 <th>School</th>
-                <th>Active</th>
-                <th colspan="2" class="th-center">@Model.SearchData.ResultCount Results | @ViewBag.resultPercent% of active students</th>
+                <th>Grade</th>
+                <th>Semester</th>
+
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
             </tr>
 
-            <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
-            @foreach (var item in Model.Students)
+            <!--Displays the lastest OM for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
+            @foreach (Student item in Model.Students)
             {
-                <tr class="table-clickable-row" onclick="window.location = '/Student/View/@item.StudentId?returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'"> <!--Click the row to run View(StudentId), goes to individual view-->
+                <tr class="table-clickable-row" onclick="window.location = '/OutcomeMeasurement/View/@item.StudentId?returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'"><!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>
-                    <td>@item.Active</td>
-                    <td>
-                        @Html.ActionLink("Report Cards", "View", "ReportCard", new { id = item.StudentId, ViewBag.returnUrl }) |
-                        @Html.ActionLink("Outcome Measurements", "View", "OutcomeMeasurement", new { id = item.StudentId, ViewBag.returnUrl })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                        @using (Html.BeginForm("Delete", "Student", new { id = item.StudentId }))
-                            {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />
-                            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />}
-                    </td>
+                    @if (item.OutcomeMeasurements == null || item.OutcomeMeasurements.Count == 0)
+                    {
+                        <td colspan="17">No Outcome Measurements</td>
+                    }
+                    else
+                    {
+                        OutcomeMeasurement om = item.OutcomeMeasurements.ToList().Last(); // Get the latest OM for the student
+
+                        <td>@om.ReportSchoolGrade</td>
+                        <td>@om.ReportSchoolSemester</td>
+
+                        <td>@om.MathPreTest</td>
+                        <td>@om.MathPostTest</td>
+                        <td></td>
+                        <td>@om.LanguagePreTest</td>
+                        <td>@om.LanguagePostTest</td>
+                        <td></td>
+                        <td>@om.ReadingPreTest</td>
+                        <td>@om.ReadingPostTest</td>
+                        <td></td>
+                        <td>@om.ReadingFluencyTest</td>
+                        <td>@om.ReadingFluencyTest2</td>
+                        <td>@om.ReadingFluencyTest3</td>
+                        <td></td>
+                        <td>@om.SelfEsteemPreTest</td>
+                        <td>@om.SelfEsteemPostTest</td>
+                    }
                 </tr>
             }
         </table>
