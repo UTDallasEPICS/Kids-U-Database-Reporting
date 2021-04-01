@@ -56,7 +56,12 @@
                 </tr>
                 <tr>
                     <td>Enrollment Semester:</td>
-                    @{
+                    @if (String.IsNullOrEmpty(Model.EnrolledSemester))
+                    {
+                        @Html.Raw("<td></td>");
+                    }
+                    else 
+                    {
                         string enrolledSemester = Model.EnrolledSemester;
                         enrolledSemester = char.ToUpper(enrolledSemester[0]) + enrolledSemester.Substring(1);
                         @Html.Raw("<td>" + enrolledSemester + "</td>");
@@ -72,7 +77,12 @@
                 </tr>
                 <tr>
                     <td>Unenrolled Semester:</td>
-                    @{
+                    @if (String.IsNullOrEmpty(Model.UnEnrolledSemester))
+                    {
+                        @Html.Raw("<td></td>");
+                    }
+                    else
+                    {
                         string unenrolledSemester = Model.UnEnrolledSemester;
                         unenrolledSemester = char.ToUpper(unenrolledSemester[0]) + unenrolledSemester.Substring(1);
                         @Html.Raw("<td>" + unenrolledSemester + "</td>");
@@ -96,7 +106,11 @@
 
                 <tr>
                     <td>Household Income:</td>
-                    @if (Model.Income.Contains("&gt;"))
+                    @if (String.IsNullOrEmpty(Model.Income))
+                    {
+                        @Html.Raw("<td></td>");
+                    }
+                    else if (Model.Income.Contains("&gt;"))
                     {
                         string msg = Model.Income.Replace("&gt;", ">");
                         @Html.Raw("<td>" + msg + "</td>");
