@@ -35,9 +35,9 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters with their report card data loaded
-            var items = await _studentService.GetStudentsWithReportCardsAsync(searchData);
+            var items = await _studentService.GetStudentsWithReportCards(searchData);
             searchData.ResultCount = items.Length;
-
+            
             // Create model with the students and search data
             StudentViewModel model = new StudentViewModel()
             {
@@ -45,6 +45,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 SearchData = searchData,
             };
 
+            ViewBag.returnUrl = Url.Action() + Request.QueryString; // Get the current url with query string
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -54,18 +55,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Create new Report Card for any student
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Add(int? studentId, string returnUrl) // Create new report card for any student
+        public async Task<IActionResult> Add(int? studentId, string returnUrl) 
         {
-            // Create list for making student select element, use custom object to show a full name
-            var studentSelectList = new List<object>(); // Hold a list of anon objects. Select list needs key-value pairs for each option
-            var studentList = await _studentService.GetStudentsAsync();
-            foreach(var student in studentList)
-                studentSelectList.Add(new {Id = student.StudentId, Name = student.FirstName+" "+student.LastName }); // Create anon object key and value for each select option
-            ViewBag.StudentList = studentSelectList;
-
             ViewBag.returnUrl = returnUrl;
             ViewBag.StudentId = studentId; // Id used for default selected value of the student list
+            ViewBag.StudentList = await _commonService.GetStudentNameList(); // List of students' full names and their Id
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -75,10 +71,11 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
+        // Displays all report cards for one student
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> View(int Id, string returnUrl) //displays all report cards for one student
+        public async Task<IActionResult> View(int Id, string returnUrl) 
         {
-            var items = await _reportCardService.GetReportCardsAsync(Id);
+            var items = await _reportCardService.GetReportCards(Id);
 
             var model = new ReportCardViewModel()
             {
@@ -86,15 +83,16 @@ namespace Kids_U_Database_Reporting.Controllers
                 Student = await _studentService.GetStudentById(Id)
             };
 
-            ViewBag.returnUrl = returnUrl ?? "/ReportCard"; // If referer is null, default to the ReportCard page
+            ViewBag.returnUrl = returnUrl;
 
             return View(model);
         }
 
+        // Goes to form to edit report card
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Edit(int Id, string returnUrl) //goes to form to edit report card
+        public async Task<IActionResult> Edit(int Id, string returnUrl) 
         {
-            var model = await _reportCardService.GetReportCardAsync(Id);
+            var model = await _reportCardService.GetReportCard(Id);
 
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
@@ -109,28 +107,43 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> ApplyEditReportCard(ReportCard editedReportCard, string returnUrl)
         {
             //submit edit of report card
-            var successful = await _reportCardService.ApplyEditReportCardAsync(editedReportCard);
+            var successful = await _reportCardService.ApplyEditReportCard(editedReportCard);
 
             if (!successful)
                 return BadRequest("Could not edit report card.");
 
-            editedReportCard = await _reportCardService.GetReportCardAsync(editedReportCard.ReportCardId);
+            editedReportCard = await _reportCardService.GetReportCard(editedReportCard.ReportCardId);
 
-            return RedirectToAction("View", "ReportCard", new { id = editedReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { Id = editedReportCard.Student.StudentId, returnUrl });
         }
 
+        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int reportId, int studentId, string returnUrl)
+        {
+            var successful = await _reportCardService.DeleteReport(reportId);
+
+            if (!successful)
+            {
+                return BadRequest("Could not delete Report Card.");
+            }
+
+            return RedirectToAction("View", "ReportCard", new { Id = studentId, returnUrl });
+        }
+
+        // Puts new ReportCard in database
         public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard, string returnUrl)
         {
-            //puts new reportCard in database
-            var successful = await _reportCardService.SubmitNewReportCardAsync(newReportCard);
+            var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
 
             if (!successful)
                 return BadRequest("Could not add report card.");
 
-            return RedirectToAction("View", "ReportCard", new { id = newReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { Id = newReportCard.Student.StudentId, returnUrl });
         }
 
-        public async Task<ActionResult> Export(Search searchData) // Export a csv of report card data
+        // Export a csv of Report Card data using current search filters
+        public async Task<ActionResult> Export(Search searchData) 
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 
@@ -138,12 +151,14 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetAllReportCardsAsync(searchData));
+                cw.WriteRecords(await _reportCardService.GetAllReportCards(searchData));
             }
+            
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }
 
-        public async Task<ActionResult> ExportSingle(int studentId) // Export a csv of a single student's report card data
+        // Export a csv of a single student's Report Card data
+        public async Task<ActionResult> ExportSingle(int studentId) 
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 
@@ -151,7 +166,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudentAsync(studentId));
+                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudent(studentId));
             }
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }

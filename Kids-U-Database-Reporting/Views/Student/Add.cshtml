@@ -121,7 +121,6 @@
                     <div class="col-md-10">
                         <div class="checkbox">
                             <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
-                            <input asp-for="Birthday" type="hidden" />
                         </div>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back", "Index", "Student")
+            <a href=@ViewBag.returnUrl>Back</a>
         </div>
     </div>
 </body>
