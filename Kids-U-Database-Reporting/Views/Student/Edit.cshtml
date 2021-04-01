@@ -7,7 +7,7 @@
 
 <body>
     <div class="container body-content">
-        <h2>Edit Student</h2>
+        <h2>Edit Student Information</h2>
 
         <!--form-->
         <form asp-controller="Student" asp-action="ApplyEdit" method="post">
@@ -149,11 +149,114 @@
                     </div>
                 </div>
 
+
+                <!--Parent information-->
+
+
+                <h2>Edit Parent Information</h2>
+
+                <h3>Parent 1</h3>
+
+                <!--Parent 1 Name-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Name</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentName1" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 1 Realtionship-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Relationship</label>
+                    <div class="col-md-10">
+                        <select asp-for="RelationshipParent1" class="form-control">
+                            <option value="">Select Relationship</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Father">Father</option>
+                            <option value="Relative">Relative</option>
+                            <option value="Guardian">Guardian</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Parent 1 Phone Number-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Phone Number</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentNumber1" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 1 Apartment Number-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Apartment Number</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentAptNumber1" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 1 Email Address-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email address</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentEmailAddress1" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <h3>Parent 2</h3>
+
+                <!--Parent 2 Name-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Name</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentName2" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 2 Realtionship-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Relationship</label>
+                    <div class="col-md-10">
+                        <select asp-for="RelationshipParent2" class="form-control">
+                            <option value="">Select Relationship</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Father">Father</option>
+                            <option value="Relative">Relative</option>
+                            <option value="Guardian">Guardian</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Parent 2 Phone Number-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Phone Number</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentNumber2" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 2 Apartment Number-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Apartment Number</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentAptNumber2" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
+                <!--Parent 2 Email Address-->
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email address</label>
+                    <div class="col-md-10">
+                        <input asp-for="ParentEmailAddress2" class="form-control text-box single-line" />
+                    </div>
+                </div>
+
                 <!--variables that need to retain values (hidden from user)-->
                 @Html.Hidden("StudentId")
                 @Html.Hidden("ReportCards")
                 @Html.Hidden("OutcomeMeasurements")
-
 
                 <!--submit-->
                 <div class="form-group">
@@ -161,8 +264,8 @@
                         <input type="submit" value="Submit" class="btn btn-default" formmethod="post" />
                     </div>
                 </div>
-            </div>
-        </form>
+
+</form>
 
         <div>
             @Html.ActionLink("Back", "Index", "Student")

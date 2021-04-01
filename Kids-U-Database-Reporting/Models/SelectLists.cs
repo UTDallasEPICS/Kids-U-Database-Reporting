@@ -94,5 +94,14 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="11", Text="Grade Ascending" },
             new SelectListItem { Value="12", Text="Grade Descending" }
         };
+
+        public List<SelectListItem> Relationship { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value="", Text="Select relationship" },
+            new SelectListItem { Value="Mother", Text="Mother" },
+            new SelectListItem { Value="Father", Text="Father" },
+            new SelectListItem { Value="Relative", Text="Relative" },
+            new SelectListItem { Value="Guardian", Text="Guardian" }
+        };
     }
 }

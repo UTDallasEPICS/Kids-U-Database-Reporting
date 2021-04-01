@@ -43,5 +43,18 @@ namespace Kids_U_Database_Reporting.Models
         //one to many relationship of students to report cards
         public ICollection<ReportCard> ReportCards { get; set; }
         public ICollection<OutcomeMeasurement> OutcomeMeasurements { get; set; }
+
+        public string ParentName1 { get; set; }
+        public string ParentNumber1 { get; set; }
+        public string ParentEmailAddress1 { get; set; }
+        public string RelationshipParent1 { get; set; }
+        public string ParentAptNumber1 { get; set; }
+
+        public string ParentName2 { get; set; }
+        public string ParentNumber2 { get; set; }
+        public string ParentEmailAddress2 { get; set; }
+        public string RelationshipParent2 { get; set; }
+        public string ParentAptNumber2 { get; set; }
+
     }
 }

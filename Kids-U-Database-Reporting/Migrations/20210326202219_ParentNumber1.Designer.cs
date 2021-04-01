@@ -4,14 +4,16 @@ using Kids_U_Database_Reporting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kids_U_Database_Reporting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210326202219_ParentNumber1")]
+    partial class ParentNumber1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,18 +280,6 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Lunch")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ParentAptNumber1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ParentAptNumber2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ParentEmailAddress1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ParentEmailAddress2")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ParentName1")
                         .HasColumnType("nvarchar(max)");
 
@@ -297,15 +287,6 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParentNumber1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ParentNumber2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RelationshipParent1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RelationshipParent2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolGrade")
