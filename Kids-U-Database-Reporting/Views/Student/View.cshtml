@@ -8,9 +8,134 @@
         <hr>
 
         <div class="student-info">
-            <h5>@Model.Ethnicity</h5>
+            <table id="general">
+
+                <tr class="header"><td>General Information</td></tr>
+
+                <tr>
+                    <td>Full Name:</td>
+                    <td>@Model.FirstName @Model.LastName</td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    @{
+                        DateTime? dob = Model.Birthday;
+                        string dateString = dob.HasValue
+                            ? Model.Birthday.Value.ToString("d")
+                            : "N/A";
+                        @Html.Raw("<td>" + dateString + "</td>");
+                    }
+                </tr>
+                <tr>
+                    <td>Ethnicity:</td>
+                    <td>@Model.Ethnicity</td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>@Model.Gender</td>
+                </tr>
+
+                <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+                <tr class="header"><td>Academic Information</td></tr>
+
+                <tr>
+                    <td>Grade Level:</td>
+                    <td>@Model.SchoolGrade</td>
+                </tr>
+                <tr>
+                    <td>School:</td>
+                    <td>@Model.SchoolName</td>
+                </tr>
+                <tr>
+                    <td>KU Site:</td>
+                    <td>No KU Site Support Yet</td>
+                </tr>
+                <tr>
+                    <td>Enrollment Year:</td>
+                    <td>@Model.EnrolledYear</td>
+                </tr>
+                <tr>
+                    <td>Enrollment Semester:</td>
+                    @{
+                        string enrolledSemester = Model.EnrolledSemester;
+                        enrolledSemester = char.ToUpper(enrolledSemester[0]) + enrolledSemester.Substring(1);
+                        @Html.Raw("<td>" + enrolledSemester + "</td>");
+                    } 
+                </tr>
+                <tr>
+                    <td>Enrollment Age:</td>
+                    <td>@Model.AgeAtEnrollment</td>
+                </tr>
+                <tr>
+                    <td>Unenrolled Year:</td>
+                    <td>@Model.UnEnrolledYear</td>
+                </tr>
+                <tr>
+                    <td>Unenrolled Semester:</td>
+                    @{
+                        string unenrolledSemester = Model.UnEnrolledSemester;
+                        unenrolledSemester = char.ToUpper(unenrolledSemester[0]) + unenrolledSemester.Substring(1);
+                        @Html.Raw("<td>" + unenrolledSemester + "</td>");
+                    }
+                </tr>
+                <tr>
+                    @if (Model.Active == true)
+                    {
+                        <td>Active:</td>
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>Active:</td>
+                        <td>No</td>
+                    }
+                </tr>
+
+                <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+                <tr class="header"><td>Financial Information</td></tr>
+
+                <tr>
+                    <td>Household Income:</td>
+                    @if (Model.Income.Contains("&gt;"))
+                    {
+                        string msg = Model.Income.Replace("&gt;", ">");
+                        @Html.Raw("<td>" + msg + "</td>");
+                    }
+                    else if (Model.Income.Contains("&lt;"))
+                    {
+                        string msg = Model.Income.Replace("&lt;", "<");
+                        @Html.Raw("<td>" + msg + "</td>");
+                    }
+                    else
+                    {
+                        <td>@Model.Income</td>
+                    }
+                </tr>
+                <tr>
+                    @if (Model.Lunch == true)
+                    {
+                        <td>Free Lunch:</td>
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>Free Lunch:</td>
+                        <td>No</td>
+                    }
+                </tr>
+                <tr class="spacer"><td colspan="2">&nbsp;</td></tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId }) |
+                        @using (Html.BeginForm("Delete", "Student", new { id = Model.StudentId }))
+                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />
+                            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />}
+                    </td>
+                </tr>
+            </table>
+            <br />
         </div>
-                
+
         <div>
             @Html.ActionLink("Back", "Index", "Student")
         </div>
