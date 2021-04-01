@@ -175,6 +175,21 @@ footer {
 	padding: 10px;
 }
 
+.student-info {
+	font-size: 125%
+}
+
+.student-info tr.spacer td {
+	border: none;
+}
+
+.student-info .header {
+	font-family: Arial;
+	font-size: 1.25em;
+	margin-top: 0.50em;
+	margin-bottom: 0.25em;
+	font-weight: bold;
+
 /*Make the delete button form go on the same line as the edit button*/
 td > form {
 	display: inline;
