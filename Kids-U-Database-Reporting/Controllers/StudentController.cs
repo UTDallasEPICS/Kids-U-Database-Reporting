@@ -35,7 +35,7 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters
-            var items = await _studentService.GetStudentsAsync(searchData);
+            var items = await _studentService.GetStudents(searchData);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -45,6 +45,8 @@ namespace Kids_U_Database_Reporting.Controllers
                 SearchData = searchData,
             };
 
+            ViewBag.resultPercent = (100.0 * items.Length / _studentService.GetActiveStudentCount()).ToString("n1"); // Percent of active students visible in search results, formatted to 1 decimal point
+            ViewBag.returnUrl = Url.Action()+Request.QueryString; // Get the current url with query string to preserve search settings
             ViewBag.selectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -55,12 +57,11 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> Add(string returnUrl)
         {
             //goes to form to create student
 
-            ViewBag.SchoolList = await _commonService.GetSchoolSelectList();
-            ViewBag.SiteList = await _commonService.GetSiteSelectList();
+            ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -75,7 +76,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //puts new student in database
 
-            var successful = await _studentService.AddStudentAsync(newStudent);
+            var successful = await _studentService.AddStudent(newStudent);
 
             if (!successful)
             {
@@ -86,23 +87,25 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Delete(int Id)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int Id, string returnUrl)
         {
             //deletes student from database
 
-            var successful = await _studentService.DeleteStudentAsync(Id);
+            var successful = await _studentService.DeleteStudent(Id);
 
             if (!successful)
             {
                 return BadRequest("Could not delete Student.");
             }
 
-            return RedirectToAction("Index", "Student");
+            return Redirect(returnUrl); // Redirect to the page so search parameters are preserved
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> View(int Id)
+        public async Task<IActionResult> View(int Id, string returnUrl)
         {
+            ViewBag.returnUrl = returnUrl;
             return View(await _studentService.GetStudentById(Id));
         }
 
@@ -125,7 +128,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             //submit edits of student
 
-            var successful = await _studentService.ApplyEditStudentAsync(editedStudent);
+            var successful = await _studentService.ApplyEditStudent(editedStudent);
 
             if (!successful)
             {
@@ -144,83 +147,9 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _studentService.GetStudentsAsync(searchData));
+                cw.WriteRecords(await _studentService.GetStudents(searchData));
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
-        }
-
-
-        //OUTCOME MEASUREMENTS STUFF STARTS HERE
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> OutcomeIndex(int Id)
-        {
-            //displays all outcome measurements for one student
-
-            var items = await _studentService.GetOutcomesAsync(Id);
-
-            var model = new OutcomeViewModel()
-            {
-                OutcomeMeasurements = items,
-                Student = await _studentService.GetStudentById(Id)
-            };
-
-            return View(model);
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> CreateOutcome(int Id)
-        {
-            //goes to form to create outcome measurement
-
-            Student student = await _studentService.GetStudentById(Id);
-
-            ViewBag.FirstName = student.FirstName;
-            ViewBag.LastName = student.LastName;
-            ViewBag.Student = student;
-
-            return View();
-        }
-        
-        public async Task<IActionResult> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement)
-        {
-            //puts new outcome measurement in database
-
-            var successful = await _studentService.SubmitNewOutcomeAsync(newOutcomeMeasurement);
-
-            if (!successful)
-            {
-                return BadRequest("Could not add outcome measurement.");
-            }
-
-            return RedirectToAction("OutcomeIndex", "Student", new { id = newOutcomeMeasurement.Student.StudentId });
-
-
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
-        public async Task<IActionResult> EditOutcome(int Id)
-        {
-            //goes to form to edit outcome measurement
-
-            var model = await _studentService.GetOutcomeAsync(Id);
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement)
-        {
-            //submit edit of report card
-            var successful = await _studentService.ApplyEditOutcomeAsync(editedOutcomeMeasurement);
-
-            if (!successful)
-            {
-                return BadRequest("Could not edit outcome measurement.");
-            }
-
-            editedOutcomeMeasurement = await _studentService.GetOutcomeAsync(editedOutcomeMeasurement.OutcomeId);
-
-            return RedirectToAction("OutcomeIndex", "Student", new { id = editedOutcomeMeasurement.Student.StudentId });
-
         }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model OutcomeViewModel
+@{
+    ViewData["Title"] = "Outcome Measurements";
+}
+
+<body>
+    <div class="container body-content">
+        <h2>Outcome Measurements for @Model.Student.FirstName @Model.Student.LastName</h2>
+
+        <!--search/filter/sort-->
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "Add", new { studentId = Model.Student.StudentId, ViewBag.returnUrl })
+                @Html.ActionLink("Export", "ExportSingle", "OutcomeMeasurement", new { studentId = Model.Student.StudentId })
+            </div>
+        </div>
+
+        <!--Displays all Outcome Measurements for a Student-->
+        <table class="table report-card-table">
+            <tr>
+                <th colspan="2">Outcome</th>
+                <th colspan="2" class="th-center">Math</th>
+                <th></th>
+                <th colspan="2" class="th-center">Language</th>
+                <th></th>
+                <th colspan="2" class="th-center">Reading</th>
+                <th></th>
+                <th colspan="3" class="th-center">Fluency</th>
+                <th></th>
+                <th colspan="2" class="th-center">Esteem</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Grade</th>
+                <th>Semester</th>
+
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th></th>
+                <th>Pre</th>
+                <th>Post</th>
+                <th></th>
+            </tr>
+
+            @foreach (OutcomeMeasurement om in Model.OutcomeMeasurements)
+            {
+                <tr>
+                    <td>@om.ReportSchoolGrade</td>
+                    <td>@om.ReportSchoolSemester</td>
+
+                    <td>@om.MathPreTest</td>
+                    <td>@om.MathPostTest</td>
+                    <td></td>
+                    <td>@om.LanguagePreTest</td>
+                    <td>@om.LanguagePostTest</td>
+                    <td></td>
+                    <td>@om.ReadingPreTest</td>
+                    <td>@om.ReadingPostTest</td>
+                    <td></td>
+                    <td>@om.ReadingFluencyTest</td>
+                    <td>@om.ReadingFluencyTest2</td>
+                    <td>@om.ReadingFluencyTest3</td>
+                    <td></td>
+                    <td>@om.SelfEsteemPreTest</td>
+                    <td>@om.SelfEsteemPostTest</td>
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = om.OutcomeId, ViewBag.returnUrl }) | 
+                        @using (Html.BeginForm("Delete", "OutcomeMeasurement", new { id = om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl }))
+                            { <input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Outcome Measurement?')" /> }
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div>
+            <a href=@ViewBag.returnUrl>Back</a>
+        </div>
+    </div>
+</body>
