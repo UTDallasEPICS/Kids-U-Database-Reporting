@@ -89,6 +89,9 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("ReadingFluencyTest3")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReadingPostTest")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ReadingPreTest")
                         .HasColumnType("nvarchar(max)");
 
