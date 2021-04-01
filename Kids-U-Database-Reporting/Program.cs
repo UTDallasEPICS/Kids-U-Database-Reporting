@@ -11,7 +11,6 @@ namespace Kids_U_Database_Reporting
 {
     public class Program
     {
-        //new branch
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
