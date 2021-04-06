@@ -43,6 +43,32 @@
     <Compile Remove="Migrations\20200306050133_CreateIdentitySchema.Designer.cs" />
     <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.cs" />
     <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20210326192728_ParentName1.cs" />
+    <Compile Remove="Migrations\20210326192728_ParentName1.Designer.cs" />
+    <Compile Remove="Migrations\20210326193156_ParentName2.cs" />
+    <Compile Remove="Migrations\20210326193156_ParentName2.Designer.cs" />
+    <Compile Remove="Migrations\20210326202219_ParentNumber1.cs" />
+    <Compile Remove="Migrations\20210326202219_ParentNumber1.Designer.cs" />
+    <Compile Remove="Migrations\20210326203514_ParentEmailAddress1.cs" />
+    <Compile Remove="Migrations\20210326203514_ParentEmailAddress1.Designer.cs" />
+    <Compile Remove="Migrations\20210326210425_RelationshipParent1.cs" />
+    <Compile Remove="Migrations\20210326210425_RelationshipParent1.Designer.cs" />
+    <Compile Remove="Migrations\20210326220328_ParentAptNumber1.cs" />
+    <Compile Remove="Migrations\20210326220328_ParentAptNumber1.Designer.cs" />
+    <Compile Remove="Migrations\20210326221621_RelationshipParent2.cs" />
+    <Compile Remove="Migrations\20210326221621_RelationshipParent2.Designer.cs" />
+    <Compile Remove="Migrations\20210326221727_ParentNumber2.cs" />
+    <Compile Remove="Migrations\20210326221727_ParentNumber2.Designer.cs" />
+    <Compile Remove="Migrations\20210326221811_ParentEmailAddress2.cs" />
+    <Compile Remove="Migrations\20210326221811_ParentEmailAddress2.Designer.cs" />
+    <Compile Remove="Migrations\20210326221847_ParentAptNumber2.cs" />
+    <Compile Remove="Migrations\20210326221847_ParentAptNumber2.Designer.cs" />
+    <Compile Remove="Migrations\20210331162747_AddReadingPostTest.cs" />
+    <Compile Remove="Migrations\20210331162747_AddReadingPostTest.Designer.cs" />
+    <Compile Remove="Migrations\20210406202013_ParentInfo.cs" />
+    <Compile Remove="Migrations\20210406202013_ParentInfo.Designer.cs" />
+    <Compile Remove="Migrations\20210406202148_ParentInfo.cs" />
+    <Compile Remove="Migrations\20210406202148_ParentInfo.Designer.cs" />
   </ItemGroup>
 
 
@@ -60,6 +86,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="popper.js" Version="1.16.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

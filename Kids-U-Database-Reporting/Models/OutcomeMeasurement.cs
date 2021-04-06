@@ -12,6 +12,8 @@ namespace Kids_U_Database_Reporting.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OutcomeId { get; set; }
+
+        [Required]
         [ForeignKey("StudentId")]
         public Student Student { get; set; }
         public string ReportSchoolGrade { get; set; }

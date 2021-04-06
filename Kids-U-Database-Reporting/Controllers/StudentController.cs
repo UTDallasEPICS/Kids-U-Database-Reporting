@@ -86,20 +86,13 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Student");
         }
 
+        // Deletes Student and attached ReportCards and OutcomeMeasurements from database
         [Authorize(Roles = "Global Administrator, Site Administrator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int Id, string returnUrl)
         {
-            //deletes student from database
-
-            var successful = await _studentService.DeleteStudent(Id);
-
-            if (!successful)
-            {
-                return BadRequest("Could not delete Student.");
-            }
-
-            return Redirect(returnUrl); // Redirect to the page so search parameters are preserved
+            await _studentService.DeleteStudent(Id);
+            return Redirect(returnUrl); // Redirect to the same index page so search parameters are preserved
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
