@@ -80,7 +80,7 @@ namespace Kids_U_Database_Reporting.Controllers
             var model = new ReportCardViewModel()
             {
                 ReportCards = items,
-                Student = await _studentService.GetStudentById(Id)
+                Student = await _studentService.GetStudent(Id)
             };
 
             ViewBag.returnUrl = returnUrl;
@@ -111,8 +111,6 @@ namespace Kids_U_Database_Reporting.Controllers
 
             if (!successful)
                 return BadRequest("Could not edit report card.");
-
-            editedReportCard = await _reportCardService.GetReportCard(editedReportCard.ReportCardId);
 
             return RedirectToAction("View", "ReportCard", new { Id = editedReportCard.Student.StudentId, returnUrl });
         }

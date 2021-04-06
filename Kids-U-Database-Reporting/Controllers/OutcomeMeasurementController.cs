@@ -64,7 +64,7 @@ namespace Kids_U_Database_Reporting.Controllers
             var model = new OutcomeViewModel()
             {
                 OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(Id),
-                Student = await _studentService.GetStudentById(Id)
+                Student = await _studentService.GetStudent(Id)
             };
 
             ViewBag.returnUrl = returnUrl;

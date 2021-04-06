@@ -6,7 +6,6 @@
     <div class="container body-content">
         <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
 
-        <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
                 @Html.ActionLink("Create New", "Add", "ReportCard", new { studentId = Model.Student.StudentId, ViewBag.returnUrl })

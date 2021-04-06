@@ -99,15 +99,16 @@ namespace Kids_U_Database_Reporting.Controllers
         public async Task<IActionResult> View(int Id, string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
-            return View(await _studentService.GetStudentById(Id));
+            return View(await _studentService.GetStudent(Id));
         }
 
         [Authorize(Roles = "Global Administrator, Site Administrator")]
-        public async Task<IActionResult> Edit(int Id)
+        public async Task<IActionResult> Edit(int Id, string returnUrl)
         {
             //goes to form to edit student
 
-            var model = await _studentService.GetStudentById(Id);
+            var model = await _studentService.GetStudent(Id);
+            ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),
@@ -117,22 +118,22 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> ApplyEdit(Student editedStudent)
+        // Submit edits of student
+        public async Task<IActionResult> ApplyEdit(Student editedStudent, string returnUrl)
         {
-            //submit edits of student
-
             var successful = await _studentService.ApplyEditStudent(editedStudent);
 
             if (!successful)
-            {
                 return BadRequest("Could not edit student.");
-            }
-            
-            return RedirectToAction("Index", "Student");
 
+            if(returnUrl != null)
+                return RedirectToAction("View", "Student", new { Id = editedStudent.StudentId, returnUrl });
+            else
+                return RedirectToAction("Index", "Student");
         }
 
-        public async Task<ActionResult> Export(Search searchData) // Export a csv of student data https://stackoverflow.com/a/62125940
+        // Export a csv of all student data https://stackoverflow.com/a/62125940
+        public async Task<ActionResult> Export(Search searchData) 
         {
             var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
 
@@ -143,6 +144,20 @@ namespace Kids_U_Database_Reporting.Controllers
                 cw.WriteRecords(await _studentService.GetStudents(searchData));
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
+        }
+
+        // Export a csv of a single student's data
+        public async Task<ActionResult> ExportSingle(int studentId)
+        {
+            var cc = new CsvConfiguration(new System.Globalization.CultureInfo("en-US"));
+
+            using var ms = new MemoryStream();
+            using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
+            using (var cw = new CsvWriter(sw, cc))
+            {
+                cw.WriteRecord(await _studentService.GetStudent(studentId));
+            }
+            return File(ms.ToArray(), "text/csv", $"Student_{DateTime.UtcNow.Date:d}.csv");
         }
     }
 }

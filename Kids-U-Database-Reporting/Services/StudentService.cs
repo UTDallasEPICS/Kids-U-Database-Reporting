@@ -24,8 +24,14 @@ namespace Kids_U_Database_Reporting.Services
             return _context.Students.Count(x => x.Active);
         }
 
+        // Return a Student using the StudentId
+        public async Task<Student> GetStudent(int studentId)
+        {
+            return await _context.Students.FindAsync(studentId);
+        }
+
         // Get all students, no filtering
-        public async Task<Student[]> GetStudents() 
+        public async Task<Student[]> GetStudents()
         {
             return await _context.Students.ToArrayAsync();
         }
@@ -166,12 +172,6 @@ namespace Kids_U_Database_Reporting.Services
             _context.Students.Remove(deleteStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
-        }
-
-        // Return a Student using the StudentId
-        public async Task<Student> GetStudentById(int studentId)
-        {
-            return await _context.Students.Where(x => x.StudentId == studentId).FirstAsync();
         }
 
         public async Task<bool> ApplyEditStudent(Student editedStudent)
