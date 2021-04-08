@@ -15,6 +15,7 @@ namespace Kids_U_Database_Reporting.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReportCardId { get; set; }
 
+        [Required]
         [ForeignKey("StudentId")]
         public Student Student { get; set; }
 

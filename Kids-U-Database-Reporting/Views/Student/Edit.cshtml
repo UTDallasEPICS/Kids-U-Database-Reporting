@@ -257,6 +257,7 @@
                 @Html.Hidden("StudentId")
                 @Html.Hidden("ReportCards")
                 @Html.Hidden("OutcomeMeasurements")
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 
                 <!--submit-->
                 <div class="form-group">
@@ -264,13 +265,11 @@
                         <input type="submit" value="Submit" class="btn btn-default" formmethod="post" />
                     </div>
                 </div>
-
-</form>
+            </div>
+        </form>
 
         <div>
-            @Html.ActionLink("Back", "Index", "Student")
+            @Html.ActionLink("Back", "View", new { id = Model.StudentId, ViewBag.returnUrl })
         </div>
-
-
     </div>
 </body>
