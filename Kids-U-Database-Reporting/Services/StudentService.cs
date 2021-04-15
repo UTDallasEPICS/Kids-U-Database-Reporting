@@ -1,5 +1,6 @@
 ﻿using Kids_U_Database_Reporting.Data;
 using Kids_U_Database_Reporting.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace Kids_U_Database_Reporting.Services
     public class StudentService : IStudentService
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public StudentService(ApplicationDbContext context)
+        public StudentService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
+            _userManager = userManager;
         }
 
         // Return an int with the number of active students
@@ -36,15 +39,18 @@ namespace Kids_U_Database_Reporting.Services
             return await _context.Students.ToArrayAsync();
         }
 
-        // Returns list of all students matching the parameters passed
-        public async Task<Student[]> GetStudents(Search s) 
+        // Returns list of all students matching the parameters passed. Restricts to only sites the user has access to
+        public async Task<Student[]> GetStudents(Search s, string userName) 
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
             bool activeBool = s.Active == "True";
             int year = DateTime.Now.Year;
 
+            var user = await _userManager.FindByNameAsync(userName); // Get the current user from userName
+
             var students = _context.Students
+                .Where(x => user.Role == "Global Administrator" || x.Facility.Equals(user.Site)) // Check that user is Global Admin or student is at the user's site
                 .Where(x => s.Name == null || x.FirstName.Contains(s.Name) || x.LastName.Contains(s.Name))
                 .Where(x => s.Ethnicity == null || x.Ethnicity.Equals(s.Ethnicity))
                 .Where(x => s.Gender == null || x.Gender.Equals(s.Gender))

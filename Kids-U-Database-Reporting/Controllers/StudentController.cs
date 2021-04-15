@@ -31,11 +31,11 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays all students with filters from parameters
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
+        [Authorize(Roles = "Global Administrator, Site Coordinator, Site Volunteer")]
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters
-            var items = await _studentService.GetStudents(searchData);
+            var items = await _studentService.GetStudents(searchData, User.Identity.Name);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -56,7 +56,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [Authorize(Roles = "Global Administrator, Site Coordinator")]
         public async Task<IActionResult> Add(string returnUrl)
         {
             //goes to form to create student
@@ -87,7 +87,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Deletes Student and attached ReportCards and OutcomeMeasurements from database
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [Authorize(Roles = "Global Administrator, Site Coordinator")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int Id, string returnUrl)
         {
@@ -95,14 +95,14 @@ namespace Kids_U_Database_Reporting.Controllers
             return Redirect(returnUrl); // Redirect to the same index page so search parameters are preserved
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [Authorize(Roles = "Global Administrator, Site Coordinator")]
         public async Task<IActionResult> View(int Id, string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
             return View(await _studentService.GetStudent(Id));
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [Authorize(Roles = "Global Administrator, Site Coordinator")]
         public async Task<IActionResult> Edit(int Id, string returnUrl)
         {
             //goes to form to edit student
@@ -141,7 +141,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _studentService.GetStudents(searchData));
+                cw.WriteRecords(await _studentService.GetStudents(searchData, "Global Administrator"));
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
         }

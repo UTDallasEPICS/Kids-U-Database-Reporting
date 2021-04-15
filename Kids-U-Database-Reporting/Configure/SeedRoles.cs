@@ -11,12 +11,10 @@ namespace Kids_U_Database_Reporting.Configure
 {
     public class SeedRoles
     {
-
-
         public static async Task Seed(ApplicationDbContext context, RoleManager<UserRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             context.Database.EnsureCreated();
-            //checks to see if the roles exsist and if they dont create them in db CreateIdentitySchema
+            //checks to see if the roles exists and if they dont create them in db CreateIdentitySchema
             string role = "Global Administrator";
             string role1 = "Site Coordinator";
             string role2 = "Site Volunteer";
@@ -47,6 +45,7 @@ namespace Kids_U_Database_Reporting.Configure
                     Active = true,
                     Role = "Global Administrator",
                 };
+
                 //Creates the user and adds the password to it
                 var result = await userManager.CreateAsync(user,password);
                 //Adds the role to the user idenity 
@@ -94,13 +93,6 @@ namespace Kids_U_Database_Reporting.Configure
                     await userManager.AddToRoleAsync(user, role2);
                 }
             }
-
-
-
-
-
         }
-
-
     }
 }

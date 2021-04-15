@@ -11,7 +11,7 @@ namespace Kids_U_Database_Reporting.Services
         int GetActiveStudentCount();
         Task<Student> GetStudent(int studentId);
         Task<Student[]> GetStudents();
-        Task<Student[]> GetStudents(Search search);
+        Task<Student[]> GetStudents(Search search, string userName);
         Task<Student[]> GetStudentsWithReportCards(Search searchData);
         Task<Student[]> GetStudentsWithOutcomes(Search searchData);
         Task<bool> ApplyEditStudent(Student editedStudent);
