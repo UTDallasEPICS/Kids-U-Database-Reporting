@@ -12,8 +12,8 @@ namespace Kids_U_Database_Reporting.Services
         Task<ApplicationUser[]> GetAllStaffAsync();
         Task<ApplicationUser> GetStaffAsync(string x);
         Task<UserRole[]> GetUserRolesAsync();
-
-        Task<int> UpdateStaffAsync(ApplicationUser x);
+        Task<bool> AddNewStaff(ApplicationUser newStaff, string password);
+        Task<int> UpdateStaffAsync(ApplicationUser x, string oldEmail, string password);
 
         Task<int> DeleteStaffAsync(string Email);
     }

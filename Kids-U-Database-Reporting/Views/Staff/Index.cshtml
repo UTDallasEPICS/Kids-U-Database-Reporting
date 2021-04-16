@@ -1,47 +1,42 @@
 ﻿@model  ApplicationUserViewModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Staff Directory";
 }
 
 <body>
-
-
     <div class="container body-content">
         <h2>Staff Directory and Management</h2>
+        <br />
+        @Html.ActionLink("Add", "Add", "Staff")
 
-        
         <!--table-->
         <table class="table">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Name</th>
+                <th>UserName</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Site</th>
                 <th>Active</th>
                 <th></th>
-                
             </tr>
-            <!--entries-->
-            @foreach(var item in Model.Users)
+
+            @foreach (var item in Model.Users)
             {
                 <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.UserName</td>
                     <td>@item.Email</td>
                     <td>@item.Role</td>
                     <td>@item.Site</td>
                     <td>@item.Active</td>
-                    <td>@Html.ActionLink("Edit", "Edit", "Staff", new { Email = item.Email }) | 
-                    @Html.ActionLink("Delete", "Delete", "Staff", new { Email = item.Email })
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Staff", new { Email = item.Email }) |
+                        @Html.ActionLink("Delete", "Delete", "Staff", new { Email = item.Email })
                     </td>
                 </tr>
             }
         </table>
-
-
-
     </div>
 </body>
 

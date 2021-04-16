@@ -1,37 +1,36 @@
-﻿
-@model ApplicationUser
+﻿@model ApplicationUser
 @{
-    ViewData["Title"] = "Edit Staff";
+    ViewData["Title"] = "Add Staff";
 }
 
 <body>
     <div class="container body-content">
-        <h2>Edit Staff</h2>
+        <h2>Add Staff</h2>
     </div>
-    <form asp-controller="Staff" asp-action="FinalizeEdit" method="post" class="form-horizontal">
+    <form asp-controller="Staff" asp-action="Add" method="post" class="form-horizontal">
 
         <div class="form-group">
             <label class="control-label col-md-2">First Name</label>
             <div class="col-md-10">
-                <input asp-for="FirstName" model.FirstName class="form-control text-box single-line" />
+                <input asp-for="FirstName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Last Name</label>
             <div class="col-md-10">
-                <input asp-for="LastName" model.LastName class="form-control text-box single-line" />
+                <input asp-for="LastName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">UserName</label>
             <div class="col-md-10">
-                <input asp-for="UserName" model.UserName class="form-control text-box single-line" />
+                <input asp-for="UserName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Email</label>
             <div class="col-md-10">
-                <input asp-for="Email" model.Email class="form-control text-box single-line" />
+                <input asp-for="Email" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
@@ -43,7 +42,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Site</label>
             <div class="col-md-10">
-                <input asp-for="Site" model.Site class="form-control text-box single-line" />
+                <input asp-for="Site" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
@@ -57,7 +56,6 @@
             </div>
         </div>
         <div class="form-group">
-
             <label class="control-label col-md-2">Active</label>
             <div class="col-md-10">
                 <select asp-for="Active" class="form-control">
@@ -67,12 +65,9 @@
             </div>
         </div>
 
-        @*Old email used to find the user in database incase the email is being edited*@
-        <input hidden name="oldEmail" value=@Model.Email />
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="submit" formmethod="post" class="btn btn-default">Edit</button>
+                <button type="submit" formmethod="post" class="btn btn-default">Add</button>
             </div>
         </div>
     </form>

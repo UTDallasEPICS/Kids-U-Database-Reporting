@@ -2,9 +2,6 @@
 using Kids_U_Database_Reporting.Data;
 using Kids_U_Database_Reporting.Models;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kids_U_Database_Reporting.Configure
@@ -14,83 +11,43 @@ namespace Kids_U_Database_Reporting.Configure
         public static async Task Seed(ApplicationDbContext context, RoleManager<UserRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             context.Database.EnsureCreated();
-            //checks to see if the roles exists and if they dont create them in db CreateIdentitySchema
-            string role = "Global Administrator";
-            string role1 = "Site Coordinator";
-            string role2 = "Site Volunteer";
-            string password = "EPICS2020";
-            if ((await roleManager.FindByNameAsync(role)) == null)
-            {
-                await roleManager.CreateAsync(new UserRole(role));
-            }
-            if ((await roleManager.FindByNameAsync(role1)) == null)
-            {
-                await roleManager.CreateAsync(new UserRole(role1));
-            }
-            if ((await roleManager.FindByNameAsync(role2)) == null)
-            {
-                await roleManager.CreateAsync(new UserRole(role2));
-            }
+            // Checks to see if the roles exists and if they dont create them in db CreateIdentitySchema
+            string globalAdminRole = "Global Administrator";
+            string siteCoordinatorRole = "Site Coordinator";
+            string siteVolunteerRole = "Site Volunteer";
 
-            if (await userManager.FindByNameAsync("UTD@TestAdmin") == null)
+            if ((await roleManager.FindByNameAsync(globalAdminRole)) == null)
             {
-
+                await roleManager.CreateAsync(new UserRole(globalAdminRole));
+            }
+            if ((await roleManager.FindByNameAsync(siteCoordinatorRole)) == null)
+            {
+                await roleManager.CreateAsync(new UserRole(siteCoordinatorRole));
+            }
+            if ((await roleManager.FindByNameAsync(siteVolunteerRole)) == null)
+            {
+                await roleManager.CreateAsync(new UserRole(siteVolunteerRole));
+            }
+            
+            string password = "EPICS2021"; // Password used for creating default account
+            if (await userManager.FindByNameAsync("Admin") == null) // Create the default Admin account
+            {
                 var user = new ApplicationUser
                 {
-                    UserName = "UTD@TestAdmin.com",
-                    Email = "UTD@TestAdmin.com",
-                    FirstName = "Code",
-                    LastName = "Generator",
-                    Site = "UTD",
+                    UserName = "Admin",
+                    Email = "admin@email.com",
+                    FirstName = "Site",
+                    LastName = "Admin",
+                    Site = "",
                     Active = true,
                     Role = "Global Administrator",
                 };
 
-                //Creates the user and adds the password to it
-                var result = await userManager.CreateAsync(user,password);
-                //Adds the role to the user idenity 
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, role);
-                }
-            }
-           
+                var result = await userManager.CreateAsync(user, password); // Creates the user and adds the default password to it
 
-            if (await userManager.FindByNameAsync("UTD@TestSite") == null)
-            {
-                var user = new ApplicationUser
+                if (result.Succeeded) // Adds the user to the Global Admin role
                 {
-                    UserName = "UTD@TestSite.com",
-                    Email = "UTD@TestSite.com",
-                    FirstName = "Code",
-                    LastName = "Editor",
-                    Site = "UTD",
-                    Active = true,
-                    Role = "Site Administrator",
-                };
-                var result = await userManager.CreateAsync(user, password);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, role1);
-                }
-            }
-
-            if (await userManager.FindByNameAsync("UTD@TestVolunteer") == null)
-            {
-                var user = new ApplicationUser
-                {
-                    UserName = "UTD@TestVolunteer.com",
-                    Email = "UTD@TestVolunteer.com",
-                    FirstName = "Code",
-                    LastName = "Fixer",
-                    Site = "UTD",
-                    Active = true,
-                    Role = "Site Volunteer",
-                };
-                var result = await userManager.CreateAsync(user, password);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, role2);
+                    await userManager.AddToRoleAsync(user, globalAdminRole);
                 }
             }
         }

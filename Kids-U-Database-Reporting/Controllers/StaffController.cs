@@ -13,14 +13,13 @@ namespace Kids_U_Database_Reporting.Controllers
     public class StaffController : Controller
     {
         private readonly IStaffService _staffService;
-        
 
         public StaffController(IStaffService staffService)
         {
             _staffService = staffService;
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
+        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Index()
         {
             var items = await _staffService.GetAllStaffAsync();
@@ -30,6 +29,22 @@ namespace Kids_U_Database_Reporting.Controllers
             };
             return View(model);
         }
+
+        [Authorize(Roles = "Global Administrator")]
+        public async Task<IActionResult> Add()
+        {
+            // Create select lists for existing sites
+            return View();
+        }
+
+        [Authorize(Roles = "Global Administrator")]
+        [HttpPost]
+        public async Task<IActionResult> Add(ApplicationUser newUser, string password)
+        {
+            await _staffService.AddNewStaff(newUser, password);
+            return RedirectToAction("Index", "Staff");
+        }
+
         [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(string Email)
         {
@@ -39,17 +54,10 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(staff);
         }
 
-        public async Task<IActionResult> FinalizeEditAsync(ApplicationUser model)
+        [Authorize(Roles = "Global Administrator")]
+        public async Task<IActionResult> FinalizeEditAsync(ApplicationUser model, string oldEmail, string password)
         {
-           var result = await _staffService.UpdateStaffAsync(model);
-            if(result == 1)
-            {
-                Console.WriteLine("update worked");
-            }
-            else
-            {
-                Console.WriteLine("update failed");
-            }
+           await _staffService.UpdateStaffAsync(model, oldEmail, password);
            return RedirectToAction("Index", "Staff");
         }
 
