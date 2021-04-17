@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +11,7 @@ using CsvHelper.Configuration;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+    [Authorize(Roles = "Global Administrator, Site Coordinator")]
     public class ReportCardController : Controller
     {
         private readonly IStudentService _studentService;
@@ -31,11 +30,10 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays the latest report card for all students with filters from parameters
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters with their report card data loaded
-            var items = await _studentService.GetStudentsWithReportCards(searchData);
+            var items = await _studentService.GetStudentsWithReportCards(searchData, User.Identity.Name);
             searchData.ResultCount = items.Length;
             
             // Create model with the students and search data
@@ -56,7 +54,6 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Create new Report Card for any student
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Add(int? studentId, string returnUrl) 
         {
             ViewBag.returnUrl = returnUrl;
@@ -72,24 +69,24 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays all report cards for one student
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> View(int Id, string returnUrl) 
         {
-            var items = await _reportCardService.GetReportCards(Id);
-
+            var student = await _studentService.GetStudent(Id, User.Identity.Name);
             var model = new ReportCardViewModel()
             {
-                ReportCards = items,
-                Student = await _studentService.GetStudent(Id)
+                ReportCards = await _reportCardService.GetReportCards(Id, User.Identity.Name),
+                Student = student
             };
 
             ViewBag.returnUrl = returnUrl;
 
-            return View(model);
+            if (student == null)
+                return BadRequest("Could not access student");
+            else
+                return View(model);
         }
 
         // Goes to form to edit report card
-        [Authorize(Roles = "Global Administrator, Site Administrator")]
         public async Task<IActionResult> Edit(int Id, string returnUrl) 
         {
             var model = await _reportCardService.GetReportCard(Id);
@@ -115,7 +112,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "ReportCard", new { Id = editedReportCard.Student.StudentId, returnUrl });
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int reportId, int studentId, string returnUrl)
         {
@@ -149,7 +145,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetAllReportCards(searchData));
+                cw.WriteRecords(await _reportCardService.GetAllReportCards(searchData, User.Identity.Name));
             }
             
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
@@ -164,7 +160,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudent(studentId));
+                cw.WriteRecords(await _reportCardService.GetReportCardsWithStudent(studentId, User.Identity.Name));
             }
             return File(ms.ToArray(), "text/csv", $"ReportCards_{DateTime.UtcNow.Date:d}.csv");
         }

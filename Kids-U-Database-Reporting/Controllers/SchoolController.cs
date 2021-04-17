@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+    [Authorize(Roles = "Global Administrator")]
     public class SchoolController : Controller
     {
         private readonly ISchoolService _schoolService;
@@ -20,7 +21,6 @@ namespace Kids_U_Database_Reporting.Controllers
             _districtService = districtService;
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index()
         {
             var items = await _schoolService.GetSchoolsAsync();
@@ -31,7 +31,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> CreateAsync()
         {
             
@@ -52,7 +51,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             var model = new School();
@@ -74,7 +72,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             var successful = await _schoolService.DeleteSchoolAsync(Id);

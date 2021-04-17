@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +11,7 @@ using CsvHelper.Configuration;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+    [Authorize(Roles = "Global Administrator, Site Coordinator")]
     public class OutcomeMeasurementController : Controller
     {
         private readonly IStudentService _studentService;
@@ -33,11 +32,10 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays the latest report card for all students with filters from parameters
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters with their report card data loaded
-            var items = await _studentService.GetStudentsWithOutcomes(searchData);
+            var items = await _studentService.GetStudentsWithOutcomes(searchData, User.Identity.Name);
             searchData.ResultCount = items.Length;
 
             // Create model with the students and search data
@@ -58,21 +56,23 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays all outcome measurements for one student
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> View(int Id, string returnUrl) 
         {
+            var student = await _studentService.GetStudent(Id, User.Identity.Name);
             var model = new OutcomeViewModel()
             {
-                OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(Id),
-                Student = await _studentService.GetStudent(Id)
+                OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(Id, User.Identity.Name),
+                Student = student
             };
 
             ViewBag.returnUrl = returnUrl;
 
-            return View(model);
+            if (student == null)
+                return BadRequest("Could not access student");
+            else
+                return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Add(int? studentId, string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
@@ -83,7 +83,6 @@ namespace Kids_U_Database_Reporting.Controllers
                 SchoolList = await _commonService.GetSchoolSelectList(),
                 SiteList = await _commonService.GetSiteSelectList()
             };
-
 
             return View();
         }
@@ -102,7 +101,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "OutcomeMeasurement", new { id = newOutcomeMeasurement.Student.StudentId, returnUrl });
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int outcomeId, int studentId, string returnUrl)
         {
@@ -116,7 +114,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "OutcomeMeasurement", new { id = studentId, returnUrl });
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Edit(int Id, string returnUrl)
         {
             //goes to form to edit outcome measurement
@@ -157,7 +154,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _outcomeMeasurementService.GetAllOutcomes(searchData));
+                cw.WriteRecords(await _outcomeMeasurementService.GetAllOutcomes(searchData, User.Identity.Name));
             }
             return File(ms.ToArray(), "text/csv", $"OutcomeMeasurements_{DateTime.UtcNow.Date:d}.csv");
         }
@@ -171,7 +168,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _outcomeMeasurementService.GetOutcomesWithStudent(studentId));
+                cw.WriteRecords(await _outcomeMeasurementService.GetOutcomesWithStudent(studentId, User.Identity.Name));
             }
             return File(ms.ToArray(), "text/csv", $"OutcomeMeasurements_{DateTime.UtcNow.Date:d}.csv");
         }

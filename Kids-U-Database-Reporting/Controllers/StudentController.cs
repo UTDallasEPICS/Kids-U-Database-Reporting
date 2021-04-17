@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +11,7 @@ using CsvHelper.Configuration;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+    [Authorize(Roles = "Global Administrator, Site Coordinator")]
     public class StudentController : Controller
     {
         private readonly IStudentService _studentService;
@@ -31,7 +30,6 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays all students with filters from parameters
-        [Authorize(Roles = "Global Administrator, Site Coordinator, Site Volunteer")]
         public async Task<IActionResult> Index(Search searchData)
         {
             // Get all students who match the parameters
@@ -56,11 +54,19 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator, Site Coordinator")]
+        public async Task<IActionResult> View(int Id, string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl;
+            var student = await _studentService.GetStudent(Id, User.Identity.Name);
+            if (student == null)
+                return BadRequest("Could not access student");
+            else
+                return View(student);
+        }
+
+        // Go to form for adding a new student
         public async Task<IActionResult> Add(string returnUrl)
         {
-            //goes to form to create student
-
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
             {
@@ -71,43 +77,24 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
+        // Puts newly created student into database
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Student newStudent)
+        [HttpPost]
+        public async Task<IActionResult> Add(Student newStudent)
         {
-            //puts new student in database
-
             var successful = await _studentService.AddStudent(newStudent);
 
             if (!successful)
-            {
                 return BadRequest("Could not add student.");
-            }
 
             return RedirectToAction("Index", "Student");
         }
 
-        // Deletes Student and attached ReportCards and OutcomeMeasurements from database
-        [Authorize(Roles = "Global Administrator, Site Coordinator")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int Id, string returnUrl)
-        {
-            await _studentService.DeleteStudent(Id);
-            return Redirect(returnUrl); // Redirect to the same index page so search parameters are preserved
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Coordinator")]
-        public async Task<IActionResult> View(int Id, string returnUrl)
-        {
-            ViewBag.returnUrl = returnUrl;
-            return View(await _studentService.GetStudent(Id));
-        }
-
-        [Authorize(Roles = "Global Administrator, Site Coordinator")]
         public async Task<IActionResult> Edit(int Id, string returnUrl)
         {
             //goes to form to edit student
 
-            var model = await _studentService.GetStudent(Id);
+            var model = await _studentService.GetStudent(Id, User.Identity.Name);
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
             {
@@ -119,7 +106,9 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Submit edits of student
-        public async Task<IActionResult> ApplyEdit(Student editedStudent, string returnUrl)
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Student editedStudent, string returnUrl)
         {
             var successful = await _studentService.ApplyEditStudent(editedStudent);
 
@@ -132,6 +121,14 @@ namespace Kids_U_Database_Reporting.Controllers
                 return RedirectToAction("Index", "Student");
         }
 
+        // Deletes Student and attached ReportCards and OutcomeMeasurements from database
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int Id, string returnUrl)
+        {
+            await _studentService.DeleteStudent(Id);
+            return Redirect(returnUrl); // Redirect to the same index page so search parameters are preserved
+        }
+
         // Export a csv of all student data https://stackoverflow.com/a/62125940
         public async Task<ActionResult> Export(Search searchData) 
         {
@@ -141,7 +138,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecords(await _studentService.GetStudents(searchData, "Global Administrator"));
+                cw.WriteRecords(await _studentService.GetStudents(searchData, User.Identity.Name));
             }
             return File(ms.ToArray(), "text/csv", $"StudentData_{DateTime.UtcNow.Date:d}.csv");
         }
@@ -155,7 +152,7 @@ namespace Kids_U_Database_Reporting.Controllers
             using var sw = new StreamWriter(stream: ms, encoding: new UTF8Encoding(true));
             using (var cw = new CsvWriter(sw, cc))
             {
-                cw.WriteRecord(await _studentService.GetStudent(studentId));
+                cw.WriteRecord(await _studentService.GetStudent(studentId, User.Identity.Name));
             }
             return File(ms.ToArray(), "text/csv", $"Student_{DateTime.UtcNow.Date:d}.csv");
         }

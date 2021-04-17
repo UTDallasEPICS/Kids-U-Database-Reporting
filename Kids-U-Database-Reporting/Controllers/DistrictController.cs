@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Kids_U_Database_Reporting.Models;
 using Kids_U_Database_Reporting.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -9,34 +6,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
+    [Authorize(Roles = "Global Administrator")]
     public class DistrictController : Controller
     {
         private readonly IDistrictService _districtService;
         public DistrictController(IDistrictService districtService)
         {
-            //constructor
             _districtService = districtService;
         }
 
-        [Authorize(Roles = "Global Administrator, Site Administrator,Site Volunteer")]
         public async Task<IActionResult> Index()
         {
             var items = await _districtService.GetDistrictsAsync();
             var model = new DistrictViewModel()
-
             {
                 Districts = items
             };
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Edit(int Id)
         {
             var model = new District();
@@ -45,7 +38,6 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Global Administrator")]
         public async Task<IActionResult> Delete(int Id)
         {
             var successful = await _districtService.DeleteDistrictAsync(Id);
@@ -57,10 +49,9 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "District");
         }
 
+        //puts new student in database
         public async Task<IActionResult> CreateDistrict(District newDistrict)
         {
-            //puts new student in database
-
             var successful = await _districtService.AddDistrictAsync(newDistrict);
 
             if (!successful)
@@ -71,10 +62,9 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "District");
         }
 
+        //submit edits of District
         public async Task<IActionResult> ApplyEdit(District editedDistrict)
         {
-            //submit edits of District
-
             var successful = await _districtService.ApplyEditDistrictAsync(editedDistrict);
 
             if (!successful)

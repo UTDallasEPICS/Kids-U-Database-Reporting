@@ -11,23 +11,18 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Kids_U_Database_Reporting.Controllers
 {
-
-    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        
 
         public HomeController(ILogger<HomeController> logger)
         {
-            
             _logger = logger;
         }
 
         [Authorize]
         public IActionResult Index()
         {
-            
             return View();
         }
 
@@ -41,8 +36,6 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
         //This was migrated from old project
-        
     }
 }

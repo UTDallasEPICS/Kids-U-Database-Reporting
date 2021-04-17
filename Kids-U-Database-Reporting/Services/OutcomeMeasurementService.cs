@@ -1,8 +1,8 @@
 ﻿using Kids_U_Database_Reporting.Data;
 using Kids_U_Database_Reporting.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,29 +11,56 @@ namespace Kids_U_Database_Reporting.Services
     public class OutcomeMeasurementService : IOutcomeMeasurementService
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private const string adminRole = "Global Administrator"; // adminRole is able to see students from all sites
 
-        public OutcomeMeasurementService(ApplicationDbContext context)
+        public OutcomeMeasurementService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
+            _userManager = userManager;
         }
 
         // Returns single Outcome Measurement using Outcome Measurement id
-        public async Task<OutcomeMeasurement> GetOutcome(int outcomeId) 
+        public async Task<OutcomeMeasurement> GetOutcome(int outcomeId)
         {
-            return await _context.OutcomeMeasurements.Where(x => x.OutcomeId == outcomeId).Include(r => r.Student).FirstAsync();
+            return await _context.OutcomeMeasurements
+                .Where(x => x.OutcomeId == outcomeId)
+                .Include(r => r.Student)
+                .FirstAsync();
         }
 
         // Returns all Outcome Measurements for a Student
-        public async Task<OutcomeMeasurement[]> GetOutcomes(int studentId) 
+        public async Task<OutcomeMeasurement[]> GetOutcomes(int studentId, string userName)
         {
-            return await _context.OutcomeMeasurements.Where(x => x.Student.StudentId == studentId).ToArrayAsync();
+            var user = await _userManager.FindByNameAsync(userName); // Get the current user from userName
+            return await _context.OutcomeMeasurements
+                .Where(x => user.Role == adminRole || x.Student.Facility.Equals(user.Site)) // Check that user is admin or student is at the user's site
+                .Where(x => x.Student.StudentId == studentId).ToArrayAsync();
         }
 
         // Returns all Outcome Measurements for a Student with the Student data included
-        public async Task<OutcomeMeasurement[]> GetOutcomesWithStudent(int studentId) 
+        public async Task<OutcomeMeasurement[]> GetOutcomesWithStudent(int studentId, string userName)
         {
-            return await _context.OutcomeMeasurements.Include(s => s.Student).Where(x => x.Student.StudentId == studentId).ToArrayAsync();
+            var user = await _userManager.FindByNameAsync(userName); // Get the current user from userName
+            return await _context.OutcomeMeasurements
+                .Include(s => s.Student)
+                .Where(x => user.Role == adminRole || x.Student.Facility.Equals(user.Site)) // Check that user is admin or student is at the user's site
+                .Where(x => x.Student.StudentId == studentId)
+                .ToArrayAsync();
+        }
+
+        // Gets all Outcome Measurements that matches the search filters with Student data included
+        public async Task<OutcomeMeasurement[]> GetAllOutcomes(Search s, string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName); // Get the current user from userName
+            var outcomes = _context.OutcomeMeasurements
+                .Include(s => s.Student) // .Include() loads the Student, otherwise it is just a reference without the actual data
+                .Where(x => user.Role == adminRole || x.Student.Facility.Equals(user.Site)); // Check that user is admin or student is at the user's site
+
+            outcomes = FilterAndSort(s, outcomes);
+
+            return await outcomes.ToArrayAsync();
         }
 
         // Puts new Outcome Measurement in database
@@ -74,16 +101,15 @@ namespace Kids_U_Database_Reporting.Services
             return saveResult == 1;
         }
 
-        // Gets all Outcome Measurements that matches the search filters with Student data included
-        public async Task<OutcomeMeasurement[]> GetAllOutcomes(Search s)
+        // Apply search filters and sorting to a list of outcomes
+        private IQueryable<OutcomeMeasurement> FilterAndSort(Search s, IQueryable<OutcomeMeasurement> outcomes)
         {
             // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
             bool lunchBool = s.Lunch == "True";
             bool activeBool = s.Active == "True";
             int year = DateTime.Now.Year;
 
-            var outcomes = _context.OutcomeMeasurements
-                .Include(s => s.Student) // .Include() loads the Student, otherwise it is just a reference without the actual data
+            outcomes = outcomes
                 .Where(x => s.Name == null || x.Student.FirstName.Contains(s.Name) || x.Student.LastName.Contains(s.Name))
                 .Where(x => s.Ethnicity == null || x.Student.Ethnicity.Equals(s.Ethnicity))
                 .Where(x => s.Gender == null || x.Student.Gender.Equals(s.Gender))
@@ -111,8 +137,7 @@ namespace Kids_U_Database_Reporting.Services
                 case "11": outcomes = outcomes.OrderBy(s => s.Student.SchoolGrade); break;
                 case "12": outcomes = outcomes.OrderByDescending(s => s.Student.SchoolGrade); break;
             }
-
-            return await outcomes.ToArrayAsync();
+            return outcomes;
         }
     }
 }
