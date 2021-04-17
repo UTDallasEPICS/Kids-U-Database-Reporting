@@ -56,12 +56,12 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Displays all outcome measurements for one student
-        public async Task<IActionResult> View(int Id, string returnUrl) 
+        public async Task<IActionResult> View(int studentId, string returnUrl) 
         {
-            var student = await _studentService.GetStudent(Id, User.Identity.Name);
+            var student = await _studentService.GetStudent(studentId, User.Identity.Name);
             var model = new OutcomeViewModel()
             {
-                OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(Id, User.Identity.Name),
+                OutcomeMeasurements = await _outcomeMeasurementService.GetOutcomes(studentId, User.Identity.Name),
                 Student = student
             };
 
@@ -88,7 +88,8 @@ namespace Kids_U_Database_Reporting.Controllers
         }
         
         // Puts new outcome measurement in database
-        public async Task<IActionResult> SubmitNewOutcome(OutcomeMeasurement newOutcomeMeasurement, string returnUrl)
+        [HttpPost]
+        public async Task<IActionResult> Add(OutcomeMeasurement newOutcomeMeasurement, string returnUrl)
         {
 
             var successful = await _outcomeMeasurementService.SubmitNewOutcome(newOutcomeMeasurement);
@@ -98,7 +99,39 @@ namespace Kids_U_Database_Reporting.Controllers
                 return BadRequest("Could not add outcome measurement.");
             }
 
-            return RedirectToAction("View", "OutcomeMeasurement", new { id = newOutcomeMeasurement.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "OutcomeMeasurement", new { newOutcomeMeasurement.Student.StudentId, returnUrl });
+        }
+
+        public async Task<IActionResult> Edit(int outcomeId, string returnUrl)
+        {
+            //goes to form to edit outcome measurement
+
+            var model = await _outcomeMeasurementService.GetOutcome(outcomeId);
+
+            ViewBag.returnUrl = returnUrl;
+            ViewBag.SelectLists = new SelectLists
+            {
+                SchoolList = await _commonService.GetSchoolSelectList(),
+                SiteList = await _commonService.GetSiteSelectList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(OutcomeMeasurement editedOutcomeMeasurement, string returnUrl)
+        {
+            //submit edit of report card
+            var successful = await _outcomeMeasurementService.ApplyEditOutcome(editedOutcomeMeasurement);
+
+            if (!successful)
+            {
+                return BadRequest("Could not edit outcome measurement.");
+            }
+
+            editedOutcomeMeasurement = await _outcomeMeasurementService.GetOutcome(editedOutcomeMeasurement.OutcomeId);
+
+            return RedirectToAction("View", "OutcomeMeasurement", new { editedOutcomeMeasurement.Student.StudentId, returnUrl });
         }
 
         [ValidateAntiForgeryToken]
@@ -111,38 +144,7 @@ namespace Kids_U_Database_Reporting.Controllers
                 return BadRequest("Could not delete Outcome Measurement.");
             }
 
-            return RedirectToAction("View", "OutcomeMeasurement", new { id = studentId, returnUrl });
-        }
-
-        public async Task<IActionResult> Edit(int Id, string returnUrl)
-        {
-            //goes to form to edit outcome measurement
-
-            var model = await _outcomeMeasurementService.GetOutcome(Id);
-
-            ViewBag.returnUrl = returnUrl;
-            ViewBag.SelectLists = new SelectLists
-            {
-                SchoolList = await _commonService.GetSchoolSelectList(),
-                SiteList = await _commonService.GetSiteSelectList()
-            };
-
-            return View(model);
-        }
-
-        public async Task<IActionResult> ApplyEditOutcome(OutcomeMeasurement editedOutcomeMeasurement, string returnUrl)
-        {
-            //submit edit of report card
-            var successful = await _outcomeMeasurementService.ApplyEditOutcome(editedOutcomeMeasurement);
-
-            if (!successful)
-            {
-                return BadRequest("Could not edit outcome measurement.");
-            }
-
-            editedOutcomeMeasurement = await _outcomeMeasurementService.GetOutcome(editedOutcomeMeasurement.OutcomeId);
-
-            return RedirectToAction("View", "OutcomeMeasurement", new { id = editedOutcomeMeasurement.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "OutcomeMeasurement", new { studentId, returnUrl });
         }
 
         // Export a csv of Outcome Measurement data using current search filters

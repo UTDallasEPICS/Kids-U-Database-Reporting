@@ -54,10 +54,10 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> View(int Id, string returnUrl)
+        public async Task<IActionResult> View(int studentId, string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
-            var student = await _studentService.GetStudent(Id, User.Identity.Name);
+            var student = await _studentService.GetStudent(studentId, User.Identity.Name);
             if (student == null)
                 return BadRequest("Could not access student");
             else
@@ -90,11 +90,10 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Student");
         }
 
-        public async Task<IActionResult> Edit(int Id, string returnUrl)
+        //goes to form to edit student
+        public async Task<IActionResult> Edit(int studentId, string returnUrl)
         {
-            //goes to form to edit student
-
-            var model = await _studentService.GetStudent(Id, User.Identity.Name);
+            var model = await _studentService.GetStudent(studentId, User.Identity.Name);
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
             {
@@ -116,16 +115,16 @@ namespace Kids_U_Database_Reporting.Controllers
                 return BadRequest("Could not edit student.");
 
             if(returnUrl != null)
-                return RedirectToAction("View", "Student", new { Id = editedStudent.StudentId, returnUrl });
+                return RedirectToAction("View", "Student", new { editedStudent.StudentId, returnUrl });
             else
                 return RedirectToAction("Index", "Student");
         }
 
         // Deletes Student and attached ReportCards and OutcomeMeasurements from database
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int Id, string returnUrl)
+        public async Task<IActionResult> Delete(int studentId, string returnUrl)
         {
-            await _studentService.DeleteStudent(Id);
+            await _studentService.DeleteStudent(studentId);
             return Redirect(returnUrl); // Redirect to the same index page so search parameters are preserved
         }
 

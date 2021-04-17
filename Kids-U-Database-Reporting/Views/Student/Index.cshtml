@@ -88,24 +88,25 @@
             <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
             @foreach (var item in Model.Students)
             {
-                <tr class="table-clickable-row" onclick="window.location = '/Student/View/@item.StudentId?returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'"> <!--Click the row to run View(StudentId), goes to individual view-->
+                <tr class="table-clickable-row" onclick="window.location = '/Student/View/?studentId=@item.StudentId&returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'">
+                    <!--Click the row to run View(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
                     <td>@item.SchoolName</td>
                     <td>@item.Active</td>
                     <td>
-                        @Html.ActionLink("Report Cards", "View", "ReportCard", new { id = item.StudentId, ViewBag.returnUrl }) |
-                        @Html.ActionLink("Outcome Measurements", "View", "OutcomeMeasurement", new { id = item.StudentId, ViewBag.returnUrl })
+                        @Html.ActionLink("Report Cards", "View", "ReportCard", new { item.StudentId, ViewBag.returnUrl }) |
+                        @Html.ActionLink("Outcome Measurements", "View", "OutcomeMeasurement", new { item.StudentId, ViewBag.returnUrl })
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
-                        @using (Html.BeginForm("Delete", "Student", new { id = item.StudentId }))
-                            {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />
-                            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />}
+                        @Html.ActionLink("Edit", "Edit", new { item.StudentId, ViewBag.returnUrl }) |
+                        @using (Html.BeginForm("Delete", "Student", new { item.StudentId, ViewBag.returnUrl }))
+                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />}
                     </td>
                 </tr>
             }
         </table>
+        @Html.ActionLink("Back", "Index", "Home")
     </div>
 </body>

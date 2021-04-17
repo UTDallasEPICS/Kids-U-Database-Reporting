@@ -1,11 +1,13 @@
 ﻿@model OutcomeMeasurement
+@{
+    ViewData["Title"] = "New Outcome Measurement";
+}
 
 <body>
     <div class="container body-content">
         <h2>Create New Outcome Measurement</h2>
 
-        <!--form-->
-        <form asp-controller="OutcomeMeasurement" asp-action="SubmitNewOutcome" asp-route-id="@ViewBag.StudentId" method="post">
+        <form asp-controller="OutcomeMeasurement" asp-action="Add" asp-route-id="@ViewBag.StudentId" method="post">
             <div class="form-horizontal">
                 <!--Sets StudentId of Student, allows for choosing any student-->
                 <div class="form-group">
@@ -144,7 +146,7 @@
         }
         else
         {
-            <div>@Html.ActionLink("Back", "View", "OutcomeMeasurement", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+            <div>@Html.ActionLink("Back", "View", "OutcomeMeasurement", new { ViewBag.StudentId, ViewBag.returnUrl })</div>
         }
     </div>
 </body>

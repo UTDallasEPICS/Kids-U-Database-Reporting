@@ -106,7 +106,7 @@ namespace Kids_U_Database_Reporting.Services
         // Apply search filters and sorting to a list of students
         private IQueryable<Student> FilterAndSort(Search s, IQueryable<Student> students)
         {
-            // Convert string from search form to bool used in database. Needed since the string is tested to be null for no input and bool can't be null
+            // Convert string from search form to bool used in database
             bool lunchBool = s.Lunch == "True";
             bool activeBool = s.Active == "True";
             int year = DateTime.Now.Year;

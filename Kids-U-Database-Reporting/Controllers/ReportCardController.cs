@@ -53,6 +53,24 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Displays all report cards for one student
+        public async Task<IActionResult> View(int studentId, string returnUrl)
+        {
+            var student = await _studentService.GetStudent(studentId, User.Identity.Name);
+            var model = new ReportCardViewModel()
+            {
+                ReportCards = await _reportCardService.GetReportCards(studentId, User.Identity.Name),
+                Student = student
+            };
+
+            ViewBag.returnUrl = returnUrl;
+
+            if (student == null)
+                return BadRequest("Could not access student");
+            else
+                return View(model);
+        }
+
         // Create new Report Card for any student
         public async Task<IActionResult> Add(int? studentId, string returnUrl) 
         {
@@ -68,28 +86,22 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
-        // Displays all report cards for one student
-        public async Task<IActionResult> View(int Id, string returnUrl) 
+        // Puts new ReportCard in database
+        [HttpPost]
+        public async Task<IActionResult> Add(ReportCard newReportCard, string returnUrl)
         {
-            var student = await _studentService.GetStudent(Id, User.Identity.Name);
-            var model = new ReportCardViewModel()
-            {
-                ReportCards = await _reportCardService.GetReportCards(Id, User.Identity.Name),
-                Student = student
-            };
+            var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
 
-            ViewBag.returnUrl = returnUrl;
+            if (!successful)
+                return BadRequest("Could not add report card.");
 
-            if (student == null)
-                return BadRequest("Could not access student");
-            else
-                return View(model);
+            return RedirectToAction("View", "ReportCard", new { newReportCard.Student.StudentId, returnUrl });
         }
 
         // Goes to form to edit report card
-        public async Task<IActionResult> Edit(int Id, string returnUrl) 
+        public async Task<IActionResult> Edit(int reportCardId, string returnUrl) 
         {
-            var model = await _reportCardService.GetReportCard(Id);
+            var model = await _reportCardService.GetReportCard(reportCardId);
 
             ViewBag.returnUrl = returnUrl;
             ViewBag.SelectLists = new SelectLists
@@ -101,7 +113,8 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> ApplyEditReportCard(ReportCard editedReportCard, string returnUrl)
+        [HttpPost]
+        public async Task<IActionResult> Edit(ReportCard editedReportCard, string returnUrl)
         {
             //submit edit of report card
             var successful = await _reportCardService.ApplyEditReportCard(editedReportCard);
@@ -109,31 +122,20 @@ namespace Kids_U_Database_Reporting.Controllers
             if (!successful)
                 return BadRequest("Could not edit report card.");
 
-            return RedirectToAction("View", "ReportCard", new { Id = editedReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { editedReportCard.Student.StudentId, returnUrl });
         }
 
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int reportId, int studentId, string returnUrl)
+        public async Task<IActionResult> Delete(int reportCardId, int studentId, string returnUrl)
         {
-            var successful = await _reportCardService.DeleteReport(reportId);
+            var successful = await _reportCardService.DeleteReport(reportCardId);
 
             if (!successful)
             {
                 return BadRequest("Could not delete Report Card.");
             }
 
-            return RedirectToAction("View", "ReportCard", new { Id = studentId, returnUrl });
-        }
-
-        // Puts new ReportCard in database
-        public async Task<IActionResult> SubmitNewReportCard(ReportCard newReportCard, string returnUrl)
-        {
-            var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
-
-            if (!successful)
-                return BadRequest("Could not add report card.");
-
-            return RedirectToAction("View", "ReportCard", new { Id = newReportCard.Student.StudentId, returnUrl });
+            return RedirectToAction("View", "ReportCard", new { studentId, returnUrl });
         }
 
         // Export a csv of Report Card data using current search filters
