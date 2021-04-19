@@ -14,7 +14,6 @@ namespace Kids_U_Database_Reporting.Configure
             // Checks to see if the roles exists and if they dont create them in db CreateIdentitySchema
             string globalAdminRole = "Global Administrator";
             string siteCoordinatorRole = "Site Coordinator";
-            string siteVolunteerRole = "Site Volunteer";
 
             if ((await roleManager.FindByNameAsync(globalAdminRole)) == null)
             {
@@ -23,10 +22,6 @@ namespace Kids_U_Database_Reporting.Configure
             if ((await roleManager.FindByNameAsync(siteCoordinatorRole)) == null)
             {
                 await roleManager.CreateAsync(new UserRole(siteCoordinatorRole));
-            }
-            if ((await roleManager.FindByNameAsync(siteVolunteerRole)) == null)
-            {
-                await roleManager.CreateAsync(new UserRole(siteVolunteerRole));
             }
             
             string password = "EPICS2021"; // Password used for creating default account

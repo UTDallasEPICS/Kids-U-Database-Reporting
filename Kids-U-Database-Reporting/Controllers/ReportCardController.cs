@@ -76,7 +76,7 @@ namespace Kids_U_Database_Reporting.Controllers
         {
             ViewBag.returnUrl = returnUrl;
             ViewBag.StudentId = studentId; // Id used for default selected value of the student list
-            ViewBag.StudentList = await _commonService.GetStudentNameList(); // List of students' full names and their Id
+            ViewBag.StudentList = await _commonService.GetStudentNameList(User.Identity.Name); // List of students' full names and their Id
             ViewBag.SelectLists = new SelectLists
             {
                 SchoolList = await _commonService.GetSchoolSelectList(),

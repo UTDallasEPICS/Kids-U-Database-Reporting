@@ -7,7 +7,6 @@ namespace Kids_U_Database_Reporting.Services
     {
         int GetActiveStudentCount();
         Task<Student> GetStudent(int studentId, string userName);
-        Task<Student[]> GetStudents();
         Task<Student[]> GetStudents(Search search, string userName);
         Task<Student[]> GetStudentsWithReportCards(Search searchData, string userName);
         Task<Student[]> GetStudentsWithOutcomes(Search searchData, string userName);

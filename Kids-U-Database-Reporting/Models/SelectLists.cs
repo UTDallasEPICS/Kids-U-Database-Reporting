@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Kids_U_Database_Reporting.Models
@@ -20,7 +17,6 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="Caucasian", Text= "Caucasian" },
             new SelectListItem { Value="Other", Text="Other" }
         };
-        // Old team chose to use the &lt; &gt; and not sure why, might be able to change to < > for better readibility
         public List<SelectListItem> IncomeList { get; }=new List<SelectListItem>
         {
             new SelectListItem { Value="", Text="Select Income" },

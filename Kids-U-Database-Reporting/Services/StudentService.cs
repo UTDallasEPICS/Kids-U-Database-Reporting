@@ -35,12 +35,6 @@ namespace Kids_U_Database_Reporting.Services
             return (user.Role == adminRole || student.Facility == user.Site) ? student : null; // Only return student if user is admin or student is at user's site
         }
 
-        // Get all students, no filtering
-        public async Task<Student[]> GetStudents()
-        {
-            return await _context.Students.ToArrayAsync();
-        }
-
         // Returns list of all students matching the parameters passed. Restricts to only sites the user has access to
         public async Task<Student[]> GetStudents(Search s, string userName) 
         {
