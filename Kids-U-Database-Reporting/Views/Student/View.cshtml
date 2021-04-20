@@ -35,7 +35,8 @@
                     <td>@Model.Gender</td>
                 </tr>
 
-                <tr><td><br /></td></tr>
+                <tr><td colspan="2"><hr /></td></tr>
+
                 <tr class="header"><td>Academic Information</td></tr>
 
                 <tr>
@@ -101,7 +102,8 @@
                     }
                 </tr>
 
-                <tr><td><br /></td></tr>
+                <tr><td colspan="2"><hr /></td></tr>
+
                 <tr class="header"><td>Financial Information</td></tr>
 
                 <tr>
@@ -137,7 +139,55 @@
                         <td>No</td>
                     }
                 </tr>
+
+                <tr><td colspan="2"><hr /></td></tr>
+
+                <tr class="header"><td>Parent Information</td></tr>
+
+                <tr>
+                    <td>Parent 1:</td>
+                    <td>@Model.ParentName1 (@Model.RelationshipParent1)</td>
+                </tr>
+
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>@Model.ParentNumber1</td>
+                </tr>
+
+                <tr>
+                    <td>Apartment Number:</td>
+                    <td>@Model.ParentAptNumber1</td>
+                </tr>
+
+                <tr>
+                    <td>Email Address:</td>
+                    <td>@Model.ParentEmailAddress1</td>
+                </tr>
+
                 <tr><td><br /></td></tr>
+
+                <tr>
+                    <td>Parent 2:</td>
+                    <td>@Model.ParentName2 (@Model.RelationshipParent2)</td>
+                </tr>
+
+                <tr>
+                    <td>Phone Number:</td>
+                    <td>@Model.ParentNumber2</td>
+                </tr>
+
+                <tr>
+                    <td>Apartment Number:</td>
+                    <td>@Model.ParentAptNumber2</td>
+                </tr>
+
+                <tr>
+                    <td>Email Address:</td>
+                    <td>@Model.ParentEmailAddress2</td>
+                </tr>
+
+                <tr><td><br /></td></tr>
+
                 <tr>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId, ViewBag.returnUrl }) |
@@ -148,7 +198,6 @@
                     </td>
                 </tr>
             </table>
-            <br />
         </div>
 
         <div>
