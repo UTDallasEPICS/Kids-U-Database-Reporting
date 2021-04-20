@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Kids_U_Database_Reporting.Models
@@ -20,17 +17,16 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="Caucasian", Text= "Caucasian" },
             new SelectListItem { Value="Other", Text="Other" }
         };
-        // Old team chose to use the &lt; &gt; and not sure why, might be able to change to < > for better readibility
         public List<SelectListItem> IncomeList { get; }=new List<SelectListItem>
         {
             new SelectListItem { Value="", Text="Select Income" },
-            new SelectListItem { Value="&lt; $20k", Text="< $20K" },
+            new SelectListItem { Value="< $20k", Text="< $20K" },
             new SelectListItem { Value="$20k - $25k", Text="$20K - $25K" },
-            new SelectListItem { Value="&gt; $25k", Text="> $25K" }
+            new SelectListItem { Value="> $25k", Text="> $25K" }
         };
         public List<SelectListItem> ActiveList { get; }=new List<SelectListItem>
         {
-            new SelectListItem { Value="", Text="Active ?" },
+            new SelectListItem { Value="", Text="Active?" },
             new SelectListItem { Value="True", Text="Yes" },
             new SelectListItem { Value="False", Text="No" }
         };
@@ -95,14 +91,14 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="11", Text="Grade Ascending" },
             new SelectListItem { Value="12", Text="Grade Descending" }
         };
-
-        public List<SelectListItem> Relationship { get; } = new List<SelectListItem>
+        public List<SelectListItem> RelationshipList { get; } = new List<SelectListItem>
         {
-            new SelectListItem { Value="", Text="Select relationship" },
+            new SelectListItem { Value="", Text="Select Relationship" },
             new SelectListItem { Value="Mother", Text="Mother" },
             new SelectListItem { Value="Father", Text="Father" },
             new SelectListItem { Value="Relative", Text="Relative" },
-            new SelectListItem { Value="Guardian", Text="Guardian" }
+            new SelectListItem { Value="Guardian", Text="Guardian" },
+            new SelectListItem { Value="Other", Text="Other" }
         };
     }
 }

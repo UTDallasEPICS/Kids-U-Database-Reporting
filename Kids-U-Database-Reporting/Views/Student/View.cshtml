@@ -140,10 +140,9 @@
                 <tr><td><br /></td></tr>
                 <tr>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.StudentId, ViewBag.returnUrl }) |
-                        @using (Html.BeginForm("Delete", "Student", new { id = Model.StudentId }))
-                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />
-                            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />}
+                        @Html.ActionLink("Edit", "Edit", new { Model.StudentId, ViewBag.returnUrl }) |
+                        @using (Html.BeginForm("Delete", "Student", new { Model.StudentId, ViewBag.returnUrl }))
+                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Student?')" />}
                         | @Html.ActionLink("Export", "ExportSingle", "Student", new { studentId = Model.StudentId })
                     </td>
                 </tr>

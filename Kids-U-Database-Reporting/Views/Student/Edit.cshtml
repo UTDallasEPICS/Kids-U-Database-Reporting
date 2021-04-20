@@ -1,5 +1,4 @@
-﻿<!--connects to student model-->
-@model Student
+﻿@model Student
 @{
     ViewData["Title"] = "Edit Student";
 }
@@ -10,7 +9,7 @@
         <h2>Edit Student Information</h2>
 
         <!--form-->
-        <form asp-controller="Student" asp-action="ApplyEdit" method="post">
+        <form asp-controller="Student" asp-action="Edit" method="post">
             <div class="form-horizontal">
                 <!--FirstName-->
                 <div class="form-group">
@@ -86,7 +85,7 @@
 
                 <!--EnrolledYear-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">Enrollment Year (e.g. 1995)</label>
+                    <label class="control-label col-md-2">Enrollment Year</label>
                     <div class="col-md-10">
                         <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" />
                     </div>
@@ -140,21 +139,14 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Unenrolled Semester (optional)</label>
                     <div class="col-md-10">
-                        <select asp-for="UnEnrolledSemester" class="form-control">
-                            <option value="">Select Semester</option>
-                            <option value="fall">fall</option>
-                            <option value="spring">spring</option>
-                            <option value="summer">summer</option>
-                        </select>
+                        <select asp-for="UnEnrolledSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                     </div>
                 </div>
 
 
                 <!--Parent information-->
 
-
                 <h2>Edit Parent Information</h2>
-
                 <h3>Parent 1</h3>
 
                 <!--Parent 1 Name-->
@@ -169,14 +161,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
                     <div class="col-md-10">
-                        <select asp-for="RelationshipParent1" class="form-control">
-                            <option value="">Select Relationship</option>
-                            <option value="Mother">Mother</option>
-                            <option value="Father">Father</option>
-                            <option value="Relative">Relative</option>
-                            <option value="Guardian">Guardian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="RelationshipParent1" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                     </div>
                 </div>
 
@@ -218,14 +203,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
                     <div class="col-md-10">
-                        <select asp-for="RelationshipParent2" class="form-control">
-                            <option value="">Select Relationship</option>
-                            <option value="Mother">Mother</option>
-                            <option value="Father">Father</option>
-                            <option value="Relative">Relative</option>
-                            <option value="Guardian">Guardian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="RelationshipParent2" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                     </div>
                 </div>
 
@@ -269,7 +247,7 @@
         </form>
 
         <div>
-            @Html.ActionLink("Back", "View", new { id = Model.StudentId, ViewBag.returnUrl })
+            @Html.ActionLink("Back", "View", new { Model.StudentId, ViewBag.returnUrl })
         </div>
     </div>
 </body>

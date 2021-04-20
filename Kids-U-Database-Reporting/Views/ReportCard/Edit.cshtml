@@ -2,11 +2,12 @@
 @{
     ViewData["Title"] = "Edit Report Card";
 }
+
 <body>
     <div class="container body-content">
         <h2>Edit Report Card</h2>
 
-        <form asp-controller="ReportCard" asp-action="ApplyEditReportCard" method="post">
+        <form asp-controller="ReportCard" asp-action="Edit" method="post">
             <div class="form-horizontal">
                 <h4>@Model.Student.FirstName @Model.Student.LastName</h4><hr />
 
@@ -179,7 +180,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back", "View", new { id = Model.Student.StudentId, ViewBag.returnUrl })
+            @Html.ActionLink("Back", "View", new { Model.Student.StudentId, ViewBag.returnUrl })
         </div>
     </div>
 </body>

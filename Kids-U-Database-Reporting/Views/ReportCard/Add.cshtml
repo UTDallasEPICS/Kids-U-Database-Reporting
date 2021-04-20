@@ -2,11 +2,12 @@
 @{ 
     ViewData["Title"] = "New Report Card";
 }
+
 <body>
     <div class="container body-content">
         <h2>Create New Report Card</h2>
 
-        <form asp-controller="ReportCard" asp-action="SubmitNewReportCard" method="post">
+        <form asp-controller="ReportCard" asp-action="Add" method="post">
             <div class="form-horizontal">
 
                 <!--Sets StudentId of Student, allows for choosing any student-->
@@ -189,7 +190,7 @@
         }
         else
         {
-            <div>@Html.ActionLink("Back", "View", "ReportCard", new { id = ViewBag.StudentId, ViewBag.returnUrl })</div>
+            <div>@Html.ActionLink("Back", "View", "ReportCard", new { ViewBag.StudentId, ViewBag.returnUrl })</div>
         }
     </div>
 </body>

@@ -7,7 +7,7 @@
         <h2>Student Roster</h2>
 
         <!--form-->
-        <form asp-controller="Student" asp-action="Create" method="post">
+        <form asp-controller="Student" asp-action="Add" method="post">
             <div class="form-horizontal">
                 <h4>Create New</h4><hr />
 
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">First Name</label>
                     <div class="col-md-10">
-                        <input asp-for="FirstName" class="form-control text-box single-line" />
+                        <input asp-for="FirstName" class="form-control text-box single-line" autofocus />
                     </div>
                 </div>
 
@@ -85,9 +85,9 @@
 
                 <!--EnrolledYear-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">Enrollment Year (e.g. 1995)</label>
+                    <label class="control-label col-md-2">Enrollment Year</label>
                     <div class="col-md-10">
-                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" />
+                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" maxlength="4" value=@DateTime.Now.Year/>
                     </div>
                 </div>
 
@@ -139,14 +139,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
                     <div class="col-md-10">
-                        <select asp-for="RelationshipParent1" class="form-control">
-                            <option value="">Select Relationship</option>
-                            <option value="Mother">Mother</option>
-                            <option value="Father">Father</option>
-                            <option value="Relative">Relative</option>
-                            <option value="Guardian">Guardian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="RelationshipParent1" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                     </div>
                 </div>
 
@@ -188,14 +181,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
                     <div class="col-md-10">
-                        <select asp-for="RelationshipParent2" class="form-control">
-                            <option value="">Select Relationship</option>
-                            <option value="Mother">Mother</option>
-                            <option value="Father">Father</option>
-                            <option value="Relative">Relative</option>
-                            <option value="Guardian">Guardian</option>
-                            <option value="Other">Other</option>
-                        </select>
+                        <select asp-for="RelationshipParent2" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                     </div>
                 </div>
 

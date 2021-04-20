@@ -1,4 +1,7 @@
 ﻿@model OutcomeMeasurement
+@{
+    ViewData["Title"] = "Edit Outcome Measurement";
+}
 
 <body>
 
@@ -6,7 +9,7 @@
         <h2>Edit Outcome Measurement</h2>
 
         <!--form-->
-        <form asp-controller="OutcomeMeasurement" asp-action="ApplyEditOutcome" method="post">
+        <form asp-controller="OutcomeMeasurement" asp-action="Edit" method="post">
             <div class="form-horizontal">
                 <h4>@Model.Student.FirstName @Model.Student.LastName</h4><hr />
 
@@ -132,7 +135,7 @@
 
         <!--back-->
         <div>
-            @Html.ActionLink("Back", "View", new { id = Model.Student.StudentId, returnUrl = ViewBag.returnUrl })
+            @Html.ActionLink("Back", "View", new { Model.Student.StudentId, returnUrl = ViewBag.returnUrl })
         </div>
     </div>
 </body>
