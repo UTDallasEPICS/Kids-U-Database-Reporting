@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kids_U_Database_Reporting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210326192728_ParentName1")]
+    [Migration("20210422213449_ParentName1")]
     partial class ParentName1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,9 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("ReadingFluencyTest3")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReadingPostTest")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ReadingPreTest")
                         .HasColumnType("nvarchar(max)");
 
@@ -107,6 +110,7 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("OutcomeId");
@@ -184,6 +188,7 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ReportCardId");
@@ -280,7 +285,34 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Lunch")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ParentAptNumber1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentAptNumber2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentEmailAddress1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentEmailAddress2")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ParentName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentNumber1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ParentNumber2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelationshipParent1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelationshipParent2")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolGrade")
@@ -288,6 +320,9 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("SchoolName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentLivesWith")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnEnrolledSemester")
@@ -542,14 +577,18 @@ namespace Kids_U_Database_Reporting.Migrations
                 {
                     b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
                         .WithMany("OutcomeMeasurements")
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.ReportCard", b =>
                 {
                     b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
                         .WithMany("ReportCards")
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

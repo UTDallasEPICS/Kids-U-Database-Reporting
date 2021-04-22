@@ -4,14 +4,16 @@ using Kids_U_Database_Reporting.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Kids_U_Database_Reporting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210415202929_StudentID")]
+    partial class StudentID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,8 +109,7 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("SelfEsteemPreTest")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentId")
-                        .IsRequired()
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("OutcomeId");
@@ -185,8 +186,7 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("ReportSchoolSemester")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentId")
-                        .IsRequired()
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("ReportCardId");
@@ -320,7 +320,7 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<string>("SchoolName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StudentLivesWith")
+                    b.Property<string>("StudentID")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UnEnrolledSemester")

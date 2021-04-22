@@ -6,17 +6,12 @@ namespace Kids_U_Database_Reporting.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "ParentName1",
-                table: "Students",
-                nullable: true);
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "ParentName1",
-                table: "Students");
+
         }
     }
 }
