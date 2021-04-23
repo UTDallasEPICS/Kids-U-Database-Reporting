@@ -11,7 +11,7 @@
         public string Name { get; set; }
         public string Gender { get; set; }
         public string Ethnicity { get; set; }
-        public string SchoolGrade { get; set; }
+        public char? SchoolGrade { get; set; }
         public string Lunch { get; set; }
         public string Income { get; set; }
         public string Active { get; set; }

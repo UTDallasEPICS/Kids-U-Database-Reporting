@@ -30,7 +30,11 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Add()
         {
-            ViewBag.SiteSelectList = await _commonService.GetSiteSelectList();
+            ViewBag.selectLists = new SelectLists()
+            {
+                SiteList = await _commonService.GetSiteSelectList()
+            };
+
             return View();
         }
 
@@ -43,7 +47,10 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Edit(string Email)
         {
-            ViewBag.SiteSelectList = await _commonService.GetSiteSelectList();
+            ViewBag.selectLists = new SelectLists()
+            {
+                SiteList = await _commonService.GetSiteSelectList()
+            };
             var staff = await _staffService.GetStaffAsync(Email);
             return View(staff);
         }
@@ -54,6 +61,7 @@ namespace Kids_U_Database_Reporting.Controllers
            return RedirectToAction("Index", "Staff");
         }
 
+        [HttpPost]
         public async Task<IActionResult> Delete(string Email)
         {
             await _staffService.DeleteStaffAsync(Email);

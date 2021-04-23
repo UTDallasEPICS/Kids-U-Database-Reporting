@@ -32,7 +32,8 @@
                     <td>@item.Active</td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", "Staff", new { Email = item.Email }) |
-                        @Html.ActionLink("Delete", "Delete", "Staff", new { Email = item.Email })
+                        @using (Html.BeginForm("Delete", "Staff", new { Email = item.Email }))
+                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Staff?')" />}
                     </td>
                 </tr>
             }
