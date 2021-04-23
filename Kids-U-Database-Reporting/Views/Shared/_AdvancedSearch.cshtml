@@ -1,0 +1,40 @@
+﻿@model StudentViewModel
+
+<div class="advanced-search">
+    <div>
+        <strong>Ethnicity:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList"></select>
+    </div>
+    <div>
+        <strong>KU Site:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Site" asp-items="ViewBag.SelectLists.SiteList"></select>
+    </div>
+    <div>
+        <strong>Income:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Income" asp-items="ViewBag.SelectLists.IncomeList"></select>
+    </div>
+    <div>
+        <strong>Active:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Active" asp-items="ViewBag.SelectLists.ActiveList"></select>
+    </div>
+    <div>
+        <strong>Years Enrolled:</strong><br>
+        <select form="searchForm" asp-for="SearchData.YearsEnrolled" asp-items="ViewBag.SelectLists.YearsEnrolledList"></select>
+    </div>
+    <div>
+        <strong>Gender:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Gender" asp-items="ViewBag.SelectLists.GenderList"></select>
+    </div>
+    <div>
+        <strong>School:</strong><br>
+        <select form="searchForm" asp-for="SearchData.School" asp-items="ViewBag.SelectLists.SchoolList"></select>
+    </div>
+    <div>
+        <strong>School Grade:</strong><br>
+        <select form="searchForm" asp-for="SearchData.SchoolGrade" asp-items="ViewBag.SelectLists.SchoolGradeList"></select>
+    </div>
+    <div>
+        <strong>Free Lunch:</strong><br>
+        <select form="searchForm" asp-for="SearchData.Lunch" asp-items="ViewBag.SelectLists.LunchList"></select>
+    </div>
+</div>

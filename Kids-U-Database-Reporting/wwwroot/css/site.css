@@ -108,7 +108,7 @@ footer {
 }
 
 /* right side of search/filter/sort */
-/* search bar, advanced button, go button */
+/* search bar, clear button, go button */
 #search {
 	flex: 0 0 375px;
 	text-align: right;
@@ -124,9 +124,9 @@ footer {
 #search input:focus {
 	outline: none;
 }
-#search button[type=button] {
-	border: none;
-	background-color: transparent;
+/*Clear button*/
+#search a {
+	margin: 0 5px 0 0;
 	color: #8F0306;
 }
 #search button[type=submit] {

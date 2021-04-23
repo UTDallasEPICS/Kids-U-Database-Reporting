@@ -110,7 +110,7 @@ namespace Kids_U_Database_Reporting.Services
             int year = DateTime.Now.Year;
 
             reports = reports
-                .Where(x => s.Name == null || x.Student.FirstName.Contains(s.Name) || x.Student.LastName.Contains(s.Name))
+                .Where(x => s.Name == null || (x.Student.FirstName+" "+x.Student.LastName).Contains(s.Name))
                 .Where(x => s.Ethnicity == null || x.Student.Ethnicity.Equals(s.Ethnicity))
                 .Where(x => s.Gender == null || x.Student.Gender.Equals(s.Gender))
                 .Where(x => s.School == null || s.School.Equals("Select School") || x.Student.SchoolName.Equals(s.School))

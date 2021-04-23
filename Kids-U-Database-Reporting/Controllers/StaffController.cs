@@ -55,7 +55,8 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(staff);
         }
 
-        public async Task<IActionResult> FinalizeEditAsync(ApplicationUser model, string oldEmail, string password)
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationUser model, string oldEmail, string password)
         {
            await _staffService.UpdateStaffAsync(model, oldEmail, password);
            return RedirectToAction("Index", "Staff");

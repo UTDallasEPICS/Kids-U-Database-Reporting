@@ -17,59 +17,22 @@
                 <button hidden form="searchForm" type="submit"></button>
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
                 <button form="searchForm" formaction="OutcomeMeasurement/Export" type="submit">Export</button>
-
-                <!--sort-->
-                <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
+                <!--Sort-->
+                <select form="searchForm" asp-for="SearchData.SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
             </div>
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
                 <form id="searchForm" asp-controller="OutcomeMeasurement" asp-action="Index" method="get">
-                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
-                    <button type="button" onclick="window.location = '/OutcomeMeasurement/Index'" style="margin: 0 0 0 -10px;">Clear</button> <!--Reload page to reset filters-->
-                    <button type="submit" value="Search">Go</button>
+                    <input asp-for="SearchData.Name" placeholder="Enter Student Name" autofocus />
+                    @Html.ActionLink("Clear", "Index", "OutcomeMeasurement") <!--Reload page to reset filters-->
+                    <button type="submit">Go</button>
                 </form>
             </div>
         </div>
 
-        <div class="advanced-search">
-            <div>
-                <strong>Ethnicity:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList"></select>
-            </div>
-            <div>
-                <strong>KU Site:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Site" asp-items="ViewBag.SelectLists.SiteList"></select>
-            </div>
-            <div>
-                <strong>Income:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Income" asp-items="ViewBag.SelectLists.IncomeList"></select>
-            </div>
-            <div>
-                <strong>Active:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Active" asp-items="ViewBag.SelectLists.ActiveList"></select>
-            </div>
-            <div>
-                <strong>Years Enrolled:</strong><br>
-                <select form="searchForm" asp-for="SearchData.YearsEnrolled" asp-items="ViewBag.SelectLists.YearsEnrolledList"></select>
-            </div>
-            <div>
-                <strong>Gender:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Gender" asp-items="ViewBag.SelectLists.GenderList"></select>
-            </div>
-            <div>
-                <strong>School:</strong><br>
-                <select form="searchForm" asp-for="SearchData.School" asp-items="ViewBag.SelectLists.SchoolList"></select>
-            </div>
-            <div>
-                <strong>School Grade:</strong><br>
-                <select form="searchForm" asp-for="SearchData.SchoolGrade" asp-items="ViewBag.SelectLists.SchoolGradeList"></select>
-            </div>
-            <div>
-                <strong>Free Lunch:</strong><br>
-                <select form="searchForm" asp-for="SearchData.Lunch" asp-items="ViewBag.SelectLists.LunchList"></select>
-            </div>
-        </div>
+        <!--Renders the select boxes for advanced search-->
+        <partial name="_AdvancedSearch" />
 
         <table class="table report-card-table">
             <tr>
@@ -110,11 +73,11 @@
                 <th>Post</th>
             </tr>
 
-            <!--Displays the lastest OM for every student. Students filtered in GetStudentsWithReportCardsAsync()-->
+            <!--Displays the lastest OM for every student. Students filtered in GetStudentsWithOutcomes()-->
             @foreach (Student item in Model.Students)
             {
+                <!--Click the row to run View(StudentId), goes to individual view-->
                 <tr class="table-clickable-row" onclick="window.location = '/OutcomeMeasurement/View/?studentId=@item.StudentId&returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'">
-                    <!--Click the row to run ReportCardIndex(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>

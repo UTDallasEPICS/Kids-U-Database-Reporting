@@ -8,30 +8,30 @@
     <div class="container body-content">
         <h2>Edit Staff</h2>
     </div>
-    <form asp-controller="Staff" asp-action="FinalizeEdit" method="post" class="form-horizontal">
+    <form asp-controller="Staff" asp-action="Edit" method="post" class="form-horizontal">
 
         <div class="form-group">
             <label class="control-label col-md-2">First Name</label>
             <div class="col-md-10">
-                <input asp-for="FirstName" model.FirstName class="form-control text-box single-line" />
+                <input asp-for="FirstName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Last Name</label>
             <div class="col-md-10">
-                <input asp-for="LastName" model.LastName class="form-control text-box single-line" />
+                <input asp-for="LastName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">UserName</label>
             <div class="col-md-10">
-                <input asp-for="UserName" model.UserName class="form-control text-box single-line" />
+                <input asp-for="UserName" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Email</label>
             <div class="col-md-10">
-                <input asp-for="Email" model.Email class="form-control text-box single-line" />
+                <input asp-for="Email" class="form-control text-box single-line" />
             </div>
         </div>
         <div class="form-group">
@@ -43,20 +43,20 @@
         <div class="form-group">
             <label class="control-label col-md-2">Site</label>
             <div class="col-md-10">
-                <select asp-for="Site" model.Site class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
+                <select asp-for="Site" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-2">Role</label>
             <div class="col-md-10">
-                <select asp-for="Role" model.Role class="form-control" asp-items=ViewBag.SelectLists.RoleList></select>
+                <select asp-for="Role" class="form-control" asp-items=ViewBag.SelectLists.RoleList></select>
             </div>
         </div>
         <div class="form-group">
 
             <label class="control-label col-md-2">Active</label>
             <div class="col-md-10">
-                <select asp-for="Active" model.Active class="form-control" asp-items=ViewBag.SelectLists.ActiveList></select>
+                <select asp-for="Active" class="form-control" asp-items=ViewBag.SelectLists.ActiveList></select>
             </div>
         </div>
 
