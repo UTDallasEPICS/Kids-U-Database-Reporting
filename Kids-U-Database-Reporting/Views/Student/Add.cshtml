@@ -1,7 +1,9 @@
-﻿<!--connects to student model-->
-@model Student
-<!--asp-for="FirstName" tag will put the input into the FirstName variable of student model and replaces id="FirstName" name="FirstName" type="text" value=""-->
+﻿@model Student
+@{
+    ViewData["Title"] = "Add Student";
+}
 
+<!--asp-for="FirstName" tag will put the input into the FirstName variable of student model and replaces id="FirstName" name="FirstName" type="text" value=""-->
 <body>
     <div class="container body-content">
         <h2>Student Roster</h2>
@@ -87,7 +89,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Year</label>
                     <div class="col-md-10">
-                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" maxlength="4" value=@DateTime.Now.Year/>
+                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" maxlength="4" value=@DateTime.Now.Year />
                     </div>
                 </div>
 
@@ -120,7 +122,7 @@
                     <label class="control-label col-md-2">Active</label>
                     <div class="col-md-10">
                         <div class="checkbox">
-                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
+                            <input checked="checked" asp-for="Active" type="checkbox" />
                         </div>
                     </div>
                 </div>

@@ -37,6 +37,8 @@
     <Compile Remove="Data\Migrations\20200306042456_Roles.Designer.cs" />
     <Compile Remove="Migrations\20210424210535_test.cs" />
     <Compile Remove="Migrations\20210424210535_test.Designer.cs" />
+    <Compile Remove="Migrations\20210424211445_OrgAdditions.cs" />
+    <Compile Remove="Migrations\20210424211445_OrgAdditions.Designer.cs" />
   </ItemGroup>
 
 

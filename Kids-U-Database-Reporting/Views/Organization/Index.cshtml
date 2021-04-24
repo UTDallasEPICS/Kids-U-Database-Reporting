@@ -1,14 +1,15 @@
 ﻿@model OrganizationViewModel
+@{
+    ViewData["Title"] = "Organizations";
+}
+
 <body>
-
-
     <div class="container body-content">
         <h2>Organizations</h2>
 
-        <!--search/filter/sort-->
         <div class="tabletop">
             <div id="left">
-                @Html.ActionLink("Add New", "Create", "Organization")
+                @Html.ActionLink("Add New", "Add", "Organization")
             </div>
         </div>
 
@@ -18,25 +19,26 @@
                 <th>Organization Name</th>
                 <th>Program Number</th>
                 <th>Active</th>
-                <th></th>
+                <th colspan="3">Primary Contact Info</th>
                 <th></th>
             </tr>
 
-            <!--TODO: this returns all, need to add filters-->
             @foreach (var item in Model.Organizations)
             {
-            <tr>
+            <tr class="table-clickable-row" onclick="window.location = '/Organization/View/?organizationId=@item.OrganizationId'">
                 <td>@item.OrganizationName</td>
                 <td>@item.ProgramNumber</td>
                 <td>@item.Active</td>
+                <td>@item.ContactName1</td>
+                <td>@item.ContactEmail1</td>
+                <td>@item.ContactPhone1</td>
                 <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrganizationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OrganizationId })
+                    @Html.ActionLink("Edit", "Edit", "Organization", new { item.OrganizationId }) |
+                    @using (Html.BeginForm("Delete", "Organization", new { item.OrganizationId }))
+                    {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Organization?')" />}
                 </td>
             </tr>
             }
-
         </table>
-
     </div>
 </body>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Kids_U_Database_Reporting.Models
 {
@@ -15,9 +11,14 @@ namespace Kids_U_Database_Reporting.Models
 
         [Required]
         public string OrganizationName { get; set; }
-
-        [Required]
         public string ProgramNumber { get; set; }
+        public string Address { get; set; }
+        public string ContactName1 { get; set; }
+        public string ContactEmail1 { get; set; }
+        public string ContactPhone1 { get; set; }
+        public string ContactName2 { get; set; }
+        public string ContactEmail2 { get; set; }
+        public string ContactPhone2 { get; set; }
 
         [Required]
         public bool Active { get; set; }

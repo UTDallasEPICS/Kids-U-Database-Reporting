@@ -9,15 +9,15 @@ namespace Kids_U_Database_Reporting.Controllers
     [Authorize(Roles = "Global Administrator")]
     public class OrganizationController : Controller
     {
-        private readonly IOrganizationsService _orgaizationService;
-        public OrganizationController(IOrganizationsService orgaizationService)
+        private readonly IOrganizationsService _organizationService;
+        public OrganizationController(IOrganizationsService organizationService)
         {
-            _orgaizationService = orgaizationService;
+            _organizationService = organizationService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var items = await _orgaizationService.GetOrganizationsAsync();
+            var items = await _organizationService.GetOrganizationsAsync();
             var model = new OrganizationViewModel()
             {
                 Organizations = items
@@ -25,31 +25,23 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> View(int organizationId)
+        {
+            Organization organization = await _organizationService.GetOrganization(organizationId);
+            return View(organization);
+        }
+
+        public IActionResult Add()
         {
             return View();
         }
 
-        public async Task<IActionResult> Edit(int Id)
+        // Submits new org to database
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Add(Organization newOrganization)
         {
-            return View(await _orgaizationService.EditOrganizationAsync(Id));
-        }
-
-        public async Task<IActionResult> Delete(int Id)
-        {
-            var successful = await _orgaizationService.DeleteOrganizationAsync(Id);
-
-            if (!successful)
-            {
-                return BadRequest("Could not delete Organization.");
-            }
-            return RedirectToAction("Index", "Organization");
-        }
-
-        //puts new student in database
-        public async Task<IActionResult> CreateOrganization(Organization newOrganization)
-        {
-            var successful = await _orgaizationService.AddOrganizationAsync(newOrganization);
+            var successful = await _organizationService.AddOrganizationAsync(newOrganization);
 
             if (!successful)
             {
@@ -59,10 +51,17 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("Index", "Organization");
         }
 
-        //submit edits of District
-        public async Task<IActionResult> ApplyEdit(Organization editedOgranization)
+        public async Task<IActionResult> Edit(int organizationId)
         {
-            var successful = await _orgaizationService.ApplyEditOrganizationAsync(editedOgranization);
+            return View(await _organizationService.GetOrganization(organizationId));
+        }
+
+        // Submits edit of org to database
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Organization editedOgranization)
+        {
+            var successful = await _organizationService.ApplyEditOrganizationAsync(editedOgranization);
 
             if (!successful)
             {
@@ -70,7 +69,19 @@ namespace Kids_U_Database_Reporting.Controllers
             }
 
             return RedirectToAction("Index", "Organization");
+        }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Delete(int organizationId)
+        {
+            var successful = await _organizationService.DeleteOrganizationAsync(organizationId);
+
+            if (!successful)
+            {
+                return BadRequest("Could not delete Organization.");
+            }
+            return RedirectToAction("Index", "Organization");
         }
     }
 }

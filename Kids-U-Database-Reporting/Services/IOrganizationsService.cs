@@ -10,9 +10,9 @@ namespace Kids_U_Database_Reporting.Services
     {
         Task<Organization[]> GetOrganizationsAsync();
 
-        Task<Organization> EditOrganizationAsync(int Id);
+        Task<Organization> GetOrganization(int organizationId);
 
-        Task<bool> DeleteOrganizationAsync(int Id);
+        Task<bool> DeleteOrganizationAsync(int organizationId);
 
         Task<bool> AddOrganizationAsync(Organization newOrganization);
 

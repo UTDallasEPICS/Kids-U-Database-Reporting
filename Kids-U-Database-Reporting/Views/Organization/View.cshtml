@@ -1,0 +1,30 @@
+﻿@model Organization
+@{
+    ViewData["Title"] = "View Organization";
+}
+
+<body>
+    <div class="container body-content">
+        <h2>Organizations</h2>
+        <hr />
+
+        <div>
+            <h3>@Model.OrganizationName</h3>
+            <table>
+                <tr><td>Program Number:</td><td>@Model.ProgramNumber</td></tr>
+                <tr><td>Active:</td><td>@Model.Active</td></tr>
+                <tr><td><br /></td></tr>
+                <tr><td>Contact 1 Name:</td><td>@Model.ContactName1</td></tr>
+                <tr><td>Contact 1 Email:</td><td>@Model.ContactEmail1</td></tr>
+                <tr><td>Contact 1 Phone: </td><td>@Model.ContactPhone1</td></tr>
+                <tr><td><br /></td></tr>
+                <tr><td>Contact 2 Name:</td><td>@Model.ContactName2</td></tr>
+                <tr><td>Contact 2 Email:</td><td>@Model.ContactEmail2</td></tr>
+                <tr><td>Contact 2 Phone:</td><td>@Model.ContactPhone2</td></tr>
+            </table>
+        </div>
+
+        <br />
+        @Html.ActionLink("Back", "Index", "Organization")
+    </div>
+</body>

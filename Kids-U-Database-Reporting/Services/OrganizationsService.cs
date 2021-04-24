@@ -1,8 +1,6 @@
 ﻿using Kids_U_Database_Reporting.Data;
 using Kids_U_Database_Reporting.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +9,6 @@ namespace Kids_U_Database_Reporting.Services
     public class OrganizationsService : IOrganizationsService
     {
         private readonly ApplicationDbContext _context;
-
 
         public OrganizationsService(ApplicationDbContext context)
         {
@@ -24,14 +21,19 @@ namespace Kids_U_Database_Reporting.Services
               .ToArrayAsync();
         }
 
-        public async Task<Organization> EditOrganizationAsync(int Id)
+        public async Task<Organization> GetOrganization(int organizationId)
         {
-            return await _context.Organizations.Where(x => x.OrganizationId == Id).FirstAsync();
+            return await _context.Organizations
+                .Where(x => x.OrganizationId == organizationId)
+                .FirstAsync();
         }
 
-        public async Task<bool> DeleteOrganizationAsync(int Id)
+        public async Task<bool> DeleteOrganizationAsync(int organizationId)
         {
-           Organization deleteOrganization = await _context.Organizations.Where(x => x.OrganizationId == Id).FirstAsync();
+            Organization deleteOrganization = await _context.Organizations
+                .Where(x => x.OrganizationId == organizationId)
+                .FirstAsync();
+
             _context.Organizations.Remove(deleteOrganization);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;

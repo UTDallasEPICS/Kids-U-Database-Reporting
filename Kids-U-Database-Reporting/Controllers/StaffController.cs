@@ -38,6 +38,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Add(ApplicationUser newUser, string password)
         {
@@ -55,6 +56,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(staff);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationUser model, string oldEmail, string password)
         {
@@ -62,6 +64,7 @@ namespace Kids_U_Database_Reporting.Controllers
            return RedirectToAction("Index", "Staff");
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Delete(string Email)
         {
