@@ -35,14 +35,8 @@
     <Compile Remove="Data\Migrations\20200306035735_Roles.Designer.cs" />
     <Compile Remove="Data\Migrations\20200306042456_Roles.cs" />
     <Compile Remove="Data\Migrations\20200306042456_Roles.Designer.cs" />
-    <Compile Remove="Migrations\20200306044606_Roles.cs" />
-    <Compile Remove="Migrations\20200306044606_Roles.Designer.cs" />
-    <Compile Remove="Migrations\20200306045137_CreateIdentitySchema.cs" />
-    <Compile Remove="Migrations\20200306045137_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Migrations\20200306050133_CreateIdentitySchema.cs" />
-    <Compile Remove="Migrations\20200306050133_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.cs" />
-    <Compile Remove="Migrations\20200310024100_CreateIdentitySchema.Designer.cs" />
+    <Compile Remove="Migrations\20210424210535_test.cs" />
+    <Compile Remove="Migrations\20210424210535_test.Designer.cs" />
   </ItemGroup>
 
 
@@ -60,11 +54,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="popper.js" Version="1.16.1" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
