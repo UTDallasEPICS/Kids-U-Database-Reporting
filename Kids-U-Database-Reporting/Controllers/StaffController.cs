@@ -38,8 +38,8 @@ namespace Kids_U_Database_Reporting.Controllers
             return View();
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(ApplicationUser newUser, string password)
         {
             await _staffService.AddNewStaff(newUser, password);
@@ -56,16 +56,16 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(staff);
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ApplicationUser model, string oldEmail, string password)
         {
            await _staffService.UpdateStaffAsync(model, oldEmail, password);
            return RedirectToAction("Index", "Staff");
         }
 
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string Email)
         {
             await _staffService.DeleteStaffAsync(Email);

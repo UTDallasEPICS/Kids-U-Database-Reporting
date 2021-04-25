@@ -78,8 +78,8 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Puts newly created student into database
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(Student newStudent)
         {
             var successful = await _studentService.AddStudent(newStudent);
@@ -105,8 +105,8 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Submit edits of student
-        [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Student editedStudent, string returnUrl)
         {
             var successful = await _studentService.ApplyEditStudent(editedStudent);
@@ -121,6 +121,7 @@ namespace Kids_U_Database_Reporting.Controllers
         }
 
         // Deletes Student and attached ReportCards and OutcomeMeasurements from database
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int studentId, string returnUrl)
         {

@@ -6,75 +6,57 @@
 <body>
     <div class="container body-content">
         <h2>Organizations</h2>
+        <h4>Create Organization</h4>
+        <hr />
 
         <!--form-->
         <form asp-controller="Organization" asp-action="Add" method="post">
             <div class="form-horizontal">
-                <h4>Create Organization</h4><hr />
-
-                <!--name-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">Organization Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="OrganizationName" class="form-control text-box single-line" />
-                    </div>
+                    <label class="control-label col-md-2">Organization Name*</label>
+                    <input asp-for="OrganizationName" class="col-md-10 form-control" />
+                    <span asp-validation-for="OrganizationName" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Program Number</label>
-                    <div class="col-md-10">
-                        <input asp-for="ProgramNumber" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ProgramNumber" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 1 Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactName1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactName1" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 1 Email</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactEmail1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactEmail1" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 1 Phone</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactPhone1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactPhone1" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 2 Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactName2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactName2" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 2 Email</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactEmail2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactEmail2" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Contact 2 Phone</label>
-                    <div class="col-md-10">
-                        <input asp-for="ContactPhone2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ContactPhone2" class="col-md-10 form-control" />
                 </div>
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Active</label>
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            <input checked="checked" asp-for="Active" type="checkbox" />
-                        </div>
+                    <div class="checkbox col-md-10">
+                        <input checked="checked" asp-for="Active" />
                     </div>
                 </div>
 

@@ -5,9 +5,13 @@
 
 <body>
     <div class="container body-content">
-        <h2>Staff Directory and Management</h2>
-        <br />
-        @Html.ActionLink("Add", "Add", "Staff")
+        <h2>Staff Directory</h2>
+
+        <div class="tabletop">
+            <div id="left">
+                @Html.ActionLink("Create New", "Add", "Staff")
+            </div>
+        </div>
 
         <!--table-->
         <table class="table">

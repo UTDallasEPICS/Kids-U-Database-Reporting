@@ -25,18 +25,18 @@ namespace Kids_U_Database_Reporting.Models
         public string Gender { get; set; }
         public string Income { get; set; }
         public string Ethnicity { get; set; }
-
         public int? EnrolledYear { get; set; }
         public int? UnEnrolledYear { get; set; }
         public string EnrolledSemester { get; set; }
         public string UnEnrolledSemester { get; set; }
         public int? AgeAtEnrollment { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-
         public DateTime? Birthday { get; set; }
         public bool Lunch { get; set; }
         public string SchoolName { get; set; }
+
         [Required]
         public bool Active { get; set; }
 

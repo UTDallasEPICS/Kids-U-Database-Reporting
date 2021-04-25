@@ -41,14 +41,12 @@ namespace Kids_U_Database_Reporting.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(Organization newOrganization)
         {
-            var successful = await _organizationService.AddOrganizationAsync(newOrganization);
-
-            if (!successful)
+            if(ModelState.IsValid)
             {
-                return BadRequest("Could not add Organization.");
+                await _organizationService.AddOrganizationAsync(newOrganization);
+                return RedirectToAction("Index", "Organization");
             }
-
-            return RedirectToAction("Index", "Organization");
+            return View(newOrganization); // Return to form if it is invalid
         }
 
         public async Task<IActionResult> Edit(int organizationId)
@@ -61,14 +59,12 @@ namespace Kids_U_Database_Reporting.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Organization editedOgranization)
         {
-            var successful = await _organizationService.ApplyEditOrganizationAsync(editedOgranization);
-
-            if (!successful)
+            if (ModelState.IsValid)
             {
-                return BadRequest("Could not edit Organization.");
+                await _organizationService.ApplyEditOrganizationAsync(editedOgranization);
+                return RedirectToAction("Index", "Organization");
             }
-
-            return RedirectToAction("Index", "Organization");
+            return View(editedOgranization); // Return to form if it is invalid
         }
 
         [ValidateAntiForgeryToken]

@@ -15,10 +15,13 @@ namespace Kids_U_Database_Reporting.Services
             //new instance of service is made during each request (required for talking to database) aka scoped lifecycle
             _context = context;
         }
+
+        // Get all Organizations from the database. Returned in alphabetical order
         public async Task<Organization[]> GetOrganizationsAsync()
         {
             return await _context.Organizations
-              .ToArrayAsync();
+                .OrderBy(x => x.OrganizationName)
+                .ToArrayAsync();
         }
 
         public async Task<Organization> GetOrganization(int organizationId)
