@@ -22,8 +22,9 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">UserName</label>
-                <input asp-for="UserName" class="form-control" />
+                <label class="control-label col-md-2">UserName*</label>
+                <input asp-for="UserName" class="col-md-10 form-control" required />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -32,8 +33,9 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label col-md-2">Password</label>
-                <input type="password" name="password" class="form-control" />
+                <label class="control-label col-md-2">Password*</label>
+                <input type="password" name="password" class="col-md-10 form-control" required />
+                <span>Min Length = 6</span>
             </div>
 
             <div class="form-group">
@@ -43,12 +45,15 @@
 
             <div class="form-group">
                 <label class="control-label col-md-2">Role</label>
-                <select asp-for="Role" class="form-control" asp-items=ViewBag.SelectLists.RoleList></select>
+                <select asp-for="Role" class="col-md-10 form-control" asp-items=ViewBag.SelectLists.RoleList></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-md-2">Active</label>
-                <select asp-for="Active" class="form-control" asp-items=ViewBag.SelectLists.ActiveList></select>
+                <div class="col-md-10 checkbox">
+                    <input asp-for="Active" checked="checked" />
+                </div>
             </div>
 
             <div class="form-group">

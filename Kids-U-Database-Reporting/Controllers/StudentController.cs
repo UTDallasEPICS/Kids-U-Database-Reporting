@@ -80,7 +80,7 @@ namespace Kids_U_Database_Reporting.Controllers
         // Puts newly created student into database
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add(Student newStudent)
+        public async Task<IActionResult> Add(Student newStudent, string returnUrl)
         {
             var successful = await _studentService.AddStudent(newStudent);
 
@@ -114,10 +114,7 @@ namespace Kids_U_Database_Reporting.Controllers
             if (!successful)
                 return BadRequest("Could not edit student.");
 
-            if(returnUrl != null)
-                return RedirectToAction("View", "Student", new { editedStudent.StudentId, returnUrl });
-            else
-                return RedirectToAction("Index", "Student");
+            return RedirectToAction("View", "Student", new { editedStudent.StudentId, returnUrl });
         }
 
         // Deletes Student and attached ReportCards and OutcomeMeasurements from database
