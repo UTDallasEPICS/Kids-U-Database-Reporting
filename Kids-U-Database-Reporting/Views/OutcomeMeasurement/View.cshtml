@@ -5,7 +5,9 @@
 
 <body>
     <div class="container body-content">
-        <h2>Outcome Measurements for @Model.Student.FirstName @Model.Student.LastName</h2>
+        <h2>Outcome Measurements</h2>
+        <h4>@Model.Student.FirstName @Model.Student.LastName</h4>
+        <hr />
 
         <!--search/filter/sort-->
         <div class="tabletop">
@@ -73,12 +75,13 @@
                     <td></td>
                     <td>@om.SelfEsteemPreTest</td>
                     <td>@om.SelfEsteemPostTest</td>
-                    <td>@Html.ActionLink("Edit", "Edit", new { om.OutcomeId, ViewBag.returnUrl }) | 
-                        @using (Html.BeginForm("Delete", "OutcomeMeasurement", new { om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl }))
-                            { <input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Outcome Measurement?')" /> }
-                    </td>
-                </tr>
-            }
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { om.OutcomeId, ViewBag.returnUrl }) |
+                    @using (Html.BeginForm("Delete", "OutcomeMeasurement", new { om.OutcomeId, Model.Student.StudentId, ViewBag.returnUrl }))
+                    {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Outcome Measurement?')" />}
+                </td>
+            </tr>
+        }
         </table>
 
         <div>

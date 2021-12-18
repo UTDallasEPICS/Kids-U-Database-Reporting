@@ -100,5 +100,11 @@ namespace Kids_U_Database_Reporting.Models
             new SelectListItem { Value="Guardian", Text="Guardian" },
             new SelectListItem { Value="Other", Text="Other" }
         };
+        public List<SelectListItem> RoleList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem { Value="", Text="Select Role" },
+            new SelectListItem { Value="Global Administrator", Text="Global Administrator" },
+            new SelectListItem { Value="Site Coordinator", Text="Site Coordinator" }
+        };
     }
 }

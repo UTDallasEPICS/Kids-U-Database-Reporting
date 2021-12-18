@@ -89,9 +89,9 @@ namespace Kids_U_Database_Reporting.Controllers
         
         // Puts new outcome measurement in database
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(OutcomeMeasurement newOutcomeMeasurement, string returnUrl)
         {
-
             var successful = await _outcomeMeasurementService.SubmitNewOutcome(newOutcomeMeasurement);
 
             if (!successful)
@@ -118,10 +118,11 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Submit edit of Outcome Measurement to database
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(OutcomeMeasurement editedOutcomeMeasurement, string returnUrl)
         {
-            //submit edit of report card
             var successful = await _outcomeMeasurementService.ApplyEditOutcome(editedOutcomeMeasurement);
 
             if (!successful)
@@ -134,6 +135,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "OutcomeMeasurement", new { editedOutcomeMeasurement.Student.StudentId, returnUrl });
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int outcomeId, int studentId, string returnUrl)
         {

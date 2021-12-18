@@ -5,78 +5,63 @@
 
 <body>
     <div class="container body-content">
-        <h2>Add Staff</h2>
+        <h2>Staff Directory</h2>
+        <h4>Add Staff</h4>
+        <hr />
+
+        <form asp-controller="Staff" asp-action="Add" method="post" class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-md-2">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">UserName*</label>
+                <input asp-for="UserName" class="col-md-10 form-control" required />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Password*</label>
+                <input type="password" name="password" class="col-md-10 form-control" required />
+                <span>Min Length = 6</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Site</label>
+                <select asp-for="Site" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Role</label>
+                <select asp-for="Role" class="col-md-10 form-control" asp-items=ViewBag.SelectLists.RoleList></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Active</label>
+                <div class="col-md-10 checkbox">
+                    <input asp-for="Active" checked="checked" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" formmethod="post" class="btn btn-default">Add</button>
+                </div>
+            </div>
+        </form>
+        @Html.ActionLink("Back", "Index", "Staff")
     </div>
-    <form asp-controller="Staff" asp-action="Add" method="post" class="form-horizontal">
-
-        <div class="form-group">
-            <label class="control-label col-md-2">First Name</label>
-            <div class="col-md-10">
-                <input asp-for="FirstName" class="form-control text-box single-line" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Last Name</label>
-            <div class="col-md-10">
-                <input asp-for="LastName" class="form-control text-box single-line" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">UserName</label>
-            <div class="col-md-10">
-                <input asp-for="UserName" class="form-control text-box single-line" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Email</label>
-            <div class="col-md-10">
-                <input asp-for="Email" class="form-control text-box single-line" />
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="control-label col-md-2">Password</label>
-            <div class="col-md-10">
-                <input type="password" name="password" class="form-control text-box single-line" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Site</label>
-            <div class="col-md-10">
-                <select asp-for="Site" class="form-control" asp-items=ViewBag.SiteSelectList></select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Role</label>
-            <div class="col-md-10">
-                <select asp-for="Role" class="form-control">
-                    <option value="Global Administrator">Global Administrator</option>
-                    <option value="Site Coordinator">Site Coordinator</option>
-                    <option value="Site Volunteer">Site Volunteer</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Active</label>
-            <div class="col-md-10">
-                <select asp-for="Active" class="form-control">
-                    <option value="True">Active </option>
-                    <option value="False">Inactive </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" formmethod="post" class="btn btn-default">Add</button>
-            </div>
-        </div>
-    </form>
-    @Html.ActionLink("Back", "Index", "Staff")
 </body>

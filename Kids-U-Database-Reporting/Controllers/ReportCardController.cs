@@ -88,6 +88,7 @@ namespace Kids_U_Database_Reporting.Controllers
 
         // Puts new ReportCard in database
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(ReportCard newReportCard, string returnUrl)
         {
             var successful = await _reportCardService.SubmitNewReportCard(newReportCard);
@@ -113,10 +114,11 @@ namespace Kids_U_Database_Reporting.Controllers
             return View(model);
         }
 
+        // Submit edit of Report Card to database
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ReportCard editedReportCard, string returnUrl)
         {
-            //submit edit of report card
             var successful = await _reportCardService.ApplyEditReportCard(editedReportCard);
 
             if (!successful)
@@ -125,6 +127,7 @@ namespace Kids_U_Database_Reporting.Controllers
             return RedirectToAction("View", "ReportCard", new { editedReportCard.Student.StudentId, returnUrl });
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int reportCardId, int studentId, string returnUrl)
         {

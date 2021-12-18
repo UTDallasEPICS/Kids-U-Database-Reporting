@@ -51,17 +51,16 @@
                         <li>@Html.ActionLink("Students", "Index", "Student")</li>
                         <li>@Html.ActionLink("Outcome Measurements", "Index", "OutcomeMeasurement")</li>
                         <li>@Html.ActionLink("Report Cards", "Index", "ReportCard")</li>
-                        <li><a class="sugar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage @User.Identity.Name</a> </li>
                     </ul>
 
-                    <!--THIS IS THE LOGOUT BUTTON-->
-                     <ul class="nav navbar-nav navbar-right">
-                         <li class="navbar-collapse collapse">
-                             <form asp-area="Identity" asp-page="/Account/Logout">
-                                 <button type="submit" class="sugar" formmethod="post">Logout</button>
-                             </form>
-                         </li>
-                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="sugar" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage @User.Identity.Name</a> </li>
+                        <li class="navbar-collapse collapse">
+                            <form asp-area="Identity" asp-page="/Account/Logout">
+                                <button type="submit" class="sugar" formmethod="post">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -81,6 +80,6 @@
             Hosting Donated by <a href="http://www.everleap.com">Everleap</a>
         </div>
     </footer>
-
+    <partial name="_validationScriptsPartial" />
 </body>
 </html>

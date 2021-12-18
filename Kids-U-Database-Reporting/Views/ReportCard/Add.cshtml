@@ -5,7 +5,9 @@
 
 <body>
     <div class="container body-content">
-        <h2>Create New Report Card</h2>
+        <h2>Report Cards</h2>
+        <h4>Create Report Card</h4>
+        <hr />
 
         <form asp-controller="ReportCard" asp-action="Add" method="post">
             <div class="form-horizontal">
@@ -15,7 +17,7 @@
                     <label class="control-label col-md-2">Student</label>
                     <div class="col-md-10">
                         <!--Select list of students using their full name. Default selected value is ViewBag.StudentId-->
-                        <select class="form-control" asp-for="Student.StudentId" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
+                        <select asp-for="Student.StudentId" class="form-control" asp-items="@(new SelectList(ViewBag.StudentList, "Id", "Name", ViewBag.StudentId))"></select>
                     </div>
                 </div>
 

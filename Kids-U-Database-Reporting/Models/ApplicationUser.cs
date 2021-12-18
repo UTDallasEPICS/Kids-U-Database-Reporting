@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kids_U_Database_Reporting.Models
 {
@@ -22,6 +19,7 @@ namespace Kids_U_Database_Reporting.Models
     
         public bool Active { get; set; }
 
+        [Required]
         public string Role { get; set; }
 
 

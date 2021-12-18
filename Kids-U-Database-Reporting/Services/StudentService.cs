@@ -82,7 +82,11 @@ namespace Kids_U_Database_Reporting.Services
         // Deletes Student in database by id, also delete related ReportCards and OutcomeMeasurements
         public async Task<bool> DeleteStudent(int studentId)
         {
-            Student deleteStudent = await _context.Students.Include(s => s.ReportCards).Include(s => s.OutcomeMeasurements).Where(s => s.StudentId == studentId).FirstAsync();
+            Student deleteStudent = await _context.Students
+                .Include(s => s.ReportCards)
+                .Include(s => s.OutcomeMeasurements)
+                .Where(s => s.StudentId == studentId)
+                .FirstAsync();
             _context.Students.Remove(deleteStudent);
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
@@ -106,7 +110,7 @@ namespace Kids_U_Database_Reporting.Services
             int year = DateTime.Now.Year;
 
             students = students
-                .Where(x => s.Name == null || x.FirstName.Contains(s.Name) || x.LastName.Contains(s.Name))
+                .Where(x => s.Name == null || (x.FirstName+" "+x.LastName).Contains(s.Name))
                 .Where(x => s.Ethnicity == null || x.Ethnicity.Equals(s.Ethnicity))
                 .Where(x => s.Gender == null || x.Gender.Equals(s.Gender))
                 .Where(x => s.School == null || s.School.Equals("Select School") || x.SchoolName.Equals(s.School))

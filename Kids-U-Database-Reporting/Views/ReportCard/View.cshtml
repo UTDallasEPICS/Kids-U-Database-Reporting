@@ -5,7 +5,9 @@
 
 <body>
     <div class="container body-content">
-        <h2>Report Cards for @Model.Student.FirstName @Model.Student.LastName</h2>
+        <h2>Report Cards</h2>
+        <h4>@Model.Student.FirstName @Model.Student.LastName</h4>
+        <hr />
 
         <div class="tabletop">
             <div id="left">
@@ -81,9 +83,9 @@
                     <td>@(String.IsNullOrEmpty(item.LanguageFifth) ? "--" : item.LanguageFifth) </td>
                     <td>@(String.IsNullOrEmpty(item.LanguageSemester) ? "--" : item.LanguageSemester) </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "ReportCard", new { item.ReportCardId, ViewBag.returnUrl }) | 
+                        @Html.ActionLink("Edit", "Edit", "ReportCard", new { item.ReportCardId, ViewBag.returnUrl }) |
                         @using (Html.BeginForm("Delete", "ReportCard", new { item.ReportCardId, Model.Student.StudentId, ViewBag.returnUrl }))
-                            { <input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Report Card?')" /> }
+                        {<input id="delete-btn" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this Report Card?')" />}
                     </td>
                 </tr>
             }

@@ -1,16 +1,16 @@
 ﻿@model Organization
 @{
-    ViewData["Title"] = "Edit Organization";
+    ViewData["Title"] = "Add Organization";
 }
 
 <body>
     <div class="container body-content">
         <h2>Organizations</h2>
-        <h4>Edit Organization</h4>
+        <h4>Create Organization</h4>
         <hr />
 
         <!--form-->
-        <form asp-controller="Organization" asp-action="Edit" method="post">
+        <form asp-controller="Organization" asp-action="Add" method="post">
             <div class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label col-md-2">Organization Name*</label>
@@ -56,24 +56,19 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Active</label>
                     <div class="checkbox col-md-10">
-                        <input asp-for="Active" />
+                        <input checked="checked" asp-for="Active" />
                     </div>
                 </div>
 
-                @Html.Hidden("OrganizationId")
                 <!--submit-->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Edit" class="btn btn-default" />
+                        <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
             </div>
         </form>
 
-        <!--back-->
-        <div>
-            @Html.ActionLink("Back", "Index", "Organization")
-        </div>
-
+        @Html.ActionLink("Back", "Index", "Organization")
     </div>
 </body>

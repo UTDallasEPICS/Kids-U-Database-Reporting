@@ -48,12 +48,32 @@ namespace Kids_U_Database_Reporting.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactEmail1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactEmail2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactName1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactName2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone2")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OrganizationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProgramNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrganizationId");
@@ -108,6 +128,7 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("OutcomeId");
@@ -185,6 +206,7 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ReportCardId");
@@ -278,7 +300,7 @@ namespace Kids_U_Database_Reporting.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Lunch")
+                    b.Property<bool?>("Lunch")
                         .HasColumnType("bit");
 
                     b.Property<string>("ParentAptNumber1")
@@ -312,7 +334,6 @@ namespace Kids_U_Database_Reporting.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SchoolGrade")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("SchoolName")
@@ -570,14 +591,18 @@ namespace Kids_U_Database_Reporting.Migrations
                 {
                     b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
                         .WithMany("OutcomeMeasurements")
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Kids_U_Database_Reporting.Models.ReportCard", b =>
                 {
                     b.HasOne("Kids_U_Database_Reporting.Models.Student", "Student")
                         .WithMany("ReportCards")
-                        .HasForeignKey("StudentId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

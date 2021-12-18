@@ -1,127 +1,103 @@
-﻿<!--connects to student model-->
-@model Student
-<!--asp-for="FirstName" tag will put the input into the FirstName variable of student model and replaces id="FirstName" name="FirstName" type="text" value=""-->
+﻿@model Student
+@{
+    ViewData["Title"] = "Add Student";
+}
 
 <body>
     <div class="container body-content">
         <h2>Student Roster</h2>
+        <h4>Create Student</h4>
+        <hr />
 
         <!--form-->
         <form asp-controller="Student" asp-action="Add" method="post">
             <div class="form-horizontal">
-                <h4>Create New</h4><hr />
 
                 <!--FirstName-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">First Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="FirstName" class="form-control text-box single-line" autofocus />
-                    </div>
+                    <label class="control-label col-md-2">First Name*</label>
+                    <input asp-for="FirstName" class="col-md-10 form-control" autofocus />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
 
                 <!--LastName-->
                 <div class="form-group">
-                    <label class="control-label col-md-2">Last Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="LastName" class="form-control text-box single-line" />
-                    </div>
+                    <label class="control-label col-md-2">Last Name*</label>
+                    <input asp-for="LastName" class="col-md-10 form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
 
                 <!--Ethnicity-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Ethnicity</label>
-                    <div class="col-md-10">
-                        <select asp-for="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList" class="form-control"></select>
-                    </div>
+                    <select asp-for="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList" class="form-control"></select>
                 </div>
 
                 <!--SchoolName-->
                 <div class="form-group">
                     <label class="control-label col-md-2">School</label>
-                    <div class="col-md-10">
-                        <select asp-for="SchoolName" class="form-control" asp-items=ViewBag.Selectlists.SchoolList></select>
-                    </div>
+                    <select asp-for="SchoolName" class="form-control" asp-items=ViewBag.Selectlists.SchoolList></select>
                 </div>
 
                 <!--Facility-->
                 <div class="form-group">
                     <label class="control-label col-md-2">KU Site</label>
-                    <div class="col-md-10">
-                        <select asp-for="Facility" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
-                    </div>
+                    <select asp-for="Facility" class="form-control" asp-items=ViewBag.SelectLists.SiteList></select>
                 </div>
 
                 <!--SchoolGrade-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Grade</label>
-                    <div class="col-md-10">
-                        <select asp-for="SchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
-                    </div>
+                    <select asp-for="SchoolGrade" class="form-control" asp-items=ViewBag.SelectLists.SchoolGradeList></select>
                 </div>
 
                 <!--Gender-->
                 <div class="form-group">
                     <label class="control-label col-md-2" for="Gender">Gender</label>
-                    <div class="col-md-10">
-                        <select asp-for="Gender" class="form-control" asp-items=ViewBag.SelectLists.GenderList></select>
-                    </div>
+                    <select asp-for="Gender" class="form-control" asp-items=ViewBag.SelectLists.GenderList></select>
                 </div>
 
                 <!--Income-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Household Income</label>
-                    <div class="col-md-10">
-                        <select asp-for="Income" class="form-control" asp-items=ViewBag.SelectLists.IncomeList></select>
-                    </div>
+                    <select asp-for="Income" class="form-control" asp-items=ViewBag.SelectLists.IncomeList></select>
                 </div>
 
                 <!--Lunch-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Free Lunch</label>
-                    <div class="col-md-10">
-                        <select asp-for="Lunch" class="form-control" asp-items=ViewBag.SelectLists.LunchList></select>
-                    </div>
+                    <select asp-for="Lunch" class="form-control" asp-items=ViewBag.SelectLists.LunchList></select>
                 </div>
 
                 <!--EnrolledYear-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Year</label>
-                    <div class="col-md-10">
-                        <input class="form-control text-box single-line" asp-for="EnrolledYear" type="number" maxlength="4" value=@DateTime.Now.Year/>
-                    </div>
+                    <input asp-for="EnrolledYear" class="form-control" value=@DateTime.Now.Year />
                 </div>
 
                 <!--EnrolledSemester-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Enrollment Semester</label>
-                    <div class="col-md-10">
-                        <select asp-for="EnrolledSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
-                    </div>
+                    <select asp-for="EnrolledSemester" class="form-control" asp-items=ViewBag.SelectLists.SemesterList></select>
                 </div>
 
                 <!--AgeAtEnrollment-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Age at Enrollment</label>
-                    <div class="col-md-10">
-                        <input class="form-control text-box single-line" asp-for="AgeAtEnrollment" type="number" />
-                    </div>
+                    <input asp-for="AgeAtEnrollment" class="form-control" />
                 </div>
 
                 <!--Birthday-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Birthday</label>
-                    <div class="col-md-10">
-                        <input class="date" asp-for="Birthday" />
-                    </div>
+                    <input asp-for="Birthday" class="date" />
                 </div>
 
                 <!--Active-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Active</label>
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            <input checked="checked" class="check-box" asp-for="Active" type="checkbox" />
-                        </div>
+                    <div class="col-md-10 checkbox">
+                        <input asp-for="Active" checked="checked" />
                     </div>
                 </div>
 
@@ -130,41 +106,31 @@
                 <!--Parent 1 Name-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentName1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentName1" class="form-control" />
                 </div>
 
                 <!--Parent 1 Realtionship-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
-                    <div class="col-md-10">
-                        <select asp-for="RelationshipParent1" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
-                    </div>
+                    <select asp-for="RelationshipParent1" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                 </div>
 
                 <!--Parent 1 Phone Number-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Phone Number</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentNumber1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentNumber1" class="form-control" />
                 </div>
 
                 <!--Parent 1 Apartment Number-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Apartment Number</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentAptNumber1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentAptNumber1" class="form-control" />
                 </div>
 
                 <!--Parent 1 Email Address-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Email address</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentEmailAddress1" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentEmailAddress1" class="form-control" />
                 </div>
 
                 <h3>Parent 2</h3>
@@ -172,42 +138,34 @@
                 <!--Parent 2 Name-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentName2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentName2" class="form-control" />
                 </div>
 
                 <!--Parent 2 Realtionship-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Relationship</label>
-                    <div class="col-md-10">
-                        <select asp-for="RelationshipParent2" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
-                    </div>
+                    <select asp-for="RelationshipParent2" class="form-control" asp-items=ViewBag.SelectLists.RelationshipList></select>
                 </div>
 
                 <!--Parent 2 Phone Number-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Phone Number</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentNumber2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentNumber2" class="form-control" />
                 </div>
 
                 <!--Parent 2 Apartment Number-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Apartment Number</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentAptNumber2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentAptNumber2" class="form-control" />
                 </div>
 
                 <!--Parent 2 Email Address-->
                 <div class="form-group">
                     <label class="control-label col-md-2">Email address</label>
-                    <div class="col-md-10">
-                        <input asp-for="ParentEmailAddress2" class="form-control text-box single-line" />
-                    </div>
+                    <input asp-for="ParentEmailAddress2" class="form-control" />
                 </div>
+
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
 
                 <!--submit-->
                 <div class="form-group">

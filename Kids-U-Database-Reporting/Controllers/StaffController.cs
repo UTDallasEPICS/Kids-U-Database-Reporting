@@ -30,11 +30,16 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Add()
         {
-            ViewBag.SiteSelectList = await _commonService.GetSiteSelectList();
+            ViewBag.selectLists = new SelectLists()
+            {
+                SiteList = await _commonService.GetSiteSelectList()
+            };
+
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(ApplicationUser newUser, string password)
         {
             await _staffService.AddNewStaff(newUser, password);
@@ -43,17 +48,24 @@ namespace Kids_U_Database_Reporting.Controllers
 
         public async Task<IActionResult> Edit(string Email)
         {
-            ViewBag.SiteSelectList = await _commonService.GetSiteSelectList();
+            ViewBag.selectLists = new SelectLists()
+            {
+                SiteList = await _commonService.GetSiteSelectList()
+            };
             var staff = await _staffService.GetStaffAsync(Email);
             return View(staff);
         }
 
-        public async Task<IActionResult> FinalizeEditAsync(ApplicationUser model, string oldEmail, string password)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ApplicationUser model, string oldEmail, string password)
         {
            await _staffService.UpdateStaffAsync(model, oldEmail, password);
            return RedirectToAction("Index", "Staff");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(string Email)
         {
             await _staffService.DeleteStaffAsync(Email);

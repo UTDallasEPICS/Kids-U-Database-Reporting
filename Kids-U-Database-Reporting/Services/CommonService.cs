@@ -22,7 +22,7 @@ namespace Kids_U_Database_Reporting.Services
         // Create list of objects with the StudentId and their full name for every student
         public async Task<List<object>> GetStudentNameList(string userName)
         {
-            var studentSelectList = new List<object>(); // Create list to hold anonymous objects
+            var studentSelectList = new List<object>() { new { Id = -1, Name = "Select Student" } }; // Create list to hold anonymous objects. First element is Select Student
             var studentList = await _studentService.GetStudents(new Search(), userName); // Get only active students with empty Search. Default value is to ignore inactive students
             foreach (var student in studentList) // Make an anon object for every student. Id is the key and Name is the value used to create a select list with html
                 studentSelectList.Add(new { Id = student.StudentId, Name = student.FirstName + " " + student.LastName });
@@ -32,7 +32,7 @@ namespace Kids_U_Database_Reporting.Services
         // Get current sites from database for html select element, default value is Select KU Site
         public async Task<List<SelectListItem>> GetSiteSelectList() 
         {
-            List<SelectListItem> siteList = new List<SelectListItem> { new SelectListItem { Text = "Select KU Site" } };
+            List<SelectListItem> siteList = new List<SelectListItem> { new SelectListItem { Value = "", Text = "Select KU Site" } };
             var sites = await _siteService.GetSitesAsync();
             foreach (Site site in sites)
                 siteList.Add(new SelectListItem { Text = site.SiteName });
@@ -42,7 +42,7 @@ namespace Kids_U_Database_Reporting.Services
         // Get current schools from database for html select element, default value is Select School
         public async Task<List<SelectListItem>> GetSchoolSelectList() 
         {
-            List<SelectListItem> schoolList = new List<SelectListItem> { new SelectListItem { Text =  "Select School" } };
+            List<SelectListItem> schoolList = new List<SelectListItem> { new SelectListItem { Value="", Text =  "Select School" } };
             var schools = await _schoolService.GetSchoolsAsync();
             foreach (School school in schools)
                 schoolList.Add(new SelectListItem { Text = school.SchoolName });

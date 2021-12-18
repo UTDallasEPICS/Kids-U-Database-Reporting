@@ -3,10 +3,7 @@
     ViewData["Title"] = "Student Roster";
 }
 
-<script>
-    var searchData = @Html.Raw(Json.Serialize(Model.SearchData)) // When page loads setSelectValue(searchData) is run to set the search options to what was just searched
-</script>
-<body onload="setSelectValue(searchData)">
+<body>
     <div class="container body-content">
         <h2>Student Roster</h2>
 
@@ -21,58 +18,21 @@
                 <!--Export button, connected to the searchForm so that the selected filtering is applied-->
                 <button form="searchForm" formaction="Student/Export" type="submit">Export</button>
                 <!--Sort-->
-                <select id="sortOrderSelect" form="searchForm" name="SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
+                <select form="searchForm" asp-for="SearchData.SortOrder" asp-items="ViewBag.SelectLists.SortOrderList"></select>
             </div>
 
             <!--Search Bar reloads view with selected form data-->
             <div id="search">
                 <form id="searchForm" asp-controller="Student" asp-action="Index" method="get">
-                    <input type="text" name="Name" value=@Model.SearchData.Name placeholder="Enter Student Name" autofocus />
-                    <button type="button" onclick="window.location = '/Student/Index'" style="margin: 0 0 0 -10px;">Clear</button> <!--Reload page to reset filters-->
-                    <button type="submit" value="Search">Go</button>
+                    <input asp-for="SearchData.Name" placeholder="Enter Student Name" autofocus />
+                    @Html.ActionLink("Clear", "Index", "Student") <!--Reload page to reset filters-->
+                    <button type="submit">Go</button>
                 </form>
             </div>
         </div>
 
-        <!--each select is tied to the searchForm so its value is passed to Index(), the name determines which parameter the value is-->
-        <div class="expand" id="advancedSearch" style="display:grid">
-            <div>
-                <strong>Ethnicity:</strong><br>
-                <select id="ethnicitySelect" form="searchForm" name="Ethnicity" asp-items="ViewBag.SelectLists.EthnicityList"></select>
-            </div>
-            <div>
-                <strong>KU Site:</strong><br>
-                <select id="siteSelect" form="searchForm" name="Site" asp-items="ViewBag.SelectLists.SiteList"></select>
-            </div>
-            <div>
-                <strong>Income:</strong><br>
-                <select id="incomeSelect" form="searchForm" name="Income" asp-items="ViewBag.SelectLists.IncomeList"></select>
-            </div>
-            <div>
-                <strong>Active</strong>:<br>
-                <select id="activeSelect" form="searchForm" name="Active" asp-items="ViewBag.SelectLists.ActiveList"></select>
-            </div>
-            <div>
-                <strong>Years Enrolled:</strong><br>
-                <select id="yearsEnrolledSelect" form="searchForm" name="YearsEnrolled" asp-items="ViewBag.SelectLists.YearsEnrolledList"></select>
-            </div>
-            <div>
-                <strong>Gender:</strong><br>
-                <select id="genderSelect" form="searchForm" name="Gender" asp-items="ViewBag.SelectLists.GenderList"></select>
-            </div>
-            <div>
-                <strong>School:</strong><br>
-                <select id="schoolSelect" form="searchForm" name="School" asp-items="ViewBag.SelectLists.SchoolList"></select>
-            </div>
-            <div>
-                <strong>School Grade:</strong><br>
-                <select id="schoolGradeSelect" form="searchForm" name="SchoolGrade" asp-items="ViewBag.SelectLists.SchoolGradeList"></select>
-            </div>
-            <div>
-                <strong>Free Lunch:</strong><br>
-                <select id="lunchSelect" form="searchForm" name="Lunch" asp-items="ViewBag.SelectLists.LunchList"></select>
-            </div>
-        </div>
+        <!--Renders the select boxes for advanced search-->
+        <partial name="_AdvancedSearch" />
 
         <!--table-->
         <table class="table">
@@ -88,8 +48,8 @@
             <!--Displays all students from model. Students filtered in GetStudentsAsync()-->
             @foreach (var item in Model.Students)
             {
+                <!--Click the row to run View(StudentId), goes to individual view-->
                 <tr class="table-clickable-row" onclick="window.location = '/Student/View/?studentId=@item.StudentId&returnUrl=@System.Web.HttpUtility.UrlEncode(ViewBag.returnUrl)'">
-                    <!--Click the row to run View(StudentId), goes to individual view-->
                     <td>@item.FirstName @item.LastName</td>
                     <td>@item.Facility</td>
                     <td>@item.SchoolGrade</td>
